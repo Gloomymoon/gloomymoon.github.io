@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Building LegoSpyder Part III - Gloomymoon�Ĳ��� | Gloomymoon&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2016/10/23/Building-LegoSpyder-Part-III/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/overwatch.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Lego" title="Lego">Lego</a>
+                        
+                          <a class="tag" href="/tags/#Scrapy" title="Scrapy">Scrapy</a>
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                    </div>
+                    <h1>Building LegoSpyder Part III</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2016-10-23
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="4-Finish-The-LegoSpyder"><a href="#4-Finish-The-LegoSpyder" class="headerlink" title="4 Finish The LegoSpyder"></a>4 Finish The LegoSpyder</h2><h3 id="4-1-Define-Items"><a href="#4-1-Define-Items" class="headerlink" title="4.1 Define Items"></a>4.1 Define Items</h3><p>通过分析Search API返回的json数据格式，得出的结果数据格式如下：<br><img src="http://yuml.me/diagram/nofunky/class/[Search Result|+count;+moreData;+products;+totalCount;+themeName;+launchYear;]++1->*[Product|+productId;+productName;+productImage], [Product]++1->*[BuildingInstruction|+description;+pdfLocation;+downloadSize;+frontpageInfo;+isAlternative;]"></p>
+<p>考虑到所需要保存的数据和便于下载文件，最终设计的items类如下图：<br><img src="http://yuml.me/diagram/nofunky/class/[LegoBaseItem|+productId;+file_urls;+files;+file_paths]^-[LegoProductItem|+productName;+productImage;+theme;+year;], [LegoBaseItem]^-[LegoBuildingInstructionsItem|+description;]"></p>
+<p>最终items.py的代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">from scrapy import Field, Item</div><div class="line"></div><div class="line"></div><div class="line">class LegoBaseItem(Item):</div><div class="line">    productId = Field()</div><div class="line">    file_urls = Field()</div><div class="line">    files = Field()</div><div class="line">    file_paths = Field()</div><div class="line"></div><div class="line"></div><div class="line">class LegoProductItem(LegoBaseItem):</div><div class="line">    # define the fields for your item here like:</div><div class="line">    # name = Field()</div><div class="line">    productName = Field()</div><div class="line">    productImage = Field()</div><div class="line">    theme = Field()</div><div class="line">    year = Field()</div><div class="line"></div><div class="line"></div><div class="line">class LegoBuildingInstructionsItem(LegoBaseItem):</div><div class="line">    description = Field()</div></pre></td></tr></table></figure></p>
+<h3 id="4-2-Modify-Pipelines"><a href="#4-2-Modify-Pipelines" class="headerlink" title="4.2 Modify Pipelines"></a>4.2 Modify Pipelines</h3><p>因为我们只需要下载图片和PDF，因此可以用一个FilesPipeline搞定，并且为了文档管理需将不同类型的文件存放在不同的目录下，pipelines.py的最终代码修改如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">class LegoFilePipeline(FilesPipeline):</div><div class="line">    def file_path(self, request, response=None, info=None):</div><div class="line">        file_guid = request.url.split(&apos;/&apos;)[-1]</div><div class="line">        group = request.url.split(&apos;.&apos;)[-1]</div><div class="line">        #group is the subdirectory of the downloaded files or images</div><div class="line">        if group not in [&apos;jpg&apos;,&apos;jpeg&apos;,&apos;png&apos;,&apos;gif&apos;,&apos;pdf&apos;]:</div><div class="line">            group = &apos;unknown&apos;</div><div class="line">        return &apos;%s/%s&apos; % (group, file_guid)</div><div class="line"></div><div class="line">    def get_media_requests(self, item, info):</div><div class="line">        if &apos;file_urls&apos; in item:</div><div class="line">            for file_url in item[&apos;file_urls&apos;]:</div><div class="line">                yield Request(file_url)</div><div class="line"></div><div class="line">    def item_completed(self, results, item, info):</div><div class="line">        if &apos;file_urls&apos; in item:</div><div class="line">            file_paths = [x[&apos;path&apos;] for ok, x in results if ok]</div><div class="line">            if not file_paths:</div><div class="line">                raise DropItem(&apos;File download failed: %s&apos; % file_paths)</div><div class="line">            item[&apos;file_paths&apos;] = file_paths</div><div class="line">        return item</div></pre></td></tr></table></figure></p>
+<h3 id="4-3-Refine-the-Spider"><a href="#4-3-Refine-the-Spider" class="headerlink" title="4.3 Refine the Spider"></a>4.3 Refine the Spider</h3><p>最后需要修正spider程序BuildingInstructionSpider.py，使其能够递归循环爬取所有结果中的图片和PDF。由于部分分类下的Product超过10个（一次Search返回的结果数），所以需要根据moreData来判断是否还要继续同条件下的搜索：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">class BuildingInstructionsSpider(scrapy.Spider):</div><div class="line">    name = &apos;lego&apos;</div><div class="line">    search_base_url = &quot;https://wwwsecure.us.lego.com//service/biservice/searchbythemeandyear?fromIndex=%s&amp;onlyAlternatives=false&amp;theme=%s&amp;year=%s&quot;</div><div class="line">    allowed_domains = [&apos;lego.com&apos;]</div><div class="line">    start_urls = [</div><div class="line">        &apos;https://wwwsecure.us.lego.com/en-us/service/buildinginstructions&apos;,</div><div class="line">    ]</div><div class="line"></div><div class="line">    def parse(self, response):</div><div class="line">        year_str = response.css(&apos;div.product-search::attr(data-search-years)&apos;).extract_first()</div><div class="line">        theme_str = response.css(&apos;div.product-search::attr(data-search-themes)&apos;).extract_first()</div><div class="line">        for theme in json.loads(theme_str):</div><div class="line">            for year in json.loads(year_str):</div><div class="line">                search_url = self.search_base_url % (0, theme[&apos;Key&apos;], year)</div><div class="line">                yield scrapy.Request(search_url, callback=self.parse_search)</div><div class="line"></div><div class="line">    def parse_search(self, response):</div><div class="line">        result = json.loads(response.body)</div><div class="line">        param = parse_qs(urlparse(response.url).query)</div><div class="line">        if result[&apos;count&apos;]:</div><div class="line">            for p in result[&apos;products&apos;]:</div><div class="line">                product = LegoProductItem()</div><div class="line">                product[&apos;theme&apos;] = param[&quot;theme&quot;][0]</div><div class="line">                product[&apos;year&apos;] = param[&quot;year&quot;][0]</div><div class="line">                product[&apos;productId&apos;] = p[&apos;productId&apos;]</div><div class="line">                product[&apos;productName&apos;] = p[&apos;productName&apos;]</div><div class="line">                product[&apos;productImage&apos;] = p[&apos;productImage&apos;]</div><div class="line">                product[&apos;file_urls&apos;] = [p[&apos;productImage&apos;]]</div><div class="line">                yield product</div><div class="line">                for bi in p[&apos;buildingInstructions&apos;]:</div><div class="line">                    instruction = LegoBuildingInstructionsItem()</div><div class="line">                    instruction[&apos;productId&apos;] = p[&apos;productId&apos;]</div><div class="line">                    instruction[&apos;description&apos;] = bi[&apos;description&apos;]</div><div class="line">                    instruction[&apos;file_urls&apos;] = [bi[&apos;pdfLocation&apos;], bi[&apos;frontpageInfo&apos;]]</div><div class="line">                    yield instruction</div><div class="line">        if result[&apos;moreData&apos;]:</div><div class="line">            search_next = self.search_base_url % (int(param[&apos;fromIndex&apos;][0]) + int(result[&apos;count&apos;]), param[&quot;theme&quot;][0], param[&quot;year&quot;][0])</div><div class="line">            yield scrapy.Request(search_next, callback=self.parse_search</div></pre></td></tr></table></figure></p>
+<h3 id="5-Run！"><a href="#5-Run！" class="headerlink" title="5 Run！"></a>5 Run！</h3><p>将main.py修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cmdline.execute(&quot;scrapy crawl lego -o lego.jl&quot;.split())</div></pre></td></tr></table></figure></p>
+<p>运行就可以看到Download目录下源源不断生成的jpg、png和pdf文件，而且最后所有item的数据都会存放在lego.jl文件中：</p>
+<blockquote>
+<p>{“file_paths”: [“jpg/4655-0000-XX-12-1.jpg”], “productName”: “Quick Fix Station”, “productImage”: “<a href="http://cache.lego.com/images/shop/prod/4655-0000-XX-12-1.jpg" target="_blank" rel="external">http://cache.lego.com/images/shop/prod/4655-0000-XX-12-1.jpg</a>“, “theme”: “10000-20070”, “file_urls”: [“<a href="http://cache.lego.com/images/shop/prod/4655-0000-XX-12-1.jpg" target="_blank" rel="external">http://cache.lego.com/images/shop/prod/4655-0000-XX-12-1.jpg</a>“], “year”: “2003”, “productId”: “4655”}<br>{“productId”: “4655”, “file_paths”: [“pdf/4234989.pdf”, “png/4234989.png”], “file_urls”: [“<a href="http://cache.lego.com/bigdownloads/buildinginstructions/4234989.pdf" target="_blank" rel="external">http://cache.lego.com/bigdownloads/buildinginstructions/4234989.pdf</a>“, “<a href="http://cache.lego.com/bigdownloads/buildinginstructions/fpimg/4234989.png" target="_blank" rel="external">http://cache.lego.com/bigdownloads/buildinginstructions/fpimg/4234989.png</a>“], “description”: “BI, 4655 IN”}<br>{“productId”: “4655”, “file_paths”: [“pdf/4235788.pdf”, “png/4235788.png”], “file_urls”: [“<a href="http://cache.lego.com/bigdownloads/buildinginstructions/4235788.pdf" target="_blank" rel="external">http://cache.lego.com/bigdownloads/buildinginstructions/4235788.pdf</a>“, “<a href="http://cache.lego.com/bigdownloads/buildinginstructions/fpimg/4235788.png" target="_blank" rel="external">http://cache.lego.com/bigdownloads/buildinginstructions/fpimg/4235788.png</a>“], “description”: “BI, 4655 NA”}<br>{“file_paths”: [“jpg/4657-0000-XX-12-1.jpg”], “productName”: “Fire Squad HQ”, “productImage”: “<a href="http://cache.lego.com/images/shop/prod/4657-0000-XX-12-1.jpg" target="_blank" rel="external">http://cache.lego.com/images/shop/prod/4657-0000-XX-12-1.jpg</a>“, “theme”: “10000-20070”, “file_urls”: [“<a href="http://cache.lego.com/images/shop/prod/4657-0000-XX-12-1.jpg" target="_blank" rel="external">http://cache.lego.com/images/shop/prod/4657-0000-XX-12-1.jpg</a>“], “year”: “2003”, “productId”: “4657”}<br>{“productId”: “4657”, “file_paths”: [“pdf/4234999.pdf”, “png/4234999.png”], “file_urls”: [“<a href="http://cache.lego.com/bigdownloads/buildinginstructions/4234999.pdf" target="_blank" rel="external">http://cache.lego.com/bigdownloads/buildinginstructions/4234999.pdf</a>“, “<a href="http://cache.lego.com/bigdownloads/buildinginstructions/fpimg/4234999.png" target="_blank" rel="external">http://cache.lego.com/bigdownloads/buildinginstructions/fpimg/4234999.png</a>“], “description”: “BI, 4657 IN”}<br>…</p>
+</blockquote>
+<h2 id="6-Some-Bugs"><a href="#6-Some-Bugs" class="headerlink" title="6 Some Bugs"></a>6 Some Bugs</h2><h3 id="6-1-Error-processing-file-from"><a href="#6-1-Error-processing-file-from" class="headerlink" title="6.1 Error processing file from"></a>6.1 Error processing file from</h3><p><code>2016-10-23 21:14:35 [scrapy] ERROR: File (unknown-error): Error processing file from &lt;GET https://mi-od-live-s.legocdn.com/r/www/r/service/-/media/franchises/customer%20service/technic/8052_b_part2.pdf?l.r2=704137121&gt; referred in &lt;None&gt;</code><br>由于部分下载链接带有url参数，因此需要将LegoFiePipline.py文件如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">file_guid = request.url.split(&apos;/&apos;)[-1]</div><div class="line">group = request.url.split(&apos;.&apos;)[-1]</div></pre></td></tr></table></figure></p>
+<p>修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">file_guid = request.url.split(&apos;?&apos;)[0].split(&apos;/&apos;)[-1]</div><div class="line">group = request.url.split(&apos;?&apos;)[0].split(&apos;.&apos;)[-1]</div></pre></td></tr></table></figure></p>
+<h3 id="6-2-WARNING-Received-more-bytes-than-download-warn-size-33554432-in-request"><a href="#6-2-WARNING-Received-more-bytes-than-download-warn-size-33554432-in-request" class="headerlink" title="6.2 WARNING: Received more bytes than download warn size (33554432) in request"></a>6.2 WARNING: Received more bytes than download warn size (33554432) in request</h3><p>因为部分PDF文件较大，下载时间较长，超过了预设的timeout=180，造成部分文件下载失败，需要修改settings.py：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">DOWNLOAD_MAXSIZE = 0</div><div class="line">DOWNLOAD_TIMEOUT = 18000</div></pre></td></tr></table></figure></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/10/22/Building-LegoSpyder-Part-II/" data-toggle="tooltip" data-placement="top" title="Building LegoSpyder Part II">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/renzhenming">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/RenZhenming">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/RenZhenming">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon&#39;s Blog 2016
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

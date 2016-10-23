@@ -171,6 +171,29 @@
 
 <div class="post-preview">
 
+    <a href="/2016/10/23/Building-LegoSpyder-Part-III/">
+        <h2 class="post-title">
+            Building LegoSpyder Part III
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            4 Finish The LegoSpyder4.1 Define Items通过分析Search API返回的json数据格式，得出的结果数据格式如下：
+考虑到所需要保存的数据和便于下载文件，最终设计的items类如下图：
+最终items.py的代码如下：123456789101112131415161718192021from scrapy import Field, Itemclass......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Gloomymoon on
+        2016-10-23
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2016/10/22/Building-LegoSpyder-Part-II/">
         <h2 class="post-title">
             Building LegoSpyder Part II
@@ -180,12 +203,9 @@
         </h3>
         <div class="post-content-preview">
             2. Installing Scrapy直接用pip安装即可：1$ pip install Scrapy
-如果出现如下错误：
-
-exceptions.ImportError: No module named win32api
-
+如果出现如下错误：exceptions.ImportError: No module named win32api
 需要手动安装pypiwin32:1$ pip install pypiwin32
-如果需要下载预览图片，请手动安装image：1$ pip install image......
+如果需要生成下载预览图片的缩略图，请手动安装image：1$ pip install im......
         </div>
     </a>
     <p class="post-meta">
