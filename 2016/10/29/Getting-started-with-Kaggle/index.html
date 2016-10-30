@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Getting started with Kaggle - Gloomymoon�Ĳ��� | Gloomymoon&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2016/10/29/Getting-started-with-Kaggle/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/overwatch.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Kaggle" title="Kaggle">Kaggle</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                    </div>
+                    <h1>Getting started with Kaggle</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2016-10-29
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p><a href="https://www.dataquest.io/dashboard" target="_blank" rel="external">dataquest.io</a>是一个在线学习数据科学的网站，内容涵盖Python、数据分析、数据可视化、统计学、机器学习、大数据工具、R等内容，并提供在线交互式编程环境，今天我们先来学习Kaggle的一个入门教程：<a href="https://www.dataquest.io/mission/74/getting-started-with-kaggle" target="_blank" rel="external">Getting started with Kaggle</a></p>
+<h3 id="1-The-Competition"><a href="#1-The-Competition" class="headerlink" title="1 The Competition"></a>1 The Competition</h3><p>首先我们从Kaggle上最简单的题目入手：<a href="https://www.kaggle.com/c/titanic" target="_blank" rel="external">Titanic: Machine Learning from Disaster</a>，预测Titanic号上乘客的幸存情况，在这个教程中，我们首先浏览数据，然后训练第一个模型。</p>
+<p>数据是<code>.csv</code>格式的，环境使用本地的Jupyter Notebook。首先需要下载训练和验证数据集：<a href="https://www.kaggle.com/c/titanic/download/train.csv" target="_blank" rel="external">train.csv</a>和<a href="https://www.kaggle.com/c/titanic/download/test.csv" target="_blank" rel="external">test.csv</a><br>每一行数据代表Titanic号上的一名乘客，包含的字段如下：</p>
+<ul>
+<li><code>PassengerId</code> 唯一的乘客号</li>
+<li><code>Survived</code> 表示乘客是（1）否(0)幸存，也是我们需要预测的目标值</li>
+<li><code>Pclass</code> 乘客所住舱位等级，分为1、2、3，1最高</li>
+<li><code>Name</code> 乘客的姓名</li>
+<li><code>Sex</code> 乘客的性别，male或female</li>
+<li><code>Age</code> 乘客的年龄，有缺失</li>
+<li><code>SibSp</code> 乘客在船上的兄弟或配偶数</li>
+<li><code>Parch</code> 乘客在船上的父母或子女数</li>
+<li><code>Ticket</code> 乘客的船票号码</li>
+<li><code>Fare</code> 乘客船票的票价</li>
+<li><code>Cabin</code> 乘客所住的船舱号</li>
+<li><code>Embarked</code> 乘客登船地点</li>
+</ul>
+<p>建模前首先需要学习领域知识，思考下那些变量可能与我们需要预测的目标存在关联。了解Titanic号事件的背景知识肯定会对此有所助益。</p>
+<p>通常来说妇女和儿童更容易幸存，因此<code>Age</code>和<code>Sex</code>是较显著的预测变量。舱位等级也可能对目标产生影响，因为头等舱更加靠近甲板，票价和舱位等级相关，因此也很有用。同伴数（包括兄弟、配偶、父母、子女）可能也会有关，因为同伴越多意味着帮助你的人越多。</p>
+<p>其他诸如<code>Name</code>、<code>Ticket</code>、<code>Embarked</code>可能就与目标没有什么关联。</p>
+<h3 id="2-Looking-At-The-Data"><a href="#2-Looking-At-The-Data" class="headerlink" title="2 Looking At The Data"></a>2 Looking At The Data</h3><p>了解训练数据的概貌是一个不错的开始，这里我们使用pandas的<code>.discribe()</code>方法来查看下不同变量的特征和分布。<br><figure class="highlight golo"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas</div><div class="line"><span class="comment"># We can use the pandas library in python to read in the csv file.</span></div><div class="line"><span class="comment"># This creates a pandas dataframe and assigns it to the titanic variable.</span></div><div class="line">titanic = pandas.read_csv(<span class="string">"train.csv"</span>)</div><div class="line"></div><div class="line"><span class="comment"># Print the first 5 rows of the dataframe.</span></div><div class="line"><span class="keyword">print</span>(titanic.head(<span class="number">5</span>))</div><div class="line"></div><div class="line"><span class="keyword">print</span>(titanic.describe())</div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">   PassengerId  Survived  Pclass  \</div><div class="line"><span class="number">0</span>            <span class="number">1</span>         <span class="number">0</span>       <span class="number">3</span>   </div><div class="line"><span class="number">1</span>            <span class="number">2</span>         <span class="number">1</span>       <span class="number">1</span>   </div><div class="line"><span class="number">2</span>            <span class="number">3</span>         <span class="number">1</span>       <span class="number">3</span>   </div><div class="line"><span class="number">3</span>            <span class="number">4</span>         <span class="number">1</span>       <span class="number">1</span>   </div><div class="line"><span class="number">4</span>            <span class="number">5</span>         <span class="number">0</span>       <span class="number">3</span>   </div><div class="line"></div><div class="line">                                                Name     Sex   Age  SibSp  \</div><div class="line"><span class="number">0</span>                            Braund, Mr. Owen Harris    male  <span class="number">22.0</span>      <span class="number">1</span>   </div><div class="line"><span class="number">1</span>  Cumings, Mrs. John Bradley (Florence Briggs Th...  female  <span class="number">38.0</span>      <span class="number">1</span>   </div><div class="line"><span class="number">2</span>                             Heikkinen, Miss. Laina  female  <span class="number">26.0</span>      <span class="number">0</span>   </div><div class="line"><span class="number">3</span>       Futrelle, Mrs. Jacques Heath (Lily May Peel)  female  <span class="number">35.0</span>      <span class="number">1</span>   </div><div class="line"><span class="number">4</span>                           Allen, Mr. William Henry    male  <span class="number">35.0</span>      <span class="number">0</span>   </div><div class="line"></div><div class="line">   Parch            Ticket     Fare Cabin Embarked  </div><div class="line"><span class="number">0</span>      <span class="number">0</span>         A/<span class="number">5</span> <span class="number">21171</span>   <span class="number">7.2500</span>   NaN        S  </div><div class="line"><span class="number">1</span>      <span class="number">0</span>          PC <span class="number">17599</span>  <span class="number">71.2833</span>   C85        C  </div><div class="line"><span class="number">2</span>      <span class="number">0</span>  STON/O2. <span class="number">3101282</span>   <span class="number">7.9250</span>   NaN        S  </div><div class="line"><span class="number">3</span>      <span class="number">0</span>            <span class="number">113803</span>  <span class="number">53.1000</span>  C123        S  </div><div class="line"><span class="number">4</span>      <span class="number">0</span>            <span class="number">373450</span>   <span class="number">8.0500</span>   NaN        S  </div><div class="line">       PassengerId    Survived      Pclass         Age       SibSp  \</div><div class="line">count   <span class="number">891.000000</span>  <span class="number">891.000000</span>  <span class="number">891.000000</span>  <span class="number">714.000000</span>  <span class="number">891.000000</span>   </div><div class="line">mean    <span class="number">446.000000</span>    <span class="number">0.383838</span>    <span class="number">2.308642</span>   <span class="number">29.699118</span>    <span class="number">0.523008</span>   </div><div class="line">std     <span class="number">257.353842</span>    <span class="number">0.486592</span>    <span class="number">0.836071</span>   <span class="number">14.526497</span>    <span class="number">1.102743</span>   </div><div class="line">min       <span class="number">1.000000</span>    <span class="number">0.000000</span>    <span class="number">1.000000</span>    <span class="number">0.420000</span>    <span class="number">0.000000</span>   </div><div class="line"><span class="number">25</span>%     <span class="number">223.500000</span>    <span class="number">0.000000</span>    <span class="number">2.000000</span>         NaN    <span class="number">0.000000</span>   </div><div class="line"><span class="number">50</span>%     <span class="number">446.000000</span>    <span class="number">0.000000</span>    <span class="number">3.000000</span>         NaN    <span class="number">0.000000</span>   </div><div class="line"><span class="number">75</span>%     <span class="number">668.500000</span>    <span class="number">1.000000</span>    <span class="number">3.000000</span>         NaN    <span class="number">1.000000</span>   </div><div class="line">max     <span class="number">891.000000</span>    <span class="number">1.000000</span>    <span class="number">3.000000</span>   <span class="number">80.000000</span>    <span class="number">8.000000</span>   </div><div class="line"></div><div class="line">            Parch        Fare  </div><div class="line">count  <span class="number">891.000000</span>  <span class="number">891.000000</span>  </div><div class="line">mean     <span class="number">0.381594</span>   <span class="number">32.204208</span>  </div><div class="line">std      <span class="number">0.806057</span>   <span class="number">49.693429</span>  </div><div class="line">min      <span class="number">0.000000</span>    <span class="number">0.000000</span>  </div><div class="line"><span class="number">25</span>%      <span class="number">0.000000</span>    <span class="number">7.910400</span>  </div><div class="line"><span class="number">50</span>%      <span class="number">0.000000</span>   <span class="number">14.454200</span>  </div><div class="line"><span class="number">75</span>%      <span class="number">0.000000</span>   <span class="number">31.000000</span>  </div><div class="line">max      <span class="number">6.000000</span>  <span class="number">512.329200</span></div></pre></td></tr></table></figure></p>
+<h3 id="3-Missing-Data"><a href="#3-Missing-Data" class="headerlink" title="3 Missing Data"></a>3 Missing Data</h3><p>从上一步中可以看到<code>Age</code>字段计数只有<code>714</code>，而其他字段都有<code>891</code>个，意味着该字段存在缺失。<code>Age</code>字段仍然有用，我们不能因为有部分记录缺失就完全抛弃它，一个比较简单的数据清洗方式是为所有缺失值赋一个固定值，比如说所有非缺失值的中位数。<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">titanic[<span class="string">"Age"</span>] =titanic[<span class="string">"Age"</span>].fillna(titanic[<span class="string">"Age"</span>].median())</div></pre></td></tr></table></figure></p>
+<h3 id="4-Non-numeric-Columns"><a href="#4-Non-numeric-Columns" class="headerlink" title="4 Non-numeric Columns"></a>4 Non-numeric Columns</h3><p>除了’Age’字段存在缺失以外，我们还发现通过<code>.describe()</code>方法显示的数据概貌信息中并没有显示所有的字段，仅显示了数值型字段。非数值型字段无法在预测模型生效，因为机器学习算法只接受数值型变量，因此要找一个将我们需要的字段转换成数值型的方法。<code>Ticket</code>、<code>Cabin</code>、<code>Name</code>暂时在我们抛弃的列表中。</p>
+<h3 id="5-Converting-The-Sex-Column"><a href="#5-Converting-The-Sex-Column" class="headerlink" title="5 Converting The Sex Column"></a>5 Converting The Sex Column</h3><p><code>Sex</code>是一个我们希望保留的非数值型变量，我们可以将每一个性别类型用一个数值表示。<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Find <span class="keyword">all</span> the unique genders -- the column appears <span class="keyword">to</span> contain <span class="keyword">only</span> male <span class="built_in">and</span> female.</div><div class="line"><span class="keyword">print</span>(titanic[<span class="string">"Sex"</span>].unique())</div><div class="line"></div><div class="line"># Replace <span class="keyword">all</span> the occurences of male with the <span class="keyword">number</span> <span class="number">0</span>.</div><div class="line">titanic.<span class="keyword">loc</span>[titanic[<span class="string">"Sex"</span>] == <span class="string">"male"</span>, <span class="string">"Sex"</span>] = <span class="number">0</span></div><div class="line">titanic.<span class="keyword">loc</span>[titanic[<span class="string">"Sex"</span>] == <span class="string">"female"</span>, <span class="string">"Sex"</span>] = <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight scheme"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="symbol">'male</span>' <span class="symbol">'female</span>']</div></pre></td></tr></table></figure></p>
+<h3 id="6-Converting-The-Embarked-Column"><a href="#6-Converting-The-Embarked-Column" class="headerlink" title="6 Converting The Embarked Column"></a>6 Converting The Embarked Column</h3><p>我们可以使用与之前类似的方式来处理<code>Embarked</code>字段，出现最多的取值为<code>S</code>，我们可以将缺失值全赋为<code>S</code>。然后将<code>S</code>转化为<code>0</code>，<code>C</code>转化为<code>1</code>、<code>Q</code>转化为<code>2</code>。<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># <span class="symbol">Find</span> all the unique values for <span class="string">"Embarked"</span>.</div><div class="line">print(titanic[<span class="string">"Embarked"</span>].unique())</div><div class="line"></div><div class="line">titanic[<span class="string">"Embarked"</span>] = titanic[<span class="string">"Embarked"</span>].fillna(<span class="string">'S'</span>)</div><div class="line">titanic.loc[titanic[<span class="string">"Embarked"</span>] == <span class="string">"S"</span>, <span class="string">"Embarked"</span>] = <span class="number">0</span></div><div class="line">titanic.loc[titanic[<span class="string">"Embarked"</span>] == <span class="string">"C"</span>, <span class="string">"Embarked"</span>] = <span class="number">1</span></div><div class="line">titanic.loc[titanic[<span class="string">"Embarked"</span>] == <span class="string">"Q"</span>, <span class="string">"Embarked"</span>] = <span class="number">2</span></div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight scheme"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="symbol">'S</span>' <span class="symbol">'C</span>' <span class="symbol">'Q</span>' nan]</div></pre></td></tr></table></figure></p>
+<h3 id="7-On-To-Machine-Learning"><a href="#7-On-To-Machine-Learning" class="headerlink" title="7 On To Machine Learning!"></a>7 On To Machine Learning!</h3><p>原文这里介绍线性回归，比较简单不再展开，线性回归有两个问题：</p>
+<ul>
+<li>如果变量和目标非线性相关，那么线性回归方法效果不好</li>
+<li>线性回归无法给出每个人的幸存率，只能给出是否幸存（即01标识）</li>
+</ul>
+<h3 id="8-Cross-Validation"><a href="#8-Cross-Validation" class="headerlink" title="8 Cross Validation"></a>8 Cross Validation</h3><p>为了避免模型的过度拟合，我们需要尽可能在不同的数据上进行训练，然后再独立的测试集上进行验证。交叉检验就是一个简单的避免过度拟合的方法，我们可以将训练集分成几个部分。</p>
+<p>例如将数据分成3份，然后：</p>
+<ul>
+<li>在第1、2份上训练，用第3份验证</li>
+<li>在第1、3份上训练，用第2份验证</li>
+<li>在第2、3份上寻良，用第1份验证</li>
+</ul>
+<h3 id="9-Making-Predictions"><a href="#9-Making-Predictions" class="headerlink" title="9 Making Predictions"></a>9 Making Predictions</h3><p>我们使用优秀的<code>scikit-learn</code>来建立预测模型，使用<code>KFold</code>将数据切分用于交叉检验，然后按照步骤8进行建模。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Import the linear regression class</span></div><div class="line">from sklearn.linear_model <span class="built_in">import</span> LinearRegression</div><div class="line"><span class="comment"># Sklearn also has a helper that makes it easy to do cross validation</span></div><div class="line">from sklearn.cross_validation <span class="built_in">import</span> KFold</div><div class="line"></div><div class="line"><span class="comment"># The columns we'll use to predict the target</span></div><div class="line"><span class="attr">predictors</span> = [<span class="string">"Pclass"</span>, <span class="string">"Sex"</span>, <span class="string">"Age"</span>, <span class="string">"SibSp"</span>, <span class="string">"Parch"</span>, <span class="string">"Fare"</span>, <span class="string">"Embarked"</span>]</div><div class="line"></div><div class="line"><span class="comment"># Initialize our algorithm class</span></div><div class="line"><span class="attr">alg</span> = LinearRegression()</div><div class="line"><span class="comment"># Generate cross validation folds for the titanic dataset.  It return the row indices corresponding to train and test.</span></div><div class="line"><span class="comment"># We set random_state to ensure we get the same splits every time we run this.</span></div><div class="line"><span class="attr">kf</span> = KFold(<span class="attr">n_splits=3,</span> <span class="attr">random_state=1).split(titanic)</span></div><div class="line"></div><div class="line"><span class="attr">predictions</span> = []</div><div class="line">for train, test <span class="keyword">in</span> kf:</div><div class="line">    <span class="comment"># The predictors we're using the train the algorithm.  Note how we only take the rows in the train folds.</span></div><div class="line">    <span class="attr">train_predictors</span> = (titanic[predictors].iloc[train,:])</div><div class="line">    <span class="comment"># The target we're using to train the algorithm.</span></div><div class="line">    <span class="attr">train_target</span> = titanic[<span class="string">"Survived"</span>].iloc[train]</div><div class="line">    <span class="comment"># Training the algorithm using the predictors and target.</span></div><div class="line">    alg.fit(train_predictors, train_target)</div><div class="line">    <span class="comment"># We can now make predictions on the test fold</span></div><div class="line">    <span class="attr">test_predictions</span> = alg.predict(titanic[predictors].iloc[test,:])</div><div class="line">    predictions.append(test_predictions)</div></pre></td></tr></table></figure></p>
+<p>注意这里<code>KFold</code>使用方法和原文中的不同，是因为在<code>sklern 0.18</code>版本中<code>sklern.cross_validation</code>已经更新为<code>sklearn.model_selection</code>，<code>KFold</code>的<a href="http://scikit-learn.org/stable/whats_new.html" target="_blank" rel="external">使用方法</a>有所改变。</p>
+<h3 id="10-Evaludating-Error"><a href="#10-Evaludating-Error" class="headerlink" title="10 Evaludating Error"></a>10 Evaludating Error</h3><p>接下来就能够检验一下我们模型的预测结果，根据Kaggle竞赛的规则，衡量模型结果的指标是正确预测结果的比率，我们也使用这个指标来评估我们的模型。</p>
+<p>预测结果字段为<code>predictions</code>，只要简单比较一下和<code>titanic[&quot;Survived&quot;]</code>相同的量，然后再除以总人数即可。<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">from __future__ import division</div><div class="line">accuracy = sum(<span class="name">predictions</span> == titanic[<span class="string">"Survived"</span>]) / len(<span class="name">predictions</span>)</div><div class="line">print accuracy</div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0<span class="selector-class">.783389450056</span></div></pre></td></tr></table></figure></p>
+<h3 id="11-Logistic-regression"><a href="#11-Logistic-regression" class="headerlink" title="11 Logistic regression"></a>11 Logistic regression</h3><p>第一个预测模型完成了，看上去效果不是很好，准确率只有<code>78.3%</code>。我们可以使用逻辑回归将输出转换为<code>0</code>到<code>1</code>之间（也就是概率）。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">from sklearn <span class="built_in">import</span> model_selection</div><div class="line">from sklearn.linear_model <span class="built_in">import</span> LogisticRegression</div><div class="line"></div><div class="line"><span class="comment"># Initialize our algorithm</span></div><div class="line"><span class="attr">alg</span> = LogisticRegression(<span class="attr">random_state=1)</span></div><div class="line"><span class="comment"># Compute the accuracy score for all the cross validation folds.  (much simpler than what we did before!)</span></div><div class="line"><span class="attr">scores</span> = model_selection.cross_val_score(alg, titanic[predictors], titanic[<span class="string">"Survived"</span>], <span class="attr">cv=3)</span></div><div class="line"><span class="comment"># Take the mean of the scores (because we have one for each fold)</span></div><div class="line">print(scores.mean())</div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0<span class="selector-class">.787878787879</span></div></pre></td></tr></table></figure></p>
+<h3 id="12-Processing-The-Test-Set"><a href="#12-Processing-The-Test-Set" class="headerlink" title="12 Processing The Test Set"></a>12 Processing The Test Set</h3><p>现在预测的准确度有所提升，但是还不够好，在我们进一步优化前先要掌握提交我们的模型给Kaggle。</p>
+<p>需要对测试数据集进行一样的清洗，注意给Age赋缺失值时需要使用训练集的中位数，另外测试集中<code>Fare</code>也存在缺失值，因此也要赋给一个新的值。<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">titanic_test = pandas.read_csv(<span class="string">"test.csv"</span>)</div><div class="line">titanic_test[<span class="string">"Age"</span>] =titanic_test[<span class="string">"Age"</span>].fillna(titanic[<span class="string">"Age"</span>].median())</div><div class="line">titanic_test.loc[titanic_test[<span class="string">"Sex"</span>] == <span class="string">"male"</span>, <span class="string">"Sex"</span>] = <span class="number">0</span></div><div class="line">titanic_test.loc[titanic_test[<span class="string">"Sex"</span>] == <span class="string">"female"</span>, <span class="string">"Sex"</span>] = <span class="number">1</span></div><div class="line">titanic_test[<span class="string">"Embarked"</span>] = titanic_test[<span class="string">"Embarked"</span>].fillna(<span class="string">'S'</span>)</div><div class="line">titanic_test.loc[titanic_test[<span class="string">"Embarked"</span>] == <span class="string">"S"</span>, <span class="string">"Embarked"</span>] = <span class="number">0</span></div><div class="line">titanic_test.loc[titanic_test[<span class="string">"Embarked"</span>] == <span class="string">"C"</span>, <span class="string">"Embarked"</span>] = <span class="number">1</span></div><div class="line">titanic_test.loc[titanic_test[<span class="string">"Embarked"</span>] == <span class="string">"Q"</span>, <span class="string">"Embarked"</span>] = <span class="number">2</span></div><div class="line">titanic_test[<span class="string">"Fare"</span>] =titanic_test[<span class="string">"Fare"</span>].fillna(titanic[<span class="string">"Fare"</span>].median())</div></pre></td></tr></table></figure></p>
+<h3 id="13-Generating-A-Submission-File"><a href="#13-Generating-A-Submission-File" class="headerlink" title="13 Generating A Submission File"></a>13 Generating A Submission File</h3><p>现在我们已经在训练集上建立了一个模型，并且可以在测试集上进行预测。最终我们将预测结果生成一个<code>csv</code>文件，使用<code>submission.to_csv(&quot;Kaggle.csv&quot;, index=False)</code>方法产生一个提交文件。</p>
+<h3 id="14-Next-Steps"><a href="#14-Next-Steps" class="headerlink" title="14 Next Steps"></a>14 Next Steps</h3><p>进入<a href="https://www.kaggle.com/c/titanic/submissions/attach" target="_blank" rel="external">Make a submission</a>页面，将我们生成的<code>csv</code>文件上传：<br><img src="img/Getting-started-with-Kaggle_01.png" alt=""><br>点击<code>Submit</code>按钮就能够看到成绩：<br><img src="img/Getting-started-with-Kaggle_02.png" alt=""></p>
+<p>恭喜你已经成功提交了第一个Kaggle模型，后面我们会进一步学习如何来优化模型提升得分。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/10/27/Convert-PDF-to-Images-using-Python/" data-toggle="tooltip" data-placement="top" title="Convert PDF to Images using Python">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Kaggle" title="Kaggle">Kaggle</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/renzhenming">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/RenZhenming">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/RenZhenming">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon&#39;s Blog 2016
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
