@@ -196,7 +196,36 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="1-Improving-Our-Features"><a href="#1-Improving-Our-Features" class="headerlink" title="1 Improving Our Features"></a>1 Improving Our Features</h3>
+                <h3 id="1-Improving-Our-Features"><a href="#1-Improving-Our-Features" class="headerlink" title="1 Improving Our Features"></a>1 Improving Our Features</h3><p>书接上回，我们刚刚完成了第一个Kaggle竞赛模型的提交，预测准确率是75%左右，排名将近5000。</p>
+<p>本回将从以下三个方面来提高：</p>
+<ul>
+<li>使用更好的机器学习算法</li>
+<li>优化特征变量</li>
+<li>结合多种机器学习算法</li>
+</ul>
+<p>Let’s do it.</p>
+<h3 id="2-Random-Forest-Introduction"><a href="#2-Random-Forest-Introduction" class="headerlink" title="2 Random Forest Introduction"></a>2 Random Forest Introduction</h3><p>首先我们引入一个新的算法决策树，决策树能够有效应对非线性关系。</p>
+<p>举个栗子：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Age    Sex    Survived</div><div class="line"><span class="number">5</span>      <span class="number">0</span>      <span class="number">1</span></div><div class="line"><span class="number">30</span>     <span class="number">1</span>      <span class="number">0</span></div><div class="line"><span class="number">70</span>     <span class="number">0</span>      <span class="number">1</span></div><div class="line"><span class="number">20</span>     <span class="number">0</span>      <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p><code>Age</code>和<code>Survived</code>没有线性关系，这里可以使用决策树建立<code>Age</code>、<code>Sex</code>和<code>Survived</code>之间的关系：<br><img src="/img/Improving-your-submission.png" alt=""></p>
+<ul>
+<li>首先按照<code>Age</code>分组，小于等于<code>29</code>岁的进入左侧分枝，大于<code>29</code>岁的进入右侧分支</li>
+<li>左侧分枝全部存活</li>
+<li>右侧分枝再根据<code>Sex</code>进行分组，女性存活，男性未存活</li>
+</ul>
+<p>由于决策条件过分依赖于训练数据集的分布情况，其主要缺点是对于训练数据集的过拟合。</p>
+<p>由此基础上我们产生了随机森林(Random Forest)算法。在整体样本上随机产生多个训练子集，然后通过对决策点条件随机化，建立上百颗决策树，然后通过对预测结果的平均化，就可以得出一个最小化过拟合的整体预测结果。</p>
+<h3 id="3-Implementing-A-Random-Forest"><a href="#3-Implementing-A-Random-Forest" class="headerlink" title="3 Implementing A Random Forest"></a>3 Implementing A Random Forest</h3><p><code>sklearn</code>已经为我们提供了随机森林算法，我们可以直接在训练集上使用并进行交叉检验。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">from sklearn.ensemble <span class="built_in">import</span> RandomForestClassifier</div><div class="line"></div><div class="line"><span class="attr">predictors</span> = [<span class="string">"Pclass"</span>, <span class="string">"Sex"</span>, <span class="string">"Age"</span>, <span class="string">"SibSp"</span>, <span class="string">"Parch"</span>, <span class="string">"Fare"</span>, <span class="string">"Embarked"</span>]</div><div class="line"></div><div class="line"><span class="comment"># Initialize our algorithm with the default paramters</span></div><div class="line"><span class="comment"># n_estimators is the number of trees we want to make</span></div><div class="line"><span class="comment"># min_samples_split is the minimum number of rows we need to make a split</span></div><div class="line"><span class="comment"># min_samples_leaf is the minimum number of samples we can have at the place where a tree branch ends (the bottom points of the tree)</span></div><div class="line"><span class="attr">alg</span> = RandomForestClassifier(<span class="attr">random_state=1,</span> <span class="attr">n_estimators=10,</span> <span class="attr">min_samples_split=2,</span> <span class="attr">min_samples_leaf=1)</span></div><div class="line"></div><div class="line"><span class="attr">kf</span> = KFold(<span class="attr">n_splits=3,</span> <span class="attr">random_state=1).split(titanic)</span></div><div class="line"><span class="attr">scores</span> = model_selection.cross_val_score(alg, titanic[predictors], titanic[<span class="string">"Survived"</span>], <span class="attr">cv=kf)</span></div><div class="line">print(scores.mean())</div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0<span class="selector-class">.785634118967</span></div></pre></td></tr></table></figure></p>
+<h3 id="4-Parameter-Tuning"><a href="#4-Parameter-Tuning" class="headerlink" title="4 Parameter Tuning"></a>4 Parameter Tuning</h3><p>首先也是最简单的提升随机森林算法精准度的方法是增加决策树的数量。训练更多的决策树需要花费更多的时间，但是因为我们最终是使用所有预测的平均值，这也意味着能够大大提升精准度。</p>
+<p>我们也可以调整（增加）<code>min_samples_split</code>和<code>min_sambles_leaf</code>变量来降低过拟合，提升模型得分。一个更通用（也就是没有过拟合）的模型，在未知的数据上表现更好，但是在已知的数据上则相反。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attr">alg2</span> = RandomForestClassifier(<span class="attr">random_state=1,</span> <span class="attr">n_estimators=50,</span> <span class="attr">min_samples_split=4,</span> <span class="attr">min_samples_leaf=2)</span></div><div class="line"></div><div class="line"><span class="attr">scores2</span> = model_selection.cross_val_score(alg2, titanic[predictors], titanic[<span class="string">"Survived"</span>], <span class="attr">cv=3)</span></div><div class="line">print(scores2, scores2.mean())</div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="name">array</span>([ <span class="number">0.8013468</span> ,  <span class="number">0.82154882</span>,  <span class="number">0.83838384</span>]), <span class="number">0.82042648709315369</span>)</div></pre></td></tr></table></figure></p>
+<h3 id="5-Generating-New-Features"><a href="#5-Generating-New-Features" class="headerlink" title="5 Generating New Features"></a>5 Generating New Features</h3><p>我们还可以衍生新的变量，例如：</p>
+<ul>
+<li>姓名的长度，可能和乘客的富有程度有关，而富有程度与舱位有关</li>
+<li>家庭的总人数<code>SibSp</code> + <code>Parch</code></li>
+</ul>
+<p>pandas的<code>.apply</code>方法可以轻易的生成衍生变量，通过传入一个<code>lambda</code>函数来定义变量上的操作。<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Generating a familysize column</span></div><div class="line">titanic[<span class="string">"FamilySize"</span>] = titanic[<span class="string">"SibSp"</span>] + titanic[<span class="string">"Parch"</span>]</div><div class="line"></div><div class="line"><span class="comment"># The .apply method generates a new series</span></div><div class="line">titanic[<span class="string">"NameLength"</span>] = titanic[<span class="string">"Name"</span>].apply(lambda x: <span class="built_in">len</span>(x))</div></pre></td></tr></table></figure></p>
+
 
                 <hr>
 
