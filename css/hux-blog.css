@@ -93,6 +93,7 @@ a img:focus {
 }
 article {
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 blockquote {
   color: #808080;
@@ -398,7 +399,7 @@ pre code {
   .intro-header .site-heading,
   .intro-header .post-heading,
   .intro-header .page-heading {
-    padding: 150px 0;
+    /* padding: 150px 0; */
   }
 }
 .intro-header .site-heading {
@@ -406,7 +407,7 @@ pre code {
 }
 @media only screen and (min-width: 768px) {
   .intro-header .site-heading {
-    padding: 150px 0;
+    /* padding: 150px 0; */
   }
 }
 .intro-header .site-heading,
