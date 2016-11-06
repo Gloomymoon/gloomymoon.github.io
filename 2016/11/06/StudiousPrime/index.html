@@ -13,11 +13,11 @@
 
     <title>
         
-          About - Master Gloomymoon&#39;s R2D2
+          StudiousPrime - Master Gloomymoon&#39;s R2D2
         
     </title>
 
-    <link rel="canonical" href="http://gloomymoon.github.io/about/">
+    <link rel="canonical" href="http://gloomymoon.github.io/2016/11/06/StudiousPrime/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -148,164 +148,170 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/overwatch.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/overwatch.png')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is Gloomymoon.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Flask" title="Flask">Flask</a>
+                        
+                    </div>
+                    <h1>StudiousPrime</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2016-11-06
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>应领导要求给儿子做了一个英语单词联系网页<a href="https://github.com/Gloomymoon/StudiousPrime.git" target="_blank" rel="external">StudiousPrime</a>，目前为版本号为0.2，主要功能如下：</p>
+<ol>
+<li><p>根据单词掌握程度新建测试Exercise，每个测试25道题Question，题目形式为根据中文单词（及词组）填充。题目中的单词会根据长度随机显示有限个字母总长5个及以下的单词随机展示1个字母，6个及以上随机展示2个，10个以上随机展示3个，答对得1分且该单词得分+1，答错不得分。<br><img src="/img/StudiousPrime_02.png" alt=""></p>
+</li>
+<li><p>测试完成后能够显示得分和所有错误题目。<br><img src="/img/StudiousPrime_03.png" alt=""></p>
+</li>
+<li><p>单词的记忆熟练等级根据得分提升：0～2分为1级，3～4分为2级，5～6分为3级，7～9分为4级，10～分为5级，目前选题逻辑为从高到低，除5级以外每个等级随机选取5题，1级选取10题，如果高级别可选题目不足则由低级别题目中选取。</p>
+</li>
+<li><p>可以展示所有测试的统计情况、掌握的单词数和分布情况。<br><img src="/img/StudiousPrime_04.png" alt=""></p>
+</li>
+<li><p>首页随机显示等级1的单词，以及出错最多的5个单词，便于复习和巩固。<br><img src="/img/StudiousPrime_01.png" alt=""></p>
+</li>
+<li><p>录入生词，浏览和修改词库。<br><img src="/img/StudiousPrime_05.png" alt=""></p>
+</li>
+<li><p>技术架构：采用Flask框架，数据库采用sqlite，前端通过jquery.inputmask实现单词输入掩码。业务类模型如下图所示：<br><img src="http://yuml.me/diagram/class/[EnglishBook|+name]&lt;&gt;1-&gt;*[EnglishWord|+english;+chinese;+example], [EnglishWordScore|+score;+level|+random_word（）]-&gt;[EnglishWord], [EnglishWordScore]-&gt;[User], [EnglishExercise|+total;+corrent;+correct;+start;+finish]++1-&gt;*[EnglishQuestion|+english;+word_mask;+answer;+result],[EnglishQuestion]-&gt;[EnglishWord], [EnglishExercise]-&gt;[User], [User]-&gt;[Role], [EnglishStatistic||+wrong_words]（）,+achievements（）" alt=""></p>
+</li>
+<li><p>Todo</p>
+</li>
+</ol>
+<ul>
+<li>分角色权限已预装，但并未实际使用</li>
+<li>增加单词发音</li>
+<li>录入生词时从web自动抓取中文和例句</li>
+<li>增加累计统计图表</li>
+</ul>
+
+
+                <hr>
 
                 
 
-<!-- Chinese Version -->
-<div class="zh post-container">
-    
-</div>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/10/30/Improving-your-submission/" data-toggle="tooltip" data-placement="top" title="Improving your submission">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
-
-
-
-
-
-
-
-
-
-
-                <!-- 如果开启评论功能 -->
                 
-                    <hr>
-
-                    
-
-                    
-
-
-                    
-
-                    
-
-
 
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Lego" title="Lego" rel="3">Lego</a>
-                            
-                        
-                            
-                            <a href="/tags/#Scrapy" title="Scrapy" rel="2">Scrapy</a>
-                            
-                        
-                            
-                            <a href="/tags/#Python" title="Python" rel="6">Python</a>
-                            
-                        
-                            
-                            <a href="/tags/#Kaggle" title="Kaggle" rel="2">Kaggle</a>
-                            
-                        
-                            
-                            <a href="/tags/#Machine Learning" title="Machine Learning" rel="2">Machine Learning</a>
-                            
-                        
-                            
+                          <a class="tag" href="/tags/#Flask" title="Flask">Flask</a>
                         
                     </div>
                 </section>
                 
-
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.jpg" />
-                        
-
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/Gloomymoon">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-
-                            
-                        </ul>
-                    </div>
-                </section>
 
                 <!-- Friends Blog -->
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
