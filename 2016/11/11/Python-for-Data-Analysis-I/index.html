@@ -13,11 +13,11 @@
 
     <title>
         
-          StudiousPrime - Master Gloomymoon&#39;s R2D2
+          Python for Data Analysis I - Master Gloomymoon&#39;s R2D2
         
     </title>
 
-    <link rel="canonical" href="http://gloomymoon.github.io/2016/11/06/StudiousPrime/">
+    <link rel="canonical" href="http://gloomymoon.github.io/2016/11/11/Python-for-Data-Analysis-I/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -168,14 +168,16 @@
                         
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
-                          <a class="tag" href="/tags/#Flask" title="Flask">Flask</a>
+                          <a class="tag" href="/tags/#Data Analysis" title="Data Analysis">Data Analysis</a>
+                        
+                          <a class="tag" href="/tags/#NumPy" title="NumPy">NumPy</a>
                         
                     </div>
-                    <h1>StudiousPrime</h1>
+                    <h1>Python for Data Analysis I</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Gloomymoon on
-                        2016-11-06
+                        2016-11-11
                     </span>
                 </div>
             </div>
@@ -194,31 +196,48 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>应领导要求给儿子做了一个英语单词联系网页<a href="https://github.com/Gloomymoon/StudiousPrime.git" target="_blank" rel="external">StudiousPrime</a>，目前为版本号为0.2，主要功能如下：</p>
-<ol>
-<li><p>根据单词掌握程度新建测试Exercise，每个测试25道题Question，题目形式为根据中文单词（及词组）填充。题目中的单词会根据长度随机显示:有限个字母总长5个及以下的单词随机展示1个字母，6个及以上随机展示2个，10个以上随机展示3个，答对得1分且该单词得分+1，答错不得分。<br><img src="/img/StudiousPrime_02.png" alt=""></p>
-</li>
-<li><p>测试完成后能够显示得分和所有错误题目。<br><img src="/img/StudiousPrime_03.png" alt=""></p>
-</li>
-<li><p>单词的记忆熟练等级根据得分提升：0～2分为1级，3～4分为2级，5～6分为3级，7～9分为4级，10～分为5级，目前选题逻辑为从高到低，除5级以外每个等级随机选取5题，1级选取10题，如果高级别可选题目不足则由低级别题目中选取。</p>
-</li>
-<li><p>可以展示所有测试的统计情况、掌握的单词数和分布情况。<br><img src="/img/StudiousPrime_04.png" alt=""></p>
-</li>
-<li><p>首页随机显示等级1的新单词，以及出错最多的5个单词，便于复习和巩固。<br><img src="/img/StudiousPrime_01.png" alt=""></p>
-</li>
-<li><p>录入生词，浏览和修改词库。<br><img src="/img/StudiousPrime_05.png" alt=""></p>
-</li>
-<li><p>技术架构：采用Flask框架，数据库采用sqlite，前端通过jquery.inputmask实现单词输入掩码。业务类模型如下图所示：<br><img src="http://yuml.me/diagram/class/[EnglishBook|+name]&lt;&gt;1-&gt;*[EnglishWord|+english;+chinese;+example], [EnglishWordScore|+score;+level|+random_word（）]-&gt;[EnglishWord], [EnglishWordScore]-&gt;[User], [EnglishExercise|+total;+corrent;+correct;+start;+finish]++1-&gt;*[EnglishQuestion|+english;+word_mask;+answer;+result],[EnglishQuestion]-&gt;[EnglishWord], [EnglishExercise]-&gt;[User], [User]-&gt;[Role], [EnglishStatistic||+wrong_words]（）,+achievements（）" alt=""></p>
-</li>
-<li><p>Todo:</p>
+                <h3 id="1-Jupyter-Notebook"><a href="#1-Jupyter-Notebook" class="headerlink" title="1 Jupyter Notebook"></a>1 Jupyter Notebook</h3><p>建议直接安装<a href="https://www.continuum.io/downloads" target="_blank" rel="external">Anaconda</a>。</p>
+<h3 id="2-NumPy"><a href="#2-NumPy" class="headerlink" title="2 NumPy"></a>2 NumPy</h3><p>NumPy(Numerical Python)是高性能科学计算和数据分析的基础包，是python下几乎所有高级分析工具的构建基础。其主要功能如下：</p>
 <ul>
-<li>分角色权限已预装，但并未实际使用</li>
-<li>增加单词发音</li>
-<li>录入生词时从web自动抓取中文和例句</li>
-<li>增加累计统计图表</li>
+<li>ndarray，一个具有矢量算术运算和复杂广播能力的快速且节省空间的多维数组</li>
+<li>对整组数据进行快速运算的标准数学函数</li>
+<li>读写磁盘数据的工具以及用于操作内存映射文件的工具</li>
+<li>线性代数、随机数生成以及傅里叶变换功能</li>
+<li>用于集成由C、C++、Fortran等语言编写的代码的工具</li>
 </ul>
-</li>
-</ol>
+<p>NumPy本身没有提供高级的分析功能，但是理解NumPy数组以及面向数据的计算对日后高效地使用诸如pandas之类的工具非常有益。对于大部分数据分析而言，我主要关注的功能集中在：</p>
+<ul>
+<li>数据导入、整理和清理，通过过滤和转换等矢量化数据组运算构建子集</li>
+<li>数组算法如排序、唯一化、集合运算</li>
+<li>描述统计、数据聚合/摘要运算</li>
+<li>异构数据集合的合并、连接运算的数据对齐和关系型数据运算</li>
+<li>将条件逻辑转化为数组表达式</li>
+<li>分组运算（聚合、转换、函数应用等）<br>NumPy提供了这些基础计算功能，但是对于结构化数据，pandas提供更加简洁和丰富的接口，以及领域特定功能。</li>
+</ul>
+<h4 id="2-1-ndarray：一种多维数组对象"><a href="#2-1-ndarray：一种多维数组对象" class="headerlink" title="2.1 ndarray：一种多维数组对象"></a>2.1 ndarray：一种多维数组对象</h4><p><strong>创建数组</strong><br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">data</span> = randn(2,3)</span></div><div class="line"><span class="class"><span class="keyword">data</span> = np.array([[1,2,3,4],[5,6,7,8]])</span></div><div class="line"><span class="class"><span class="keyword">data</span> + <span class="keyword">data</span></span></div><div class="line"><span class="class"><span class="keyword">data</span>.shape</span></div><div class="line"><span class="class"><span class="keyword">data</span>.dtype</span></div></pre></td></tr></table></figure></p>
+<p>ndarray中所有元素必须是相同类型，每个数组有一个shape（表示各维度大小的元祖）和一个dtype（说明数组数据类型的对象）</p>
+<p><code>np.zeros</code>、<code>np.ones</code>和<code>np.empty</code>分别创建指定长度和或形状的全0、全1或全空数组，注意<code>np.empty</code>中的元素是一些未初始化的垃圾值，而不是全0</p>
+<p><code>arange</code>是Python内置<code>range</code>的数组版</p>
+<p><strong>ndarray的数据类型</strong><br>使用<code>ndarray.astype</code>可以显示转换<code>dtype</code>，并（总是）生成一个新的数组。</p>
+<p><strong>数组和标量之间的运算</strong><br>大小相等的数组之间的任何算术运算都会应用到元素级，而不同大小数组之间的运算叫做广播（broadcasting）</p>
+<p><strong>基本的索引和切片</strong><br>对于数组切片上的修改都会直接反映到原数组上，因为NumPy设计目的是处理大数据，频繁的复制会产生性能和内存问题。如果需要切片副本，需要使用<code>.copy()</code>函数显示复制操作。</p>
+<p>多维数组的索引可以是一个列表：<code>array[0][2]</code>效果等同<code>array[0,2]</code>。</p>
+<p><strong>切片索引</strong></p>
+<p><strong>布尔型索引</strong><br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attr">names</span> = np.array([<span class="string">'Bob'</span>, <span class="string">'Joe'</span>,<span class="string">' Will'</span>, <span class="string">'Bob'</span>, <span class="string">'Will'</span>, <span class="string">'Joe'</span>, <span class="string">'Joe'</span>])</div><div class="line"><span class="attr">data</span> = randn(<span class="number">7</span>,<span class="number">4</span>)</div><div class="line"><span class="attr">names</span> == <span class="string">'Bob'</span></div><div class="line"><span class="attr">data[names</span> == <span class="string">'Bob'</span>]</div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">array</span>([ <span class="keyword">True</span>, <span class="keyword">False</span>, <span class="keyword">False</span>,  <span class="keyword">True</span>, <span class="keyword">False</span>, <span class="keyword">False</span>, <span class="keyword">False</span>], dtype=<span class="keyword">bool</span>)</div><div class="line"><span class="keyword">array</span>([[ <span class="number">1.3653</span>, <span class="number">-0.9235</span>,  <span class="number">0.5542</span>,  <span class="number">1.0422</span>],</div><div class="line">       [<span class="number">-0.5522</span>, <span class="number">-1.2451</span>, <span class="number">-0.7701</span>,  <span class="number">0.1165</span>]])</div></pre></td></tr></table></figure></p>
+<p>布尔索引选取可以通过<code>&amp;</code>（和）、<code>|</code>（或）组合多个表达式，注意这里不能用Python的<code>and</code>和<code>or</code>关键字<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">data</span>[(<span class="title">names</span> == '<span class="type">Bob</span>')|(<span class="title">names</span> == '<span class="type">Will</span>')]</span></div></pre></td></tr></table></figure></p>
+<p>用布尔型数组设置值就非常方便，例如将所有负值置为<code>0</code><br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">data</span>[<span class="keyword">data</span> &lt; 0] = 0</span></div></pre></td></tr></table></figure></p>
+<p><strong>花式索引</strong><br>花式索引总是将数据复制到新数组中</p>
+<p><strong>数组转置和轴对换</strong></p>
+<h3 id="4-2-通用函数：快速的元素级数组函数"><a href="#4-2-通用函数：快速的元素级数组函数" class="headerlink" title="4.2 通用函数：快速的元素级数组函数"></a>4.2 通用函数：快速的元素级数组函数</h3><p>通用函数是一种对ndarray中的数据执行元素级运算的函数。可以看作是简单函数的矢量化包装器。<br>一元的函数如：<code>sqrt</code>和<code>exp</code><br>二元的函数如：<code>add</code>和<code>maximum</code></p>
+<h3 id="4-3-利用数组进行数据处理"><a href="#4-3-利用数组进行数据处理" class="headerlink" title="4.3 利用数组进行数据处理"></a>4.3 利用数组进行数据处理</h3><p><strong>将条件逻辑表述为数组运维</strong><br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">arr = randn(<span class="number">4</span>, <span class="number">4</span>)</div><div class="line">np.where(arr &gt; <span class="number">0</span>, <span class="number">2</span>, <span class="number">-2</span>)</div><div class="line">arr = randn(<span class="number">4</span>, <span class="number">4</span>)</div><div class="line">np.where(arr &gt; <span class="number">0</span>, <span class="number">2</span>, arr) #只将正值设置为<span class="number">2</span></div></pre></td></tr></table></figure></p>
+<p><strong>数学和统计方法</strong></p>
+<p><strong>用于布尔型数组的方法</strong></p>
+<p><strong>排序</strong><br><code>np.sort</code>返回已排序数组的副本，就地排序会修改数组本身</p>
+<p><strong>唯一化以及其他的集合逻辑</strong><br><code>np.unique</code>方法找出数组中的不重复值并返回已排序结果<br><code>np.in1d</code>测试一个数组中每个值在另一个数组中的成员资格，返回布尔型数组</p>
+<h3 id="4-4-用于数组的文件输入输出"><a href="#4-4-用于数组的文件输入输出" class="headerlink" title="4.4 用于数组的文件输入输出"></a>4.4 用于数组的文件输入输出</h3><p><strong>将数组以二进制格式保存到磁盘</strong><br><code>np.save</code>和<code>np.load</code>可以读写磁盘上的二进制数组文件，扩展名为<code>.npy</code><br><code>np.savez</code>可以以压缩形式将多个数组保存到一个<code>.npz</code>文件中</p>
+<p><strong>存取文本文件</strong><br><code>np.loadtxt</code>支持指定分隔符将txt文件导入数组<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">arr</span> = np.loadtxt(<span class="string">'filename.txt'</span>, delimiter=<span class="string">','</span>)</div></pre></td></tr></table></figure></p>
+<h3 id="4-5-线性代数"><a href="#4-5-线性代数" class="headerlink" title="4.5 线性代数"></a>4.5 线性代数</h3><h3 id="4-6-随机数生成"><a href="#4-6-随机数生成" class="headerlink" title="4.6 随机数生成"></a>4.6 随机数生成</h3><p><code>numpy.random</code>模块内置了高效生成多种概率分布的随机函数，如正态分布<code>normal</code></p>
 
 
                 <hr>
@@ -227,13 +246,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2016/11/11/Python-for-Data-Analysis-I/" data-toggle="tooltip" data-placement="top" title="Python for Data Analysis I">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2016/10/30/Improving-your-submission/" data-toggle="tooltip" data-placement="top" title="Improving your submission">Next Post &rarr;</a>
+                            <a href="/2016/11/06/StudiousPrime/" data-toggle="tooltip" data-placement="top" title="StudiousPrime">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -262,7 +277,9 @@
                        
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
-                          <a class="tag" href="/tags/#Flask" title="Flask">Flask</a>
+                          <a class="tag" href="/tags/#Data Analysis" title="Data Analysis">Data Analysis</a>
+                        
+                          <a class="tag" href="/tags/#NumPy" title="NumPy">NumPy</a>
                         
                     </div>
                 </section>
