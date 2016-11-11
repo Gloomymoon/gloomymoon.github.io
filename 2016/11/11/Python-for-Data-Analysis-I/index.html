@@ -196,8 +196,9 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="1-Jupyter-Notebook"><a href="#1-Jupyter-Notebook" class="headerlink" title="1 Jupyter Notebook"></a>1 Jupyter Notebook</h3><p>建议直接安装<a href="https://www.continuum.io/downloads" target="_blank" rel="external">Anaconda</a>。</p>
-<h3 id="2-NumPy"><a href="#2-NumPy" class="headerlink" title="2 NumPy"></a>2 NumPy</h3><p>NumPy(Numerical Python)是高性能科学计算和数据分析的基础包，是python下几乎所有高级分析工具的构建基础。其主要功能如下：</p>
+                <h3 id="0-Jupyter-Notebook"><a href="#0-Jupyter-Notebook" class="headerlink" title="0 Jupyter Notebook"></a>0 Jupyter Notebook</h3><p>建议直接安装<a href="https://www.continuum.io/downloads" target="_blank" rel="external">Anaconda</a>。</p>
+<h3 id="1～3-准备工作"><a href="#1～3-准备工作" class="headerlink" title="1～3 准备工作"></a>1～3 准备工作</h3><p>直接使用Jupyter Notebook，这三个章节可以直接跳过。</p>
+<h3 id="4-NumPy基础：数组和矢量计算"><a href="#4-NumPy基础：数组和矢量计算" class="headerlink" title="4 NumPy基础：数组和矢量计算"></a>4 NumPy基础：数组和矢量计算</h3><p>NumPy(Numerical Python)是高性能科学计算和数据分析的基础包，是python下几乎所有高级分析工具的构建基础。其主要功能如下：</p>
 <ul>
 <li>ndarray，一个具有矢量算术运算和复杂广播能力的快速且节省空间的多维数组</li>
 <li>对整组数据进行快速运算的标准数学函数</li>
@@ -214,7 +215,7 @@
 <li>将条件逻辑转化为数组表达式</li>
 <li>分组运算（聚合、转换、函数应用等）<br>NumPy提供了这些基础计算功能，但是对于结构化数据，pandas提供更加简洁和丰富的接口，以及领域特定功能。</li>
 </ul>
-<h4 id="2-1-ndarray：一种多维数组对象"><a href="#2-1-ndarray：一种多维数组对象" class="headerlink" title="2.1 ndarray：一种多维数组对象"></a>2.1 ndarray：一种多维数组对象</h4><p><strong>创建数组</strong><br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">data</span> = randn(2,3)</span></div><div class="line"><span class="class"><span class="keyword">data</span> = np.array([[1,2,3,4],[5,6,7,8]])</span></div><div class="line"><span class="class"><span class="keyword">data</span> + <span class="keyword">data</span></span></div><div class="line"><span class="class"><span class="keyword">data</span>.shape</span></div><div class="line"><span class="class"><span class="keyword">data</span>.dtype</span></div></pre></td></tr></table></figure></p>
+<h4 id="4-1-ndarray：一种多维数组对象"><a href="#4-1-ndarray：一种多维数组对象" class="headerlink" title="4.1 ndarray：一种多维数组对象"></a>4.1 ndarray：一种多维数组对象</h4><p><strong>创建数组</strong><br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">data</span> = randn(2,3)</span></div><div class="line"><span class="class"><span class="keyword">data</span> = np.array([[1,2,3,4],[5,6,7,8]])</span></div><div class="line"><span class="class"><span class="keyword">data</span> + <span class="keyword">data</span></span></div><div class="line"><span class="class"><span class="keyword">data</span>.shape</span></div><div class="line"><span class="class"><span class="keyword">data</span>.dtype</span></div></pre></td></tr></table></figure></p>
 <p>ndarray中所有元素必须是相同类型，每个数组有一个shape（表示各维度大小的元祖）和一个dtype（说明数组数据类型的对象）</p>
 <p><code>np.zeros</code>、<code>np.ones</code>和<code>np.empty</code>分别创建指定长度和或形状的全0、全1或全空数组，注意<code>np.empty</code>中的元素是一些未初始化的垃圾值，而不是全0</p>
 <p><code>arange</code>是Python内置<code>range</code>的数组版</p>
