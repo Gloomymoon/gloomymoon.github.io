@@ -13,11 +13,11 @@
 
     <title>
         
-          Python for Data Analysis IV - Master Gloomymoon&#39;s R2D2
+          Using PostgreSQL for Flask - Master Gloomymoon&#39;s R2D2
         
     </title>
 
-    <link rel="canonical" href="http://gloomymoon.github.io/2016/11/23/Python-for-Data-Analysis-IV/">
+    <link rel="canonical" href="http://gloomymoon.github.io/2016/11/25/Using-PostgreSQL-for-Flask/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -168,16 +168,14 @@
                         
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
-                          <a class="tag" href="/tags/#Data Analysis" title="Data Analysis">Data Analysis</a>
-                        
-                          <a class="tag" href="/tags/#pandas" title="pandas">pandas</a>
+                          <a class="tag" href="/tags/#PostgreSQL" title="PostgreSQL">PostgreSQL</a>
                         
                     </div>
-                    <h1>Python for Data Analysis IV</h1>
+                    <h1>Using PostgreSQL for Flask</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Gloomymoon on
-                        2016-11-23
+                        2016-11-25
                     </span>
                 </div>
             </div>
@@ -196,20 +194,16 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="7-数据规整化：清理、转换、合并、重塑"><a href="#7-数据规整化：清理、转换、合并、重塑" class="headerlink" title="7 数据规整化：清理、转换、合并、重塑"></a>7 数据规整化：清理、转换、合并、重塑</h2><p>数据分析和建模工作中大量的编程使用在数据准备上的：加载、清洗、转换以及重塑，大部分情况下存放在文本或数据库中的数据并不能满足应用的要求，幸运的是，pandas和Python标准库提供了一组高级、灵活、高效的核心函数和算法，使你能够轻松操作数据。</p>
-<h3 id="7-1-合并数据集"><a href="#7-1-合并数据集" class="headerlink" title="7.1 合并数据集"></a>7.1 合并数据集</h3><ul>
-<li><code>pandas.merge</code>可以根据一个或多个键将不同的DataFrame中的行连接起来，类似于SQL中的<code>join</code>操作。</li>
-<li><code>pandas.concat</code>可以沿一条轴将多个对象堆叠到一起，，类似于SQL中的<code>union all</code>。</li>
-<li>实例方法<code>combine_first</code>可以将重复数据编制在一起，用一个对象中的值填充另一个对象中的缺失值。</li>
-</ul>
-<p><strong>数据库风格的DataFrame合并</strong><br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">df1 = DataFrame(&#123;<span class="symbol">'key</span>': [<span class="string">'b'</span>,<span class="string">'b'</span>,<span class="string">'a'</span>,<span class="string">'c'</span>,<span class="string">'a'</span>,<span class="string">'a'</span>,<span class="string">'a'</span>], <span class="symbol">'data1</span>':<span class="keyword">range</span>(<span class="number">7</span>)&#125;)</div><div class="line">df2 = DataFrame(&#123;<span class="symbol">'key</span>': [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'d'</span>], <span class="symbol">'data2</span>':<span class="keyword">range</span>(<span class="number">3</span>)&#125;)</div><div class="line">df1</div><div class="line">df2</div><div class="line">pd.merge(df1, df2)</div></pre></td></tr></table></figure></p>
-<p>Output:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"> 	data1 	<span class="type">key</span></div><div class="line"><span class="number">0</span> 	<span class="number">0</span> 	b</div><div class="line"><span class="number">1</span> 	<span class="number">1</span> 	b</div><div class="line"><span class="number">2</span> 	<span class="number">2</span> 	a</div><div class="line"><span class="number">3</span> 	<span class="number">3</span> 	c</div><div class="line"><span class="number">4</span> 	<span class="number">4</span> 	a</div><div class="line"><span class="number">5</span> 	<span class="number">5</span> 	a</div><div class="line"><span class="number">6</span> 	<span class="number">6</span> 	b</div><div class="line"></div><div class="line"> 	data2 	<span class="type">key</span></div><div class="line"><span class="number">0</span> 	<span class="number">0</span> 	a</div><div class="line"><span class="number">1</span> 	<span class="number">1</span> 	b</div><div class="line"><span class="number">2</span> 	<span class="number">2</span> 	d</div><div class="line"></div><div class="line"> 	data1 	<span class="type">key</span> 	data2</div><div class="line"><span class="number">0</span> 	<span class="number">0</span> 	b 	<span class="number">1</span></div><div class="line"><span class="number">1</span> 	<span class="number">1</span> 	b 	<span class="number">1</span></div><div class="line"><span class="number">2</span> 	<span class="number">6</span> 	b 	<span class="number">1</span></div><div class="line"><span class="number">3</span> 	<span class="number">2</span> 	a 	<span class="number">0</span></div><div class="line"><span class="number">4</span> 	<span class="number">4</span> 	a 	<span class="number">0</span></div><div class="line"><span class="number">5</span> 	<span class="number">5</span> 	a 	<span class="number">0</span></div></pre></td></tr></table></figure></p>
-<p>由于没有指定用那个列进行连接，<code>merge</code>会将重叠的列名当作键，因此最好是显示指定连接的键。<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pd.<span class="built_in">merge</span>(df1, df2, <span class="keyword">on</span>=<span class="string">'key'</span>)</div></pre></td></tr></table></figure></p>
-<p>Output:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> 	data1 	<span class="type">key</span> 	data2</div><div class="line"><span class="number">0</span> 	<span class="number">0</span> 	b 	<span class="number">1</span></div><div class="line"><span class="number">1</span> 	<span class="number">1</span> 	b 	<span class="number">1</span></div><div class="line"><span class="number">2</span> 	<span class="number">6</span> 	b 	<span class="number">1</span></div><div class="line"><span class="number">3</span> 	<span class="number">2</span> 	a 	<span class="number">0</span></div><div class="line"><span class="number">4</span> 	<span class="number">4</span> 	a 	<span class="number">0</span></div><div class="line"><span class="number">5</span> 	<span class="number">5</span> 	a 	<span class="number">0</span></div></pre></td></tr></table></figure></p>
-<p>如果两个对象的列名不同，也可以分别进行指定<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">df3 = DataFrame(&#123;<span class="symbol">'lkey</span>': [<span class="string">'b'</span>,<span class="string">'b'</span>,<span class="string">'a'</span>,<span class="string">'c'</span>,<span class="string">'a'</span>,<span class="string">'a'</span>,<span class="string">'b'</span>], <span class="symbol">'data1</span>':<span class="keyword">range</span>(<span class="number">7</span>)&#125;)</div><div class="line">df4 = DataFrame(&#123;<span class="symbol">'rkey</span>': [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'d'</span>], <span class="symbol">'data2</span>':<span class="keyword">range</span>(<span class="number">3</span>)&#125;)</div><div class="line">pd.merge(df3, df4, left_on=<span class="symbol">'lkey</span>', right_on=<span class="symbol">'rkey</span>')</div></pre></td></tr></table></figure></p>
-<p>Output:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> 	data1 	lkey 	data2 	rkey</div><div class="line"><span class="number">0</span> 	<span class="number">0</span> 	<span class="selector-tag">b</span> 	<span class="number">1</span> 	<span class="selector-tag">b</span></div><div class="line"><span class="number">1</span> 	<span class="number">1</span> 	<span class="selector-tag">b</span> 	<span class="number">1</span> 	<span class="selector-tag">b</span></div><div class="line"><span class="number">2</span> 	<span class="number">6</span> 	<span class="selector-tag">b</span> 	<span class="number">1</span> 	<span class="selector-tag">b</span></div><div class="line"><span class="number">3</span> 	<span class="number">2</span> 	<span class="selector-tag">a</span> 	<span class="number">0</span> 	<span class="selector-tag">a</span></div><div class="line"><span class="number">4</span> 	<span class="number">4</span> 	<span class="selector-tag">a</span> 	<span class="number">0</span> 	<span class="selector-tag">a</span></div><div class="line"><span class="number">5</span> 	<span class="number">5</span> 	<span class="selector-tag">a</span> 	<span class="number">0</span> 	a</div></pre></td></tr></table></figure></p>
-<p><code>merge</code>方啊默认情况下进行<code>inner</code>链接，结果中的键是交集。可以在参数中指定其他连接方式：<code>left</code>、<code>right</code>、<code>outer</code>.<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">pd</span><span class="selector-class">.merge</span>(df1, df2, how=<span class="string">'outer'</span>)</div></pre></td></tr></table></figure></p>
-<p>Output:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> 	data1 	<span class="type">key</span> 	data2</div><div class="line"><span class="number">0</span> 	<span class="number">0</span> 	b 	<span class="number">1</span></div><div class="line"><span class="number">1</span> 	<span class="number">1</span> 	b 	<span class="number">1</span></div><div class="line"><span class="number">2</span> 	<span class="number">6</span> 	b 	<span class="number">1</span></div><div class="line"><span class="number">3</span> 	<span class="number">2</span> 	a 	<span class="number">0</span></div><div class="line"><span class="number">4</span> 	<span class="number">4</span> 	a 	<span class="number">0</span></div><div class="line"><span class="number">5</span> 	<span class="number">5</span> 	a 	<span class="number">0</span></div><div class="line"><span class="number">6</span> 	<span class="number">3</span> 	c 	NaN</div><div class="line"><span class="number">7</span> 	NaN 	d 	<span class="number">2</span></div></pre></td></tr></table></figure></p>
+                <h2 id="1-安装PostgreSQL"><a href="#1-安装PostgreSQL" class="headerlink" title="1 安装PostgreSQL"></a>1 安装PostgreSQL</h2><p>从官网下载windows install，直接安装，默认用户为postgres，密码一定需要设置。<br>在pgAdmin中新建数据库StudiousPrime</p>
+<h2 id="2-安装Python驱动"><a href="#2-安装Python驱动" class="headerlink" title="2 安装Python驱动"></a>2 安装Python驱动</h2><p>从<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#psycopg" target="_blank" rel="external">Unofficial Windows Binaries for Python Extension Packages
+</a>下载预编译好的<code>psycopg2-2.6.2-cp27-cp27m-win32.whl</code>包，通过<code>pip</code>安装。</p>
+<p>正常情况下安装成功（windows server 2008 64bit、Python 2.7.10 32bi、非virtualenv、已预装PostgreSQL）<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Processing</span> <span class="selector-tag">d</span>:\<span class="selector-tag">tools</span>\<span class="selector-tag">python</span>\<span class="selector-tag">psycopg2-2</span><span class="selector-class">.6</span><span class="selector-class">.2-cp27-cp27m-win32</span><span class="selector-class">.whl</span></div><div class="line"><span class="selector-tag">Installing</span> <span class="selector-tag">collected</span> <span class="selector-tag">packages</span>: <span class="selector-tag">psycopg2</span></div><div class="line"><span class="selector-tag">Successfully</span> <span class="selector-tag">installed</span> <span class="selector-tag">psycopg2-2</span><span class="selector-class">.6</span><span class="selector-class">.2</span></div></pre></td></tr></table></figure></p>
+<p>但是在开发笔记本（windows 7 32bit、Python 2.7.9 32bit、virtualenv环境）上安装出现如下错误：<code>UnsupportedWheel: psycopg2-2.6.2-cp27-cp27m-win32.whl is not a supported wheel on this platform.</code></p>
+<p>开始怀疑是没有安装PostgreSQL，但是安装完后依然出现上述错误。<br>通过搜索后，从<a href="http://www.stickpeople.com/projects/python/win-psycopg/" target="_blank" rel="external">http://www.stickpeople.com/projects/python/win-psycopg/</a>下载<code>psycopg2-2.6.2.win32-py2.7-pg9.5.3-release.exe</code>，然后使用easy_install安装成功。也可以使用<a href="https://github.com/nwcell/psycopg2-windows" target="_blank" rel="external">https://github.com/nwcell/psycopg2-windows</a>介绍的方式使用pip在virtualenv下安装。</p>
+<h2 id="3-配置Flask"><a href="#3-配置Flask" class="headerlink" title="3 配置Flask"></a>3 配置Flask</h2><p>在<code>config.py</code>中，将<code>SQLALCHEMY_DATABASE_URI</code>修改为PostgreSQL的地址，替换其中的<code>username</code>（默认为postgres）和<code>password</code>，<code>host</code>为数据库IP或域名。：<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">postgresql:</span><span class="comment">//username:password@host/StudiousPrime</span></div></pre></td></tr></table></figure></p>
+<p>Flask重启后，连接数据库出现如下错误：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">org<span class="selector-class">.postgresql</span><span class="selector-class">.util</span><span class="selector-class">.PSQLException</span>: FATAL: no pg_hba<span class="selector-class">.conf</span> entry <span class="keyword">for</span> host</div></pre></td></tr></table></figure></p>
+<p>搜索问题后发现是因为PostgreSQL数据库为了安全，默认只会监听本地的连接请求，而我是访问服务器上的数据库。要解决这个问题，需要在服务器端PostgreSQL安装目录下找到<code>\data\pg_hba.conf</code>文件，打开找到其中<code># IPv4 local connections:</code>段，添加请求连接机器的IP。<br><figure class="highlight q"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># IPv4 local connections:</div><div class="line">host    <span class="built_in">all</span>             <span class="built_in">all</span>             <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>/<span class="number">32</span>            <span class="built_in">md5</span></div><div class="line">host    <span class="built_in">all</span>             <span class="built_in">all</span>             请求连接机器的IP/<span class="number">32</span>        <span class="built_in">md5</span></div></pre></td></tr></table></figure></p>
+<p>在pgAdmin中<code>Reload Configuration</code>后，客户端就能顺利连接服务器上数据库了，剩下的工作就和SQLite一样交给SQLAlchemy就好。</p>
 
 
                 <hr>
@@ -218,13 +212,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2016/11/25/Using-PostgreSQL-for-Flask/" data-toggle="tooltip" data-placement="top" title="Using PostgreSQL for Flask">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2016/11/16/Python-for-Data-Analysis-III/" data-toggle="tooltip" data-placement="top" title="Python for Data Analysis III">Next Post &rarr;</a>
+                            <a href="/2016/11/23/Python-for-Data-Analysis-IV/" data-toggle="tooltip" data-placement="top" title="Python for Data Analysis IV">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -253,9 +243,7 @@
                        
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
-                          <a class="tag" href="/tags/#Data Analysis" title="Data Analysis">Data Analysis</a>
-                        
-                          <a class="tag" href="/tags/#pandas" title="pandas">pandas</a>
+                          <a class="tag" href="/tags/#PostgreSQL" title="PostgreSQL">PostgreSQL</a>
                         
                     </div>
                 </section>
