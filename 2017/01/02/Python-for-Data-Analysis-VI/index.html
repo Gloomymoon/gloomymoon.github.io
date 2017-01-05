@@ -13,11 +13,11 @@
 
     <title>
         
-          Using PostgreSQL for Flask - Master Gloomymoon&#39;s R2D2
+          Python for Data Analysis VI - Master Gloomymoon&#39;s R2D2
         
     </title>
 
-    <link rel="canonical" href="http://gloomymoon.github.io/2016/11/25/Using-PostgreSQL-for-Flask/">
+    <link rel="canonical" href="http://gloomymoon.github.io/2017/01/02/Python-for-Data-Analysis-VI/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -168,14 +168,16 @@
                         
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
-                          <a class="tag" href="/tags/#PostgreSQL" title="PostgreSQL">PostgreSQL</a>
+                          <a class="tag" href="/tags/#Data Analysis" title="Data Analysis">Data Analysis</a>
+                        
+                          <a class="tag" href="/tags/#pandas" title="pandas">pandas</a>
                         
                     </div>
-                    <h1>Using PostgreSQL for Flask</h1>
+                    <h1>Python for Data Analysis VI</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Gloomymoon on
-                        2016-11-25
+                        2017-01-02
                     </span>
                 </div>
             </div>
@@ -194,16 +196,20 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="1-安装PostgreSQL"><a href="#1-安装PostgreSQL" class="headerlink" title="1 安装PostgreSQL"></a>1 安装PostgreSQL</h2><p>从官网下载windows install，直接安装，默认用户为postgres，密码一定需要设置。<br>在pgAdmin中新建数据库StudiousPrime</p>
-<h2 id="2-安装Python驱动"><a href="#2-安装Python驱动" class="headerlink" title="2 安装Python驱动"></a>2 安装Python驱动</h2><p>从<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#psycopg" target="_blank" rel="external">Unofficial Windows Binaries for Python Extension Packages
-</a>下载预编译好的<code>psycopg2-2.6.2-cp27-cp27m-win32.whl</code>包，通过<code>pip</code>安装。</p>
-<p>正常情况下安装成功（windows server 2008 64bit、Python 2.7.10 32bi、非virtualenv、已预装PostgreSQL）<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Processing</span> <span class="selector-tag">d</span>:\<span class="selector-tag">tools</span>\<span class="selector-tag">python</span>\<span class="selector-tag">psycopg2-2</span><span class="selector-class">.6</span><span class="selector-class">.2-cp27-cp27m-win32</span><span class="selector-class">.whl</span></div><div class="line"><span class="selector-tag">Installing</span> <span class="selector-tag">collected</span> <span class="selector-tag">packages</span>: <span class="selector-tag">psycopg2</span></div><div class="line"><span class="selector-tag">Successfully</span> <span class="selector-tag">installed</span> <span class="selector-tag">psycopg2-2</span><span class="selector-class">.6</span><span class="selector-class">.2</span></div></pre></td></tr></table></figure></p>
-<p>但是在开发笔记本（windows 7 32bit、Python 2.7.9 32bit、virtualenv环境）上安装出现如下错误：<code>UnsupportedWheel: psycopg2-2.6.2-cp27-cp27m-win32.whl is not a supported wheel on this platform.</code></p>
-<p>开始怀疑是没有安装PostgreSQL，但是安装完后依然出现上述错误。<br>通过搜索后，从<a href="http://www.stickpeople.com/projects/python/win-psycopg/" target="_blank" rel="external">http://www.stickpeople.com/projects/python/win-psycopg/</a>下载<code>psycopg2-2.6.2.win32-py2.7-pg9.5.3-release.exe</code>，然后使用easy_install安装成功。也可以使用<a href="https://github.com/nwcell/psycopg2-windows" target="_blank" rel="external">https://github.com/nwcell/psycopg2-windows</a>介绍的方式使用pip在virtualenv下安装。</p>
-<h2 id="3-配置Flask"><a href="#3-配置Flask" class="headerlink" title="3 配置Flask"></a>3 配置Flask</h2><p>在<code>config.py</code>中，将<code>SQLALCHEMY_DATABASE_URI</code>修改为PostgreSQL的地址，替换其中的<code>username</code>（默认为postgres）和<code>password</code>，<code>host</code>为数据库IP或域名。：<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">postgresql:</span><span class="comment">//username:password@host/StudiousPrime</span></div></pre></td></tr></table></figure></p>
-<p>Flask重启后，连接数据库出现如下错误：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">org<span class="selector-class">.postgresql</span><span class="selector-class">.util</span><span class="selector-class">.PSQLException</span>: FATAL: no pg_hba<span class="selector-class">.conf</span> entry <span class="keyword">for</span> host</div></pre></td></tr></table></figure></p>
-<p>搜索问题后发现是因为PostgreSQL数据库为了安全，默认只会监听本地的连接请求，而我是访问服务器上的数据库。要解决这个问题，需要在服务器端PostgreSQL安装目录下找到<code>\data\pg_hba.conf</code>文件，打开找到其中<code># IPv4 local connections:</code>段，添加请求连接机器的IP。<br><figure class="highlight q"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># IPv4 local connections:</div><div class="line">host    <span class="built_in">all</span>             <span class="built_in">all</span>             <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>/<span class="number">32</span>            <span class="built_in">md5</span></div><div class="line">host    <span class="built_in">all</span>             <span class="built_in">all</span>             请求连接机器的IP/<span class="number">32</span>        <span class="built_in">md5</span></div></pre></td></tr></table></figure></p>
-<p>在pgAdmin中<code>Reload Configuration</code>后，客户端就能顺利连接服务器上数据库了，剩下的工作就和SQLite一样交给SQLAlchemy就好。</p>
+                <h3 id="7-4-字符串操作"><a href="#7-4-字符串操作" class="headerlink" title="7.4 字符串操作"></a>7.4 字符串操作</h3><p><strong>字符串对象方法</strong></p>
+<p>对于大部分字符串操作应用而言，python内置的字符串对象方法已经能够满足要求，例如<code>split</code>拆分、<code>strip</code>修剪空白符、<code>+</code>号连接字符串、<code>join</code>连接列表或元组、<code>in, index, find</code>方法定位子串、<code>count</code>方法返回子串出现次数、<code>replace</code>方法实现模式替换等等。</p>
+<p><strong>正则表达式</strong></p>
+<p>Python内置的<code>re</code>模块负责对字符串应用正则表达式，<code>re</code>模块的函数可以分为三类：模式匹配、替换以及拆分。一个<code>regex</code>描绘了需要在文本中定位的一个模式，例如标会一个或多个空白符的<code>regex</code>是<code>\s+</code>，为了便于重用，可以用<code>re.compile</code>编译一个<code>regex</code>对象。下面是<code>regex</code>的一些用法说明：</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import re</div><div class="line">regex = re.compile(<span class="comment">'\s+\') # 编译一个可重用的regex对象</span></div><div class="line">regex.split(<span class="keyword">text</span>) <span class="meta"># 对text字符串按照regex进行拆分，获得一个拆分后的数组</span></div><div class="line">regex.findall(<span class="keyword">text</span>) <span class="meta"># 获取text中匹配regex的所有模式，也是一个数组</span></div><div class="line">regex.search(<span class="keyword">text</span>) <span class="meta"># 返回第一个匹配的模式，返回匹配的开始和结束位置</span></div><div class="line">regex.match(<span class="keyword">text</span>) <span class="meta"># 只匹配text字符串首部的模式</span></div><div class="line">regex.<span class="keyword">sub</span>(replacement, <span class="keyword">text</span>) <span class="meta"># 将text中匹配到的模式替换为replacement</span></div></pre></td></tr></table></figure>
+<p>另外如果不仅要找到匹配的模式，还想将模式分段输出，可以将模式待分段的各部分用圆括号包起来。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">pattern = <span class="string">r'([A-Z0-9._%+-]+)@([A-Z0-9.-]+)\.([A-Z]&#123;2,4&#125;)'</span></div><div class="line"><span class="comment"># re.IGNORECASE makes the regex case-insensitive</span></div><div class="line">regex = re.compile(pattern, flags=re.IGNORECASE)</div><div class="line">m = regex.match(<span class="string">'wesm@bright.net'</span>)</div><div class="line">m.groups()</div></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="symbol">'wesm</span>', <span class="symbol">'bright</span>', <span class="symbol">'net</span>')</div></pre></td></tr></table></figure>
+<p>对于带有分组功能的模式，<code>findall</code>会返回一个元组列表。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">regex = re.compile(<span class="string">r"""</span></div><div class="line">    (?P&lt;username&gt;[A-Z0-9._%+-]+)</div><div class="line">    @</div><div class="line">    (?P&lt;domain&gt;[A-Z0-9.-]+)</div><div class="line">    \.</div><div class="line">    (?P&lt;suffix&gt;[A-Z]&#123;2,4&#125;)""", flags=re.IGNORECASE|re.VERBOSE)</div><div class="line">m = regex.match(<span class="string">'wesm@bright.net'</span>)</div><div class="line">m.groupdict()</div></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="string">'domain'</span>: <span class="string">'bright'</span>, <span class="string">'suffix'</span>: <span class="string">'net'</span>, <span class="string">'username'</span>: <span class="string">'wesm'</span>&#125;</div></pre></td></tr></table></figure>
+<p><strong>pandas中矢量化的字符串函数</strong></p>
 
 
                 <hr>
@@ -212,13 +218,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2016/11/29/Start-using-Materialize-in-your-website/" data-toggle="tooltip" data-placement="top" title="Start using Materialize in your website">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2016/11/23/Python-for-Data-Analysis-IV/" data-toggle="tooltip" data-placement="top" title="Python for Data Analysis IV">Next Post &rarr;</a>
+                            <a href="/2016/12/27/Python-for-Data-Analysis-V/" data-toggle="tooltip" data-placement="top" title="Python for Data Analysis V">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -247,7 +249,9 @@
                        
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
-                          <a class="tag" href="/tags/#PostgreSQL" title="PostgreSQL">PostgreSQL</a>
+                          <a class="tag" href="/tags/#Data Analysis" title="Data Analysis">Data Analysis</a>
+                        
+                          <a class="tag" href="/tags/#pandas" title="pandas">pandas</a>
                         
                     </div>
                 </section>
