@@ -13,11 +13,11 @@
 
     <title>
         
-          Master Gloomymoon&#39;s R2D2
+          Python Machine Learning I - Master Gloomymoon&#39;s R2D2
         
     </title>
 
-    <link rel="canonical" href="http://gloomymoon.github.io/tags/Data-Analysis/">
+    <link rel="canonical" href="http://gloomymoon.github.io/2017/01/17/Python-Machine-Learning-I/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -148,7 +148,157 @@
 
 
     <!-- Main Content -->
-    <!-- Default Archive layout, we use archives instead. -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/overwatch.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                    </div>
+                    <h1>Python Machine Learning I</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2017-01-17
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="Python-Machine-Learning"><a href="#Python-Machine-Learning" class="headerlink" title="Python Machine Learning"></a>Python Machine Learning</h1><p>Foreword by Dr. Randal S. Olson</p>
+<h2 id="1-Giving-Computers-the-Ability-to-learn-from-Data"><a href="#1-Giving-Computers-the-Ability-to-learn-from-Data" class="headerlink" title="1 Giving Computers the Ability to learn from Data"></a>1 Giving Computers the Ability to learn from Data</h2><h3 id="Building-intelligent-machines-to-transform-data-into-knowledge"><a href="#Building-intelligent-machines-to-transform-data-into-knowledge" class="headerlink" title="Building intelligent machines to transform data into knowledge"></a>Building intelligent machines to transform data into knowledge</h3><h3 id="The-three-defirent-types-of-machine-learning"><a href="#The-three-defirent-types-of-machine-learning" class="headerlink" title="The three defirent types of machine learning"></a>The three defirent types of machine learning</h3><p>机器学习的三种类型：无监督学习、有监督学习、增强学习</p>
+<p><strong>Making predictions about the future with supervised learning</strong><br><img src="/img/PythonMachineLearningI_01.png" alt=""><br>Classification for predicting class labels<br>分类是有监督学习的一类，包括二元分类（如是别垃圾邮件）、多元分类（如手写识别）</p>
+<p>Regression for predicting continuous outcomes<br>回归是分析一组预测因子和连续性结论之间的关系，用来预测连续性结果，例如使用学习时间和SAT成绩关系</p>
+<p><strong>Solving interactive problems with reinforcement learning</strong><br><img src="/img/PythonMachineLearningI_02.png" alt=""><br>增强学习的目的是构建一个通过与环境交互不断提升表现的系统。因为基于reward signal，可以认为与有监督学习类似。但reward signal并不是表示真假或数值，而是有reward函数对交互行为产生的效益的评价，典型的增强学习是下棋引擎，交互行为就是下子，reward就是最终的输赢。</p>
+<p><strong>Discovering hidden structures with unsupervised learning</strong><br>有监督学习中，建模前必须有正确的结果数据，增强学习也必须预定义reward函数。而无监督学习是试图探索数据中的潜在信息和结构模式。<br>Finding subgroups with clustering<br>聚类技术是将数据重组成有意义的簇，使得在某维度上簇内相似度最高、簇间相似度最低。<br><img src="/img/PythonMachineLearningI_03.png" alt=""></p>
+<p>Dimensionality reduction for data compression<br>降维是另一种无监督学习，是一种常用的特征预处理方法，去除噪音数据，压缩数据维度空间，但仍保留有效的信息量。</p>
+<h3 id="A-roadmap-for-building-machine-learning-systems"><a href="#A-roadmap-for-building-machine-learning-systems" class="headerlink" title="A roadmap for building machine learning systems"></a>A roadmap for building machine learning systems</h3><p>下图展示了一个典型的预测模型构建工作流程：<br><img src="/img/PythonMachineLearningI_04.gif" alt=""></p>
+<p><strong>Preprocessing – getting data into shape</strong><br>数据预处理是最关键的步骤之一</p>
+<p><strong>Training and selecting a predictive model</strong><br>每个分类算法都有其内在的偏向，在任务未知时没有哪个信号分类模型更加优秀。在比较不同模型效果是，首先需要定义和量指标，即分类的准确率。<br>由于我们无法知道最终预测数据是怎样的，所以引入了各种交叉检验技术将建模数据分为训练和检验部分来评估模型效果。最后我们还要使用超参数（hyperparameter）优化技术来对模型调优。</p>
+<p><strong>Evaluating models and predicting unseen data instances</strong><br>一旦模型训练完成，我们能够用测试数据验证效果，如果模型效果满意，就能够用来预测未来的新数据。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/01/07/Python-for-Data-Analysis-VII/" data-toggle="tooltip" data-placement="top" title="Python for Data Analysis VII">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
 
     <!-- Footer -->
     <!-- Footer -->
