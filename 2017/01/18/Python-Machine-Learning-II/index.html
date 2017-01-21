@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Python Machine Learning II - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2017/01/18/Python-Machine-Learning-II/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/overwatch.png')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                          <a class="tag" href="/tags/#scikit-learn" title="scikit-learn">scikit-learn</a>
+                        
+                    </div>
+                    <h1>Python Machine Learning II</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2017-01-18
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="2-Training-Machine-Learning-Algorithms-for-Classification"><a href="#2-Training-Machine-Learning-Algorithms-for-Classification" class="headerlink" title="2 Training Machine Learning Algorithms for Classification"></a>2 Training Machine Learning Algorithms for Classification</h2><p><em>. 建立机器学习算法的直觉知识
+</em>. 利用pandas、NumPy和matplotlib来读入、处理和展示数据<br>*. 用Python实现线性分类算法</p>
+<h3 id="Artificial-neurons-–-a-brief-glimpse-into-the-early-history-of-machine-learning"><a href="#Artificial-neurons-–-a-brief-glimpse-into-the-early-history-of-machine-learning" class="headerlink" title="Artificial neurons – a brief glimpse into the early history of machine learning"></a>Artificial neurons – a brief glimpse into the early history of machine learning</h3><p>早期大脑神经元结构对人工智能研究的影响：<br><img src="img/PythonMachineLearningII_01.png" alt=""></p>
+<p>每个神经元就是一个二元分类器，定义一个激活函数Φ(z)来实现分类，其中z是一系列输入变量x的线性组合z = w1x1+w2x2+…+wmxm，其中w表示每个变量的权重：<br><img src="img/PythonMachineLearningII_02.png" alt=""></p>
+<p>下图描绘了输入是如何转换成二元输出的示意图：<br><img src="img/PythonMachineLearningII_03.png" alt=""></p>
+<p>整个感知器的训练过程如下：</p>
+<ol>
+<li>所有w初始化为0或者一个很小的随机数</li>
+<li>对于每个训练样本x，计算输出y，并基于结果与否更新w，更新的变化值如下：<br><img src="img/PythonMachineLearningII_04.png" alt=""></li>
+</ol>
+<p>只有当分类结果是线性且学习率充分小时，感知器才能够保证收敛。<br><img src="img/PythonMachineLearningII_05.png" alt=""></p>
+<p>感知器概念图，在学习阶段，激活函数的输出用来更新每个输入变量的权重参数。</p>
+<h3 id="Implementing-a-perceptron-learning-algorithm-in-Python"><a href="#Implementing-a-perceptron-learning-algorithm-in-Python" class="headerlink" title="Implementing a perceptron learning algorithm in Python"></a>Implementing a perceptron learning algorithm in Python</h3><p>Perceptron.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Perceptron</span><span class="params">(object)</span>:</span></div><div class="line">	<span class="string">"""Perceptron classifier.</span></div><div class="line"></div><div class="line">	Parameters</div><div class="line">	----------</div><div class="line">	eta : float</div><div class="line">		Learning rate (between 0.0 and 1.0)</div><div class="line">	n_iter : int</div><div class="line">		Passes over the traning dataset.</div><div class="line"></div><div class="line">	Attributes</div><div class="line">	----------</div><div class="line">	w_ : 1d-array</div><div class="line">		Weights after fitting.</div><div class="line">	errors_ : list</div><div class="line">		Number of misclassifications in every epoch.</div><div class="line">	"""</div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, eta=<span class="number">0.01</span>, n_iter=<span class="number">10</span>)</span>:</span></div><div class="line">		self.eta = eta</div><div class="line">		self.n_iter = n_iter</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y)</span>:</span></div><div class="line">		<span class="string">"""Fit training data.</span></div><div class="line"></div><div class="line">		Parameters</div><div class="line">		----------</div><div class="line">		X : &#123;array-like&#125;, shape = [n_samples, n_features]</div><div class="line">			Training vectors, where n_samples is the number of samples </div><div class="line">			and n_features is the number of features.</div><div class="line">		y : array-like, shape = [n_samples]</div><div class="line">			Target values.</div><div class="line"></div><div class="line">		Returns</div><div class="line">		-------</div><div class="line">		self : object</div><div class="line">		"""</div><div class="line">		self.w_ = np.zeros(<span class="number">1</span> + X.shape[<span class="number">1</span>])</div><div class="line">		self.errors_ = []</div><div class="line"></div><div class="line">		<span class="keyword">for</span> _ <span class="keyword">in</span> range(self.n_iter):</div><div class="line">			errors = <span class="number">0</span></div><div class="line">			<span class="keyword">for</span> xi, target <span class="keyword">in</span> zip(X, y):</div><div class="line">				update = self.eta * (target - self.predict(xi))</div><div class="line">				self.w_[<span class="number">1</span>:] += update * xi</div><div class="line">				self.w_[<span class="number">0</span>] += update</div><div class="line">				errors += int(update != <span class="number">0.0</span>)</div><div class="line">			self.errors_.append(errors)</div><div class="line">		<span class="keyword">return</span> self</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">net_input</span><span class="params">(self, X)</span>:</span></div><div class="line">		<span class="string">"""Calculate net input"""</span></div><div class="line">		<span class="keyword">return</span> np.dot(X, self.w_[<span class="number">1</span>:]) + self.w_[<span class="number">0</span>]</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, X)</span>:</span></div><div class="line">		<span class="string">"""Return class label after unit step"""</span></div><div class="line">		<span class="keyword">return</span> np.where(self.net_input(X) &gt;= <span class="number">0.0</span>, <span class="number">1</span>, <span class="number">-1</span>)</div></pre></td></tr></table></figure></p>
+<p><strong>Training a perceptron model on the Iris dataset</strong><br>为测试感知器，我们使用Iris中的Setosa和Versicolor两类数据，便于展示这里仅使用sepal length和petal length两个变量。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="title">from</span> perceptron <span class="keyword">import</span> Perceptron</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="title">df</span> = pd.read_csv('iris.<span class="class"><span class="keyword">data</span>', header=<span class="type">None</span>)</span></div><div class="line"><span class="title">df</span>.head()</div></pre></td></tr></table></figure></p>
+<pre><code>0    1    2    3    4
+</code></pre><p>0    5.1    3.5    1.4    0.2    Iris-setosa<br>1    4.9    3.0    1.4    0.2    Iris-setosa<br>2    4.7    3.2    1.3    0.2    Iris-setosa<br>3    4.6    3.1    1.5    0.2    Iris-setosa<br>4    5.0    3.6    1.4    0.2    Iris-setosa</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">%pylab inline</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">y = df.iloc[<span class="number">0</span>:<span class="number">100</span>, <span class="number">4</span>].values</div><div class="line">y = np.<span class="keyword">where</span>(y == <span class="string">'Iris-setosa'</span>, -<span class="number">1</span>, <span class="number">1</span>)</div><div class="line">X = df.iloc[<span class="number">0</span>:<span class="number">100</span>, [<span class="number">0</span>, <span class="number">2</span>]].values</div><div class="line">plt.scatter(X[:<span class="number">50</span>, <span class="number">0</span>], X[:<span class="number">50</span>, <span class="number">1</span>], <span class="built_in">color</span>=<span class="string">'red'</span>, marker=<span class="string">'o'</span>, label=<span class="string">'setosa'</span>)</div><div class="line">plt.scatter(X[<span class="number">50</span>:<span class="number">100</span>, <span class="number">0</span>], X[<span class="number">50</span>:<span class="number">100</span>, <span class="number">1</span>], <span class="built_in">color</span>=<span class="string">'blue'</span>, marker=<span class="string">'x'</span>, label=<span class="string">'versicolor'</span>)</div><div class="line">plt.xlabel(<span class="string">'petal length'</span>)</div><div class="line">plt.ylabel(<span class="string">'sepal length'</span>)</div><div class="line">plt.legend(loc=<span class="string">'upper left'</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="img/PythonMachineLearningII_06.png" alt=""></p>
+<p>现在可以用我们的感知器来训练Iris数据<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ppn = Perceptron(eta=<span class="number">0.1</span>, n_iter=<span class="number">10</span>)</div><div class="line">ppn.fit(X, y)</div><div class="line">plt.plot(<span class="keyword">range</span>(<span class="number">1</span>, len(ppn.errors_) + <span class="number">1</span>), ppn.errors_, marker=<span class="string">'o'</span>)</div><div class="line">plt.xlabel(<span class="symbol">'Epochs</span>')</div><div class="line">plt.ylabel(<span class="symbol">'Number</span> <span class="keyword">of</span> misclassifications')</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+<p><img src="img/PythonMachineLearningII_07.png" alt=""></p>
+<p>六次迭代后感知器已经收敛。<br>为了便于展现编写了一个2维数据可视化函数plot_decision_regions。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> matplotlib.colors <span class="keyword">import</span> ListedColormap</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_decision_regions</span><span class="params">(X, y, classifier, resolution=<span class="number">0.02</span>)</span>:</span></div><div class="line">    <span class="comment"># setup marker generator and color map</span></div><div class="line">    markers = (<span class="string">'s'</span>, <span class="string">'x'</span>, <span class="string">'o'</span>, <span class="string">'^'</span>, <span class="string">'v'</span>)</div><div class="line">    colors = (<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'lightgreen'</span>, <span class="string">'gray'</span>, <span class="string">'cyan'</span>)</div><div class="line">    cmap = ListedColormap(colors[:len(np.unique(y))])</div><div class="line"></div><div class="line">    <span class="comment"># plot the decision surface</span></div><div class="line">    x1_min, x1_max = X[:, <span class="number">0</span>].min() - <span class="number">1</span>, X[:, <span class="number">0</span>].max() + <span class="number">1</span></div><div class="line">    x2_min, x2_max = X[:, <span class="number">1</span>].min() - <span class="number">1</span>, X[:, <span class="number">1</span>].max() + <span class="number">1</span></div><div class="line">    xx1, xx2 = np.meshgrid(np.arange(x1_min, x1_max, resolution), np.arange(x2_min, x2_max, resolution))</div><div class="line">    Z = classifier.predict(np.array([xx1.ravel(), xx2.ravel()]).T)</div><div class="line">    Z = Z.reshape(xx1.shape)</div><div class="line">    plt.contourf(xx1, xx2, Z, alpha=<span class="number">0.4</span>, cmap=cmap)</div><div class="line">    plt.xlim(xx1.min(), xx1.max())</div><div class="line">    plt.ylim(xx2.min(), xx2.max())</div><div class="line"></div><div class="line">    <span class="comment"># plot class samples</span></div><div class="line">    <span class="keyword">for</span> idx, cl <span class="keyword">in</span> enumerate(np.unique(y)):</div><div class="line">        plt.scatter(x=X[y == cl, <span class="number">0</span>], y=X[y == cl, <span class="number">1</span>], </div><div class="line">                    alpha=<span class="number">0.8</span>, c=cmap(idx), </div><div class="line">                    marker=markers[idx], label=cl)</div></pre></td></tr></table></figure></p>
+<p>然后就可以展现感知器的分类线，能够完美区分样本中的Iris类型。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">plot_decision_regions</span>(X, y, classifier=ppn)</div><div class="line"><span class="selector-tag">plt</span><span class="selector-class">.xlabel</span>(<span class="string">'sepal length [cm]'</span>)</div><div class="line"><span class="selector-tag">plt</span><span class="selector-class">.ylabel</span>(<span class="string">'petal length [cm]'</span>)</div><div class="line"><span class="selector-tag">plt</span><span class="selector-class">.legend</span>(loc=<span class="string">'upper left'</span>)</div><div class="line"><span class="selector-tag">plt</span><span class="selector-class">.show</span>()</div></pre></td></tr></table></figure></p>
+<p><img src="img/PythonMachineLearningII_08.png" alt=""></p>
+<h3 id="Adaptive-linear-neurons-and-the-convergence-of-learning"><a href="#Adaptive-linear-neurons-and-the-convergence-of-learning" class="headerlink" title="Adaptive linear neurons and the convergence of learning"></a>Adaptive linear neurons and the convergence of learning</h3><p>ADAptive Linear Neuron(Adaline)是对感知器算法的一个改进，其关键理念是定义并最小化成本函数，基于线性激活函数替代单步阶梯函数。<br><img src="img/PythonMachineLearningII_09.png" alt=""></p>
+<p><strong>Minimizing cost functions with gradient descent</strong><br>有监督学习算法的关键因素之一就是定义一个目标函数（objective function）。目标函数通常可以是最小化的陈本函数，在Adaline方法中，成本函数J定义为输出和目标的误差平方和（Sum of Squared Errors, SSE），相比单步阶梯函数该线性激活函数是可微的：<br><img src="img/PythonMachineLearningII_10.png" alt=""></p>
+<p>另一个优势是这是个凸函数（convex），因此可以使用一个简单强大的优化算法，梯度下降（gradient descent），找到成本函数最小的权重值。梯度下降算法示意图如下：<br><img src="img/PythonMachineLearningII_11.png" alt=""></p>
+<p><strong>Implementing an Adaptive Linear Neuron in Python</strong><br>Adaline和感知器很类似，所以可以直接在原有的代码上修改<code>fit</code>方法重写成本函数最小化算法。<br>AdalineGD.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AdalineGD</span><span class="params">(object)</span>:</span></div><div class="line">	<span class="string">"""ADAptive LInear NEuron classifier.</span></div><div class="line"></div><div class="line">	Parameters</div><div class="line">	----------</div><div class="line">	eta : float</div><div class="line">		Learning rate (between 0.0 and 1.0)</div><div class="line">	n_iter : int</div><div class="line">		Passes over the traning dataset.</div><div class="line"></div><div class="line">	Attributes</div><div class="line">	----------</div><div class="line">	w_ : 1d-array</div><div class="line">		Weights after fitting.</div><div class="line">	errors_ : list</div><div class="line">		Number of misclassifications in every epoch.</div><div class="line">	"""</div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, eta=<span class="number">0.01</span>, n_iter=<span class="number">10</span>)</span>:</span></div><div class="line">		self.eta = eta</div><div class="line">		self.n_iter = n_iter</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y)</span>:</span></div><div class="line">		<span class="string">"""Fit training data.</span></div><div class="line"></div><div class="line">		Parameters</div><div class="line">		----------</div><div class="line">		X : &#123;array-like&#125;, shape = [n_samples, n_features]</div><div class="line">			Training vectors, where n_samples is the number of samples </div><div class="line">			and n_features is the number of features.</div><div class="line">		y : array-like, shape = [n_samples]</div><div class="line">			Target values.</div><div class="line"></div><div class="line">		Returns</div><div class="line">		-------</div><div class="line">		self : object</div><div class="line">		"""</div><div class="line">		self.w_ = np.zeros(<span class="number">1</span> + X.shape[<span class="number">1</span>])</div><div class="line">		self.cost_ = []</div><div class="line"></div><div class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> range(self.n_iter):</div><div class="line">			output = self.net_input(X)</div><div class="line">			errors = (y - output)</div><div class="line">			self.w_[<span class="number">1</span>:] += self.eta * X.T.dot(errors)</div><div class="line">			self.w_[<span class="number">0</span>] += self.eta * errors.sum()</div><div class="line">			cost = (errors**<span class="number">2</span>).sum() / <span class="number">2.0</span></div><div class="line">			self.cost_.append(cost)</div><div class="line">		<span class="keyword">return</span> self</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">net_input</span><span class="params">(self, X)</span>:</span></div><div class="line">		<span class="string">"""Calculate net input"""</span></div><div class="line">		<span class="keyword">return</span> np.dot(X, self.w_[<span class="number">1</span>:]) + self.w_[<span class="number">0</span>]</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">activation</span><span class="params">(self, X)</span>:</span></div><div class="line">		<span class="string">"""Compute linear activation"""</span></div><div class="line">		<span class="keyword">return</span> self.net_input(X)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, X)</span>:</span></div><div class="line">		<span class="string">"""Return class label after unit step"""</span></div><div class="line">		<span class="keyword">return</span> np.where(self.activation(X) &gt;= <span class="number">0.0</span>, <span class="number">1</span>, <span class="number">-1</span>)</div></pre></td></tr></table></figure></p>
+<p>实践中，经常需要尝试不同的学习率使结果收敛。这里我们尝试0.1和0.0001两个参数进行比较。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">from AdalineGD import AdalineGD</div><div class="line">fig, ax = plt.subplots(nrows=<span class="number">1</span>, ncols=<span class="number">2</span>, figsize=(<span class="number">8</span>, <span class="number">4</span>))</div><div class="line">ada1 = AdalineGD(n_iter=<span class="number">10</span>, eta=<span class="number">0.01</span>).fit(X, y)</div><div class="line">ax[<span class="number">0</span>].plot(range(<span class="number">1</span>, len(ada1.cost_) + <span class="number">1</span>), np.log10(ada1.cost_), marker='o')</div><div class="line">ax[<span class="number">0</span>].set_xlabel('Epochs')</div><div class="line">ax[<span class="number">0</span>].set_ylabel('log(Sum-squared-error)')</div><div class="line">ax[<span class="number">0</span>].set_title('Adaline - Learning rate <span class="number">0.01</span>')</div><div class="line">ada2 = AdalineGD(n_iter=<span class="number">10</span>, eta=<span class="number">0.0001</span>).fit(X, y)</div><div class="line">ax[<span class="number">1</span>].plot(range(<span class="number">1</span>, len(ada2.cost_) + <span class="number">1</span>), ada2.cost_, marker='o')</div><div class="line">ax[<span class="number">1</span>].set_xlabel('Epochs')</div><div class="line">ax[<span class="number">1</span>].set_ylabel('Sum-squared-error')</div><div class="line">ax[<span class="number">1</span>].set_title('Adaline - Learning rate <span class="number">0.0001</span>')</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+<p><img src="img/PythonMachineLearningII_12.png" alt=""></p>
+<p>这两次实践分别遇到了两类典型的问题，第一次（左图）选用的学习率太大，算法在迭代中直接越过最小值最后发散，第二次（右图）选取的学习率太低，多次迭代后还没有达到收敛。</p>
+<p>许多机器学习算法的调优都需要先进行特征归一化，梯度下降是其中之一。这里我们使用标准化（standardization）方法进行特征归一化，使数据分布正态化，即每个特征的以0为中心方差为1的正态分布。然后再使用0.01的学习率来训练Adaline算法。<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">X_std = <span class="built_in">np</span>.<span class="built_in">copy</span>(X)</div><div class="line">X_std[:, <span class="number">0</span>] = (X[:, <span class="number">0</span>] - X[:, <span class="number">0</span>].<span class="built_in">mean</span>()) / X[:, <span class="number">0</span>].<span class="built_in">std</span>()</div><div class="line">X_std[:, <span class="number">1</span>] = (X[:, <span class="number">1</span>] - X[:, <span class="number">1</span>].<span class="built_in">mean</span>()) / X[:, <span class="number">1</span>].<span class="built_in">std</span>()</div><div class="line"></div><div class="line">ada = AdalineGD(n_iter=<span class="number">15</span>, eta=<span class="number">0.01</span>)</div><div class="line">ada.fit(X_std, y)</div><div class="line">plot_decision_regions(X_std, y, classifier=ada)</div><div class="line">plt.<span class="built_in">title</span>('Adaline - Gradient Descent')</div><div class="line">plt.<span class="built_in">xlabel</span>('sepal <span class="built_in">length</span> [standardized]')</div><div class="line">plt.<span class="built_in">ylabel</span>('petal <span class="built_in">length</span> [standardized]')</div><div class="line">plt.<span class="built_in">legend</span>(loc='upper left')</div><div class="line">plt.<span class="built_in">show</span>()</div><div class="line">plt.plot(<span class="built_in">range</span>(<span class="number">1</span>, len(ada.cost_) + <span class="number">1</span>), ada.cost_, marker='o')</div><div class="line">plt.<span class="built_in">xlabel</span>('Epochs')</div><div class="line">plt.<span class="built_in">ylabel</span>('Sum-squared-<span class="built_in">error</span>')</div><div class="line">plt.<span class="built_in">show</span>()</div></pre></td></tr></table></figure></p>
+<p><img src="img/PythonMachineLearningII_13.png" alt=""></p>
+<p>Adaline收敛，但是注意尽管所有样本都正确分类，SSE仍然不是0。</p>
+<p><strong>Large scale machine learning and stochastic gradient descent</strong><br>现实中用梯度下降算法在百万条数据的训练非常耗时，因为每次迭代都要对全量数据进行评估并更新权重参数来达到全局最小值。一个常用的替代方案是随机梯度下降（stochastic gradient descent），权重的更新不是基于所有样本的偏差累计，而是基于每个样本的偏差，使得算法能够更频繁的更新权重参数从而快速达到收敛。为了达到准确结果，使用随机梯度下降算法每次迭代前都需要对数据进行随机排序（shuffle）。<br>随机梯度下降的另一个优势是可以在线学习（online learning），随着系统运行，新的训练数据不断产生，在线学习可以快速适应变化，而且若无必要保存，训练数据使用后可以直接丢弃。<br>我们在AdalineGD上修改<code>fit</code>方法的权重更新方式，新增<code>partial_fit</code>方法用于在线学习（不重新初始化权重），新增<code>shuffle</code>参数和<code>random_state</code>参数用于。<br>AdalineSGD.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> numpy.random <span class="keyword">import</span> seed</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AdalineSGD</span><span class="params">(object)</span>:</span></div><div class="line">	<span class="string">"""ADAptive LInear NEuron classifier.</span></div><div class="line"></div><div class="line">	Parameters</div><div class="line">	----------</div><div class="line">	eta : float</div><div class="line">		Learning rate (between 0.0 and 1.0)</div><div class="line">	n_iter : int</div><div class="line">		Passes over the traning dataset.</div><div class="line"></div><div class="line">	Attributes</div><div class="line">	----------</div><div class="line">	w_ : 1d-array</div><div class="line">		Weights after fitting.</div><div class="line">	errors_ : list</div><div class="line">		Number of misclassifications in every epoch.</div><div class="line">	shuffle : bool (default: True)</div><div class="line">		Shuffles traning data every epoch if True to prevent cycles.</div><div class="line">	random_state : int (default: None)</div><div class="line">		Set random state for shuffling and initializing the weights. </div><div class="line">	"""</div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, eta=<span class="number">0.01</span>, n_iter=<span class="number">10</span>, shuffle=True, random_state=None)</span>:</span></div><div class="line">		self.eta = eta</div><div class="line">		self.n_iter = n_iter</div><div class="line">		self.w_initialized = <span class="keyword">False</span></div><div class="line">		self.shuffle = shuffle</div><div class="line">		<span class="keyword">if</span> random_state:</div><div class="line">			seed(random_state)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y)</span>:</span></div><div class="line">		<span class="string">"""Fit training data.</span></div><div class="line"></div><div class="line">		Parameters</div><div class="line">		----------</div><div class="line">		X : &#123;array-like&#125;, shape = [n_samples, n_features]</div><div class="line">			Training vectors, where n_samples is the number of samples </div><div class="line">			and n_features is the number of features.</div><div class="line">		y : array-like, shape = [n_samples]</div><div class="line">			Target values.</div><div class="line"></div><div class="line">		Returns</div><div class="line">		-------</div><div class="line">		self : object</div><div class="line">		"""</div><div class="line">		self._initialize_weights(X.shape[<span class="number">1</span>])</div><div class="line">		self.cost_ = []</div><div class="line"></div><div class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> range(self.n_iter):</div><div class="line">			<span class="keyword">if</span> self.shuffle:</div><div class="line">				X, y = self._shuffle(X, y)</div><div class="line">			cost = []</div><div class="line">			<span class="keyword">for</span> xi, target <span class="keyword">in</span> zip(X, y):</div><div class="line">				cost.append(self._update_weights(xi, target))</div><div class="line">			avg_cost = sum(cost)/len(y)</div><div class="line">			self.cost_.append(avg_cost)</div><div class="line">		<span class="keyword">return</span> self</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">partial_fit</span><span class="params">(self, X, y)</span>:</span></div><div class="line">		<span class="string">"""Fit training data without reinitializing the weights"""</span></div><div class="line">		<span class="keyword">if</span> <span class="keyword">not</span> self.w_initialized:</div><div class="line">			self._initialize_weights(X.shape[<span class="number">1</span>]) <span class="comment"># ndarray.shap 返回一个维度列表, 列表长度等于维数(ndarray.ndim)</span></div><div class="line">		<span class="keyword">if</span> y.ravel().shape[<span class="number">0</span>] &gt; <span class="number">1</span>:</div><div class="line">			<span class="keyword">for</span> xi, target <span class="keyword">in</span> zip(X, y):</div><div class="line">				self._update_weights(xi, target)</div><div class="line">		<span class="keyword">else</span>:</div><div class="line">				self._update_weights(X, y)</div><div class="line">		<span class="keyword">return</span> self</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">_shuffle</span><span class="params">(self, X, y)</span>:</span></div><div class="line">		<span class="string">"""Shuffle training data"""</span></div><div class="line">		r = np.random.permutation(len(y)) <span class="comment"># permutation若传入一个整数，返回一个洗牌后的arange</span></div><div class="line">		<span class="keyword">return</span> X[r], y[r]</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">_initialize_weights</span><span class="params">(self, m)</span>:</span></div><div class="line">		<span class="string">"""Initialize weights to zeros"""</span></div><div class="line">		self.w_ = np.zeros(<span class="number">1</span> + m)</div><div class="line">		self.w_initialized = <span class="keyword">True</span></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">_update_weights</span><span class="params">(self, xi, target)</span>:</span></div><div class="line">		<span class="string">"""Apply Adaline learning rule to update the weights"""</span></div><div class="line">		output = self.net_input(xi)</div><div class="line">		error = (target - output)</div><div class="line">		self.w_[<span class="number">1</span>:] += self.eta * xi.dot(error)</div><div class="line">		self.w_[<span class="number">0</span>] += self.eta * error</div><div class="line">		cost = <span class="number">0.5</span> * error**<span class="number">2</span></div><div class="line">		<span class="keyword">return</span> cost</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">net_input</span><span class="params">(self, X)</span>:</span></div><div class="line">		<span class="string">"""Calculate net input"""</span></div><div class="line">		<span class="keyword">return</span> np.dot(X, self.w_[<span class="number">1</span>:]) + self.w_[<span class="number">0</span>]</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">activation</span><span class="params">(self, X)</span>:</span></div><div class="line">		<span class="string">"""Compute linear activation"""</span></div><div class="line">		<span class="keyword">return</span> self.net_input(X)</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, X)</span>:</span></div><div class="line">		<span class="string">"""Return class label after unit step"""</span></div><div class="line">		<span class="keyword">return</span> np.where(self.activation(X) &gt;= <span class="number">0.0</span>, <span class="number">1</span>, <span class="number">-1</span>)</div></pre></td></tr></table></figure></p>
+<p>使用AdalineSGD：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">from AdalineSGD import AdalineSGD</div><div class="line"></div><div class="line">ada = AdalineSGD(n_iter=<span class="number">15</span>, eta=<span class="number">0.01</span>, random_state=<span class="number">1</span>)</div><div class="line">ada.fit(X_std, y)</div><div class="line"><span class="function"><span class="title">plot_decision_regions</span><span class="params">(X_std, y, classifier=ada)</span></span></div><div class="line">plt.title(<span class="string">'Adaline - Stochastic Gradient Descent'</span>)</div><div class="line">plt.xlabel(<span class="string">'sepal length [standardized]'</span>)</div><div class="line">plt.ylabel(<span class="string">'petal length [standardized]'</span>)</div><div class="line">plt.legend(loc=<span class="string">'upper left'</span>)</div><div class="line">plt.show()</div><div class="line">plt.plot(range(<span class="number">1</span>, len(ada.cost_) + <span class="number">1</span>), ada<span class="selector-class">.cost_</span>, marker=<span class="string">'o'</span>)</div><div class="line">plt.xlabel(<span class="string">'Epochs'</span>)</div><div class="line">plt.ylabel(<span class="string">'Average Cost'</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+<p>从结果可以看到平均成本下降非常迅速，15次迭代后效果和梯度下降差不多。<br><img src="img/PythonMachineLearningII_14.png" alt=""></p>
+<p>如果需要在在线环境下基于流数据进行可以调用<code>partial_fit</code>方法针对每条记录进行训练。用法如下：<code>ada.partial_fit(X_std[0, :], y[0])</code></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/01/17/Python-Machine-Learning-I/" data-toggle="tooltip" data-placement="top" title="Python Machine Learning I">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                          <a class="tag" href="/tags/#scikit-learn" title="scikit-learn">scikit-learn</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
