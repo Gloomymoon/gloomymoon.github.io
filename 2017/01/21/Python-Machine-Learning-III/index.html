@@ -91,14 +91,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -237,7 +237,8 @@
 <p>在scikit-learn实现中，参数C定义为λ的倒数，借用SVM的约定。降低C就是增加λ。<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">weights, params = [], []</div><div class="line"><span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">np</span>.arange(-<span class="number">5</span>, <span class="number">5</span>):</div><div class="line">    lr = LogisticRegression(C=<span class="number">10</span>**c, random_state=<span class="number">0</span>)</div><div class="line">    lr.fit(X_train_std, y_train)</div><div class="line">    weights.<span class="built_in">append</span>(lr.coef_[<span class="number">1</span>])</div><div class="line">    params.<span class="built_in">append</span>(<span class="number">10</span>**c)</div><div class="line">weights = <span class="built_in">np</span>.<span class="built_in">array</span>(weights)</div><div class="line">plt.plot(params, weights[:, <span class="number">0</span>], <span class="built_in">label</span>='petal <span class="built_in">length</span>')</div><div class="line">plt.plot(params, weights[:, <span class="number">1</span>], linestyle='--', <span class="built_in">label</span>='petal <span class="built_in">width</span>')</div><div class="line">plt.<span class="built_in">ylabel</span>('weight coefficient')</div><div class="line">plt.<span class="built_in">xlabel</span>('C')</div><div class="line">plt.<span class="built_in">legend</span>(loc='upper left')</div><div class="line">plt.xscale('<span class="built_in">log</span>')</div><div class="line">plt.<span class="built_in">show</span>()</div></pre></td></tr></table></figure></p>
 <p>从图上可以看出，当C变小时，特征变量的系统系数逐渐收缩到0，达到了正则化效应增强的结果。<br><img src="/img/PythonMachineLearningIII_09.png" alt=""></p>
 <h3 id="Maximum-margin-classification-with-support-vector-machines"><a href="#Maximum-margin-classification-with-support-vector-machines" class="headerlink" title="Maximum margin classification with support vector machines"></a>Maximum margin classification with support vector machines</h3><p>另一个广泛使用的强大分类算法是支持向量机（support vector machine，SVM），其可以视为是感知器的延伸。在感知器算法中我们需要最小化错分类偏差，在支持向量机中优化目标是最大化类间间隔。类间间隔的定义是两个超平面之间的距离，训练集中最接近超平面的样本成为支持向量。<br><img src="/img/PythonMachineLearningIII_10.png" alt=""></p>
-<p><strong>Maximum margin intuition</strong><br>（计算公式推导，略过）<br><strong>Dealing with the nonlinearly separable case using slack variables</strong><br> <br>2017-01-19<br>这里不过分深入公式的推导，简单介绍下参数C的作用，如下图所示，通过参数C可以控制对错误分类结果的惩罚力度。C越大对错误分类的惩罚越大（即分类更加准确），C越小对错误分类的限制要求更宽松。因此C参数与正则化相关，通过增加C的大小，就会增加模型的偏度，降低模型的方差，这个影响关系和逻辑回归中的参数C的效用一致。<br><img src="/img/PythonMachineLearningIII_11.png" alt=""></p>
+<p><strong>Maximum margin intuition</strong><br>（计算公式推导，略过）</p>
+<p><strong>Dealing with the nonlinearly separable case using slack variables</strong><br> 这里不过分深入公式的推导，简单介绍下参数C的作用，如下图所示，通过参数C可以控制对错误分类结果的惩罚力度。C越大对错误分类的惩罚越大（即分类更加准确），C越小对错误分类的限制要求更宽松。因此C参数与正则化相关，通过增加C的大小，就会增加模型的偏度，降低模型的方差，这个影响关系和逻辑回归中的参数C的效用一致。<br><img src="/img/PythonMachineLearningIII_11.png" alt=""></p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">from sklearn<span class="selector-class">.svm</span> import SVC</div><div class="line">svm = SVC(kernel=<span class="string">'linear'</span>, C=<span class="number">1.0</span>, random_state=<span class="number">0</span>)</div><div class="line">svm.fit(X_train_std, y_train)</div><div class="line"><span class="function"><span class="title">plot_decision_regions</span><span class="params">(X_combined_std, y_combined, classifier=svm, test_idx=range(<span class="number">105</span>, <span class="number">150</span>)</span></span>)</div><div class="line">plt.xlabel(<span class="string">'petal length [standardized]'</span>)</div><div class="line">plt.ylabel(<span class="string">'petal width [standardized]'</span>)</div><div class="line">plt.legend(loc=<span class="string">'upper left'</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
 <p><img src="/img/PythonMachineLearningIII_12.png" alt=""></p>
 <blockquote>
@@ -300,6 +301,10 @@
                 
 
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/01/25/Python-Machine-Learning-IV/" data-toggle="tooltip" data-placement="top" title="Python Machine Learning IV">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
