@@ -13,11 +13,11 @@
 
     <title>
         
-          Convert PDF to Images using Python - Master Gloomymoon&#39;s R2D2
+          Python Machine Learning IV - Master Gloomymoon&#39;s R2D2
         
     </title>
 
-    <link rel="canonical" href="http://gloomymoon.github.io/2016/10/27/Convert-PDF-to-Images-using-Python/">
+    <link rel="canonical" href="http://gloomymoon.github.io/2017/01/25/Python-Machine-Learning-V/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -168,12 +168,16 @@
                         
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                          <a class="tag" href="/tags/#scikit-learn" title="scikit-learn">scikit-learn</a>
+                        
                     </div>
-                    <h1>Convert PDF to Images using Python</h1>
+                    <h1>Python Machine Learning IV</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Gloomymoon on
-                        2016-10-27
+                        2017-01-25
                     </span>
                 </div>
             </div>
@@ -192,14 +196,27 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="1-Install-GhostScript"><a href="#1-Install-GhostScript" class="headerlink" title="1 Install GhostScript"></a>1 Install GhostScript</h2><p>从<a href="http://ghostscript.com/" target="_blank" rel="external">GhostScript</a>官网下载<a href="https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs920/gs920w32.exe" target="_blank" rel="external">Ghostscript 9.20 for Windows(32bit)安装包</a>，注意即便是64位的系统也请安装32位。安装完成后将<strong>%安装目录\bin</strong>加入到系统Path环境变量，如果使用默认安装的话，则添加：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C:<span class="symbol">\P</span>rogram Files (x86)<span class="symbol">\g</span>s<span class="symbol">\g</span>s9.20<span class="symbol">\b</span>in</div></pre></td></tr></table></figure></p>
-<h2 id="2-Install-ImageMagick"><a href="#2-Install-ImageMagick" class="headerlink" title="2 Install ImageMagick"></a>2 Install ImageMagick</h2><p>从<a href="http://www.imagemagick.org/" target="_blank" rel="external">ImageMagick</a>官网下载<a href="http://www.imagemagick.org/download/binaries/ImageMagick-6.9.6-2-Q16-x86-dll.exe" target="_blank" rel="external">ImageMagick 6.9.6-2-Q16-x86 windows 32-bit安装包</a>，安装时请选中 <strong>Install development headers and libraries for C and C++</strong> 选项：<br><img src="http://docs.wand-py.org/en/latest/_images/windows-setup.png" alt=""><br>安装完之后需要在系统变量里新增<strong>MAGICK_HOME</strong>环境变量，设为ImageMagic安装的路径，如使用默认安装的话，则添加：<br><code>C:\Program Files (x86)\ImageMagick-6.9.6-Q16</code><br>同时也需要将该目录加入系统Path环境变量。</p>
-<h2 id="3-Install-PythonMagic"><a href="#3-Install-PythonMagic" class="headerlink" title="3 Install PythonMagic"></a>3 Install PythonMagic</h2><p>从<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs" target="_blank" rel="external">Unofficial WIndows Binaries for Python Extension Packages</a>页面下载与编译好的<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/dp2ng7en/PythonMagick-0.9.10-cp27-none-win32.whl" target="_blank" rel="external">PythonMagic whl包</a>，然后使用pip install安装，不要直接使用easy_install或pip通过在线下载安装。</p>
-<h2 id="4-Check-if-your-setup-works"><a href="#4-Check-if-your-setup-works" class="headerlink" title="4 Check if your setup works"></a>4 Check if your setup works</h2><p>进入命令行，在含有pdf（例如some.pdf文件的目录下输入：<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">convert</span> <span class="built_in">some</span>.pdf <span class="built_in">some</span>.jpg</div></pre></td></tr></table></figure></p>
-<p>如果能够成功看到some.jpg文件生成（若pdf有多页，则会看到some-0.jpg, some-1.jpg…），若报错或者没有图片文件生成，则说前面1～3步安装有问题。</p>
-<h2 id="5-Convert-PDF-to-Images-using-Python"><a href="#5-Convert-PDF-to-Images-using-Python" class="headerlink" title="5 Convert PDF to Images using Python"></a>5 Convert PDF to Images using Python</h2><p>在Python中可以直接使用如下代码进行转化：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PythonMagick <span class="keyword">import</span> Image</div><div class="line">image = Image()</div><div class="line">image.read(<span class="string">r"C:\Path\To\Some.pdf"</span>)</div><div class="line">image.write(<span class="string">"some.jpg"</span>)</div></pre></td></tr></table></figure></p>
-<p>若PDF文件有多页，可以使用如下代码（需在安装pyPdf）：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line">from pyPdf <span class="keyword">import</span> PdfFileReader, PdfFileWriter</div><div class="line">from tempfile <span class="keyword">import</span> NamedTemporaryFile</div><div class="line">from PythonMagick <span class="keyword">import</span> Image</div><div class="line"></div><div class="line">reader = PdfFileReader(open(<span class="string">"C:\Path\To\Some.pdf"</span>, <span class="string">"rb"</span>))</div><div class="line"><span class="keyword">for</span> page_num in xrange(reader.getNumPages()):</div><div class="line">    writer = PdfFileWriter()</div><div class="line">    writer.addPage(reader.getPage(page_num))</div><div class="line">    temp = NamedTemporaryFile(prefix=str(page_num), suffix=<span class="string">".pdf"</span>, delete=False)</div><div class="line">    writer.write(temp)</div><div class="line">    temp.close()</div><div class="line"></div><div class="line">    im = Image()</div><div class="line">    im.density(<span class="string">"300"</span>) # DPI, <span class="keyword">for</span> better quality</div><div class="line">    im.read(temp.name)</div><div class="line">    im.write(<span class="string">"some_%d.png"</span> % (page_num))</div><div class="line"></div><div class="line">    os.remove(temp.name)</div></pre></td></tr></table></figure></p>
-<p>然后便可以快乐地将爬到的70+G乐高图纸转成图片进行分析了:p</p>
+                <h2 id="5-Compressing-Data-via-Dimensionality-Reduction"><a href="#5-Compressing-Data-via-Dimensionality-Reduction" class="headerlink" title="5 Compressing Data via Dimensionality Reduction"></a>5 Compressing Data via Dimensionality Reduction</h2><p>本章将介绍三类基础方法，将训练数据映射到低维特征子空间。数据压缩是机器学习中一个重要的课题，它帮助我们存储和分析现代科技收集的增长惊人的数据。本章将涵盖如下主要内容：</p>
+<ul>
+<li>主成分分析（Principal component analysis，PCA），用于无监督数据压缩</li>
+<li>线性判别分析（Linear Discriminant Analysis，LDA），作为一种有监督的降维技术最大化区分性</li>
+<li>利用核主成分分析法进行非线性降维</li>
+</ul>
+<h3 id="Unsupervised-dimensionality-reduction-via-principal-component-analysis"><a href="#Unsupervised-dimensionality-reduction-via-principal-component-analysis" class="headerlink" title="Unsupervised dimensionality reduction via principal component analysis"></a>Unsupervised dimensionality reduction via principal component analysis</h3><p>主成分分析（PCA）是一种无监督线性转换技术了，除了维度压缩以外也应用于很多其他领域，例如数据的探索分析、股票交易的信号降噪和生物信息学中的基因组数据分析及基因显性水平。PCA协助我们基于特征间的相关性识别数据中隐含的模式。简言之，PCA旨在找到高维数据中最大方差（variance）的方向并投射到一个有同等或更低维度的子空间上。新子空间中两两正交的轴（也就是主成份principal components)既可以视为方差最大的方向。如下图所示，x1和x2是原始的特征坐标，PC1和PC2即是主成份。子空间的维度是全新构造出来的的正交特征，也称为主元，而不是简单的从原始特征维中去除。PCA的算法原理这里不做介绍了。<br><img src="/img/PythonMachineLearningV_01.png" alt=""><br>PCA算法主要步骤如下：</p>
+<ol>
+<li>标准化d维的原始数据集</li>
+<li>构建协方差矩阵</li>
+<li>求解协方差矩阵的特征值（eigenvalues）和特征向量（eigenvactors）</li>
+<li>取最大的k个特征值对应的特征向量</li>
+<li>将选取的特征向量作为列向量组成投影矩阵w</li>
+<li>使用w将样本数据投影到选取的k个特征向量上<blockquote>
+<p>可参见<a href="http://www.cnblogs.com/jerrylead/archive/2011/04/18/2020209.html" target="_blank" rel="external"></a></p>
+</blockquote>
+</li>
+</ol>
+<p><strong>Total and explained variance</strong><br>本节我们先对付PCA算法的前四布：标准化数据、构建协方差矩阵、计算特征值和特征向量、排序特征向量。<br>我们仍使用上一张用到的Wine数据集来举例，并按照70:30的比例分为训练和测试集，然后进行方差为1的标准化。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import pandas as pd</div><div class="line">df_wine = pd.read_csv(<span class="string">'https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data'</span>, header=None)</div><div class="line">from sklearn<span class="selector-class">.cross_validation</span> import train_test_split</div><div class="line">from sklearn<span class="selector-class">.preprocessing</span> import StandardScaler</div><div class="line">X, y = df_wine<span class="selector-class">.iloc</span>[:, <span class="number">1</span>:]<span class="selector-class">.values</span>, df_wine<span class="selector-class">.iloc</span>[:, <span class="number">0</span>]<span class="selector-class">.values</span></div><div class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="number">0.3</span>, random_state=<span class="number">0</span>)</div><div class="line">sc = StandardScaler()</div><div class="line">X_train_std = sc.fit_transform(X_train)</div><div class="line">Xtest_std = sc.fit_transform(X_test)</div></pre></td></tr></table></figure></p>
+<p>第二步是构建一个dxd维的协方差矩阵，d等于数据集中变量的个数，存放两两特征间的协方差，协方差值为正时表示两个变量同时增加后减少，负值表示变量变化趋势相反。我们可以直接使用NumPy中的<code>linalg.eig</code>函数直接计算Wine数据的协方差矩阵：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import numpy as np</div><div class="line">cov_mat = np.cov(X_train_std.T)</div><div class="line">eigen_vals, eigen_vecs = np<span class="selector-class">.linalg</span><span class="selector-class">.eig</span>(cov_mat)</div><div class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'\nEigenvalues \n%s'</span> % eigen_vals)</span></span></div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Eigenvalues </div><div class="line">[ <span class="number">4.8923083</span>   <span class="number">2.46635032</span>  <span class="number">1.42809973</span>  <span class="number">1.01233462</span>  <span class="number">0.84906459</span>  <span class="number">0.60181514</span></div><div class="line">  <span class="number">0.52251546</span>  <span class="number">0.08414846</span>  <span class="number">0.33051429</span>  <span class="number">0.29595018</span>  <span class="number">0.16831254</span>  <span class="number">0.21432212</span></div><div class="line">  <span class="number">0.2399553</span> ]</div></pre></td></tr></table></figure></p>
 
 
                 <hr>
@@ -209,12 +226,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2016/10/29/Getting-started-with-Kaggle/" data-toggle="tooltip" data-placement="top" title="Getting started with Kaggle">&larr; Previous Post</a>
+                            <a href="/2017/03/15/Bit-City/" data-toggle="tooltip" data-placement="top" title="Bit City">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2016/10/23/Building-LegoSpyder-Part-III/" data-toggle="tooltip" data-placement="top" title="Building LegoSpyder Part III">Next Post &rarr;</a>
+                            <a href="/2017/01/25/Python-Machine-Learning-IV/" data-toggle="tooltip" data-placement="top" title="Python Machine Learning IV">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -242,6 +259,10 @@
                     <div class="tags">
                        
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                          <a class="tag" href="/tags/#scikit-learn" title="scikit-learn">scikit-learn</a>
                         
                     </div>
                 </section>
