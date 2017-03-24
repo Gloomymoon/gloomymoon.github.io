@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Python Machine Learning VI - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2017/03/22/Python-Machine-Learning-VI/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/lego-star-wars-war-all-about-pokeman101.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                          <a class="tag" href="/tags/#scikit-learn" title="scikit-learn">scikit-learn</a>
+                        
+                    </div>
+                    <h1>Python Machine Learning VI</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2017-03-22
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="Learning-Best-Practices-for-Model-Evaluation-and-Hyperparameter-Tuning"><a href="#Learning-Best-Practices-for-Model-Evaluation-and-Hyperparameter-Tuning" class="headerlink" title="Learning Best Practices for Model Evaluation and Hyperparameter Tuning"></a>Learning Best Practices for Model Evaluation and Hyperparameter Tuning</h2><p>前面的课程我们学习了几种基本的机器学习分类算法，以及如何对数据进行预处理。本章将介绍通过调优获得更好的建模效果，以及如何评估模型的表现：</p>
+<ul>
+<li>获取模型表现的无偏估计量</li>
+<li>分析诊断机器学习算法中碰到的普遍问题</li>
+<li>模型调优</li>
+<li>通过各种指标评估预测效果</li>
+</ul>
+<h3 id="Streamlining-workflows-with-pipelines"><a href="#Streamlining-workflows-with-pipelines" class="headerlink" title="Streamlining workflows with pipelines"></a>Streamlining workflows with pipelines</h3><p>之前我们接触到的预处理技术，例如标准化、主成分分析，都会将训练获得参数服用到新的数据上，比如测试数据集。本节将介绍一个超级好用的工具，scikit-learn中的Pipeline类，支持训练模型中任意多次转换并在新数据集上进行预测。</p>
+<p><strong>Loading the Breast Cancer Wisconsin dataset</strong><br>本章节我们将使用威斯康辛乳癌数据，包含569个样本。数据前两列包含记录的唯一识别号和对应的肿瘤类型（M=恶性，B=良性），3-32列包含了30个从细胞影响计算得出的实数型变量，我们将用着30个变量来建立一个预测良性恶性肿瘤的模型。首先从UCI网站上读取数据及，并拆分成训练和测试集：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">import pandas as pd</div><div class="line">df = pd.read_csv(<span class="string">'https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data'</span>, eader=None)</div><div class="line"></div><div class="line">from sklearn<span class="selector-class">.preprocessing</span> import LabelEncoder</div><div class="line">X = df<span class="selector-class">.loc</span>[:, <span class="number">2</span>:]<span class="selector-class">.values</span></div><div class="line">y = df<span class="selector-class">.loc</span>[:, <span class="number">1</span>]<span class="selector-class">.values</span></div><div class="line">le = LabelEncoder()</div><div class="line">y = le.fit_transform(y)</div><div class="line"></div><div class="line">from sklearn<span class="selector-class">.cross_validation</span> import train_test_split</div><div class="line">X_train, X_test, y_train, y_test = \</div><div class="line">    train_test_split(X, y, test_size=<span class="number">0.20</span>, random_state=<span class="number">1</span>)</div><div class="line"></div><div class="line">le.<span class="attribute">transform</span>([<span class="string">'M'</span>, <span class="string">'B'</span>])</div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">array</span><span class="params">([<span class="number">1</span>, <span class="number">0</span>], dtype=int64)</span></span></div></pre></td></tr></table></figure></p>
+<p>简单的通过<code>LabelEncoder</code>类将目标分类从字符串转换为整型，1表示恶性，0表示良性。然后数据按照80:20的比例随机分为训练集和测试集。</p>
+<p><strong>Combining transformers and estimators in a pipeline</strong><br>首先我们需要将数据标准化到同一尺度上，然后使用PCA将30维数据压缩到更低的二维子空间上。这次我们将<code>StandardScaler</code>、<code>PCA</code>、<code>LogisticRegression</code>对象全部串联到管道（pipeline）上处理：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">from sklearn<span class="selector-class">.preprocessing</span> import StandardScaler</div><div class="line">from sklearn<span class="selector-class">.decomposition</span> import PCA</div><div class="line">from sklearn<span class="selector-class">.linear_model</span> import LogisticRegression</div><div class="line">from sklearn<span class="selector-class">.pipeline</span> import Pipeline</div><div class="line">pipe_lr = Pipeline([(<span class="string">'scl'</span>, StandardScaler()),</div><div class="line">                    (<span class="string">'pca'</span>, PCA(n_components=<span class="number">2</span>)),</div><div class="line">                    (<span class="string">'clf'</span>, LogisticRegression(random_state=<span class="number">1</span>))])</div><div class="line">pipe_lr.fit(X_train, y_train)</div><div class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'Test Accuracy: %.3f'</span> % pipe_lr.score(X_test, y_test)</span></span>)</div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Test </span>Accuracy: 0.947</div></pre></td></tr></table></figure></p>
+<p><code>Pipeline</code>对象初始化时接受一个包含多个元祖的列表，元祖的第一个元素表示管道中每个对象的标识符，第二个元素是scikit-learn的转换器或算子。<br>管道对象的中间步骤作为转换器，最后一个步骤是算子。上述示例代码中创建了一个包含2个中间步骤和1个逻辑回归分类器的管道。当我们对管道对象<code>pipe_lr</code>实行<code>fit</code>操作室，中间步骤会执行<code>fit</code>和<code>transform</code>，并将结果数据传递给下一个步骤使用。管道工作的示意图如下：<br><img src="/img/PythonMachineLearningVI_01.png" alt=""></p>
+<h3 id="Using-k-fold-cross-validation-to-assess-model-performance"><a href="#Using-k-fold-cross-validation-to-assess-model-performance" class="headerlink" title="Using k-fold cross-validation to assess model performance"></a>Using k-fold cross-validation to assess model performance</h3><p>构建预测模型关键步骤之一就是评估模型在未知数据上的表现情况。如果我们在同一个数据集上开发和验证效果，会造成模型的欠拟合和过拟合问题。为了平衡偏置-方差（bias-variance），需要谨慎评估模型效果。这节将介绍的holdout交叉检验和k-fold交叉检验能够使我们获得可信的模型泛化误差，从而得知模型在未知数据上的表现好坏。</p>
+<p><strong>The holdout method</strong><br>常规的建模方法是将原始数据分为训练集和测试集，前者用来训练模型，后者用来检验效果。通常为了提升模型的泛化能力我们会不断调整参数找到最优的模型，如果这是我们一直使用测试集来验证效果，那么测试数据会成为训练数据的一部分使模型产生过拟合。<br>更好的方法是将原始数据分为三份：训练集、验证集、测试集。使用验证集而不是测试集来做模型优化。下图是使用这种交叉检验方法的流程示意图，我们可以在验证集上不断验证和优化模型参数，优化完成后再在测试集上评估模型的泛化误差：<br><img src="/img/PythonMachineLearningVI_02.png" alt=""></p>
+<p>这样做的一个问题是评估会严重受到如何区分数据的影响，因此又产生了更加健壮的交叉检验方法：k-fold。</p>
+<p><strong>K-fold cross-validation</strong><br>k-fold交叉检验的方法是，我们将训练数据随机分成k份（无放回抽样），k-1份用来建模，1份用来测试。这个过程重复k次，获得k个模型和对应的表现评估结果。其过程如下图：<br><img src="/img/PythonMachineLearningVI_03.png" alt=""><br>这里k=10，E表示模型的效果（例如分类准确度）。对于一般情况下，10是一个合理的数量，如果训练数据很小，可以适当提升这个数量。当我们提升k时，每次迭代都会用到更多的训练数据，结果是降低偏置（bias）。但是k过大也会增加计算时间，并且增加方差（variance），因为每次迭代的训练集都会非常相似。</p>
+<blockquote>
+<p>当数据量非常小的情况下推荐使用特殊的交叉检验方法leave-one-out（LOO），在LOO中，k等于样本数n，这意味着每次迭代都只有一条记录用于测试。</p>
+</blockquote>
+<p>在标准k-fold交叉检验基础上的一个小改进是分层（stratified）技术。在数据分fold的时候要保持分类标签的占比与原始数据中的占比一致。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import numpy <span class="keyword">as</span> np</div><div class="line">from sklearn.cross_validation import StratifiedKFold</div><div class="line">kfold = StratifiedKFold(y=y_train, n_folds=10, random_state=1)</div><div class="line">scores = []</div><div class="line"><span class="keyword">for</span> k, (train, <span class="keyword">test</span>) <span class="keyword">in</span> enumerate(kfold):</div><div class="line">    pipe_lr.<span class="keyword">fit</span>(X_train[train], y_train[train])</div><div class="line">    <span class="keyword">score</span> = pipe_lr.<span class="keyword">score</span>(X_train[<span class="keyword">test</span>], y_train[<span class="keyword">test</span>])</div><div class="line">    scores.<span class="keyword">append</span>(<span class="keyword">score</span>)</div><div class="line">    <span class="keyword">print</span>('Fold: %s, <span class="keyword">Class</span> dist.: %s, Acc: %.3f' % (k+1, np.bincount(y_train[train]), <span class="keyword">score</span>))</div><div class="line"></div><div class="line"><span class="keyword">print</span>('CV accuracy: %.3f +/- %.3f' % (np.<span class="keyword">mean</span>(scores), np.std(scores)))</div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="string">Fold:</span> <span class="number">1</span>, Class dist.: [<span class="number">256</span> <span class="number">153</span>], <span class="string">Acc:</span> <span class="number">0.891</span></div><div class="line"><span class="string">Fold:</span> <span class="number">2</span>, Class dist.: [<span class="number">256</span> <span class="number">153</span>], <span class="string">Acc:</span> <span class="number">0.978</span></div><div class="line"><span class="string">Fold:</span> <span class="number">3</span>, Class dist.: [<span class="number">256</span> <span class="number">153</span>], <span class="string">Acc:</span> <span class="number">0.978</span></div><div class="line"><span class="string">Fold:</span> <span class="number">4</span>, Class dist.: [<span class="number">256</span> <span class="number">153</span>], <span class="string">Acc:</span> <span class="number">0.913</span></div><div class="line"><span class="string">Fold:</span> <span class="number">5</span>, Class dist.: [<span class="number">256</span> <span class="number">153</span>], <span class="string">Acc:</span> <span class="number">0.935</span></div><div class="line"><span class="string">Fold:</span> <span class="number">6</span>, Class dist.: [<span class="number">257</span> <span class="number">153</span>], <span class="string">Acc:</span> <span class="number">0.978</span></div><div class="line"><span class="string">Fold:</span> <span class="number">7</span>, Class dist.: [<span class="number">257</span> <span class="number">153</span>], <span class="string">Acc:</span> <span class="number">0.933</span></div><div class="line"><span class="string">Fold:</span> <span class="number">8</span>, Class dist.: [<span class="number">257</span> <span class="number">153</span>], <span class="string">Acc:</span> <span class="number">0.956</span></div><div class="line"><span class="string">Fold:</span> <span class="number">9</span>, Class dist.: [<span class="number">257</span> <span class="number">153</span>], <span class="string">Acc:</span> <span class="number">0.978</span></div><div class="line"><span class="string">Fold:</span> <span class="number">10</span>, Class dist.: [<span class="number">257</span> <span class="number">153</span>], <span class="string">Acc:</span> <span class="number">0.956</span></div><div class="line"></div><div class="line">CV <span class="string">accuracy:</span> <span class="number">0.950</span> +/- <span class="number">0.029</span></div></pre></td></tr></table></figure></p>
+<p>首先我们按照y_train数据为分类标签初始化一个<code>StratifiedKFold</code>迭代器，然后进行k次迭代，每次使用train下标数组筛选出训练集，并提供到之前我们定义的<code>pile_lr</code>管道中，并使用test下标数组筛选出的测试集计算准确度，并收集到<code>scores</code>列表中，最后计算平均准确度和标准差。<br>scikit-learn提供了更加方便的评分类，能够直接使用分层k-fold交叉检验得到模型的效果：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from sklearn.cross_validation <span class="built_in">import</span> cross_val_score</div><div class="line"><span class="attr">scores</span> = cross_val_score(<span class="attr">estimator=pipe_lr,</span></div><div class="line">                         <span class="attr">X=X_train,</span></div><div class="line">                         <span class="attr">y=y_train,</span></div><div class="line">                         <span class="attr">cv=10,</span></div><div class="line">                         <span class="attr">n_jobs=1)</span></div><div class="line">print('CV accuracy: %.<span class="number">3</span>f +/- %.<span class="number">3</span>f' % (np.mean(scores), np.std(scores)))</div></pre></td></tr></table></figure></p>
+<p>Output一样。<br><code>cross_val_score</code>另一个有用的特性是可以利用多个CPU分布执行，如果将<code>n_jobs</code>参数设置为2，就可以使用2个CPU执行10次迭代，如果设置为-1，则可以使用所有的可用CPU。</p>
+<h3 id="Debugging-algorithms-with-learning-and-validation-curves"><a href="#Debugging-algorithms-with-learning-and-validation-curves" class="headerlink" title="Debugging algorithms with learning and validation curves"></a>Debugging algorithms with learning and validation curves</h3><p>本节将介绍两个简单但是强大的分析工具能够帮助我们提升预测模型的性能：学习曲线（learning curves）和验证曲线（validation curves）。</p>
+<p><strong>Diagnosing bias and variance problems with learning curves</strong><br>如果预测模型构建的过于复杂，会在训练数据上过拟合，从而失去对未知数据的泛化能力。通常收集更多的训练样本有助于降低过拟合，但是在实际中者往往困难重重。通过绘制不同大小训练集下模型的训练和验证的准确度曲线，可以非常容易地检测出模型是否存在偏差或方差，以及更多的数据是否有助于解决问题。在绘制学习曲线和验证曲线前，我们先来看下偏差和方差问题的例子。<br><img src="/img/PythonMachineLearningVI_04.png" alt=""><br>左上图的模型表现为高偏差（high bias），训练准确度和交叉验证准确度都较低，意味着模型欠拟合。常用的解决方案是增加模型的参数数量，或降低正则化力度。<br>有上图的模型表现为高方差（high variance），表现为训练准确度和交叉验证准确度之间巨大的差异，意味着模型在训练数据集上过拟合。常用的解决方案是增加训练数据，降低模型复杂程度，对于非正则化模型也可以利用特征选择和特征压缩的技术降低特征数量。</p>
+<p>首先我们使用scikit-learn中的学习曲线功能评估模型：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">import</span> matplotlib.pyplot as plt</div><div class="line">from sklearn.learning_curve <span class="built_in">import</span> learning_curve</div><div class="line"><span class="attr">pipe_lr</span> = Pipeline([</div><div class="line">                    ('scl', StandardScaler()),</div><div class="line">                    ('clf', LogisticRegression(<span class="attr">penalty='l2',</span> <span class="attr">random_state=0))])</span></div><div class="line">train_sizes, train_scores, <span class="attr">test_scores</span> = \</div><div class="line">    learning_curve(<span class="attr">estimator=pipe_lr,</span></div><div class="line">                   <span class="attr">X=X_train,</span></div><div class="line">                   <span class="attr">y=y_train,</span></div><div class="line">                   <span class="attr">train_sizes=np.linspace(0.1,</span> <span class="number">1.0</span>, <span class="number">10</span>),</div><div class="line">                   <span class="attr">cv=10,</span></div><div class="line">                   <span class="attr">n_jobs=1)</span></div><div class="line"><span class="attr">train_mean</span> = np.mean(train_scores, <span class="attr">axis=1)</span></div><div class="line"><span class="attr">train_std</span> = np.std(train_scores, <span class="attr">axis=1)</span></div><div class="line"><span class="attr">test_mean</span> = np.mean(test_scores, <span class="attr">axis=1)</span></div><div class="line"><span class="attr">test_std</span> = np.std(test_scores, <span class="attr">axis=1)</span></div><div class="line">plt.plot(train_sizes, train_mean, <span class="attr">color='blue',</span> </div><div class="line">         <span class="attr">marker='o',</span> <span class="attr">markersize=5,</span> <span class="attr">label='training</span> accuracy')</div><div class="line">plt.fill_between(train_sizes, train_mean + train_std, train_mean - train_std, </div><div class="line">                 <span class="attr">alpha=0.15,</span> <span class="attr">color='blue')</span></div><div class="line">plt.plot(train_sizes, test_mean, <span class="attr">color='green',</span> <span class="attr">linestyle='--',</span></div><div class="line">         <span class="attr">marker='s',</span> <span class="attr">markersize=5,</span></div><div class="line">         <span class="attr">label='validation</span> accuracy')</div><div class="line">plt.fill_between(train_sizes, test_mean + test_std, test_mean - test_std, </div><div class="line">                 <span class="attr">alpha=0.15,</span> <span class="attr">color='green')</span></div><div class="line">plt.grid()</div><div class="line">plt.xlabel('Number of training samples')</div><div class="line">plt.ylabel('Accuracy')</div><div class="line">plt.legend(<span class="attr">loc='lower</span> right')</div><div class="line">plt.ylim([<span class="number">0.8</span>, <span class="number">1.0</span>])</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+<p>Output:<br><img src="/img/PythonMachineLearningVI_05.png" alt=""><br>通过设置<code>learning_curve</code>方法的<code>train_sizes</code>参数，可以控制用来生成学习曲线的样本数据的相对数量或绝对数量，这里我们使用<code>np.linspace(0.1, 1.0, 10)</code>生成10分等差数来设置训练集的大小。默认情况下<code>learning_curve</code>方法是用分层k-fold交叉检验，通过<code>cv</code>参数设置k为10。最后我们简单计算交叉检验后的平均训练和测试精准度，并用<code>plot</code>方法展现，并用<code>fill_between</code>方法绘制平均精准度的标准差。</p>
+<p>从图中可以看出，模型在测试集上的表现还不错，但是有轻微的过拟合，训练和验证精准度之间存在一定的差距。</p>
+<p><strong>Addressing overfitting and underfitting with validation curves</strong><br>验证曲线可以定位过拟合或欠拟合问题从而有效帮助提升模型性能。和学习曲线不同，验证曲线描绘的是基于不同模型参数 情况下训练和验证精准度情况，本示例中逻辑回归的参数是C。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">from sklearn.learning_curve <span class="built_in">import</span> validation_curve</div><div class="line"><span class="attr">param_range</span> = [<span class="number">0.001</span>, <span class="number">0.01</span>, <span class="number">0.1</span>, <span class="number">1.0</span>, <span class="number">10.0</span>, <span class="number">100.0</span>]</div><div class="line">train_scores, <span class="attr">test_scores</span> = validation_curve(</div><div class="line">                <span class="attr">estimator=pipe_lr,</span></div><div class="line">                <span class="attr">X=X_train,</span></div><div class="line">                <span class="attr">y=y_train,</span></div><div class="line">                <span class="attr">param_name='clf__C',</span></div><div class="line">                <span class="attr">param_range=param_range,</span></div><div class="line">                <span class="attr">cv=10)</span></div><div class="line"><span class="attr">train_mean</span> = np.mean(train_scores, <span class="attr">axis=1)</span></div><div class="line"><span class="attr">train_std</span> = np.std(train_scores, <span class="attr">axis=1)</span></div><div class="line"><span class="attr">test_mean</span> = np.mean(test_scores, <span class="attr">axis=1)</span></div><div class="line"><span class="attr">test_std</span> = np.std(test_scores, <span class="attr">axis=1)</span></div><div class="line">plt.plot(param_range, train_mean, <span class="attr">color='blue',</span> </div><div class="line">         <span class="attr">marker='o',</span> <span class="attr">markersize=5,</span> <span class="attr">label='training</span> accuracy')</div><div class="line">plt.fill_between(param_range, train_mean + train_std, train_mean - train_std, </div><div class="line">                 <span class="attr">alpha=0.15,</span> <span class="attr">color='blue')</span></div><div class="line">plt.plot(param_range, test_mean, <span class="attr">color='green',</span> <span class="attr">linestyle='--',</span></div><div class="line">         <span class="attr">marker='s',</span> <span class="attr">markersize=5,</span></div><div class="line">         <span class="attr">label='validation</span> accuracy')</div><div class="line">plt.fill_between(param_range, test_mean + test_std, test_mean - test_std, </div><div class="line">                 <span class="attr">alpha=0.15,</span> <span class="attr">color='green')</span></div><div class="line">plt.grid()</div><div class="line">plt.xscale('log')</div><div class="line">plt.xlabel('Parameter C')</div><div class="line">plt.ylabel('Accuracy')</div><div class="line">plt.legend(<span class="attr">loc='lower</span> right')</div><div class="line">plt.ylim([<span class="number">0.8</span>, <span class="number">1.0</span>])</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+<p>Output:<br><img src="/img/PythonMachineLearningVI_06.png" alt=""><br>类似学习曲线方法，<code>validation_curve</code>方法默认使用分层k-fold交叉检验，通过<code>param_name</code>参数设置我们希望评估的模型参数，本例子中，通过<code>&#39;clf__C&#39;</code>来访问管道中<code>LogisticRegression</code>分类器对象的参数<code>C</code>，<code>param_range</code>用于指定参数的取值范围。最后绘制平均准确度和标准差图像。</p>
+<p>从结果可以发现，当C变小（加强正则化）时，模型出现轻微欠拟合，而C增大时模型又出现过拟合，参数C的甜区大约在0.1左右。</p>
+<h3 id="Fine-tuning-machine-learning-models-via-grid-search"><a href="#Fine-tuning-machine-learning-models-via-grid-search" class="headerlink" title="Fine-tuning machine learning models via grid search"></a>Fine-tuning machine learning models via grid search</h3><p>在机器学习算法中，有两类参数：通过训练数据学习道德参数，例如逻辑回归中的权重，和算法优化的参数。后者是可调参数，也成为超参数（hyperparameters），例如逻辑回归中的正则化参数、决策树中的深度。</p>
+<p>上节我们通过验证曲线调优一个超参数，本节将介绍一个更强大的超参数优化方法：网格搜索法（grid search），它能找到多个超参数的最优组合。</p>
+<p><strong>Tuning hyperparameters via grid search</strong><br>网格搜索原理很简单，通过贪心算法评估我们给出的所有超参数组合来找到最优解：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">from sklearn<span class="selector-class">.grid_search</span> import GridSearchCV</div><div class="line">from sklearn<span class="selector-class">.svm</span> import SVC</div><div class="line">pipe_svc = Pipeline([(<span class="string">'scl'</span>, StandardScaler()),</div><div class="line">                    (<span class="string">'clf'</span>, SVC(random_state=<span class="number">1</span>))])</div><div class="line">param_range = [<span class="number">0.0001</span>, <span class="number">0.001</span>, <span class="number">0.01</span>, <span class="number">0.1</span>, <span class="number">1.0</span>, <span class="number">10.0</span>, <span class="number">100.0</span>, <span class="number">1000.0</span>]</div><div class="line">param_grid = [&#123;<span class="string">'clf__C'</span>: param_range,</div><div class="line">               <span class="string">'clf__kernel'</span>: [<span class="string">'linear'</span>]&#125;,</div><div class="line">              &#123;<span class="string">'clf__C'</span>: param_range,</div><div class="line">               <span class="string">'clf__gamma'</span>: param_range,</div><div class="line">               <span class="string">'clf__kernel'</span>: [<span class="string">'rbf'</span>]&#125;]</div><div class="line">gs = GridSearchCV(estimator=pipe_svc,</div><div class="line">                  param_grid=param_grid,</div><div class="line">                  scoring=<span class="string">'accuracy'</span>,</div><div class="line">                  cv=<span class="number">10</span>,</div><div class="line">                  n_jobs=-<span class="number">1</span>)</div><div class="line">gs = gs.fit(X_train, y_train)</div><div class="line"><span class="function"><span class="title">print</span><span class="params">(gs.best_score_, gs.best_params_)</span></span></div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span>.<span class="number">978021978021978</span> &#123;<span class="string">'clf__C'</span>: <span class="number">0</span>.<span class="number">1</span>, <span class="string">'clf__kernel'</span>: <span class="string">'linear'</span>&#125;</div></pre></td></tr></table></figure></p>
+<p>上述代码中，我们创建一个<code>GridSearchCV</code>对象用来训练和调优一个支持向量机管道。<code>param_grid</code>参数定义一个包含多个字典的列表，存放了我们希望尝试的参数。对于线性SVM，只需要调试参数<code>C</code>，而对RBF核支持向量机，我们尝试参数<code>C</code>和<code>gamma</code>两个参数组合（<code>gamma</code>参数仅针对核支持向量机有效）。网络搜索完成后，可以从<code>best_score_</code>变量获取到最好模型的分数，<code>best_params_</code>变量获取对应的参数组合。本例中C=0.01时的线性SVM模型准确度最高，为97.8。</p>
+<p>最后我们可以使用独立的测试数据集来评估最优模型的性能，可以通过<code>best_estimator_</code>属性获得。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">clf = gs<span class="selector-class">.best_estimator_</span></div><div class="line">clf.fit(X_train, y_train)</div><div class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'Test accuracy: %.3f'</span> % clf.score(X_test, y_test)</span></span>)</div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Test </span>accuracy: 0.965</div></pre></td></tr></table></figure></p>
+<p><strong>Algorithm selection with nested cross-validation</strong><br>如果需要在不同的模型算法间调试比较，另一个推荐的方法是嵌套交叉检验（nested cross-validation）。其原理如下图，首先在外层是一个k-fold的交叉检验循环，将数据分为训练集和测试集，内层是另一个k-fold交叉检验用来做模型选择。图示中是一个外五内二的模型，这种典型的配置也成为5x2交叉检验。<br><img src="/img/PythonMachineLearningVI_07.png" alt=""></p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">gs = GridSearchCV(<span class="name">estimator=pipe_svc</span>,</div><div class="line">                  param_grid=param_grid,</div><div class="line">                  scoring='accuracy',</div><div class="line">                  cv=10,</div><div class="line">                  n_jobs=-1)</div><div class="line">scores = cross_val_score(<span class="name">gs</span>, X, y, scoring='accuracy', cv=5)</div><div class="line">print('CV accuracy: %.<span class="number">3</span>f +/- %.<span class="number">3</span>f' % (<span class="name">np</span>.mean(<span class="name">scores</span>), np.std(<span class="name">scores</span>)))</div></pre></td></tr></table></figure>
+<p>Output:<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CV <span class="string">accuracy:</span> <span class="number">0.972</span> +/- <span class="number">0.012</span></div></pre></td></tr></table></figure></p>
+<p>同样我们可以用嵌套交叉检验比较决策树分类器，为了简化起见，这里仅仅调试深度参数：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">from sklearn.tree <span class="built_in">import</span> DecisionTreeClassifier</div><div class="line"><span class="attr">gs</span> = GridSearchCV(<span class="attr">estimator=DecisionTreeClassifier(random_state=0),</span></div><div class="line">                  <span class="attr">param_grid=[&#123;'max_depth':</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, None]&#125;],</div><div class="line">                  <span class="attr">scoring='accuracy',</span></div><div class="line">                  <span class="attr">cv=5)</span></div><div class="line"><span class="attr">scores</span> = cross_val_score(gs,</div><div class="line">                         X_train,</div><div class="line">                         y_train,</div><div class="line">                         <span class="attr">scoring='accuracy',</span></div><div class="line">                         <span class="attr">cv=5)</span></div><div class="line">print('CV accuracy: %.<span class="number">3</span>f +/- %.<span class="number">3</span>f' % (np.mean(scores), np.std(scores)))</div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CV <span class="string">accuracy:</span> <span class="number">0.908</span> +/- <span class="number">0.045</span></div></pre></td></tr></table></figure></p>
+<p>在这个例子上，SVM模型的表现显著优于决策树。</p>
+<h3 id="Looking-at-different-performance-evaluation-metrics"><a href="#Looking-at-different-performance-evaluation-metrics" class="headerlink" title="Looking at different performance evaluation metrics"></a>Looking at different performance evaluation metrics</h3><p>前面的章节和段落，我们都是使用预测准确度来评估模型的效果，通常这是一个有用的指标。此外，还有不少指标也能够用于评估模型的效果，例如精确率（precision）、召回率（recall）和F1评分（F1-score）。</p>
+<p><strong>Reading a confusion matrix</strong><br>首先需要介绍下混淆矩阵（confusion matrix），一个简单的展示真正（true positive）、真负（true negative）、假正（false postive）和假负（false negtive）数量的方阵，如下图所示：<br><img src="/img/PythonMachineLearningVI_08.png" alt=""></p>
+<p>这些指标可以简单的根据预测结果计算出，scikit-learn也同时提供方便的<code>confusion_matrix</code>函数供我们直接使用：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">from sklearn.metrics <span class="built_in">import</span> confusion_matrix</div><div class="line">pipe_svc.fit(X_train, y_train)</div><div class="line"><span class="attr">y_pred</span> = pipe_svc.predict(X_test)</div><div class="line"><span class="attr">confmat</span> = confusion_matrix(<span class="attr">y_true=y_test,</span> <span class="attr">y_pred=y_pred)</span></div><div class="line">print(confmat)</div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[[<span class="number">71</span>  <span class="number">1</span>]</div><div class="line"> [ <span class="number">2</span> <span class="number">40</span>]]</div></pre></td></tr></table></figure></p>
+<p>我们使用matplotlib的<code>matshow</code>函数来画一张类似上面的二维图表：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">fig, ax = plt.subplots(figsize=(<span class="number">2.5</span>, <span class="number">2.5</span>))</div><div class="line">ax.matshow(confmat, cmap=plt<span class="selector-class">.cm</span><span class="selector-class">.Blues</span>, alpha=<span class="number">0.3</span>)</div><div class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> range(confmat<span class="selector-class">.shape</span>[<span class="number">0</span>]):</div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(confmat<span class="selector-class">.shape</span>[<span class="number">1</span>]):</div><div class="line">        ax.text(x=j, y=<span class="selector-tag">i</span>, s=confmat[<span class="selector-tag">i</span>, j], va=<span class="string">'center'</span>, ha=<span class="string">'center'</span>)</div><div class="line">plt.xlabel(<span class="string">'predicted label'</span>)</div><div class="line">plt.ylabel(<span class="string">'true label'</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+<p>Output:<br><img src="/img/PythonMachineLearningVI_09.png" alt=""></p>
+<p><strong>Optimizing the precision and recall of a classification model</strong><br>预测错误（ERR）和准确（ACC）是衡量样本误分类的指标，ERR是所有错误分类数量除以预测总数，ACC是所有预测正确的数量除以预测总数。ACC=1-ERR。</p>
+<p>真正率（TPR）和假正率（FPR）是衡量错无分类情况的指标，FPR=FP/(FP+TN)，TPR=TP/(FN+TP)。<br>在实际业务中，真正率和假正率可能是我们需要特别关注的，例如癌症检测中，对于恶性肿瘤的正确识别非常重要。</p>
+<p>精准率（PRE）和召回（REC）是衡量真正和真负的指标，实际上召回率等同于真正率：PRE=TP/(TP+FP)，REC=TP/(FN+TP)。</p>
+<p>实际中，会使用F1评分，它是精准率和召回率的组合形式：F1=2<em>(PRE</em>REC)/(PRE+REC)。</p>
+<p>上述这些评分指标都在<code>sklearn.metrics</code>模块中实现。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from sklearn<span class="selector-class">.metrics</span> import precision_score</div><div class="line">from sklearn<span class="selector-class">.metrics</span> import recall_score, f1_score</div><div class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'Precision: %.3f'</span> % precision_score(y_true=y_test, y_pred=y_pred)</span></span>)</div><div class="line"></div><div class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'Recall: %.3f'</span> % recall_score(y_true=y_test, y_pred=y_pred)</span></span>)</div><div class="line"></div><div class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'F1: %.3f'</span> % f1_score(y_true=y_test, y_pred=y_pred)</span></span>)</div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">Precision</span>: 0.976</div><div class="line"></div><div class="line"><span class="http"><span class="attribute">Recall</span>: 0.952</span></div><div class="line"></div><div class="line"><span class="avrasm"><span class="symbol">F1:</span> <span class="number">0.964</span></span></div></pre></td></tr></table></figure></p>
+<p>通过<code>GridSearch</code>还有很多其他评价指标，访问<a href="http://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="external"></a>详细列表。</p>
+<p>注：scikit-learn中对于标记为1的分类视为正（positive）。</p>
+<p><strong>Plotting a receiver operating characteristic</strong><br>受试者工作特征曲线（receiver operating characteristic，ROC），又称为感受性曲线，通过设置分类器不同的决策临界值，计算出一系列以假负率和真正率为坐标的性能曲线。基于ROC曲线，可以计算曲线下面积（area under then curve，AUC）来表示分类模型的性能。</p>
+<p>下面我们将使用之前定义的逻辑回归管道，基于2个特征构建的分类器绘制ROC曲线，为了让图像更加直观，我们将<code>StratifiedKFold</code>的验证次数降低到三次。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">from sklearn.metrics <span class="built_in">import</span> roc_curve, auc</div><div class="line">from scipy <span class="built_in">import</span> interp</div><div class="line"><span class="attr">X_train2</span> = X_train[:, [<span class="number">4</span>, <span class="number">14</span>]]</div><div class="line"><span class="attr">cv</span> = StratifiedKFold(y_train, <span class="attr">n_folds=3,</span> <span class="attr">random_state=1)</span></div><div class="line"><span class="attr">fig</span> = plt.figure(<span class="attr">figsize=(7,</span> <span class="number">5</span>))</div><div class="line"><span class="attr">mean_tpr</span> = <span class="number">0.0</span></div><div class="line"><span class="attr">mean_fpr</span> = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">100</span>)</div><div class="line"><span class="attr">all_tpr</span> = []</div><div class="line"></div><div class="line">for i, (train, test) <span class="keyword">in</span> enumerate(cv):</div><div class="line">    <span class="attr">probas</span> = pipe_lr.fit(X_train2[train],y_train[train]).predict_proba(X_train2[test])</div><div class="line">    fpr, tpr, <span class="attr">thresholds</span> = roc_curve(y_train[test], probas[:, <span class="number">1</span>], <span class="attr">pos_label=1)</span></div><div class="line">    mean_tpr += interp(mean_fpr, fpr, tpr)</div><div class="line">    mean_tpr[<span class="number">0</span>] = <span class="number">0.0</span></div><div class="line">    <span class="attr">roc_auc</span> = auc(fpr, tpr)</div><div class="line">    plt.plot(fpr, tpr, <span class="attr">lw=1,</span> <span class="attr">label='ROC</span> fold %d (<span class="attr">area</span> = %<span class="number">0.2</span>f)' % (i+<span class="number">1</span>, roc_auc))</div><div class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>], <span class="attr">linestyle='--',</span> <span class="attr">color=(0.6,</span> <span class="number">0.6</span>, <span class="number">0.6</span>),</div><div class="line">         <span class="attr">label='random</span> guessing')</div><div class="line">mean_tpr /= len(cv)</div><div class="line">mean_tpr[-<span class="number">1</span>] = <span class="number">1.0</span></div><div class="line"><span class="attr">mean_auc</span> = auc(mean_fpr, mean_tpr)</div><div class="line">plt.plot(mean_fpr, mean_tpr, 'k--', <span class="attr">label='mean</span> ROC (<span class="attr">area</span> = %<span class="number">0.2</span>f)' % mean_auc, <span class="attr">lw=2)</span></div><div class="line">plt.plot([<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>], <span class="attr">lw=2,</span> <span class="attr">linestyle=':',</span> <span class="attr">color='black',</span> </div><div class="line">         <span class="attr">label='perfect</span> performance')</div><div class="line">plt.xlim([-<span class="number">0.05</span>, <span class="number">1.05</span>])</div><div class="line">plt.ylim([-<span class="number">0.05</span>, <span class="number">1.05</span>])</div><div class="line">plt.xlabel('<span class="literal">false</span> positive rate')</div><div class="line">plt.ylabel('<span class="literal">true</span> positive rate')</div><div class="line">plt.title('Receiver Operator Characteristic')</div><div class="line">plt.legend(<span class="attr">loc='lower</span> right')</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+<p>Output:<br><img src="/img/PythonMachineLearningVI_10.png" alt=""><br>上述结果可以看出三次fold间存在一定的方差，平均ROC AUC为0.75。<br>如果我们仅仅关系ROC AUC分数，可以直接使用<code>sklearn.metrics</code>子模块的<code>roc_auc_score</code>方法。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">pipe_svc = pipe_svc.fit(X_train2, y_train)</div><div class="line">y_pred2 = pipe_svc.predict(X_test[:, [<span class="number">4</span>, <span class="number">14</span>]])</div><div class="line">from sklearn<span class="selector-class">.metrics</span> import roc_auc_score, accuracy_score</div><div class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'ROC AUC: %.3f'</span> % roc_auc_score(y_true=y_test, y_score=y_pred2)</span></span>)</div><div class="line"></div><div class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'Accuracy: %.3f'</span> % accuracy_score(y_true=y_test, y_pred=y_pred2)</span></span>)</div></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">ROC</span> <span class="selector-tag">AUC</span>: 0<span class="selector-class">.671</span></div><div class="line"></div><div class="line"><span class="selector-tag">Accuracy</span>: 0<span class="selector-class">.728</span></div></pre></td></tr></table></figure></p>
+<p>通过ROC AUC描述分类器的表现能够洞察模型在不平衡样本上的性能。</p>
+<p><strong>The scoring metrics for multiclass classification</strong><br>暂略</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/03/19/Python-Machine-Learning-V/" data-toggle="tooltip" data-placement="top" title="Python Machine Learning V">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                          <a class="tag" href="/tags/#scikit-learn" title="scikit-learn">scikit-learn</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
