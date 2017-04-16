@@ -13,11 +13,11 @@
 
     <title>
         
-          Convert PDF to Images using Python - Master Gloomymoon&#39;s R2D2
+          Shanghai Disney Resort: First Raid - Master Gloomymoon&#39;s R2D2
         
     </title>
 
-    <link rel="canonical" href="http://gloomymoon.github.io/2016/10/27/Convert-PDF-to-Images-using-Python/">
+    <link rel="canonical" href="http://gloomymoon.github.io/2017/04/04/Shanghai-Disney-Resort-First-Raid/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -166,14 +166,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                          <a class="tag" href="/tags/#Disneyland" title="Disneyland">Disneyland</a>
                         
                     </div>
-                    <h1>Convert PDF to Images using Python</h1>
+                    <h1>Shanghai Disney Resort: First Raid</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Gloomymoon on
-                        2016-10-27
+                        2017-04-04
                     </span>
                 </div>
             </div>
@@ -192,14 +192,32 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="1-Install-GhostScript"><a href="#1-Install-GhostScript" class="headerlink" title="1 Install GhostScript"></a>1 Install GhostScript</h2><p>从<a href="http://ghostscript.com/" target="_blank" rel="external">GhostScript</a>官网下载<a href="https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs920/gs920w32.exe" target="_blank" rel="external">Ghostscript 9.20 for Windows(32bit)安装包</a>，注意即便是64位的系统也请安装32位。安装完成后将<strong>%安装目录\bin</strong>加入到系统Path环境变量，如果使用默认安装的话，则添加：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C:<span class="symbol">\P</span>rogram Files (x86)<span class="symbol">\g</span>s<span class="symbol">\g</span>s9.20<span class="symbol">\b</span>in</div></pre></td></tr></table></figure></p>
-<h2 id="2-Install-ImageMagick"><a href="#2-Install-ImageMagick" class="headerlink" title="2 Install ImageMagick"></a>2 Install ImageMagick</h2><p>从<a href="http://www.imagemagick.org/" target="_blank" rel="external">ImageMagick</a>官网下载<a href="http://www.imagemagick.org/download/binaries/ImageMagick-6.9.6-2-Q16-x86-dll.exe" target="_blank" rel="external">ImageMagick 6.9.6-2-Q16-x86 windows 32-bit安装包</a>，安装时请选中 <strong>Install development headers and libraries for C and C++</strong> 选项：<br><img src="http://docs.wand-py.org/en/latest/_images/windows-setup.png" alt=""><br>安装完之后需要在系统变量里新增<strong>MAGICK_HOME</strong>环境变量，设为ImageMagic安装的路径，如使用默认安装的话，则添加：<br><code>C:\Program Files (x86)\ImageMagick-6.9.6-Q16</code><br>同时也需要将该目录加入系统Path环境变量。</p>
-<h2 id="3-Install-PythonMagic"><a href="#3-Install-PythonMagic" class="headerlink" title="3 Install PythonMagic"></a>3 Install PythonMagic</h2><p>从<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs" target="_blank" rel="external">Unofficial WIndows Binaries for Python Extension Packages</a>页面下载与编译好的<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/dp2ng7en/PythonMagick-0.9.10-cp27-none-win32.whl" target="_blank" rel="external">PythonMagic whl包</a>，然后使用pip install安装，不要直接使用easy_install或pip通过在线下载安装。</p>
-<h2 id="4-Check-if-your-setup-works"><a href="#4-Check-if-your-setup-works" class="headerlink" title="4 Check if your setup works"></a>4 Check if your setup works</h2><p>进入命令行，在含有pdf（例如some.pdf文件的目录下输入：<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">convert</span> <span class="built_in">some</span>.pdf <span class="built_in">some</span>.jpg</div></pre></td></tr></table></figure></p>
-<p>如果能够成功看到some.jpg文件生成（若pdf有多页，则会看到some-0.jpg, some-1.jpg…），若报错或者没有图片文件生成，则说前面1～3步安装有问题。</p>
-<h2 id="5-Convert-PDF-to-Images-using-Python"><a href="#5-Convert-PDF-to-Images-using-Python" class="headerlink" title="5 Convert PDF to Images using Python"></a>5 Convert PDF to Images using Python</h2><p>在Python中可以直接使用如下代码进行转化：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PythonMagick <span class="keyword">import</span> Image</div><div class="line">image = Image()</div><div class="line">image.read(<span class="string">r"C:\Path\To\Some.pdf"</span>)</div><div class="line">image.write(<span class="string">"some.jpg"</span>)</div></pre></td></tr></table></figure></p>
-<p>若PDF文件有多页，可以使用如下代码（需在安装pyPdf）：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line">from pyPdf <span class="keyword">import</span> PdfFileReader, PdfFileWriter</div><div class="line">from tempfile <span class="keyword">import</span> NamedTemporaryFile</div><div class="line">from PythonMagick <span class="keyword">import</span> Image</div><div class="line"></div><div class="line">reader = PdfFileReader(open(<span class="string">"C:\Path\To\Some.pdf"</span>, <span class="string">"rb"</span>))</div><div class="line"><span class="keyword">for</span> page_num in xrange(reader.getNumPages()):</div><div class="line">    writer = PdfFileWriter()</div><div class="line">    writer.addPage(reader.getPage(page_num))</div><div class="line">    temp = NamedTemporaryFile(prefix=str(page_num), suffix=<span class="string">".pdf"</span>, delete=False)</div><div class="line">    writer.write(temp)</div><div class="line">    temp.close()</div><div class="line"></div><div class="line">    im = Image()</div><div class="line">    im.density(<span class="string">"300"</span>) # DPI, <span class="keyword">for</span> better quality</div><div class="line">    im.read(temp.name)</div><div class="line">    im.write(<span class="string">"some_%d.png"</span> % (page_num))</div><div class="line"></div><div class="line">    os.remove(temp.name)</div></pre></td></tr></table></figure></p>
-<p>然后便可以快乐地将爬到的70+G乐高图纸转成图片进行分析了:p</p>
+                <h2 id="Shanghai-Disney-Resort-First-Raid"><a href="#Shanghai-Disney-Resort-First-Raid" class="headerlink" title="Shanghai Disney Resort: First Raid"></a>Shanghai Disney Resort: First Raid</h2><h3 id="0-首刷行程"><a href="#0-首刷行程" class="headerlink" title="0. 首刷行程"></a>0. 首刷行程</h3><p>LP买了春季季票，计划用来遛娃。借着清明小长假，一家人一起进行了首刷（之前小畏已经去过2次，但是大为有课还没有去过）。大致行程如下：<br>4月3日下午：花车巡游、泰山剧场、古迹探险营旁边的儿童乐园、海妖复仇号、戏水滩、爱丽丝迷宫、漫威英雄总部、烟火灯光秀，9点离园；<br>4月4日8点抵园：小飞侠×2、晶海奇航、蜂蜜罐、小矮人矿坑FP、加勒比海盗排队25分钟、风暴来领剧场、雪佛兰、急速光轮FP、古迹探险营排队30分钟、冰雪奇缘演唱会，最后在花车巡游前出园，刚刚好一个整天的时间。</p>
+<p>利益相关：个人不是资深迪斯尼粉，虽然小时候是看着这些动画长大的，记忆中人物的形象很鲜明（包括李扬老师的配音）但是故事细节模糊不清，那个时候好看的进口动画片很多，不像现在的国产动画都很粗糙。但是迪斯尼收购的Pixer、漫威、加勒比、卢卡斯影业都是响当当IP，对这些会有更多的共鸣。</p>
+<h3 id="1-景观"><a href="#1-景观" class="headerlink" title="1. 景观"></a>1. 景观</h3><p>大家注意到的大多是全球最大的迪斯尼城堡、占用巨大的面积、40亿美元的建资。而体现一个游乐园的能力和用心程度往往在于细节：无论是景观设施的细节还是人员服务的细节。</p>
+<p><strong>栏杆</strong><br>印象最深刻的景观细节是所有走道两边的栏杆，不同区域、不同排队区都有符合各自风格特色的栏杆和临时门。<br>探险岛原始风格木栏杆：<br>[此处应有图]</p>
+<p>明日世界略带气雾效果的玻璃栏杆：<br>[此处应有图]</p>
+<p>宝藏湾破旧城墙效果的石栏：<br>[此处应有图]</p>
+<p><strong>下水道盖</strong><br>迪斯尼主城堡最中间巨大玻璃吊灯厅下，四副琉璃壁画前面不同花纹的下水道盖<br>[此处应有图]</p>
+<p>除此以外还有各种圆形、方形的铁盖<br>[此处应有图]</p>
+<p><strong>排队区的布景</strong><br>加勒比海盗排队区布置的各种布景<br>[此处应有图]</p>
+<p>古迹探险营排队区的各种探险屋布景，甚至还有照相机的暗房<br>[此处应有图]</p>
+<p><strong>餐厅</strong><br>Babosa烤肉店内部的装饰非常有代入感<br>[此处应有图]</p>
+<p>餐厅外部的街景，小巷上空还挂着晾晒的衣服<br>[此处应有图]</p>
+<p><strong>街景</strong><br>宝藏湾路灯上挂着关押着海盗的铁笼子，里面的骷髅拿着非常有意思的牌子<br>[此处应有图]</p>
+<h3 id="2-服务"><a href="#2-服务" class="headerlink" title="2. 服务"></a>2. 服务</h3><p><strong>入口</strong><br>很多游客要抢FP，所以一入园就跑步前进，迪斯尼在入口大路两边安排了很多员工，手举警示标语，这笔简单的插块指示牌或者是放个录音喇叭给人的感觉要亲切很多。<br>[此处应有图]</p>
+<p><strong>街摊</strong><br>迪斯尼园内有很多礼品和食物的小摊位，但是没有一个摊位有播放促销语音、或者员工招揽顾客的情况，他们只是微笑着等待你自投罗网。<br>[此处应有图]</p>
+<p><strong>排队区</strong><br>人们项目的排队区会有员工在地上画迪斯尼动画人物肖像，略微降低排队的烦躁感。<br>[此处应有图]<br>主路上也会有人用树叶排除Micky的头像造型供大家拍照。<br>[此处应有图]</p>
+<p><strong>游乐设施服务人员</strong><br>人员服务态度层次不一，但是基本上还是较为和善的。</p>
+<h3 id="3-游乐项目"><a href="#3-游乐项目" class="headerlink" title="3. 游乐项目"></a>3. 游乐项目</h3><p>游乐项目总体来说更多考虑小朋友的偏好，除了极速光轮其他小畏大小的都能游玩，小矮人过山车、飞跃地平线、雷鸣山漂流确实非常值得排队游玩。但是印象最深的范围是加勒比海盗，内景布置和动画都非常精彩，细节菜单满满，值得二刷三刷。<br>[此处应有图]</p>
+<p>维尼熊的密封罐不能自己转动，中间的方向盘成为摆设，有点遗憾。<br>[此处应有图]</p>
+<h3 id="4-表演秀"><a href="#4-表演秀" class="headerlink" title="4. 表演秀"></a>4. 表演秀</h3><p><strong>花车巡游</strong><br>整个过程中演职人员都非常敬业，全程跳舞、互动、微笑，不管是扮演米妮还是为米妮推车的服务员表演都同样认真、到位。清楚地记得花木兰花车后面的女士兵后颈上黝黑的肤色，就能够知道她们经历了怎样的辛劳。<br>[此处应有图]</p>
+<p><strong>泰山</strong><br>结合中古杂技、飞人，演员貌似没有带钢丝，非常专业。<br>[此处应有图]</p>
+<p><strong>冰雪奇缘</strong><br>老外说中文还差点，而且全程中文歌词，有点跟不上。<br>[此处应有图]</p>
+<p><strong>杰克船长大冒险</strong><br>开场白有点长，而且中国观众互动比较弱，但是后面剧场表演很出色，最后的特技表演很精彩。<br>[此处应有图]</p>
+<p><strong>大白活力秀</strong><br>中国观众互动比较弱，效果不是很理想。<br>[此处应有图]</p>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>迪斯尼乐园不是那种安排一天满满的形成、赶着排队拿FP就能体验的乐园，正如他的官方名字，是一个度假村。<br>比较理想的玩法是多去几次，每次看人数尽量选择排队少的项目，FP留给特别想玩的项目，多留意一些路边没人的小景观点，比如明石台就几乎没人。多了解迪斯尼的电影动画，能够发现一些细节的隐藏元素，也是非常有意思的。<br>[此处应有图]</p>
+<p>毕竟迪斯尼主打的是梦幻乐园，到了这里就把自己当作一个孩子，发现美、相信美，度过快乐魔幻的一天才是。</p>
 
 
                 <hr>
@@ -208,13 +226,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2016/10/29/Getting-started-with-Kaggle/" data-toggle="tooltip" data-placement="top" title="Getting started with Kaggle">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2016/10/23/Building-LegoSpyder-Part-III/" data-toggle="tooltip" data-placement="top" title="Building LegoSpyder Part III">Next Post &rarr;</a>
+                            <a href="/2017/03/30/Teach-Your-Kids-to-Code-Pre-Course-I/" data-toggle="tooltip" data-placement="top" title="Teach Your Kids to Code: Pre-Course I">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -241,7 +255,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                          <a class="tag" href="/tags/#Disneyland" title="Disneyland">Disneyland</a>
                         
                     </div>
                 </section>
