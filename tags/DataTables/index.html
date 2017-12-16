@@ -13,11 +13,11 @@
 
     <title>
         
-          CodeMirror sizer miscalculating - Master Gloomymoon&#39;s R2D2
+          Master Gloomymoon&#39;s R2D2
         
     </title>
 
-    <link rel="canonical" href="http://gloomymoon.github.io/2017/11/14/CodeMirror-sizer-miscalculating/">
+    <link rel="canonical" href="http://gloomymoon.github.io/tags/DataTables/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -148,169 +148,7 @@
 
 
     <!-- Main Content -->
-    
-<!-- Image to hack wechat -->
-<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
-
-<!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        background-image: url('/img/lego-star-wars-war-all-about-pokeman101.jpg')
-    }
-</style>
-<header class="intro-header" >
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
-                        
-                          <a class="tag" href="/tags/#CodeMirror" title="CodeMirror">CodeMirror</a>
-                        
-                    </div>
-                    <h1>CodeMirror sizer miscalculating</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by Gloomymoon on
-                        2017-11-14
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-
-    <!-- Post Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
-                <h1 id="CodeMirror-sizer-miscalculating"><a href="#CodeMirror-sizer-miscalculating" class="headerlink" title="CodeMirror sizer miscalculating"></a>CodeMirror sizer miscalculating</h1><p><a href="http://codemirror.net" target="_blank" rel="external">CodeMirror</a>是一个用JavaScript实现的Web端代码编辑器，支持多种编程语言，提供许多高级编辑功能插件。丰富的API接口和CSS主题样式能够很好地满足应用开发的需要。</p>
-<p>主要功能：</p>
-<ul>
-<li>支持超过100种编程语言</li>
-<li>强大的可组合的语言模式系统（composable language mode system）</li>
-<li>自动补完（Autocompletion）</li>
-<li>代码折叠</li>
-<li>可编辑按键绑定</li>
-<li>Vim、Emacs和Sublime绑定</li>
-<li>搜索和替换接口</li>
-<li>括号和标签配对</li>
-<li>支持分窗试图</li>
-<li>集成错误代码提示（Linter integration）<br>……</li>
-</ul>
-<h4 id="Q-如何使用Java语法高亮模式"><a href="#Q-如何使用Java语法高亮模式" class="headerlink" title="Q: 如何使用Java语法高亮模式"></a>Q: 如何使用Java语法高亮模式</h4><p>A: 首先需要在项目中引入<code>\mode\clike\</code>目录，加载<code>\mode\clike\clike.js</code>，并且在初始化时添加<code>mode: &quot;text/x-java&quot;</code>参数。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> editor = CodeMirror.fromTextArea(<span class="built_in">document</span>.getElementById(<span class="string">"editor"</span>), &#123;</div><div class="line">        mode: <span class="string">"text/x-java"</span>,</div><div class="line">        lineNumbers: <span class="keyword">true</span></div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
-<h4 id="Q-当代码行数小于10时，sizer没有正确起作用"><a href="#Q-当代码行数小于10时，sizer没有正确起作用" class="headerlink" title="Q: 当代码行数小于10时，sizer没有正确起作用"></a>Q: 当代码行数小于10时，sizer没有正确起作用</h4><p><img src="/img/CodeMirrorSizerMiscalculating_01.png" alt=""><br>超过10行时变为正常<br><img src="/img/CodeMirrorSizerMiscalculating_02.png" alt=""></p>
-<p>A: 该问题在github上有对应的issue：<a href="https://github.com/codemirror/CodeMirror/issues/3527" target="_blank" rel="external">Code mirror sizer miscalculating gutter width if doc has less than 10 lines #3527</a></p>
-<p>解决方案是加载自动更新组件，添加自动更新参数。首先在项目中引入并加载<code>\addon\display\autorefresh.js</code>，然后在初始化时添加<code>autoRefresh: true</code>参数：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> editor = CodeMirror.fromTextArea(<span class="built_in">document</span>.getElementById(<span class="string">"editor"</span>), &#123;</div><div class="line">        mode: <span class="string">"text/x-java"</span>,</div><div class="line">        lineNumbers: <span class="keyword">true</span>,</div><div class="line">        autoRefresh: <span class="keyword">true</span></div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
-<p>如果在页面多次隐藏CodeMirror编辑器后再次出现该问题时，可以在每次显示时手动<code>refresh</code>或<code>focus</code>一下。</p>
-
-
-                <hr>
-
-                
-
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2017/12/17/DataTables-js-Some-Useful-Tips/" data-toggle="tooltip" data-placement="top" title="DataTables.js Some Useful Tips">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/2017/04/04/Shanghai-Disney-Resort-First-Raid/" data-toggle="tooltip" data-placement="top" title="Shanghai Disney Resort: First Raid">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
-
-                
-
-                
-
-            </div>
-    <!-- Side Catalog Container -->
-        
-
-    <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
-                        
-                          <a class="tag" href="/tags/#CodeMirror" title="CodeMirror">CodeMirror</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-
-        </div>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'always',
-          placement: 'right',
-          icon: '#'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
-
-
+    <!-- Default Archive layout, we use archives instead. -->
 
     <!-- Footer -->
     <!-- Footer -->

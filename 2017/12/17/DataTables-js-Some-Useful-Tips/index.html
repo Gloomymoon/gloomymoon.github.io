@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          DataTables.js Some Useful Tips - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2017/12/17/DataTables-js-Some-Useful-Tips/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/lego-star-wars-war-all-about-pokeman101.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#DataTables" title="DataTables">DataTables</a>
+                        
+                    </div>
+                    <h1>DataTables.js Some Useful Tips</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2017-12-17
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="DataTables-js-Some-Useful-Tips"><a href="#DataTables-js-Some-Useful-Tips" class="headerlink" title="DataTables.js: Some Useful Tips"></a>DataTables.js: Some Useful Tips</h1><h2 id="0-Preface"><a href="#0-Preface" class="headerlink" title="0 Preface"></a>0 Preface</h2><p><a href="https://datatables.net" target="_blank" rel="external">DataTables</a>是一款非常强大的jQuery表格插件，能够为普通的HTML表格添加丰富的交互功能。</p>
+<h2 id="1-Setting-defaults"><a href="#1-Setting-defaults" class="headerlink" title="1 Setting defaults"></a>1 Setting defaults</h2><p>为了简化每次初始化表单的参数，可以将一些参数值设置为首选的初始值。DataTables中通过使用为<code>defaults</code>填写扩展方法来实现。</p>
+<figure class="highlight scilab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">$.extend(true, $.fn.dataTable.defaults, &#123;</div><div class="line">    <span class="comment">//这里填写自定义的初始参数和值</span></div><div class="line">    <span class="string">"searching"</span>: false,   <span class="comment">//默认不支持搜索</span></div><div class="line">    <span class="string">"ordering"</span>: false,    <span class="comment">//默认不允许排序</span></div><div class="line">    <span class="string">"language"</span>: &#123;         <span class="comment">//默认的语言字符串</span></div><div class="line">        <span class="string">"lengthMenu"</span>: <span class="string">"每页显示 _MENU_ 条记录"</span>,</div><div class="line">        <span class="string">"emptyTable"</span>: <span class="string">"没有记录"</span>,</div><div class="line">        <span class="string">"zeroRecords"</span>: <span class="string">"抱歉， 没有找到"</span>,</div><div class="line">        <span class="string">"info"</span>: <span class="string">" 从 _START_ 到 _END_ / 共 _TOTAL_ 条数据 "</span>,</div><div class="line">        <span class="string">"infoEmpty"</span>: <span class="string">"没有数据"</span>,</div><div class="line">        <span class="string">"infoFiltered"</span>: <span class="string">"(从 _MAX_ 条数据中检索)"</span>,</div><div class="line">        <span class="string">"loadingRecords"</span>: <span class="string">"加载中..."</span>,</div><div class="line">        <span class="string">"processing"</span>:     <span class="string">"处理中..."</span>,</div><div class="line">        <span class="string">"search"</span>:         <span class="string">"搜索："</span>,</div><div class="line">        <span class="string">"paginate"</span>: &#123;</div><div class="line">            <span class="string">"first"</span>:      <span class="string">"|&lt;"</span>,</div><div class="line">            <span class="string">"last"</span>:       <span class="string">"&gt;|"</span>,</div><div class="line">            <span class="string">"next"</span>:       <span class="string">"&gt;"</span>,</div><div class="line">            <span class="string">"previous"</span>:   <span class="string">"&lt;"</span></div><div class="line">        &#125;,</div><div class="line">    &#125;,</div><div class="line">    <span class="comment">//默认的dom格式，dom格式见下节</span></div><div class="line">    <span class="string">"dom"</span>: <span class="string">"&lt;'</span>row'&lt;<span class="string">'col-sm-6'</span>&gt;&lt;<span class="string">'col-sm-6'</span>f&gt;&gt;<span class="string">" +</span></div><div class="line">            "&lt;<span class="string">'row'</span>&lt;<span class="string">'col-sm-12'</span>tr&gt;&gt;<span class="string">" +</span></div><div class="line">            "&lt;<span class="string">'row'</span>&lt;<span class="string">'col-sm-5'</span>i&gt;&lt;<span class="string">'col-sm-7'</span>p&gt;&gt;<span class="string">"</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="2-DOM"><a href="#2-DOM" class="headerlink" title="2 DOM"></a>2 DOM</h2><p>DataTables内置了几个用来控制表单或显示附加信息的元素组件，可以在初始化时通过定义<code>dom</code>参数来选择显示哪些，以及现实的位置和布局。</p>
+<p>内置的表单控件如下：</p>
+<ul>
+<li><code>l</code>（<code>l</code>ength）：表示每页显示记录数的控件</li>
+<li><code>f</code>（<code>f</code>ilter）：表示搜索（过滤）输入框控件</li>
+<li><code>t</code>（<code>t</code>able）：表示表单table元素本身</li>
+<li><code>i</code>（<code>i</code>nformation）：表示统计信息展示控件</li>
+<li><code>p</code>（<code>p</code>agination）：表示分页控件</li>
+<li><code>r</code>（p<code>r</code>ocessing）：表示“处理中”信息展示控件</li>
+</ul>
+<p>默认情况下<code>dom</code>的值为<code>lfrtip</code>。</p>
+<p>为满足表单及控件元素的个性化布局，<code>dom</code>选项支持Markup语法，支持添加自定义的<code>div</code>元素，主要关键语法如下：</p>
+<ul>
+<li><code>&lt;</code>和<code>&gt;</code>：表示<code>div</code>元素的开始和结束</li>
+<li><code>&lt;&quot;className&quot;</code>和<code>&gt;</code>：表示<code>class</code>属性为<code>className</code>的<code>div</code>元素</li>
+<li><code>&lt;&quot;#id&quot;</code>和<code>&gt;</code>：表示<code>id</code>属性为<code>id</code>的<code>div</code>元素</li>
+<li><code>&lt;&quot;#id.className&quot;</code>和<code>&gt;</code>：上述两者的组合</li>
+</ul>
+<p>因此如果使用<strong>Bootstrap</strong>样式，可以将<code>dom</code>属性设置为：<br><figure class="highlight scilab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">"&lt;'</span>row'&lt;<span class="string">'col-sm-6'</span>l&gt;&lt;<span class="string">'col-sm-6'</span>f&gt;&gt;<span class="string">" +</span></div><div class="line">"&lt;<span class="string">'row'</span>&lt;<span class="string">'col-sm-12'</span>tr&gt;&gt;<span class="string">" +</span></div><div class="line">"&lt;<span class="string">'row'</span>&lt;<span class="string">'col-sm-5'</span>i&gt;&lt;<span class="string">'col-sm-7'</span>p&gt;&gt;<span class="string">"</span></div></pre></td></tr></table></figure></p>
+<p>生成的HTML结果为：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"row"</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-sm-6"</span>&gt;</div><div class="line">    &#123; <span class="built_in">length</span> &#125;</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-sm-6"</span>&gt;</div><div class="line">    &#123; filter &#125;</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"row"</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-sm-12"</span>&gt;</div><div class="line">    &#123; table &#125;</div><div class="line">    &#123; processing &#125;</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;<span class="keyword">div</span>&gt;</div><div class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"row"</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-sm-5"</span>&gt;</div><div class="line">    &#123; information &#125;</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">  &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"col-sm-7"</span>&gt;</div><div class="line">    &#123; pagination &#125;</div><div class="line">  &lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="3-Column-rendering"><a href="#3-Column-rendering" class="headerlink" title="3 Column rendering"></a>3 Column rendering</h2><p>在某些时候，通过ajax方式获得数据填充表单时，需要对某些字段Column或者单元格Cell的HTML元素或值进行变化和加工，这个时候可以使用<code>createdCell</code>事件添加自定义格式化函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> table = $(<span class="string">'#table'</span>).DataTable(&#123;</div><div class="line">  <span class="string">"columnDefs"</span>: [</div><div class="line">      &#123;</div><div class="line">          <span class="comment">//仅针对第5个列的单元格进行处理</span></div><div class="line">          <span class="string">"targets"</span>: [<span class="number">4</span>],</div><div class="line">          <span class="string">"createdCell"</span>: <span class="function"><span class="keyword">function</span> (<span class="params">td, cellData, rowData, row, col</span>) </span>&#123;</div><div class="line">              <span class="keyword">if</span> (cellData &gt; <span class="number">0</span>) &#123;</div><div class="line">                  <span class="comment">//单元格的显示内容根据数据的值变化</span></div><div class="line">                  $(td).html(<span class="string">'运行'</span>);</div><div class="line">              &#125;</div><div class="line">              <span class="keyword">else</span> &#123;</div><div class="line">                  $(td).html(<span class="string">'停止'</span>);</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">  ],</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="4-Row-created-callback"><a href="#4-Row-created-callback" class="headerlink" title="4 Row created callback"></a>4 Row created callback</h2><p>用样的在行创建时也可以调用自定义方法来执行格式化工作：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#table'</span>).DataTable( &#123;</div><div class="line">    <span class="string">"createdRow"</span>: function ( row, data, index ) &#123;</div><div class="line">        <span class="keyword">if</span> ( data[<span class="number">5</span>] * <span class="number">1</span> &gt; <span class="number">1</span> ) &#123;</div><div class="line">            <span class="regexp">//</span>当第<span class="number">6</span>个列的值&gt;<span class="number">1</span>时，为行添加<span class="class"><span class="keyword">class</span></span></div><div class="line">            $(<span class="string">'row).eq(5).addClass('</span>danger<span class="string">');</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>在实际使用中，<code>createdCell</code>和<code>createdRow</code>都可以达到同样的效果。</p>
+<h2 id="5-Individual-column-searching"><a href="#5-Individual-column-searching" class="headerlink" title="5 Individual column searching"></a>5 Individual column searching</h2><p>除了全局搜索框以外，DataTables还支持每个列的独立搜索框，搜索框有两种类型：input和select。</p>
+<p>Input输入框：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//为每个列添加input元素</span></div><div class="line">$(<span class="string">'#table tfoot th'</span>).each( <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> title = $(<span class="keyword">this</span>).text();</div><div class="line">    $(<span class="keyword">this</span>).html( <span class="string">'&lt;input type="text" style="width:100%" /&gt;'</span> );</div><div class="line">&#125; );</div><div class="line"><span class="keyword">var</span> table = $(<span class="string">"table"</span>).DataTable();</div><div class="line"></div><div class="line">table.columns().every( <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span>;</div><div class="line">    $( <span class="string">'input'</span>, <span class="keyword">this</span>.footer() ).on( <span class="string">'keyup change'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> ( that.search() !== <span class="keyword">this</span>.value ) &#123;</div><div class="line">            that</div><div class="line">                .search( <span class="keyword">this</span>.value )</div><div class="line">                .draw();</div><div class="line">        &#125;</div><div class="line">    &#125; );</div><div class="line">&#125; );</div></pre></td></tr></table></figure></p>
+<p>Select输入框：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#table"</span>).DataTable( &#123;</div><div class="line">  <span class="attr">initComplete</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">//仅针对第4、5、6、7、8列添加搜索框</span></div><div class="line">      <span class="keyword">this</span>.api().columns([<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]).every( <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="keyword">var</span> column = <span class="keyword">this</span>;</div><div class="line">          <span class="keyword">var</span> select = $(<span class="string">'&lt;select&gt;&lt;option value=""&gt;&lt;/option&gt;&lt;/select&gt;'</span>)</div><div class="line">              .appendTo( $(column.footer()).empty() )</div><div class="line">              .on( <span class="string">'change'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                  <span class="keyword">var</span> val = $.fn.dataTable.util.escapeRegex(</div><div class="line">                      $(<span class="keyword">this</span>).val()</div><div class="line">                  );</div><div class="line">                  column</div><div class="line">                      .search( val ? <span class="string">'^'</span>+val+<span class="string">'$'</span> : <span class="string">''</span>, <span class="literal">true</span>, <span class="literal">false</span> )</div><div class="line">                      .draw();</div><div class="line">              &#125; );</div><div class="line">          <span class="built_in">console</span>.log(column.header());</div><div class="line">          column.data().unique().sort().each( <span class="function"><span class="keyword">function</span> (<span class="params"> d, j </span>) </span>&#123;</div><div class="line">              t = d;</div><div class="line">              <span class="comment">//第5列搜索框展现和值是不一样的</span></div><div class="line">              <span class="keyword">if</span>(column.index()==<span class="number">4</span>)&#123;</div><div class="line">                  t = d==<span class="string">'1'</span>?<span class="string">'运行'</span>:<span class="string">'停止'</span>;</div><div class="line">              &#125;</div><div class="line">              select.append( <span class="string">'&lt;option value="'</span>+d+<span class="string">'"&gt;'</span>+ t +<span class="string">'&lt;/option&gt;'</span> );</div><div class="line">          &#125; );</div><div class="line">      &#125; );</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="6-Row-selection"><a href="#6-Row-selection" class="headerlink" title="6 Row selection"></a>6 Row selection</h2><p>记录的多重选择实现起来比较简单，通过<code>tr</code>的点击事件添加特定的<code>class</code>，最后通过jQuery的选择<code>class</code>名来获取选中的数据信息：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> table = $(<span class="string">'#table'</span>).DataTable();</div><div class="line"></div><div class="line">$(<span class="string">'#example tbody'</span>).on( <span class="string">'click'</span>, <span class="string">'tr'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $(<span class="keyword">this</span>).toggleClass(<span class="string">'selected'</span>);</div><div class="line">&#125; );</div><div class="line"></div><div class="line">$(<span class="string">'#button'</span>).click( <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    alert( table.rows(<span class="string">'.selected'</span>).data().length +<span class="string">' row(s) selected'</span> );</div><div class="line">&#125; );</div></pre></td></tr></table></figure></p>
+<h2 id="7-Access-data-thru-jQuery-selector"><a href="#7-Access-data-thru-jQuery-selector" class="headerlink" title="7 Access data thru jQuery selector"></a>7 Access data thru jQuery selector</h2><p>如果需要在DataTable对象外部方位内部的数据（而不是HTML的dom对象），例如像一部中多重选中记录后，需要选中记录的内容，可以使用如下方法：<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">data</span> = table.<span class="keyword">rows</span>( $(<span class="string">"#table tbody tr.selected"</span>) ).<span class="built_in">data</span>().toArray();</div></pre></td></tr></table></figure></p>
+<p>注意最后<code>data()</code>方法之后需要用<code>toArray()</code>转化一下，就能够获取原始的dict类型的数据对象。</p>
+<p>其中<code>rows()</code>方法可以替换成<code>columns()</code>，并且其参数可以用jQuery的选择器来过滤和筛选。</p>
+<h2 id="8-Refresh-data"><a href="#8-Refresh-data" class="headerlink" title="8 Refresh data"></a>8 Refresh data</h2><p>在DataTable初始化后，需要动态更新内部数据而不用<code>destroy</code>后重新初始化，有如下两种方法：</p>
+<p>A. 使用javascript的数组手动刷新数据：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//通过其他方式获取需要更新的数据</div><div class="line"><span class="class"><span class="keyword">data</span> = [...];</span></div><div class="line"><span class="title">table</span>.clear().rows.add(<span class="class"><span class="keyword">data</span>).draw();</span></div></pre></td></tr></table></figure></p>
+<p>B. 使用ajax的<code>reload</code>方法自动刷新数据：<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var <span class="keyword">table</span> = $('#<span class="keyword">table</span>').DataTable(&#123;</div><div class="line">    <span class="string">"ajax"</span>: &#123;</div><div class="line">        url: <span class="string">"/api/getData"</span></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">setInterval( function () &#123;</div><div class="line">    <span class="keyword">table</span>.ajax.reload();</div><div class="line">&#125;, <span class="number">5000</span> );</div></pre></td></tr></table></figure></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/11/14/CodeMirror-sizer-miscalculating/" data-toggle="tooltip" data-placement="top" title="CodeMirror sizer miscalculating">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#DataTables" title="DataTables">DataTables</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
