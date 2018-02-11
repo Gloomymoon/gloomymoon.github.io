@@ -13,7 +13,7 @@
 
     <title>
         
-          ECMAScript-6-Primer-Part-I - Master Gloomymoon&#39;s R2D2
+          ECMAScript 6 Primer - Master Gloomymoon&#39;s R2D2
         
     </title>
 
@@ -91,13 +91,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -106,6 +99,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -166,8 +166,12 @@
                 <div class="post-heading">
                     <div class="tags">
                         
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#ECMAScript" title="ECMAScript">ECMAScript</a>
+                        
                     </div>
-                    <h1>ECMAScript-6-Primer-Part-I</h1>
+                    <h1>ECMAScript 6 Primer</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Gloomymoon on
@@ -190,13 +194,68 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                
+                <h1 id="ECMAScript-6-Primer-I"><a href="#ECMAScript-6-Primer-I" class="headerlink" title="ECMAScript 6 Primer I"></a>ECMAScript 6 Primer I</h1><p><a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">《ES6标准入门》<br>——阮一峰</a></p>
+<h2 id="1-ECMAScript-6-简介"><a href="#1-ECMAScript-6-简介" class="headerlink" title="1 ECMAScript 6 简介"></a>1 ECMAScript 6 简介</h2><p>ECMAScript 6.0是JavaScript语言的下一代标准，已经在2015年6月正式发布，每年都会发布一个标准升级版，根据计划2017年6月发布了ES2017标准，ES6涵盖了ES2015、ES2016、ES2017等。</p>
+<h2 id="2-let-和-const-命令"><a href="#2-let-和-const-命令" class="headerlink" title="2 let 和 const 命令"></a>2 let 和 const 命令</h2><h3 id="2-1-let-命令"><a href="#2-1-let-命令" class="headerlink" title="2.1 let 命令"></a>2.1 let 命令</h3><p>ES6新增了<code>let</code>命令，类似<code>var</code>，但是所声明的变量只在<code>let</code>所在的代码块内有效。</p>
+<p>用<code>let</code>声明的变量一定要在声明后才能使用，否则报错，而不像<code>var</code>声明的变量在声明前可以使用（值为<code>undefined</code>），即<strong>不存在变量提升</strong>。因此在代码块内，使用<code>let</code>声明变量前的代码区间称为“暂时性死区”（temporal dead zone，TDZ）。TDZ意味着<code>typeof</code>不再是一个安全的操作。</p>
+<p><code>let</code>不允许在相同的作用域内重复声明一个变量。</p>
+<h3 id="2-2-块级作用域"><a href="#2-2-块级作用域" class="headerlink" title="2.2 块级作用域"></a>2.2 块级作用域</h3><p><code>let</code>实际上为JavaScript带来了块级作用域。外层代码块不受内层代码块的影响。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> n = <span class="number">5</span>;</div><div class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</div><div class="line">    <span class="keyword">let</span> n = <span class="number">10</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="built_in">console</span>.log(n); <span class="comment">// 5</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>ES6允许块级作用域的任意嵌套。块级作用域的出现，使得广泛应用的立即执行函数表达式（IIFE）不再必要了。<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// IIFE 写法</span></div><div class="line">(function () &#123;</div><div class="line">  <span class="built_in">var</span> tmp = <span class="params">...</span>;</div><div class="line">  <span class="params">...</span></div><div class="line">&#125;());</div><div class="line"></div><div class="line"><span class="comment">// 块级作用域写法</span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">let</span> tmp = <span class="params">...</span>;</div><div class="line">  <span class="params">...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>考虑到兼容ES5的旧代码，应该避免在块级作用域内生命函数，如果确实需要，应该写成函数表达式而不是函数声明语句。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 函数声明语句</span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">let</span> a = <span class="string">'secret'</span>;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> a;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 函数表达式</span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">let</span> a = <span class="string">'secret'</span>;</div><div class="line">  <span class="keyword">let</span> f = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> a;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="2-3-const-命令"><a href="#2-3-const-命令" class="headerlink" title="2.3 const 命令"></a>2.3 const 命令</h3><p><code>const</code>声明一个常量，其他特性与<code>let</code>声明的变量类似。</p>
+<p><code>const</code>本质上保证的是变量指向的内存地址不得改动，因此对于简单结构（数值、字符串、布尔值）就是常量，而复合类型（对象和数组），变量指向的内存是一个指针，<code>const</code>只能保证指针固定，但是它指向的数据结构是可变的。</p>
+<p>如果想要冻结对象，应该使用<code>Object.freeze</code>方法。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> foo = <span class="built_in">Object</span>.freeze(&#123;&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 常规模式时，下面一行不起作用；</span></div><div class="line"><span class="comment">// 严格模式时，该行会报错</span></div><div class="line">foo.prop = <span class="number">123</span>;</div></pre></td></tr></table></figure></p>
+<p>如果连对象的属性也要冻结，可以使用如下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> constantize = <span class="function">(<span class="params">obj</span>) =&gt;</span> &#123;</div><div class="line">  <span class="built_in">Object</span>.freeze(obj);</div><div class="line">  <span class="built_in">Object</span>.keys(obj).forEach( <span class="function">(<span class="params">key, i</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> obj[key] === <span class="string">'object'</span> ) &#123;</div><div class="line">      constantize( obj[key] );</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h3 id="2-4-顶层对象属性"><a href="#2-4-顶层对象属性" class="headerlink" title="2.4 顶层对象属性"></a>2.4 顶层对象属性</h3><p>由于浏览器、Web Worder和Node里顶层对象不统一，很难找到一种方法可以在所有情况系都取到顶层对象。</p>
+<p>具体可以参见<a href="http://es6.ruanyifeng.com/#docs/let#global-%E5%AF%B9%E8%B1%A1" target="_blank" rel="external">这里</a>。</p>
+<h2 id="3-变量的解构赋值"><a href="#3-变量的解构赋值" class="headerlink" title="3 变量的解构赋值"></a>3 变量的解构赋值</h2><h3 id="3-1-数组的解构赋值"><a href="#3-1-数组的解构赋值" class="headerlink" title="3.1 数组的解构赋值"></a>3.1 数组的解构赋值</h3><p>ES6允许按照一定的<strong>模式</strong>，从数组和对象中提取值。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let [a, b, c] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div></pre></td></tr></table></figure></p>
+<p>本质上只要等号两边的模式相同，左边的变量就会被赋予对应的值，匹配可以是完全的也可以是不完全的，如果解构不成功，变量的值就等于<code>undefined</code>。</p>
+<p>只要某种数据结构具有Iterator接口，都可以采用数组形式的解构赋值。<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function* fibs() &#123;</div><div class="line">  <span class="built_in">let</span> a = <span class="number">0</span>;</div><div class="line">  <span class="built_in">let</span> b = <span class="number">1</span>;</div><div class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">    yield a;</div><div class="line">    [a, b] = [b, a + b];</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">let</span> [<span class="built_in">first</span>, <span class="built_in">second</span>, <span class="built_in">third</span>, <span class="built_in">fourth</span>, <span class="built_in">fifth</span>, <span class="built_in">sixth</span>] = fibs();</div><div class="line"><span class="built_in">sixth</span> // <span class="number">5</span></div></pre></td></tr></table></figure></p>
+<p>解构赋值允许指定默认值，ES6使用严格相等运算符（<code>===</code>）判断一个位置是否有值，所有只有当一个数组成员严格等于<code>undefined</code>时，默认赋值才会生效。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> [x = <span class="number">1</span>] = [<span class="literal">undefined</span>];</div><div class="line">x <span class="comment">// 1</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> [x = <span class="number">1</span>] = [<span class="literal">null</span>];</div><div class="line">x <span class="comment">// null</span></div></pre></td></tr></table></figure></p>
+<h3 id="3-2-对象的解构赋值"><a href="#3-2-对象的解构赋值" class="headerlink" title="3.2 对象的解构赋值"></a>3.2 对象的解构赋值</h3><p>对象的解构赋值与数组的不同是，对象的属性没有次序，变量必须与属性同名才能渠道正确的值，如果变量名与属性名不同，必须使用如下方法：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">let &#123; <span class="string">foo:</span> baz &#125; = &#123; <span class="string">foo:</span> <span class="string">'aaa'</span>, <span class="string">bar:</span> <span class="string">'bbb'</span> &#125;;</div><div class="line">baz <span class="comment">// "aaa"</span></div><div class="line"></div><div class="line">let obj = &#123; <span class="string">first:</span> <span class="string">'hello'</span>, <span class="string">last:</span> <span class="string">'world'</span> &#125;;</div><div class="line">let &#123; <span class="string">first:</span> f, <span class="string">last:</span> l &#125; = obj;</div><div class="line">f <span class="comment">// 'hello'</span></div><div class="line">l <span class="comment">// 'world'</span></div></pre></td></tr></table></figure></p>
+<p>如果将一个已经声明的变量用于解构赋值，必须非常小心。<br><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 错误的写法</span></div><div class="line"><span class="keyword">let</span> x;</div><div class="line">&#123;x&#125; = &#123;x: <span class="number">1</span>&#125;;</div><div class="line"><span class="comment">// SyntaxError: syntax error</span></div></pre></td></tr></table></figure></p>
+<p>上面代码的报错是因为JavaScript引擎会将<code>{x}</code>理解成为一个代码块，正确的方法是放在一个圆括号内。<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// 正确的写法</div><div class="line"><span class="keyword">let</span> x;</div><div class="line">(&#123;x&#125; = &#123;x: <span class="number">1</span>&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="3-3-字符串的解构赋值"><a href="#3-3-字符串的解构赋值" class="headerlink" title="3.3 字符串的解构赋值"></a>3.3 字符串的解构赋值</h3><p>字符串也可以解构赋值，因为它可以被转换成一个类似数组的对象。<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">const [a, b, c, d, e] = <span class="string">'hello'</span>;</div><div class="line">a <span class="regexp">//</span> <span class="string">"h"</span></div><div class="line">b <span class="regexp">//</span> <span class="string">"e"</span></div><div class="line">c <span class="regexp">//</span> <span class="string">"l"</span></div><div class="line">d <span class="regexp">//</span> <span class="string">"l"</span></div><div class="line">e <span class="regexp">//</span> <span class="string">"o"</span></div><div class="line"></div><div class="line">let &#123;length : len&#125; = <span class="string">'hello'</span>;</div><div class="line">len <span class="regexp">//</span> <span class="number">5</span></div></pre></td></tr></table></figure></p>
+<h3 id="3-4-数值和布尔值的解构赋值"><a href="#3-4-数值和布尔值的解构赋值" class="headerlink" title="3.4 数值和布尔值的解构赋值"></a>3.4 数值和布尔值的解构赋值</h3><p>结构赋值时，如果等号右边不是对象或数组，都会先将其转为对象，无法转为对象的，解构赋值会报错。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> &#123;<span class="built_in">toString</span>: s&#125; = <span class="number">123</span>;</div><div class="line"><span class="attr">s</span> === Number.prototype.<span class="built_in">toString</span> // <span class="literal">true</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> &#123;<span class="built_in">toString</span>: s&#125; = <span class="literal">true</span>;</div><div class="line"><span class="attr">s</span> === Boolean.prototype.<span class="built_in">toString</span> // <span class="literal">true</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> &#123; prop: x &#125; = undefined; // TypeError</div><div class="line"><span class="keyword">let</span> &#123; prop: y &#125; = <span class="literal">null</span>; // TypeError</div></pre></td></tr></table></figure></p>
+<p>数值和布尔值都能转换成对象，<code>undefined</code>和<code>null</code>无法转为对象。</p>
+<h3 id="3-5-函数参数的解构赋值"><a href="#3-5-函数参数的解构赋值" class="headerlink" title="3.5 函数参数的解构赋值"></a>3.5 函数参数的解构赋值</h3><p>函数的参数也可以使用解构赋值，解构时也可以使用默认值。<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function <span class="built_in">move</span>(&#123;x = <span class="number">0</span>, y = <span class="number">0</span>&#125; = &#123;&#125;) &#123;</div><div class="line">  <span class="built_in">return</span> [x, y];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">move</span>(&#123;x: <span class="number">3</span>, y: <span class="number">8</span>&#125;); <span class="comment">// [3, 8]</span></div><div class="line"><span class="built_in">move</span>(&#123;x: <span class="number">3</span>&#125;); <span class="comment">// [3, 0]</span></div><div class="line"><span class="built_in">move</span>(&#123;&#125;); <span class="comment">// [0, 0]</span></div><div class="line"><span class="built_in">move</span>(); <span class="comment">// [0, 0]</span></div></pre></td></tr></table></figure></p>
+<p>注意使用默认值的写法，如果使用<code>{x, y} = { x: 0, y: 0 }</code>将不能正确地对<code>{}</code>参数赋默认值。</p>
+<h3 id="3-6-圆括号问题"><a href="#3-6-圆括号问题" class="headerlink" title="3.6 圆括号问题"></a>3.6 圆括号问题</h3><p>解构赋值使用起来方便，但是对于编译器来说，一个式子到底是模式还是表达式，解析起来并不容易。ES6的规则是，只要有可能导致结构的歧义，就不得使用圆括号，因此建议只要有可能，就不要在模式中放置圆括号。</p>
+<p>可以使用圆括号的情况只有一种：赋值语句的非模式部分。<br><figure class="highlight scheme"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[(<span class="name">b</span>)] = [<span class="name">3</span>]<span class="comment">; // 正确</span></div><div class="line">(&#123; p: (<span class="name">d</span>) &#125; = &#123;&#125;)<span class="comment">; // 正确</span></div><div class="line">[(<span class="name">parseInt.prop</span>)] = [<span class="name">3</span>]<span class="comment">; // 正确</span></div></pre></td></tr></table></figure></p>
+<h3 id="3-7-用途"><a href="#3-7-用途" class="headerlink" title="3.7 用途"></a>3.7 用途</h3><p>变量解构赋值的用途很多，理解之后使用起来感觉像Python的切片方法一样灵活。</p>
+<ol>
+<li><p>交换变量的值</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="attr">x</span> = <span class="number">1</span>;</div><div class="line"><span class="keyword">let</span> <span class="attr">y</span> = <span class="number">2</span>;</div><div class="line"></div><div class="line">[x, y] = [y, x];</div></pre></td></tr></table></figure>
+</li>
+<li><p>函数返回多个值</p>
+</li>
+<li><p>函数参数的定义</p>
+</li>
+<li><p>提取 JSON 数据</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">let jsonData = &#123;</div><div class="line">  id: <span class="number">42</span>,</div><div class="line">  <span class="keyword">status</span>: <span class="string">"OK"</span>,</div><div class="line">  <span class="keyword">data</span>: [<span class="number">867</span>, <span class="number">5309</span>]</div><div class="line">&#125;;</div><div class="line"></div><div class="line">let &#123; id, <span class="keyword">status</span>, <span class="keyword">data</span>: <span class="keyword">number</span> &#125; = jsonData;</div><div class="line"></div><div class="line">console.<span class="built_in">log</span>(id, <span class="keyword">status</span>, <span class="keyword">number</span>);</div><div class="line">// <span class="number">42</span>, <span class="string">"OK"</span>, [<span class="number">867</span>, <span class="number">5309</span>]</div></pre></td></tr></table></figure>
+</li>
+<li><p>函数参数的默认值</p>
+</li>
+<li><p>遍历 Map 结构</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="built_in">map</span> = <span class="keyword">new</span> Map();</div><div class="line"><span class="built_in">map</span>.<span class="built_in">set</span>(<span class="string">'first'</span>, <span class="string">'hello'</span>);</div><div class="line"><span class="built_in">map</span>.<span class="built_in">set</span>(<span class="string">'second'</span>, <span class="string">'world'</span>);</div><div class="line"></div><div class="line"><span class="keyword">for</span> (let [<span class="built_in">key</span>, value] of <span class="built_in">map</span>) &#123;</div><div class="line">  console.<span class="built_in">log</span>(<span class="built_in">key</span> + <span class="string">" is "</span> + value);</div><div class="line">&#125;</div><div class="line"><span class="comment">// first is hello</span></div><div class="line"><span class="comment">// second is world</span></div></pre></td></tr></table></figure>
+<p>像不像Python的用法？</p>
+</li>
+<li><p>输入模板的制定方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123; SourceMapConsumer, SourceNode &#125; = <span class="built_in">require</span>(<span class="string">"source-map"</span>);</div></pre></td></tr></table></figure>
+<p>终于知道这样写的原因了。</p>
+</li>
+</ol>
+
 
                 <hr>
 
                 
 
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2018/02/10/ECMAScript-6-Primer-II/" data-toggle="tooltip" data-placement="top" title="ECMAScript-6-Primer-II">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
@@ -227,6 +286,10 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#ECMAScript" title="ECMAScript">ECMAScript</a>
+                        
                     </div>
                 </section>
                 
