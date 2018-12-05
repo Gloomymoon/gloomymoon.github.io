@@ -13,11 +13,11 @@
 
     <title>
         
-          About - Master Gloomymoon&#39;s R2D2
+          Build Your Own CodeCombat Server - Master Gloomymoon&#39;s R2D2
         
     </title>
 
-    <link rel="canonical" href="http://gloomymoon.github.io/about/">
+    <link rel="canonical" href="http://gloomymoon.github.io/2018/12/05/Build-Your-Own-CodeCombat-Server/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -148,204 +148,167 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/overwatch.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/overwatch_s.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is Gloomymoon.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#CodeCombat" title="CodeCombat">CodeCombat</a>
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                    </div>
+                    <h1>Build Your Own CodeCombat Server</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2018-12-05
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="搭建私人CodeCombat服务器"><a href="#搭建私人CodeCombat服务器" class="headerlink" title="搭建私人CodeCombat服务器"></a>搭建私人CodeCombat服务器</h1><p>著名的CodeCombat网站已经被网易收购，其GitHub上的代码已经变为非完全开源，虽然网易版本的大部分内容仍然可以免费使用，但是I’dont like it。</p>
+<h2 id="获取docker"><a href="#获取docker" class="headerlink" title="获取docker"></a>获取docker</h2><p>利用好心人提供的docker镜像能够快速实现搭建自己的私服，这里推荐两个：</p>
+<ul>
+<li><a href="https://hub.docker.com/r/operepo/ope-codecombat/" target="_blank" rel="external">operepo/ope-codecombat</a></li>
+</ul>
+<p>直接在Docker Quickstart Terminal中执行：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>docker pull operepo/ope-codecombat</div></pre></td></tr></table></figure></p>
+<ul>
+<li>链接：<a href="https://pan.baidu.com/s/1jJOBP7w" target="_blank" rel="external">https://pan.baidu.com/s/1jJOBP7w</a>  密码：<code>pwxu</code></li>
+</ul>
+<blockquote>
+<p>来源：<a href="https://blog.csdn.net/qq775121173/article/details/79088018" target="_blank" rel="external">codecombat 搭建私服过程(基于docker)</a></p>
+</blockquote>
+<p>下载下来之后是一个<code>codecombat_v2.iso</code>文件，可以通过如下命令导入：<br><figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker <span class="keyword">import</span> codecombat_v2.iso codecombat2</div></pre></td></tr></table></figure></p>
+<p>后续命令是基于该docker的操作。</p>
+<h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><figure class="highlight dns"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker run -itd --name codecombatTest -p <span class="number">0.0.0.0</span>:<span class="number">3000:3000</span> -p <span class="number">0.0.0.0</span>:<span class="number">35729:35729</span> codecombat2</div></pre></td></tr></table></figure>
+<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker <span class="literal">start</span> codecombatTest</div></pre></td></tr></table></figure>
+<h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker exec -<span class="keyword">it</span> codecombatTest /bin/bash</div></pre></td></tr></table></figure>
+<h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ service mongodb <span class="built_in">start</span></div><div class="line">$ <span class="built_in">cd</span> /home/kunmanxuan/codecombat/codecombatSetupPackage/codecombat</div><div class="line">$ npm <span class="built_in">start</span></div></pre></td></tr></table></figure>
+<p>当出现下述画面时服务启动成功：<br><img src="https://img-blog.csdnimg.cn/20181031174642329.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxNzc1MTIxMTcz,size_16,color_FFFFFF,t_70" alt=""></p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>如果需要编译请执行：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm <span class="keyword">run</span><span class="bash"> dev</span></div></pre></td></tr></table></figure></p>
+<h2 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h2><p><code>http://localhost:3000</code></p>
+<p>Let’s start to play!</p>
+
+
+                <hr>
 
                 
 
-<!-- Chinese Version -->
-<div class="zh post-container">
-    
-</div>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/04/01/ECMAScript-6-Primer-IV/" data-toggle="tooltip" data-placement="top" title="ECMAScript-6-Primer-IV">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
-
-
-
-
-
-
-
-
-
-
-                <!-- 如果开启评论功能 -->
                 
-                    <hr>
-
-                    
-
-                    
-
-
-                    
-
-                    
-
-
 
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                       
+                          <a class="tag" href="/tags/#CodeCombat" title="CodeCombat">CodeCombat</a>
                         
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Python" title="Python" rel="22">Python</a>
-                            
-                        
-                            
-                            <a href="/tags/#Lego" title="Lego" rel="3">Lego</a>
-                            
-                        
-                            
-                            <a href="/tags/#Scrapy" title="Scrapy" rel="2">Scrapy</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#JavaScript" title="JavaScript" rel="6">JavaScript</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#ECMAScript" title="ECMAScript" rel="4">ECMAScript</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Kaggle" title="Kaggle" rel="2">Kaggle</a>
-                            
-                        
-                            
-                            <a href="/tags/#Machine Learning" title="Machine Learning" rel="9">Machine Learning</a>
-                            
-                        
-                            
-                            <a href="/tags/#scikit-learn" title="scikit-learn" rel="6">scikit-learn</a>
-                            
-                        
-                            
-                            <a href="/tags/#Data Analysis" title="Data Analysis" rel="7">Data Analysis</a>
-                            
-                        
-                            
-                            <a href="/tags/#pandas" title="pandas" rel="6">pandas</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
                     </div>
                 </section>
                 
-
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.jpg" />
-                        
-
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/Gloomymoon">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-
-                            
-                        </ul>
-                    </div>
-                </section>
 
                 <!-- Friends Blog -->
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
