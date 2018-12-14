@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword"  content="">
+    <meta name="keyword" content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -98,14 +98,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -156,10 +156,11 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/overwatch_s.jpg')
+        background-image: url('/img/overwatch_s.jpg');
+        
     }
 </style>
-<header class="intro-header" >
+<header class="intro-header">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -197,23 +198,23 @@
                 <h1 id="搭建私人CodeCombat服务器"><a href="#搭建私人CodeCombat服务器" class="headerlink" title="搭建私人CodeCombat服务器"></a>搭建私人CodeCombat服务器</h1><p>著名的CodeCombat网站已经被网易收购，其GitHub上的代码已经变为非完全开源，虽然网易版本的大部分内容仍然可以免费使用，但是I’dont like it。</p>
 <h2 id="获取docker"><a href="#获取docker" class="headerlink" title="获取docker"></a>获取docker</h2><p>利用好心人提供的docker镜像能够快速实现搭建自己的私服，这里推荐两个：</p>
 <ul>
-<li><a href="https://hub.docker.com/r/operepo/ope-codecombat/" target="_blank" rel="external">operepo/ope-codecombat</a></li>
+<li><a href="https://hub.docker.com/r/operepo/ope-codecombat/" target="_blank" rel="noopener">operepo/ope-codecombat</a></li>
 </ul>
-<p>直接在Docker Quickstart Terminal中执行：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>docker pull operepo/ope-codecombat</div></pre></td></tr></table></figure></p>
+<p>直接在Docker Quickstart Terminal中执行：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>docker pull operepo/ope-codecombat</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li>链接：<a href="https://pan.baidu.com/s/1jJOBP7w" target="_blank" rel="external">https://pan.baidu.com/s/1jJOBP7w</a>  密码：<code>pwxu</code></li>
+<li>链接：<a href="https://pan.baidu.com/s/1jJOBP7w" target="_blank" rel="noopener">https://pan.baidu.com/s/1jJOBP7w</a>  密码：<code>pwxu</code></li>
 </ul>
 <blockquote>
-<p>来源：<a href="https://blog.csdn.net/qq775121173/article/details/79088018" target="_blank" rel="external">codecombat 搭建私服过程(基于docker)</a></p>
+<p>来源：<a href="https://blog.csdn.net/qq775121173/article/details/79088018" target="_blank" rel="noopener">codecombat 搭建私服过程(基于docker)</a></p>
 </blockquote>
-<p>下载下来之后是一个<code>codecombat_v2.iso</code>文件，可以通过如下命令导入：<br><figure class="highlight elm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker <span class="keyword">import</span> codecombat_v2.iso codecombat2</div></pre></td></tr></table></figure></p>
+<p>下载下来之后是一个<code>codecombat_v2.iso</code>文件，可以通过如下命令导入：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>docker <span class="keyword">import</span> codecombat_v2.iso codecombat2</span><br></pre></td></tr></table></figure></p>
 <p>后续命令是基于该docker的操作。</p>
-<h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><figure class="highlight dns"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker run -itd --name codecombatTest -p <span class="number">0.0.0.0</span>:<span class="number">3000:3000</span> -p <span class="number">0.0.0.0</span>:<span class="number">35729:35729</span> codecombat2</div></pre></td></tr></table></figure>
-<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker <span class="literal">start</span> codecombatTest</div></pre></td></tr></table></figure>
-<h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker exec -<span class="keyword">it</span> codecombatTest /bin/bash</div></pre></td></tr></table></figure>
-<h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>service mongodb start</div><div class="line"><span class="variable">$ </span>su kunmanxuan</div><div class="line"><span class="variable">$ </span>cd /home/kunmanxuan/codecombat/codecombatSetupPackage/codecombat</div><div class="line"><span class="variable">$ </span>npm start</div></pre></td></tr></table></figure>
+<h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -itd --name codecombatTest -p <span class="number">0.0.0.0</span>:<span class="number">3000:3000</span> -p <span class="number">0.0.0.0</span>:<span class="number">35729:35729</span> codecombat2</span><br></pre></td></tr></table></figure>
+<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="literal">start</span> codecombatTest</span><br></pre></td></tr></table></figure>
+<h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker <span class="built_in">exec</span> -it codecombatTest /bin/bash</span></span><br></pre></td></tr></table></figure>
+<h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$<span class="built_in"> service </span>mongodb start</span><br><span class="line">$ su kunmanxuan</span><br><span class="line">$ cd /home/kunmanxuan/codecombat/codecombatSetupPackage/codecombat</span><br><span class="line">$ npm start</span><br></pre></td></tr></table></figure>
 <p>当出现下述画面时服务启动成功：<br><img src="https://img-blog.csdnimg.cn/20181031174642329.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxNzc1MTIxMTcz,size_16,color_FFFFFF,t_70" alt=""></p>
-<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>如果需要编译请执行：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm <span class="keyword">run</span><span class="bash"> dev</span></div></pre></td></tr></table></figure></p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>如果需要编译请执行：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="keyword">run</span><span class="bash"> dev</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h2><p><code>http://localhost:3000</code></p>
 <p>Let’s start to play!</p>
 
@@ -225,7 +226,7 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2018/12/14/The-Queen-of-the-Flattops/" data-toggle="tooltip" data-placement="top" title="The Queen of the Flattops">&larr; Previous Post</a>
+                            <a href="/2018/12/14/The-Queen-of-the-Flattops/" data-toggle="tooltip" data-placement="top" title="The Queen of the Flattops, USS Lexington CV-2">&larr; Previous Post</a>
                         </li>
                     
                     
@@ -332,7 +333,7 @@
 
                 
                     <li>
-                        <a target="_blank"  href="https://github.com/Gloomymoon">
+                        <a target="_blank" href="https://github.com/Gloomymoon">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -352,10 +353,7 @@
                         <i class="fa fa-heart"></i>
                     </span>
                     Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
-                    <iframe
-                        style="margin-left: 2px; margin-bottom:-5px;"
-                        frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
                     </iframe>
                 </p>
             </div>

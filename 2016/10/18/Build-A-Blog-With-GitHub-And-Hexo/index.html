@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword"  content="">
+    <meta name="keyword" content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -98,14 +98,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -156,10 +156,11 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/overwatch_s.jpg')
+        background-image: url('/img/overwatch_s.jpg');
+        
     }
 </style>
-<header class="intro-header" >
+<header class="intro-header">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -196,8 +197,8 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>第一篇肯定是关于如何搭建一个基于<a href="https://github.com" target="_blank" rel="external">GitHub</a>的Blog。<br>主要的过程都是通过网络搜索获得，使用的主题也是简单挑选的一个Hexo主题<a href="https://github.com/Huxpro/huxpro.github.io" target="_blank" rel="external">HuxBlog</a>。</p>
-<h2 id="1-开发环境"><a href="#1-开发环境" class="headerlink" title="1. 开发环境"></a>1. 开发环境</h2><h3 id="1-1-安装Git"><a href="#1-1-安装Git" class="headerlink" title="1.1 安装Git"></a>1.1 安装Git</h3><p>从<a href="https://git-scm.com" target="_blank" rel="external">Git</a>的官网下载最新的版本，我下载的是<a href="https://github.com/git-for-windows/git/releases/download/v2.10.1.windows.1/Git-2.10.1-64-bit.exe" target="_blank" rel="external">Git for Windows 64-bit</a>版本，你可以从<a href="https://git-scm.com/downloads" target="_blank" rel="external">下载页面</a>获取其他系统和版本。</p>
+                <p>第一篇肯定是关于如何搭建一个基于<a href="https://github.com" target="_blank" rel="noopener">GitHub</a>的Blog。<br>主要的过程都是通过网络搜索获得，使用的主题也是简单挑选的一个Hexo主题<a href="https://github.com/Huxpro/huxpro.github.io" target="_blank" rel="noopener">HuxBlog</a>。</p>
+<h2 id="1-开发环境"><a href="#1-开发环境" class="headerlink" title="1. 开发环境"></a>1. 开发环境</h2><h3 id="1-1-安装Git"><a href="#1-1-安装Git" class="headerlink" title="1.1 安装Git"></a>1.1 安装Git</h3><p>从<a href="https://git-scm.com" target="_blank" rel="noopener">Git</a>的官网下载最新的版本，我下载的是<a href="https://github.com/git-for-windows/git/releases/download/v2.10.1.windows.1/Git-2.10.1-64-bit.exe" target="_blank" rel="noopener">Git for Windows 64-bit</a>版本，你可以从<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">下载页面</a>获取其他系统和版本。</p>
 <p>安装时的注意事项：</p>
 <ul>
 <li>使用默认选项：<em>Use git from Windows Command Prompt</em>，如果你担心污染PATH变量，也可以选择：<em>Use Git from Git Bash only</em></li>
@@ -205,12 +206,12 @@
 <li>使用默认选项：<em>Checkout Windows-style, commit Unix-style line endings</em></li>
 <li>如果不需要使用IPython，使用默认选项：<em>Use MinTTY</em></li>
 </ul>
-<h3 id="1-2-安装node-js"><a href="#1-2-安装node-js" class="headerlink" title="1.2 安装node.js"></a>1.2 安装node.js</h3><p>从<a href="https://nodejs.org" target="_blank" rel="external">nodejs</a>官网下载最新的版本，我下载的是<a href="https://nodejs.org/dist/v4.6.0/node-v4.6.0-x64.msi" target="_blank" rel="external">nodejs for Windows(x64) v4.6.0 LTS</a>，你可以从<a href="https://nodejs.org/en/download/" target="_blank" rel="external">下载页面</a>获取其他系统和版本。<br>nodejs安装相对简单，保持默认选项即可。</p>
+<h3 id="1-2-安装node-js"><a href="#1-2-安装node-js" class="headerlink" title="1.2 安装node.js"></a>1.2 安装node.js</h3><p>从<a href="https://nodejs.org" target="_blank" rel="noopener">nodejs</a>官网下载最新的版本，我下载的是<a href="https://nodejs.org/dist/v4.6.0/node-v4.6.0-x64.msi" target="_blank" rel="noopener">nodejs for Windows(x64) v4.6.0 LTS</a>，你可以从<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">下载页面</a>获取其他系统和版本。<br>nodejs安装相对简单，保持默认选项即可。</p>
 <h3 id="1-3-代码编辑软件"><a href="#1-3-代码编辑软件" class="headerlink" title="1.3 代码编辑软件"></a>1.3 代码编辑软件</h3><p>如果你从来没有写过代码，并且希望享受代码编写的了却，那需要一个比记事本更强大友好的代码编辑软件，下面是一些推荐：</p>
 <ul>
-<li><a href="https://atom.io/" target="_blank" rel="external">Atom</a></li>
-<li><a href="http://www.sublimetext.com/" target="_blank" rel="external">Sublime Text</a></li>
-<li><a href="https://code.visualstudio.com/" target="_blank" rel="external">Visual Studio Code</a></li>
+<li><a href="https://atom.io/" target="_blank" rel="noopener">Atom</a></li>
+<li><a href="http://www.sublimetext.com/" target="_blank" rel="noopener">Sublime Text</a></li>
+<li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a></li>
 <li>Notepad++或UltraEdit</li>
 </ul>
 <h2 id="2-GitHub"><a href="#2-GitHub" class="headerlink" title="2 GitHub"></a>2 GitHub</h2><h3 id="2-1-注册GitHub"><a href="#2-1-注册GitHub" class="headerlink" title="2.1 注册GitHub"></a>2.1 注册GitHub</h3><p>因为最终Blog的内容是要发布在GitHub上的，所以肯定需要注册一个GitHub账号，直接访问官网申请注册即可，GitHub的普通账号是免费的，使用上稍有限制，但是不影响搭建一个完整的Blog。</p>
@@ -219,8 +220,8 @@
 <p>配置SSH-Key的过程有些繁琐：</p>
 <h4 id="Step-1-生成一个新的SSH-key"><a href="#Step-1-生成一个新的SSH-key" class="headerlink" title="Step 1 生成一个新的SSH key"></a>Step 1 生成一个新的SSH key</h4><ol>
 <li>进入Git Bash，如果你不知道如何进入Git Bash，可以右键点击资源管理器中的任意目录，选择Git Bash Here</li>
-<li><p>输入如下命令，注意将your_email@example.com替换成你注册GitHub的邮件地址：</p>
-<figure class="highlight smalltalk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">$ </span>ssh-keygen -t rsa -b <span class="number">4096</span> -<span class="type">C</span> <span class="comment">"your-email@example.com"</span></div></pre></td></tr></table></figure>
+<li><p>输入如下命令，注意将<a href="mailto:your_email@example.com" target="_blank" rel="noopener">your_email@example.com</a>替换成你注册GitHub的邮件地址：</p>
+<figure class="highlight smalltalk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$ </span>ssh-keygen -t rsa -b <span class="number">4096</span> -<span class="type">C</span> <span class="comment">"your-email@example.com"</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>你会看到如下提示：</p>
 <blockquote>
@@ -242,19 +243,19 @@
 </ol>
 <h4 id="Step-2-将SSH-key添加到ssh-agent"><a href="#Step-2-将SSH-key添加到ssh-agent" class="headerlink" title="Step 2 将SSH key添加到ssh-agent"></a>Step 2 将SSH key添加到ssh-agent</h4><ol>
 <li><p>首先确保ssh-agent启用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">eval</span> <span class="string">"<span class="variable">$(ssh-agent -s)</span>"</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">eval</span> <span class="string">"<span class="variable">$(ssh-agent -s)</span>"</span></span></span><br></pre></td></tr></table></figure>
 <p>如果返回如下则表示ssh-agent已经启用</p>
 <blockquote>
 <p>Agent pid 59566</p>
 </blockquote>
 <p>如果使用的不是Git Bash请尝试如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">eval</span> $(ssh-agent <span class="_">-s</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>eval <span class="variable">$(</span>ssh-agent -s)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>添加新的SSH key<br>将之前的生成的id_rsa文件添加到ssh-agent中：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-<span class="keyword">add</span><span class="bash"> ~/.ssh/id_rsa</span></div></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-<span class="keyword">add</span><span class="bash"> ~/.ssh/id_rsa</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>输入下述命令检查添加是否成功：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">ls</span> -<span class="keyword">al</span> ~/.ssh</div></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">ls</span> -al ~<span class="string">/.ssh</span></span><br></pre></td></tr></table></figure>
 <p>通常情况下将会列出之前添加的key：</p>
 <blockquote>
 <p>id_rsa.pub</p>
@@ -263,7 +264,7 @@
 </ol>
 <h4 id="Step-3-将SSH-key添加到GitHub账户中"><a href="#Step-3-将SSH-key添加到GitHub账户中" class="headerlink" title="Step 3 将SSH key添加到GitHub账户中"></a>Step 3 将SSH key添加到GitHub账户中</h4><ol>
 <li><p>将SSH key复制到剪贴板中：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>clip &lt; ~<span class="regexp">/.ssh/id</span>_rsa.pub</div></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>clip &lt; ~<span class="regexp">/.ssh/id</span>_rsa.pub</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>登录GitHub，在点击左上角头像，并选择Settings菜单选项：<br><img src="https://help.github.com/assets/images/help/settings/userbar-account-settings.png" alt=""></p>
 </li>
@@ -274,37 +275,37 @@
 <li>如果必要的话，在弹出对话框中输入GitHub密码确认：<br><img src="https://help.github.com/assets/images/help/settings/sudo_mode_popup.png" alt=""></li>
 </ol>
 <h2 id="3-安装Hexo"><a href="#3-安装Hexo" class="headerlink" title="3 安装Hexo"></a>3 安装Hexo</h2><h3 id="3-1-安装Hexo"><a href="#3-1-安装Hexo" class="headerlink" title="3.1 安装Hexo"></a>3.1 安装Hexo</h3><ol>
-<li>打开Git命令行，执行如下命令：<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm <span class="keyword">install</span> -g hexo</div></pre></td></tr></table></figure>
+<li>打开Git命令行，执行如下命令：<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="keyword">install</span> -g hexo</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="3-2-Quick-Start"><a href="#3-2-Quick-Start" class="headerlink" title="3.2 Quick Start"></a>3.2 Quick Start</h3><ol>
 <li><p>Setup your Blog<br>在电脑中新建一个文件夹并命名为Hexo，例如我建在F:\Workspace\nodejs\Hexo下，然后爱此文件夹点击右键进入Git Bash<br>执行如下命令以获取Hexo所需要的源文件：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>hexo init</div></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo init</span><br></pre></td></tr></table></figure>
 <p>系统会提示：</p>
 <blockquote>
 <p>[info] Copying data<br>[info] You are almost done! Don’t forget to run <code>npm install</code> before you start blogging with Hexo!</p>
 </blockquote>
 <p>根据提示运行会在Hexo目录下安装所需要的node_mdules：</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm <span class="keyword">install</span></div></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Start Server<br>直接运行：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>hexo s</div></pre></td></tr></table></figure>
-<p>系统提示如下则表明Hexo Server已经启动，直接在浏览器访问<a href="http://localhost:4000就可以访问并查看效果" target="_blank" rel="external">http://localhost:4000就可以访问并查看效果</a></p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo s</span><br></pre></td></tr></table></figure>
+<p>系统提示如下则表明Hexo Server已经启动，直接在浏览器访问<a href="http://localhost:4000就可以访问并查看效果" target="_blank" rel="noopener">http://localhost:4000就可以访问并查看效果</a></p>
 <blockquote>
-<p>[info] Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>. Press Ctrl+C to stop.</p>
+<p>[info] Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>. Press Ctrl+C to stop.</p>
 </blockquote>
 <p>但是这个时候blog还是运行在本地服务器上，我们还需要部署到GitHub上</p>
 </li>
 <li><p>发布到GitHub<br>首先需要修改Hexo目录下的_config.yml文件，找到如下内容：</p>
 <blockquote>
-<p># Deployment<br>## Docs: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">http://hexo.io/docs/deployment.html</a><br>deploy:<br>  type:</p>
+<p># Deployment<br>## Docs: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="noopener">http://hexo.io/docs/deployment.html</a><br>deploy:<br>  type:</p>
 </blockquote>
 <p>替换成如下内容，注意将your_user_name替换成你的GitHub用户名：</p>
 <blockquote>
-<p># Deployment<br>## Docs: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">http://hexo.io/docs/deployment.html</a><br>deploy:<br>  type: github<br>  repo: git@github.com:<strong>your_user_name</strong>/<strong>your_user_name</strong>.github.io.git<br>  branch: master</p>
+<p># Deployment<br>## Docs: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="noopener">http://hexo.io/docs/deployment.html</a><br>deploy:<br>  type: github<br>  repo: <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:<strong>your_user_name</strong>/<strong>your_user_name</strong>.github.io.git<br>  branch: master</p>
 </blockquote>
 <p>然后在Git Bash中运行：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>hexo d -g</div></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo d -g</span><br></pre></td></tr></table></figure>
 <p>系统将生成静态页面，并部署到GitHub服务器上</p>
 </li>
 <li><p>验证结果<br>访问<a href="**your_user_name**.github.io"><strong>your_user_name</strong>.github.io</a>，正常显示网页则表明部署成功。<br>至此，一个新的Blog搭建完成。后续再逐步介绍如何编写文章、更换主题、进行个性化配置和添加插件等。</p>
@@ -429,7 +430,7 @@
 
                 
                     <li>
-                        <a target="_blank"  href="https://github.com/Gloomymoon">
+                        <a target="_blank" href="https://github.com/Gloomymoon">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -449,10 +450,7 @@
                         <i class="fa fa-heart"></i>
                     </span>
                     Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
-                    <iframe
-                        style="margin-left: 2px; margin-bottom:-5px;"
-                        frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
                     </iframe>
                 </p>
             </div>

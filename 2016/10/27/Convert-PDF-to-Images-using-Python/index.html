@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword"  content="">
+    <meta name="keyword" content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -98,14 +98,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -156,10 +156,11 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/overwatch_s.jpg')
+        background-image: url('/img/overwatch_s.jpg');
+        
     }
 </style>
-<header class="intro-header" >
+<header class="intro-header">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -192,13 +193,13 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="1-Install-GhostScript"><a href="#1-Install-GhostScript" class="headerlink" title="1 Install GhostScript"></a>1 Install GhostScript</h2><p>从<a href="http://ghostscript.com/" target="_blank" rel="external">GhostScript</a>官网下载<a href="https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs920/gs920w32.exe" target="_blank" rel="external">Ghostscript 9.20 for Windows(32bit)安装包</a>，注意即便是64位的系统也请安装32位。安装完成后将<strong>%安装目录\bin</strong>加入到系统Path环境变量，如果使用默认安装的话，则添加：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C:<span class="symbol">\P</span>rogram Files (x86)<span class="symbol">\g</span>s<span class="symbol">\g</span>s9.20<span class="symbol">\b</span>in</div></pre></td></tr></table></figure></p>
-<h2 id="2-Install-ImageMagick"><a href="#2-Install-ImageMagick" class="headerlink" title="2 Install ImageMagick"></a>2 Install ImageMagick</h2><p>从<a href="http://www.imagemagick.org/" target="_blank" rel="external">ImageMagick</a>官网下载<a href="http://www.imagemagick.org/download/binaries/ImageMagick-6.9.6-2-Q16-x86-dll.exe" target="_blank" rel="external">ImageMagick 6.9.6-2-Q16-x86 windows 32-bit安装包</a>，安装时请选中 <strong>Install development headers and libraries for C and C++</strong> 选项：<br><img src="http://docs.wand-py.org/en/latest/_images/windows-setup.png" alt=""><br>安装完之后需要在系统变量里新增<strong>MAGICK_HOME</strong>环境变量，设为ImageMagic安装的路径，如使用默认安装的话，则添加：<br><code>C:\Program Files (x86)\ImageMagick-6.9.6-Q16</code><br>同时也需要将该目录加入系统Path环境变量。</p>
-<h2 id="3-Install-PythonMagic"><a href="#3-Install-PythonMagic" class="headerlink" title="3 Install PythonMagic"></a>3 Install PythonMagic</h2><p>从<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs" target="_blank" rel="external">Unofficial WIndows Binaries for Python Extension Packages</a>页面下载与编译好的<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/dp2ng7en/PythonMagick-0.9.10-cp27-none-win32.whl" target="_blank" rel="external">PythonMagic whl包</a>，然后使用pip install安装，不要直接使用easy_install或pip通过在线下载安装。</p>
-<h2 id="4-Check-if-your-setup-works"><a href="#4-Check-if-your-setup-works" class="headerlink" title="4 Check if your setup works"></a>4 Check if your setup works</h2><p>进入命令行，在含有pdf（例如some.pdf文件的目录下输入：<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">convert</span> <span class="built_in">some</span>.pdf <span class="built_in">some</span>.jpg</div></pre></td></tr></table></figure></p>
+                <h2 id="1-Install-GhostScript"><a href="#1-Install-GhostScript" class="headerlink" title="1 Install GhostScript"></a>1 Install GhostScript</h2><p>从<a href="http://ghostscript.com/" target="_blank" rel="noopener">GhostScript</a>官网下载<a href="https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs920/gs920w32.exe" target="_blank" rel="noopener">Ghostscript 9.20 for Windows(32bit)安装包</a>，注意即便是64位的系统也请安装32位。安装完成后将<strong>%安装目录\bin</strong>加入到系统Path环境变量，如果使用默认安装的话，则添加：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="symbol">\P</span>rogram Files (x86)<span class="symbol">\g</span>s<span class="symbol">\g</span>s9.20<span class="symbol">\b</span>in</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-Install-ImageMagick"><a href="#2-Install-ImageMagick" class="headerlink" title="2 Install ImageMagick"></a>2 Install ImageMagick</h2><p>从<a href="http://www.imagemagick.org/" target="_blank" rel="noopener">ImageMagick</a>官网下载<a href="http://www.imagemagick.org/download/binaries/ImageMagick-6.9.6-2-Q16-x86-dll.exe" target="_blank" rel="noopener">ImageMagick 6.9.6-2-Q16-x86 windows 32-bit安装包</a>，安装时请选中 <strong>Install development headers and libraries for C and C++</strong> 选项：<br><img src="http://docs.wand-py.org/en/latest/_images/windows-setup.png" alt=""><br>安装完之后需要在系统变量里新增<strong>MAGICK_HOME</strong>环境变量，设为ImageMagic安装的路径，如使用默认安装的话，则添加：<br><code>C:\Program Files (x86)\ImageMagick-6.9.6-Q16</code><br>同时也需要将该目录加入系统Path环境变量。</p>
+<h2 id="3-Install-PythonMagic"><a href="#3-Install-PythonMagic" class="headerlink" title="3 Install PythonMagic"></a>3 Install PythonMagic</h2><p>从<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs" target="_blank" rel="noopener">Unofficial WIndows Binaries for Python Extension Packages</a>页面下载与编译好的<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/dp2ng7en/PythonMagick-0.9.10-cp27-none-win32.whl" target="_blank" rel="noopener">PythonMagic whl包</a>，然后使用pip install安装，不要直接使用easy_install或pip通过在线下载安装。</p>
+<h2 id="4-Check-if-your-setup-works"><a href="#4-Check-if-your-setup-works" class="headerlink" title="4 Check if your setup works"></a>4 Check if your setup works</h2><p>进入命令行，在含有pdf（例如some.pdf文件的目录下输入：<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">convert</span> <span class="built_in">some</span>.pdf <span class="built_in">some</span>.jpg</span><br></pre></td></tr></table></figure></p>
 <p>如果能够成功看到some.jpg文件生成（若pdf有多页，则会看到some-0.jpg, some-1.jpg…），若报错或者没有图片文件生成，则说前面1～3步安装有问题。</p>
-<h2 id="5-Convert-PDF-to-Images-using-Python"><a href="#5-Convert-PDF-to-Images-using-Python" class="headerlink" title="5 Convert PDF to Images using Python"></a>5 Convert PDF to Images using Python</h2><p>在Python中可以直接使用如下代码进行转化：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PythonMagick <span class="keyword">import</span> Image</div><div class="line">image = Image()</div><div class="line">image.read(<span class="string">r"C:\Path\To\Some.pdf"</span>)</div><div class="line">image.write(<span class="string">"some.jpg"</span>)</div></pre></td></tr></table></figure></p>
-<p>若PDF文件有多页，可以使用如下代码（需在安装pyPdf）：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line">from pyPdf <span class="keyword">import</span> PdfFileReader, PdfFileWriter</div><div class="line">from tempfile <span class="keyword">import</span> NamedTemporaryFile</div><div class="line">from PythonMagick <span class="keyword">import</span> Image</div><div class="line"></div><div class="line">reader = PdfFileReader(open(<span class="string">"C:\Path\To\Some.pdf"</span>, <span class="string">"rb"</span>))</div><div class="line"><span class="keyword">for</span> page_num in xrange(reader.getNumPages()):</div><div class="line">    writer = PdfFileWriter()</div><div class="line">    writer.addPage(reader.getPage(page_num))</div><div class="line">    temp = NamedTemporaryFile(prefix=str(page_num), suffix=<span class="string">".pdf"</span>, delete=False)</div><div class="line">    writer.write(temp)</div><div class="line">    temp.close()</div><div class="line"></div><div class="line">    im = Image()</div><div class="line">    im.density(<span class="string">"300"</span>) # DPI, <span class="keyword">for</span> better quality</div><div class="line">    im.read(temp.name)</div><div class="line">    im.write(<span class="string">"some_%d.png"</span> % (page_num))</div><div class="line"></div><div class="line">    os.remove(temp.name)</div></pre></td></tr></table></figure></p>
+<h2 id="5-Convert-PDF-to-Images-using-Python"><a href="#5-Convert-PDF-to-Images-using-Python" class="headerlink" title="5 Convert PDF to Images using Python"></a>5 Convert PDF to Images using Python</h2><p>在Python中可以直接使用如下代码进行转化：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PythonMagick <span class="keyword">import</span> Image</span><br><span class="line">image = Image()</span><br><span class="line">image.read(<span class="string">r"C:\Path\To\Some.pdf"</span>)</span><br><span class="line">image.write(<span class="string">"some.jpg"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>若PDF文件有多页，可以使用如下代码（需在安装pyPdf）：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line"><span class="keyword">from</span> pyPdf import PdfFileReader, PdfFileWriter</span><br><span class="line"><span class="keyword">from</span> tempfile import NamedTemporaryFile</span><br><span class="line"><span class="keyword">from</span> PythonMagick import Image</span><br><span class="line"></span><br><span class="line">reader = PdfFileReader(open(<span class="string">"C:\Path\To\Some.pdf"</span>, <span class="string">"rb"</span>))</span><br><span class="line"><span class="keyword">for</span> page_num <span class="keyword">in</span> xrange(reader.getNumPages()):</span><br><span class="line">    writer = PdfFileWriter()</span><br><span class="line">    writer.addPage(reader.getPage(page_num))</span><br><span class="line">    temp = NamedTemporaryFile(<span class="attribute">prefix</span>=str(page_num), <span class="attribute">suffix</span>=<span class="string">".pdf"</span>, <span class="attribute">delete</span>=<span class="literal">False</span>)</span><br><span class="line">    writer.write(temp)</span><br><span class="line">    temp.close()</span><br><span class="line"></span><br><span class="line">    im = Image()</span><br><span class="line">    im.density(<span class="string">"300"</span>) # DPI, <span class="keyword">for</span> better quality</span><br><span class="line">    im.read(temp.name)</span><br><span class="line">    im.write(<span class="string">"some_%d.png"</span> % (page_num))</span><br><span class="line"></span><br><span class="line">    os.<span class="builtin-name">remove</span>(temp.name)</span><br></pre></td></tr></table></figure></p>
 <p>然后便可以快乐地将爬到的70+G乐高图纸转成图片进行分析了:p</p>
 
 
@@ -314,7 +315,7 @@
 
                 
                     <li>
-                        <a target="_blank"  href="https://github.com/Gloomymoon">
+                        <a target="_blank" href="https://github.com/Gloomymoon">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -334,10 +335,7 @@
                         <i class="fa fa-heart"></i>
                     </span>
                     Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
-                    <iframe
-                        style="margin-left: 2px; margin-bottom:-5px;"
-                        frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
                     </iframe>
                 </p>
             </div>

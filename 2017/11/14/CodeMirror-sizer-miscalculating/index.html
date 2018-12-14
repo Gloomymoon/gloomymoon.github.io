@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword"  content="">
+    <meta name="keyword" content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -98,14 +98,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -156,10 +156,11 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/overwatch_s.jpg')
+        background-image: url('/img/overwatch_s.jpg');
+        
     }
 </style>
-<header class="intro-header" >
+<header class="intro-header">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -194,7 +195,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="CodeMirror-sizer-miscalculating"><a href="#CodeMirror-sizer-miscalculating" class="headerlink" title="CodeMirror sizer miscalculating"></a>CodeMirror sizer miscalculating</h1><p><a href="http://codemirror.net" target="_blank" rel="external">CodeMirror</a>是一个用JavaScript实现的Web端代码编辑器，支持多种编程语言，提供许多高级编辑功能插件。丰富的API接口和CSS主题样式能够很好地满足应用开发的需要。</p>
+                <h1 id="CodeMirror-sizer-miscalculating"><a href="#CodeMirror-sizer-miscalculating" class="headerlink" title="CodeMirror sizer miscalculating"></a>CodeMirror sizer miscalculating</h1><p><a href="http://codemirror.net" target="_blank" rel="noopener">CodeMirror</a>是一个用JavaScript实现的Web端代码编辑器，支持多种编程语言，提供许多高级编辑功能插件。丰富的API接口和CSS主题样式能够很好地满足应用开发的需要。</p>
 <p>主要功能：</p>
 <ul>
 <li>支持超过100种编程语言</li>
@@ -208,10 +209,10 @@
 <li>支持分窗试图</li>
 <li>集成错误代码提示（Linter integration）<br>……</li>
 </ul>
-<h4 id="Q-如何使用Java语法高亮模式"><a href="#Q-如何使用Java语法高亮模式" class="headerlink" title="Q: 如何使用Java语法高亮模式"></a>Q: 如何使用Java语法高亮模式</h4><p>A: 首先需要在项目中引入<code>\mode\clike\</code>目录，加载<code>\mode\clike\clike.js</code>，并且在初始化时添加<code>mode: &quot;text/x-java&quot;</code>参数。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> editor = CodeMirror.fromTextArea(<span class="built_in">document</span>.getElementById(<span class="string">"editor"</span>), &#123;</div><div class="line">        mode: <span class="string">"text/x-java"</span>,</div><div class="line">        lineNumbers: <span class="keyword">true</span></div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
+<h4 id="Q-如何使用Java语法高亮模式"><a href="#Q-如何使用Java语法高亮模式" class="headerlink" title="Q: 如何使用Java语法高亮模式"></a>Q: 如何使用Java语法高亮模式</h4><p>A: 首先需要在项目中引入<code>\mode\clike\</code>目录，加载<code>\mode\clike\clike.js</code>，并且在初始化时添加<code>mode: &quot;text/x-java&quot;</code>参数。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> editor = CodeMirror.fromTextArea(<span class="built_in">document</span>.getElementById(<span class="string">"editor"</span>), &#123;</span><br><span class="line">        mode: <span class="string">"text/x-java"</span>,</span><br><span class="line">        lineNumbers: <span class="keyword">true</span></span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></p>
 <h4 id="Q-当代码行数小于10时，sizer没有正确起作用"><a href="#Q-当代码行数小于10时，sizer没有正确起作用" class="headerlink" title="Q: 当代码行数小于10时，sizer没有正确起作用"></a>Q: 当代码行数小于10时，sizer没有正确起作用</h4><p><img src="/img/CodeMirrorSizerMiscalculating_01.png" alt=""><br>超过10行时变为正常<br><img src="/img/CodeMirrorSizerMiscalculating_02.png" alt=""></p>
-<p>A: 该问题在github上有对应的issue：<a href="https://github.com/codemirror/CodeMirror/issues/3527" target="_blank" rel="external">Code mirror sizer miscalculating gutter width if doc has less than 10 lines #3527</a></p>
-<p>解决方案是加载自动更新组件，添加自动更新参数。首先在项目中引入并加载<code>\addon\display\autorefresh.js</code>，然后在初始化时添加<code>autoRefresh: true</code>参数：<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> editor = CodeMirror.fromTextArea(<span class="built_in">document</span>.getElementById(<span class="string">"editor"</span>), &#123;</div><div class="line">        mode: <span class="string">"text/x-java"</span>,</div><div class="line">        lineNumbers: <span class="keyword">true</span>,</div><div class="line">        autoRefresh: <span class="keyword">true</span></div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
+<p>A: 该问题在github上有对应的issue：<a href="https://github.com/codemirror/CodeMirror/issues/3527" target="_blank" rel="noopener">Code mirror sizer miscalculating gutter width if doc has less than 10 lines #3527</a></p>
+<p>解决方案是加载自动更新组件，添加自动更新参数。首先在项目中引入并加载<code>\addon\display\autorefresh.js</code>，然后在初始化时添加<code>autoRefresh: true</code>参数：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">var</span> <span class="string">editor</span> <span class="string">=</span> <span class="string">CodeMirror.fromTextArea(document.getElementById("editor"),</span> <span class="string">&#123;</span></span><br><span class="line"><span class="attr">        mode:</span> <span class="string">"text/x-java"</span><span class="string">,</span></span><br><span class="line"><span class="attr">        lineNumbers:</span> <span class="literal">true</span><span class="string">,</span></span><br><span class="line"><span class="attr">        autoRefresh:</span> <span class="literal">true</span></span><br><span class="line">    <span class="string">&#125;);</span></span><br></pre></td></tr></table></figure></p>
 <p>如果在页面多次隐藏CodeMirror编辑器后再次出现该问题时，可以在每次显示时手动<code>refresh</code>或<code>focus</code>一下。</p>
 
 
@@ -329,7 +330,7 @@
 
                 
                     <li>
-                        <a target="_blank"  href="https://github.com/Gloomymoon">
+                        <a target="_blank" href="https://github.com/Gloomymoon">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -349,10 +350,7 @@
                         <i class="fa fa-heart"></i>
                     </span>
                     Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
-                    <iframe
-                        style="margin-left: 2px; margin-bottom:-5px;"
-                        frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
                     </iframe>
                 </p>
             </div>

@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword"  content="">
+    <meta name="keyword" content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -98,14 +98,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -156,10 +156,11 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/overwatch_s.jpg')
+        background-image: url('/img/overwatch_s.jpg');
+        
     }
 </style>
-<header class="intro-header" >
+<header class="intro-header">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -200,26 +201,26 @@
 <p>对于大部分字符串操作应用而言，python内置的字符串对象方法已经能够满足要求，例如<code>split</code>拆分、<code>strip</code>修剪空白符、<code>+</code>号连接字符串、<code>join</code>连接列表或元组、<code>in, index, find</code>方法定位子串、<code>count</code>方法返回子串出现次数、<code>replace</code>方法实现模式替换等等。</p>
 <p><strong>正则表达式</strong></p>
 <p>Python内置的<code>re</code>模块负责对字符串应用正则表达式，<code>re</code>模块的函数可以分为三类：模式匹配、替换以及拆分。一个<code>regex</code>描绘了需要在文本中定位的一个模式，例如标会一个或多个空白符的<code>regex</code>是<code>\s+</code>，为了便于重用，可以用<code>re.compile</code>编译一个<code>regex</code>对象。下面是<code>regex</code>的一些用法说明：</p>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import re</div><div class="line">regex = re.compile(<span class="comment">'\s+\') # 编译一个可重用的regex对象</span></div><div class="line">regex.split(<span class="keyword">text</span>) <span class="meta"># 对text字符串按照regex进行拆分，获得一个拆分后的数组</span></div><div class="line">regex.findall(<span class="keyword">text</span>) <span class="meta"># 获取text中匹配regex的所有模式，也是一个数组</span></div><div class="line">regex.search(<span class="keyword">text</span>) <span class="meta"># 返回第一个匹配的模式，返回匹配的开始和结束位置</span></div><div class="line">regex.match(<span class="keyword">text</span>) <span class="meta"># 只匹配text字符串首部的模式</span></div><div class="line">regex.<span class="keyword">sub</span>(replacement, <span class="keyword">text</span>) <span class="meta"># 将text中匹配到的模式替换为replacement</span></div></pre></td></tr></table></figure>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">regex = re.compile(<span class="comment">'\s+\') # 编译一个可重用的regex对象</span></span><br><span class="line">regex.split(<span class="keyword">text</span>) <span class="meta"># 对text字符串按照regex进行拆分，获得一个拆分后的数组</span></span><br><span class="line">regex.findall(<span class="keyword">text</span>) <span class="meta"># 获取text中匹配regex的所有模式，也是一个数组</span></span><br><span class="line">regex.search(<span class="keyword">text</span>) <span class="meta"># 返回第一个匹配的模式，返回匹配的开始和结束位置</span></span><br><span class="line">regex.match(<span class="keyword">text</span>) <span class="meta"># 只匹配text字符串首部的模式</span></span><br><span class="line">regex.<span class="keyword">sub</span>(replacement, <span class="keyword">text</span>) <span class="meta"># 将text中匹配到的模式替换为replacement</span></span><br></pre></td></tr></table></figure>
 <p>另外如果不仅要找到匹配的模式，还想将模式分段输出，可以将模式待分段的各部分用圆括号包起来。</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">pattern = <span class="string">r'([A-Z0-9._%+-]+)@([A-Z0-9.-]+)\.([A-Z]&#123;2,4&#125;)'</span></div><div class="line"><span class="comment"># re.IGNORECASE makes the regex case-insensitive</span></div><div class="line">regex = re.compile(pattern, flags=re.IGNORECASE)</div><div class="line">m = regex.match(<span class="string">'wesm@bright.net'</span>)</div><div class="line">m.groups()</div></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pattern = <span class="string">r'([A-Z0-9._%+-]+)@([A-Z0-9.-]+)\.([A-Z]&#123;2,4&#125;)'</span></span><br><span class="line"><span class="comment"># re.IGNORECASE makes the regex case-insensitive</span></span><br><span class="line">regex = re.compile(pattern, flags=re.IGNORECASE)</span><br><span class="line">m = regex.match(<span class="string">'wesm@bright.net'</span>)</span><br><span class="line">m.groups()</span><br></pre></td></tr></table></figure>
 <p>Output:</p>
-<figure class="highlight scheme"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="symbol">'wesm</span>', <span class="symbol">'bright</span>', <span class="symbol">'net</span>')</div></pre></td></tr></table></figure>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="symbol">'wesm</span>', <span class="symbol">'bright</span>', <span class="symbol">'net</span>')</span><br></pre></td></tr></table></figure>
 <p>对于带有分组功能的模式，<code>findall</code>会返回一个元组列表。</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">regex = re.compile(<span class="string">r"""</span></div><div class="line">    (?P&lt;username&gt;[A-Z0-9._%+-]+)</div><div class="line">    @</div><div class="line">    (?P&lt;domain&gt;[A-Z0-9.-]+)</div><div class="line">    \.</div><div class="line">    (?P&lt;suffix&gt;[A-Z]&#123;2,4&#125;)""", flags=re.IGNORECASE|re.VERBOSE)</div><div class="line">m = regex.match(<span class="string">'wesm@bright.net'</span>)</div><div class="line">m.groupdict()</div></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">regex = re.compile(<span class="string">r"""</span></span><br><span class="line"><span class="string">    (?P&lt;username&gt;[A-Z0-9._%+-]+)</span></span><br><span class="line"><span class="string">    @</span></span><br><span class="line"><span class="string">    (?P&lt;domain&gt;[A-Z0-9.-]+)</span></span><br><span class="line"><span class="string">    \.</span></span><br><span class="line"><span class="string">    (?P&lt;suffix&gt;[A-Z]&#123;2,4&#125;)"""</span>, flags=re.IGNORECASE|re.VERBOSE)</span><br><span class="line">m = regex.match(<span class="string">'wesm@bright.net'</span>)</span><br><span class="line">m.groupdict()</span><br></pre></td></tr></table></figure>
 <p>Output:</p>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="string">'domain'</span>: <span class="string">'bright'</span>, <span class="string">'suffix'</span>: <span class="string">'net'</span>, <span class="string">'username'</span>: <span class="string">'wesm'</span>&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">'domain'</span>: <span class="string">'bright'</span>, <span class="string">'suffix'</span>: <span class="string">'net'</span>, <span class="string">'username'</span>: <span class="string">'wesm'</span>&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>pandas中矢量化的字符串函数</strong></p>
 <p>回到数据清理工作中，在分析前常常要做一些字符串规整化工作，包括处理缺失数据。</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">data</span> = &#123;'<span class="type">Dave</span>': '<span class="title">dave</span>@<span class="title">google</span>.<span class="title">com'</span>, '<span class="type">Steve</span>': '<span class="title">steve</span>@<span class="title">gmail</span>.<span class="title">com'</span>,</span></div><div class="line">        '<span class="type">Rob</span>': '<span class="title">rob</span>@<span class="title">gmail</span>.<span class="title">com'</span>, '<span class="type">Wes</span>': <span class="title">np</span>.<span class="title">nan</span>&#125;</div><div class="line"><span class="class"><span class="keyword">data</span> = <span class="type">Series</span>(<span class="title">data</span>)</span></div></pre></td></tr></table></figure>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> = &#123;'<span class="type">Dave</span>': '<span class="title">dave</span>@<span class="title">google</span>.<span class="title">com'</span>, '<span class="type">Steve</span>': '<span class="title">steve</span>@<span class="title">gmail</span>.<span class="title">com'</span>,</span></span><br><span class="line"><span class="class">        '<span class="type">Rob</span>': '<span class="title">rob</span>@<span class="title">gmail</span>.<span class="title">com'</span>, '<span class="type">Wes</span>': <span class="title">np</span>.<span class="title">nan</span>&#125;</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> = <span class="type">Series</span>(<span class="title">data</span>)</span></span><br></pre></td></tr></table></figure>
 <p>虽然所有的字符串和正则表达式方法都能通过<code>data.map</code>方法应用于各个值，但是如果存在上述数据中的NA就会报错。为了解决这个问题，Series提供了一些能够跳过NA值的字符串操作方法。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">data<span class="selector-class">.str</span><span class="selector-class">.contains</span>(<span class="string">'gmail'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data<span class="selector-class">.str</span><span class="selector-class">.contains</span>(<span class="string">'gmail'</span>)</span><br></pre></td></tr></table></figure>
 <p>Output:</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Dave     <span class="literal">False</span></div><div class="line">Rob       <span class="literal">True</span></div><div class="line">Steve     <span class="literal">True</span></div><div class="line">Wes        NaN</div><div class="line"><span class="attr">dtype:</span> object</div></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">Dave</span>     <span class="literal">False</span></span><br><span class="line"><span class="string">Rob</span>       <span class="literal">True</span></span><br><span class="line"><span class="string">Steve</span>     <span class="literal">True</span></span><br><span class="line"><span class="string">Wes</span>        <span class="string">NaN</span></span><br><span class="line"><span class="attr">dtype:</span> <span class="string">object</span></span><br></pre></td></tr></table></figure>
 <p>同样支持增则表达式和相应的<code>re</code>选项。</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">matches</span> = <span class="class"><span class="keyword">data</span>.str.match(<span class="title">pattern</span>, <span class="title">flags</span>=<span class="title">re</span>.<span class="type">IGNORECASE</span>)</span></div><div class="line"><span class="title">matches</span></div></pre></td></tr></table></figure>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">matches</span> = <span class="class"><span class="keyword">data</span>.str.match(<span class="title">pattern</span>, <span class="title">flags</span>=<span class="title">re</span>.<span class="type">IGNORECASE</span>)</span></span><br><span class="line"><span class="title">matches</span></span><br></pre></td></tr></table></figure>
 <p>Output:</p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Dave     (dave, google, <span class="keyword">com</span>)</div><div class="line">Rob        (rob, gmail, <span class="keyword">com</span>)</div><div class="line">Steve    (steve, gmail, <span class="keyword">com</span>)</div><div class="line">Wes                      NaN</div><div class="line"><span class="symbol">dtype:</span> object</div></pre></td></tr></table></figure>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Dave     (dave, google, <span class="keyword">com</span>)</span><br><span class="line">Rob        (rob, gmail, <span class="keyword">com</span>)</span><br><span class="line">Steve    (steve, gmail, <span class="keyword">com</span>)</span><br><span class="line">Wes                      NaN</span><br><span class="line"><span class="symbol">dtype:</span> object</span><br></pre></td></tr></table></figure>
 
 
                 <hr>
@@ -338,7 +339,7 @@
 
                 
                     <li>
-                        <a target="_blank"  href="https://github.com/Gloomymoon">
+                        <a target="_blank" href="https://github.com/Gloomymoon">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -358,10 +359,7 @@
                         <i class="fa fa-heart"></i>
                     </span>
                     Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
-                    <iframe
-                        style="margin-left: 2px; margin-bottom:-5px;"
-                        frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
                     </iframe>
                 </p>
             </div>

@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword"  content="">
+    <meta name="keyword" content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
@@ -98,14 +98,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -156,10 +156,11 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/overwatch_s.jpg')
+        background-image: url('/img/overwatch_s.jpg');
+        
     }
 </style>
-<header class="intro-header" >
+<header class="intro-header">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -195,14 +196,14 @@
                 post-container">
 
                 <h2 id="1-安装PostgreSQL"><a href="#1-安装PostgreSQL" class="headerlink" title="1 安装PostgreSQL"></a>1 安装PostgreSQL</h2><p>从官网下载windows install，直接安装，默认用户为postgres，密码一定需要设置。<br>在pgAdmin中新建数据库StudiousPrime</p>
-<h2 id="2-安装Python驱动"><a href="#2-安装Python驱动" class="headerlink" title="2 安装Python驱动"></a>2 安装Python驱动</h2><p>从<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#psycopg" target="_blank" rel="external">Unofficial Windows Binaries for Python Extension Packages
+<h2 id="2-安装Python驱动"><a href="#2-安装Python驱动" class="headerlink" title="2 安装Python驱动"></a>2 安装Python驱动</h2><p>从<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#psycopg" target="_blank" rel="noopener">Unofficial Windows Binaries for Python Extension Packages
 </a>下载预编译好的<code>psycopg2-2.6.2-cp27-cp27m-win32.whl</code>包，通过<code>pip</code>安装。</p>
-<p>正常情况下安装成功（windows server 2008 64bit、Python 2.7.10 32bi、非virtualenv、已预装PostgreSQL）<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Processing</span> <span class="selector-tag">d</span>:\<span class="selector-tag">tools</span>\<span class="selector-tag">python</span>\<span class="selector-tag">psycopg2-2</span><span class="selector-class">.6</span><span class="selector-class">.2-cp27-cp27m-win32</span><span class="selector-class">.whl</span></div><div class="line"><span class="selector-tag">Installing</span> <span class="selector-tag">collected</span> <span class="selector-tag">packages</span>: <span class="selector-tag">psycopg2</span></div><div class="line"><span class="selector-tag">Successfully</span> <span class="selector-tag">installed</span> <span class="selector-tag">psycopg2-2</span><span class="selector-class">.6</span><span class="selector-class">.2</span></div></pre></td></tr></table></figure></p>
+<p>正常情况下安装成功（windows server 2008 64bit、Python 2.7.10 32bi、非virtualenv、已预装PostgreSQL）<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Processing</span> <span class="selector-tag">d</span>:\<span class="selector-tag">tools</span>\<span class="selector-tag">python</span>\<span class="selector-tag">psycopg2-2</span><span class="selector-class">.6</span><span class="selector-class">.2-cp27-cp27m-win32</span><span class="selector-class">.whl</span></span><br><span class="line"><span class="selector-tag">Installing</span> <span class="selector-tag">collected</span> <span class="selector-tag">packages</span>: <span class="selector-tag">psycopg2</span></span><br><span class="line"><span class="selector-tag">Successfully</span> <span class="selector-tag">installed</span> <span class="selector-tag">psycopg2-2</span><span class="selector-class">.6</span><span class="selector-class">.2</span></span><br></pre></td></tr></table></figure></p>
 <p>但是在开发笔记本（windows 7 32bit、Python 2.7.9 32bit、virtualenv环境）上安装出现如下错误：<code>UnsupportedWheel: psycopg2-2.6.2-cp27-cp27m-win32.whl is not a supported wheel on this platform.</code></p>
-<p>开始怀疑是没有安装PostgreSQL，但是安装完后依然出现上述错误。<br>通过搜索后，从<a href="http://www.stickpeople.com/projects/python/win-psycopg/" target="_blank" rel="external">http://www.stickpeople.com/projects/python/win-psycopg/</a>下载<code>psycopg2-2.6.2.win32-py2.7-pg9.5.3-release.exe</code>，然后使用easy_install安装成功。也可以使用<a href="https://github.com/nwcell/psycopg2-windows" target="_blank" rel="external">https://github.com/nwcell/psycopg2-windows</a>介绍的方式使用pip在virtualenv下安装。</p>
-<h2 id="3-配置Flask"><a href="#3-配置Flask" class="headerlink" title="3 配置Flask"></a>3 配置Flask</h2><p>在<code>config.py</code>中，将<code>SQLALCHEMY_DATABASE_URI</code>修改为PostgreSQL的地址，替换其中的<code>username</code>（默认为postgres）和<code>password</code>，<code>host</code>为数据库IP或域名。：<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">postgresql:</span><span class="comment">//username:password@host/StudiousPrime</span></div></pre></td></tr></table></figure></p>
-<p>Flask重启后，连接数据库出现如下错误：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">org<span class="selector-class">.postgresql</span><span class="selector-class">.util</span><span class="selector-class">.PSQLException</span>: FATAL: no pg_hba<span class="selector-class">.conf</span> entry <span class="keyword">for</span> host</div></pre></td></tr></table></figure></p>
-<p>搜索问题后发现是因为PostgreSQL数据库为了安全，默认只会监听本地的连接请求，而我是访问服务器上的数据库。要解决这个问题，需要在服务器端PostgreSQL安装目录下找到<code>\data\pg_hba.conf</code>文件，打开找到其中<code># IPv4 local connections:</code>段，添加请求连接机器的IP。<br><figure class="highlight q"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># IPv4 local connections:</div><div class="line">host    <span class="built_in">all</span>             <span class="built_in">all</span>             <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>/<span class="number">32</span>            <span class="built_in">md5</span></div><div class="line">host    <span class="built_in">all</span>             <span class="built_in">all</span>             请求连接机器的IP/<span class="number">32</span>        <span class="built_in">md5</span></div></pre></td></tr></table></figure></p>
+<p>开始怀疑是没有安装PostgreSQL，但是安装完后依然出现上述错误。<br>通过搜索后，从<a href="http://www.stickpeople.com/projects/python/win-psycopg/" target="_blank" rel="noopener">http://www.stickpeople.com/projects/python/win-psycopg/</a>下载<code>psycopg2-2.6.2.win32-py2.7-pg9.5.3-release.exe</code>，然后使用easy_install安装成功。也可以使用<a href="https://github.com/nwcell/psycopg2-windows" target="_blank" rel="noopener">https://github.com/nwcell/psycopg2-windows</a>介绍的方式使用pip在virtualenv下安装。</p>
+<h2 id="3-配置Flask"><a href="#3-配置Flask" class="headerlink" title="3 配置Flask"></a>3 配置Flask</h2><p>在<code>config.py</code>中，将<code>SQLALCHEMY_DATABASE_URI</code>修改为PostgreSQL的地址，替换其中的<code>username</code>（默认为postgres）和<code>password</code>，<code>host</code>为数据库IP或域名。：<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">postgresql:</span><span class="comment">//username:password@host/StudiousPrime</span></span><br></pre></td></tr></table></figure></p>
+<p>Flask重启后，连接数据库出现如下错误：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org<span class="selector-class">.postgresql</span><span class="selector-class">.util</span><span class="selector-class">.PSQLException</span>: FATAL: no pg_hba<span class="selector-class">.conf</span> entry <span class="keyword">for</span> host</span><br></pre></td></tr></table></figure></p>
+<p>搜索问题后发现是因为PostgreSQL数据库为了安全，默认只会监听本地的连接请求，而我是访问服务器上的数据库。要解决这个问题，需要在服务器端PostgreSQL安装目录下找到<code>\data\pg_hba.conf</code>文件，打开找到其中<code># IPv4 local connections:</code>段，添加请求连接机器的IP。<br><figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># IPv4 local connections:</span><br><span class="line">host    <span class="built_in">all</span>             <span class="built_in">all</span>             <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>/<span class="number">32</span>            <span class="built_in">md5</span></span><br><span class="line">host    <span class="built_in">all</span>             <span class="built_in">all</span>             请求连接机器的IP/<span class="number">32</span>        <span class="built_in">md5</span></span><br></pre></td></tr></table></figure></p>
 <p>在pgAdmin中<code>Reload Configuration</code>后，客户端就能顺利连接服务器上数据库了，剩下的工作就和SQLite一样交给SQLAlchemy就好。</p>
 
 
@@ -320,7 +321,7 @@
 
                 
                     <li>
-                        <a target="_blank"  href="https://github.com/Gloomymoon">
+                        <a target="_blank" href="https://github.com/Gloomymoon">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -340,10 +341,7 @@
                         <i class="fa fa-heart"></i>
                     </span>
                     Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
-                    <iframe
-                        style="margin-left: 2px; margin-bottom:-5px;"
-                        frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
                     </iframe>
                 </p>
             </div>
