@@ -98,14 +98,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -211,7 +211,7 @@
 <h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><figure class="highlight dns"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker run -itd --name codecombatTest -p <span class="number">0.0.0.0</span>:<span class="number">3000:3000</span> -p <span class="number">0.0.0.0</span>:<span class="number">35729:35729</span> codecombat2</div></pre></td></tr></table></figure>
 <h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker <span class="literal">start</span> codecombatTest</div></pre></td></tr></table></figure>
 <h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker exec -<span class="keyword">it</span> codecombatTest /bin/bash</div></pre></td></tr></table></figure>
-<h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ service mongodb <span class="built_in">start</span></div><div class="line">$ <span class="built_in">cd</span> /home/kunmanxuan/codecombat/codecombatSetupPackage/codecombat</div><div class="line">$ npm <span class="built_in">start</span></div></pre></td></tr></table></figure>
+<h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>service mongodb start</div><div class="line"><span class="variable">$ </span>su kunmanxuan</div><div class="line"><span class="variable">$ </span>cd /home/kunmanxuan/codecombat/codecombatSetupPackage/codecombat</div><div class="line"><span class="variable">$ </span>npm start</div></pre></td></tr></table></figure>
 <p>当出现下述画面时服务启动成功：<br><img src="https://img-blog.csdnimg.cn/20181031174642329.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxNzc1MTIxMTcz,size_16,color_FFFFFF,t_70" alt=""></p>
 <h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>如果需要编译请执行：<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm <span class="keyword">run</span><span class="bash"> dev</span></div></pre></td></tr></table></figure></p>
 <h2 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h2><p><code>http://localhost:3000</code></p>
@@ -223,6 +223,10 @@
                 
 
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2018/12/14/The-Queen-of-the-Flattops/" data-toggle="tooltip" data-placement="top" title="The Queen of the Flattops">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">

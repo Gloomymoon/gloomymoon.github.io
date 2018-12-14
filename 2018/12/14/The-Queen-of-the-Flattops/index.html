@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          The Queen of the Flattops - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2018/12/14/The-Queen-of-the-Flattops/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/overwatch_s.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Aircraft Carrier" title="Aircraft Carrier">Aircraft Carrier</a>
+                        
+                          <a class="tag" href="/tags/#Lexington" title="Lexington">Lexington</a>
+                        
+                          <a class="tag" href="/tags/#CV-2" title="CV-2">CV-2</a>
+                        
+                          <a class="tag" href="/tags/#World War II" title="World War II">World War II</a>
+                        
+                    </div>
+                    <h1>The Queen of the Flattops</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2018-12-14
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="The-Queen-of-the-Flattops-USS-Lexington-CV-2"><a href="#The-Queen-of-the-Flattops-USS-Lexington-CV-2" class="headerlink" title="The Queen of the Flattops, USS Lexington CV-2"></a>The Queen of the Flattops, USS Lexington CV-2</h1><h2 id="0-引言"><a href="#0-引言" class="headerlink" title="0 引言"></a>0 引言</h2><p>USS Lexington CV-2, “Lady Lex”, The Queen of the Flattops. </p>
+<p>列克星敦级首舰列克星敦号（以下称Lexington），蓝星最强海军（第二强空军）的第一艘正规航空母舰<sup><span id="a1"><a href="#fn1">[1]</a></span></sup>，二战结束前都是世界上最大的航母之一，是少有的在缺乏经验时建（改）造而没有出现重大设计失误的大型舰（说的就是你赤城），拥有全通式飞行甲板、侧舷舰岛式独立上层建筑和烟囱、封闭式舰艏和机库、高航速、大载机量的特征都是现代航母的标准。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/USS_Lexington_%28CV-2%29_leaving_San_Diego_on_14_October_1941_%2880-G-416362%29.jpg/800px-USS_Lexington_%28CV-2%29_leaving_San_Diego_on_14_October_1941_%2880-G-416362%29.jpg"></p>
+<p><strong><center>USS Lexington CV-2，摄于1941年10月14日</center></strong></p>
+<p>Lexington于1921年1月8日在昆西市霍河造船厂铺设龙骨，1925年10月3日下水，1927年12月14日服役，编入太平洋舰队。1942年5月8日在珊瑚海海战中遭受日军攻击，因航空油气泄漏引发大爆炸而严重受损，为避免被日军俘获，最终由驱逐舰雷击处分沉没于南纬15.23，西经155.30，同年6月24日正式除籍。2018年3月4日，其残骸被保罗·艾伦的打捞团队发现。</p>
+<h2 id="1-孕育：坎坷之路"><a href="#1-孕育：坎坷之路" class="headerlink" title="1 孕育：坎坷之路"></a>1 孕育：坎坷之路</h2><p>起初，列克星敦级被设计为装有8门16英寸（406毫米，和依阿华级同口径）主炮、排水量45,500吨、最高航速33节的一级大型战列巡洋舰<sup><span id="a2"><a href="#fn2">[2]</a></span></sup>。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Lexington_class_battlecruiser2.jpg/800px-Lexington_class_battlecruiser2.jpg"></p>
+<p><img src="https://tse3.mm.bing.net/th?id=OIP.FkFU34C0fxbicduxVmSQSwHaDS&pid=Api"></p>
+<p><strong><center>最终定型的1919年型战列巡洋舰列克星敦级</center></strong></p>
+<p>战列巡洋舰作为20世纪初各国海军的新宠，最早代表是英国在1908年建成的“无敌”级（Invincible Class），拥有不逊于战列舰的火力和巡洋舰的航速，“作为高速战舰，既可以在海战中抢夺有利阵位，又可以在海战之后追歼撒退的敌军”（——温斯顿·丘吉尔）。在1916年日德兰海战中，皇家海军的战巡凭借高速压制对方战巡，使本方获得情报优势，最找将德军舰队引入T字阵位并击败之，但是该役中共有4艘战巡被击沉而战列舰无一战沉也暴露了其防护上的不足。</p>
+<p>美国海军内部关于战巡在海战中的定位与英国人的认识大致相同，但是一直持有这种高速战舰是否会在未来海战中发挥重要作用的怀疑，因预算不足、技术限制以及各层人士的反对，美国一直没有开建高速战舰，只是不断巩固更新各级“铁乌龟”。直到1915年“战略问题1号”实战演习中发现，在恶劣的海况下小型的驱逐舰无法完成舰队侦察任务，己方主力舰即便拥有优势火力也无法将敌人引入决战。在大量演习经验和兵棋推演总结的基础上，美国人认可了战巡在战术和战略上具有的重要价值，面对大西洋上的德国战巡和太平洋上新兴的IJN，若以舰队决战为基础，都需要装备高速大型侦查舰和战舰。侦查能力也成为了争夺广阔大洋上制海权的关键。</p>
+<p>日德兰海战的结果促使美国国会批准了《1916年海军法案》，允许海军新建造10艘战列舰和6艘战列巡洋舰，后者即是列克星敦级战列巡洋舰（CC-1到CC-6）<sup><span id="a3"><a href="#fn3">[3]</a></span></sup>。不久后美国参加第一次世界大战，直到1920年～1921年，6艘战巡才相继动工，比英国晚了整整12年。在此期间，为了满足海军对航速和防护的要求，设计方案屡次修改，最终方案是类似胡德号（HMS Hood）的一艘大型快速重炮战舰，即1919年型。</p>
+<p>没想到2年后国际政治风云变幻，一纸条约宣告了美国战巡梦的彻底破灭<sup><span id="a4"><a href="#fn4">[4]</a></span></sup>。</p>
+<h2 id="2-重生：殊途同归"><a href="#2-重生：殊途同归" class="headerlink" title="2 重生：殊途同归"></a>2 重生：殊途同归</h2><p>1922年2月6日，美、英、法、意、日五个海军强国（注意没有德国）在华盛顿签订《限制海军军备条约》（又称《华盛顿海军条约》，限制各国主力舰和航空母舰的总吨位数比例和火炮口径，除了条约允许的之外，不得再新建排水量超过10,000吨、火炮口径超过203毫米的主力舰。美国保留了两艘建造中的西弗杰尼亚级战列舰，列克星敦级战巡的建造计划不得不全部取消，为其提供掩护和辅助力量的新一批驱逐领舰的建造也受到波及没有实施。而之前时任助理海军部长，后来的美国总统富兰克林·罗斯福提议的将战列巡洋舰改造为航母的方案得到美国海军的支持，并在组建了海军航空局的莫菲特将军的影响下，挽救了这两艘战列巡洋舰。由于列克星敦级不在规定废弃名单中，在条约许可新建2艘不超过33,000吨航母的情况下（在条约失效前，美国一直都没有用足条约限定的航母总吨位），建造进度最快的Lexington（已完成33.8%<sup><span id="a5"><a href="#fn5">[5]</a></span></sup>）和Saratoga（已完成35.4%）被改造为航空母舰，其他姊妹舰Constellaion、Consitution、Ranger、United States被迫取消并在船厂解体。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/7/76/USS_Lexington_%28CV-2%29_on_building_ways%2C_1925.jpg"></p>
+<p><strong><center>1925年，在船台上改建的Lexington航空母舰</center></strong></p>
+<p>这是一个合理而且正确的决定，从计划开建CC-1到CC-6战巡的目的来看，改建成航母的Lexington和Saratoga（CV-3，”Sis Sara”）的定位并未改变，即与巡洋舰组成快速机动舰队，执行侦查和牵制敌军主力舰队的任务，（可能的话）利用舰载机实现先期打击，舰队决战仍然依赖于传统的战列舰。这两艘最初的航空母舰也为海军部的各类设想提供了实验的平台，随着航空技术的发展，航空母舰逐步具备赋予战巡的预想战术、战略执行能力，海军航空力量的战术价值不断被挖掘、提升，对战争的影响力远远超出预期。从事后诸葛亮的角度来看，尽管当时舰载航空兵存在各种限制和不足，但已经极大地改变了海战中侦查行动的进行方式，水上舰载机已经体现出高于传统侦查舰只的效率和效能，许多战列舰都配备了水上飞机观测炮弹落点协助校正。马上，舰载机更会展现出远超战列舰火力的强大杀伤力。</p>
+<p>珍珠港事件后太平洋舰队的战列舰队元气大伤，幸存的几艘航空母舰在狂澜将至之时挺身而出与强大的IJN机动部队进行惨烈的对撞，支撑着美军渡过了战争初期的困难年代，并重夺西太平洋的制海权，不意间也改变了整个海战的模式。如果珍珠港事件后，面对IJN强大的一、二、五航战的是6艘战巡，其作用完全无法与2艘正规航母相比，更会因为在前期缺少航母战术的演习经验，无法以少胜多再现中途岛大捷，大大延长太平战争甚至整个二战的进程。美国在战巡上交了很少的学费，就马上踏入了正确的航母之道。</p>
+<p><img src="http://i.ebayimg.com/images/i/351959917983-0-1/s-l1000.jpg" width="800px"></p>
+<p><strong><center>正在舾装的Lexington</center></strong></p>
+<blockquote>
+<p>美国海军的战巡是不幸的，美国海军是幸运的。</p>
+</blockquote>
+<h2 id="3-设计：严谨优秀"><a href="#3-设计：严谨优秀" class="headerlink" title="3 设计：严谨优秀"></a>3 设计：严谨优秀</h2><p>USS Lexington在1921年作为战巡（CC-1）开建，次年《华盛顿海军条约》签订生效，Lexington于7月1日被下令改建为航空母舰（CV-2），原设计的4座双/三联装16英寸主炮、装甲、弹药库和533毫米鱼雷等被移除，为了符合条约要求排水量降低了8,500吨。Lexington防护装甲与巡洋舰相当，舰侧装甲被保留，而甲板装甲则被强化，其中主装甲带79～127毫米，机库甲板50毫米，机舱上部76～114毫米。龙骨的大体结构以及水下防护并未更改，保留了优美的流线型舰身，为了使战舰不易沉没，总计设有600多个单独水密隔舱。Lexington的飞行甲板长268米，宽26~27米，平均吃水7.3米，标准排水量36,000吨（条约允许增加3,000吨的防雷部，实际排水量49,000吨），满载排水量38,746吨（实际50,000吨）。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/USS_Lexington_%28CV-2%29_underway%2C_cicra_1928_%28NNAM.2001.205.067%29.jpg/800px-USS_Lexington_%28CV-2%29_underway%2C_cicra_1928_%28NNAM.2001.205.067%29.jpg"></p>
+<p><strong><center>刚建成的Lexington，摄于1928年的</center></strong></p>
+<p>为了在受限的吨位下达到海军部要求的航速，Lexington采用了油电混动，16台巴布科克威尔考克斯式重油专烧锅炉推动4台先进的电动涡轮发电机，每台发电机每小时发电33,200千瓦，发电机组联接8台电机用电力驱动4个螺旋桨转动，每个螺旋桨大轴能得到45,000马力，总体输出功率达到了令人咋舌的18万马力（辽宁号的动力是20万马力，但是满载排水量有6万吨），是同时代战列舰产生动力的6倍，这套GE制造的先进动力系统虽然比同等的齿轮推进装置更大、更重也更贵，但是其带来的澎湃动力使设计航速高达33.25节（约合61.58公里/小时，对比赤城是31节，加贺是29节，辽宁号是29节），轻微过载可以输出20万9千马力，供Lexington以34.5节的速度连续航行一小时，大大超出了设计任务书的要求。有意思的是在1929年12月17日至1930年1月16日，应当地政府要求，Lexington停靠华盛顿州塔科马市，为该市21万居民提供了一个月电力，超过450万千瓦时，缓解因干旱原因造成的水电匮乏危机，可见其动力输出的强劲。Saratoga也曾在一次紧急情况中提供了超过400万千瓦时的电量。</p>
+<p><img src="http://www.researcheratlarge.com/Ships/CV2/Tacoma/CV-2_01.jpg" width="800px"></p>
+<p><strong><center>停靠在塔科马期间为市民提供电力的Lexington</center></strong></p>
+<p>列克星敦级最引人注目的特征就是其右舷巨大的岛式结构建筑，包括控制室、烟囱和炮塔。经过气流测试，利用高大的烟囱排放16个锅炉产生的废气，就不会影响飞机的起降，该设计被后续所有常规动力航母所采用。早期舰载机无法在夜间和恶劣天气情况下在航母上起降，因此在初期列克星敦级装备有4座双联装8英寸/55 Mk9主炮（203毫米，条约允许的最大口径，真正的载机巡洋舰，知道毛子和谁学的吧），岛式建筑的前方和后方各两座，呈背负式布置，主炮射程达2.8万码（25,592米），火力堪比重巡。这是早期航母在没有明确建造目标和战术理论支撑下必然的过度产物，IJN的赤城号也有同样的设计。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/USS_Lexington_%28CV-2%29_firing_203mm_guns_1928.jpg/800px-USS_Lexington_%28CV-2%29_firing_203mm_guns_1928.jpg"></p>
+<p><strong><center>Lexington后部203毫米主炮开火</center></strong></p>
+<p>Lexington还装备有12座单装5英寸高炮，和少数机枪。1942年3月，Lexington在改装中移除了这8门8英寸火炮，因为它们开火时产生的炮口风暴会严重影响起飞作业甚至损坏飞行甲板，移除的位置安装7座4联装1.1英寸高炮（包括之前改装的共计12座），另外又增加了22座厄利空22毫米机关炮。Lexington亦是美军首批装上CXAM-1型防空雷达的战舰。</p>
+<p><img src="http://www.modelwarships.com/reviews/books-plans/warship-pictorial/wp-33/lexington-06.jpg" width="800px"></p>
+<p><strong><center>战沉前的Lexington主要武备</center></strong></p>
+<p>由于采用了封闭式舰艏和单层机库，Lexington设计载机量只有78，最初配备了83架飞机：36架战斗机共2个中队，32架攻击机共2个中队，加上3架备机（或多用途飞机）。1925年，海军的第一位航空将军约瑟夫·里弗斯少将<sup><span id="a6"><a href="#fn6">[6]</a></span></sup>对他所指挥的两艘列克星敦级航母的载机量非常不满意，提出了载机量至上论和航母分工论，到1929年，这两艘航母通过甲板系留的方式塞进去120架飞机。二战前美国设计建造的航母除了列克星敦级以外全部采用开放式舰艏就是为了增加机库的面积。在搭载飞机的数量和飞机起降周期的速度方面，美国航母都要优于其他各国，里弗斯将军的不懈努力为美国航母具备的非凡能力奠定了坚实的基础。1931年，里弗斯离开海军航空部队并在两年后晋升为海军上将，1936年又成为美国海军总司令。</p>
+<p><img src="https://www.haborumuveszete.hu/file/news/52070/gallery/big/sdb-dauntless-zuhanobombazok-a-lexington-hangarjanak-mennyezete-ala-fuggesztve.jpg" width="800px"></p>
+<p><strong><center>Lexington内部高大的机库上方悬挂SBD无畏俯冲轰炸机</center></strong></p>
+<p>Lexington编制人员（包括飞行员）为：平时2,122人，战时2,951人。美国航空母舰一般配备一个标准舰载航空队，Lexington的航空队包括4个飞行中队，中队编号与舰号保持一致，分别为VF-2、VB-2、VT-2和VS-2。VF-2是战斗机中队，早期使用过双翼的格鲁曼F2F和布鲁斯特F2A水牛，1941年后全部换装为格鲁曼F4F野猫战斗机，中队一般配机18～22架。VB-2是轰炸机中队，VS-2是侦查轰炸机中队，各配备道格拉斯SBD-2/3无畏式俯冲轰炸机18架，由于轰炸机载重量大航程远，因此可以兼做侦查机用，必要时也可以挂弹执行攻击任务。VT-3是鱼雷机中队，配有道格拉斯TBD-1蹂躏者鱼雷机12架。舰载机和飞行中队的配置在实际中经常变化，尤其是作为早期海航战术探索先锋的Lexington和Saratoga。<sup><span id="a7"><a href="#fn7">[7]</a></span></sup></p>
+<p><img src="http://warfarehistorynetwork.com/wp-content/uploads/WQ-Lexington-Fall-1611.jpg" width="800px"></p>
+<p><strong><center>Lexington上的F4F野猫战斗机，从机身编号看应该是隶属于Saratoga的VF-3中队</center></strong></p>
+<p>Lexington由于建造时间较早没有普及空调，但是备有现代化的面包房，和面机和制饼机都是电动的，每个部门有单独的咖啡供应（这些咖啡壶被戏称为第十七号锅炉）。舰艏水线位置设有现代化的医院，设备齐全，能够在十分钟内接受500名伤员。另外还设有图书馆、服务社（小卖部），满足士兵的日常需要。这座巨大的移动仓库还负责为舰队的其他小型护航船只提供补给，从油料到松香一应俱全。<sup><span id="a8"><a href="#fn8">[8]</a></span></sup></p>
+<p>Lexington最大的不足在续航，续航力仅为10,000海里/10节，高速行驶下能够很快就耗完储备油料。由于右舷集中了烟囱舰桥等上层建筑，因此航空汽油舱、燃油舱和淡水舱都设计在左舷，用以抵消超重的右舷使军舰保持平衡，这也为之后左舷中雷后燃气泄漏埋下隐患。</p>
+<p>相对早期的IJN和RN，总体上列克星敦级航空母舰的设计是优秀的，这缘于其基于战巡平台的巨大尺寸和防护能力，以及美国对航空母舰的认识更先进更到位，因此该级战舰在20年后太平洋战争一爆发，仅进行较少改装就能马上投入战斗成为舰队的中坚力量，传奇的“Sis Sara”更是打满太平洋全场（虽然大部分时候都在修理厂）。</p>
+<h2 id="4-入役：海航先驱"><a href="#4-入役：海航先驱" class="headerlink" title="4 入役：海航先驱"></a>4 入役：海航先驱</h2><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/USS_Langley_%28CV-1%29%2C_USS_Lexington_%28CV-2%29_and_USS_Saratoga_%28CV-3%29_at_the_Puget_Sound_Naval_Shipyard%2C_in_1929_%28NNAM.1996.488.001.004%29.jpg/800px-USS_Langley_%28CV-1%29%2C_USS_Lexington_%28CV-2%29_and_USS_Saratoga_%28CV-3%29_at_the_Puget_Sound_Naval_Shipyard%2C_in_1929_%28NNAM.1996.488.001.004%29.jpg"></p>
+<p><strong><center>1929年停泊在普吉特湾的Langley CV-1（下）、Lexington CV-2（上）和Saratoga CV-3（中）</center></strong></p>
+<p>1928年4月7日，试航完成的Lexington在加州圣佩德罗被编入作战部队，并与姊妹舰Saratoga活跃在美国海军之中，参与的各项演习为美军提供了至关重要的航母使用经验，自列克星敦级服役后几乎历届“舰队问题”演习都有该级战舰的身影，例如著名的1929年第9次“舰队问题”演习。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/USS_Lexington_%28CV-2%29_steams_trough_smoke_screen%2C_February_1929.jpg/800px-USS_Lexington_%28CV-2%29_steams_trough_smoke_screen%2C_February_1929.jpg"></p>
+<p><strong><center>摄于1929年的舰问九后不久的Lexington</center></strong></p>
+<p>与1925年编入舰队的实验性航母Langley（CV-1）不同，Lexington和Saratoga的高航速使其完全具备了与主力舰队联合作战的能力。在第9次“舰队问题”演习中，扮演黑方的Saratoga与一条轻巡（USS Omaha）在里弗斯将军的带领下脱离主力从敌人意想不到的方向发动攻击，突袭编队在途中偶遇敌方轻巡（USS Detroit）并用8英寸火炮将其“击沉”，随后连夜向巴拿马运河挺进。次日Saratoga从距离运河大约140英里的位置一次性放出83架飞机，进攻的飞机未受任何阻挠，成功“摧毁”了连接太平洋的巴拿马运河的河道和机场，取得大胜。随后防守方的Lexington成功定位到放空飞机的Saratoga并对其发动进攻，Saratoga被判“击沉”。此次演习中由于防守方的岸基飞机误将Lexington当作Saratoga攻击，之后Saratoga的烟囱上刷上黑色条纹以示区别，这是区分两舰最简单的方式。</p>
+<p>更多有航空母舰参加的演习接踵而至，其中包括1930年在加勒比海域进行的两次：在3月的第10次舰问演习中，Lexington的舰载飞机“摧毁”了对手Saratoga和Langley及其所有舰载机，并在短时间内“摧毁”了几艘战列舰；随后一个月的第11次舰问演习，Saratoga对姐姐施以同样的回报。这两次演习表明空中打击对海上力量的削弱速度是如此惊人，演习结束后，军方决定把大型航空母舰的侦察机数量增加到18架。</p>
+<p>具有讽刺意味的是，在1932年2月7日的第4次联合大演习中，Lexington与Saratoga的舰载机群成功攻击并毁坏了被假定为目标的夏威夷珍珠港，而据说陆军的人员在被攻击之后向演习裁判组申诉，怀疑在星期天清晨发动攻击的合法性。随后的第13次舰问演习两舰再次被分开进行对抗，Lexington再次“重创”Saratoga，并“击沉”了两艘敌方的主力舰。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/USS_Saratoga_%28CV-3%29_and_USS_Lexington_%28CV-2%29_off_Diamond_Head_on_2_February_1933.jpg/800px-USS_Saratoga_%28CV-3%29_and_USS_Lexington_%28CV-2%29_off_Diamond_Head_on_2_February_1933.jpg"></p>
+<p><strong><center>1933年2月2日，Lexington（后）和Saratoga</center></strong></p>
+<p>1933年1月末，在第14次舰问演习前，海军和陆军联合模拟了一次航母攻击，Lexington和Saratoga再次成功“袭击”了珍珠港。值得一提的是1935年4到6月的第16次舰问演习，Lexington在经历了5天的高速航行后进行了海上补给，这在之后太平洋战争中被证明是非常重要的战术行动。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/USS_Ranger_%28CV-4%29%2C_USS_Lexington_%28CV-2%29_and_USS_Saratoga_%28CV-3%29_at_anchor_off_Honolulu_on_8_April_1938_%2880-G-410056%29.jpg/800px-USS_Ranger_%28CV-4%29%2C_USS_Lexington_%28CV-2%29_and_USS_Saratoga_%28CV-3%29_at_anchor_off_Honolulu_on_8_April_1938_%2880-G-410056%29.jpg"></p>
+<p><strong><center>1938年火奴鲁鲁锚地的Lexington（中）、Saratoga（后）和Ranger CV-4（前）</center></strong></p>
+<p>1937年的第18次舰问演习中，海军限制战列舰对Lexington的支援，结果显而易见，不受保护的航母无法独立面对水面舰只的火炮和鱼雷攻击。1938年的舰问再次测试了夏威夷港的防御，但是Lexington和她的妹妹不仅成功“袭击”了基地和路上设施，之后在未被发现的情况下“袭击”了三藩市。当时，美国海军舰队部署在加利福尼亚海岸，而珍珠港基地由美国陆军负责防御，海军领导几乎从未提及舰队在停泊时容易遭受攻击的弱点（也就是海军没有当回事）。1940年在第20次舰问演习中，虽然被Yorktown CV-5“破坏”了飞行甲板，Lexington仍成功“瘫痪”了前者。</p>
+<p>经过这十多次的舰队问题演习，USN逐步确定了航母的战术使用原则：采用单航母加护卫舰的特混舰队模式，远离庞大的主力舰队独立执行攻击任务，多艘航母在战术层面上亦分开行动并保持距离，以免被敌人集中发现和摧毁。为了让单艘航母在一个攻击波中放出尽可能多的攻击机，全面采用甲板系留和全甲板攻击战术。这套模式在战争中被证明是行之有效的，但受通讯技术限制，在组织多航母协同攻击时只能做到同时，无法有效协调，面对集中使用航母的IJN的巨波攻击时显得无力。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/USSLexingtonCV2Launching.jpg/800px-USSLexingtonCV2Launching.jpg"></p>
+<p><strong><center>“全甲板攻击！”</center></strong></p>
+<p>Lady Lex和Sis Sara服役后参加的演习，不仅使USN逐渐发展并完善了一整套航空母舰的作战战术，充分展示了空中攻击部队的潜力，而且对之后所有海军舰只和战术的设计都有深远的影响，从这两艘战舰的飞行甲板上产生了自从军舰开始采用装甲和蒸汽依赖海战史上最大的飞跃。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Aerial_view_of_Ford_Island%2C_Pearl_Harbor%2C_on_10_November_1941_%2880-G-279385%29.jpg/760px-Aerial_view_of_Ford_Island%2C_Pearl_Harbor%2C_on_10_November_1941_%2880-G-279385%29.jpg"></p>
+<p><strong><center>太平洋战争爆发前的珍珠港福特岛，北边是著名的战列舰大道，航母的锚地在岛的南边</center></strong></p>
+<iframe src="//player.bilibili.com/player.html?aid=17202873&cid=28114922&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+<h2 id="5-二战：临危受命"><a href="#5-二战：临危受命" class="headerlink" title="5 二战：临危受命"></a>5 二战：临危受命</h2><p>第二次世界大战在太平洋正式爆发是1941年12月7日星期日凌晨，350余架飞机从IJN的6艘航空母舰上起飞，对停泊在珍珠港内的USN太平洋舰队以及瓦胡岛上的机场发动了突然袭击。美军太平洋舰队的战列舰4艘沉没，4艘被击伤，主力几乎全军覆没，能够供新上任的尼米兹司令调用的就剩下三艘航母（分别是Lexingtong、Saratoga、Enterprise CV-6）、二十几条潜艇和一众护卫舰，要面对的是拥有10艘航母、10艘战列舰、18艘重巡、100艘驱逐舰、64艘潜艇的新兴的强大IJN。因为战列舰不是在水下就是在修理厂，1941年12月31日，接任太平洋舰队司令的海军上将尼米兹在一艘排水量不足1500吨的潜艇“鳟鱼号”（USS Grayling SS-209）的甲板上举行就职仪式并升起了将旗，拉开了太平洋战场上美国的反击序幕。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Nimitz_on_Grayling%3B0820904.jpg" width="800px"></p>
+<p><strong><center>1941年12月31日，尼米兹将军在鳟鱼号甲板上接任太平洋海军司令一职</center></strong></p>
+<p>当12月7日珍珠港事件发生时，幸运的Lexington（及其它两艘航母）所在的第12特混舰队正在执行支援中途岛的任务（运载飞机），她随即派出侦察机搜索进攻的日军，未果，之后同USS Enterprise CV-6开赴瓦胡岛西南守备，直到12月13日才返回珍珠港。</p>
+<p>次日美军计划派Lexington和Enterprise突袭加鲁伊特环礁，减轻威克岛的防守压力，但是23日威克岛宣告陷落，行至半途的两艘航母于27日无功而返。</p>
+<p>1942年1月，Lexington在威尔逊·布朗中将的指挥下带着护卫的巡洋舰和驱逐舰从珍珠港出发再次进攻威克岛，不过1月23日凌晨舰队的加油船Neches（AO-5）被IJN潜艇（伊-72）击沉无法补充燃料，攻打威克岛的计划被迫取消。</p>
+<h3 id="首战布干维尔"><a href="#首战布干维尔" class="headerlink" title="首战布干维尔"></a>首战布干维尔</h3><p>1942年2月20日，以Lexington为旗舰的第11特混舰队深入到离刚被日军占领的澳属新几内亚首府腊包尔400海里之内，准备前往布干维尔岛并在次日从那里发动突袭，攻击港口内的日军舰只。是日，虽然Lexington上的VF-3战斗机中队（VF-3原隶属于Saratoga，因母舰大修而搭载在CV-2上）指挥官约翰·萨奇，也就是发明萨奇剪战术的那位，成功击落了日军的侦察机九七式大艇，但是下午3点42分，Lexington最终被日军发现，收到情报的井上成美派遣第24航空队的18架一式陆攻在没有战斗机护航的情况下分两批起飞攻击美军舰队，在F4F-3野猫战斗机和防空火炮的拦截下损失了17架，Lexington仅受到一枚近失弹的影响。VF-3中队的爱德华·奥海尔中尉一次出击击落5架敌机，成为单次战斗王牌，封号“屠夫”，获得了国会荣誉勋章并连晋两级，美国海军航空兵的野猫崭露头角，自此一路再未缺席太平洋的航母作战。<sup><span id="a9"><a href="#fn9">[9]</a></span></sup></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Grumman_F4F-3_Wildcats_of_VF-3_in_flight_off_Oahu_on_10_April_1942_%2880-G-10613%29.jpg/800px-Grumman_F4F-3_Wildcats_of_VF-3_in_flight_off_Oahu_on_10_April_1942_%2880-G-10613%29.jpg"></p>
+<p><strong><center>萨奇(F1)和奥海尔(F13)的座机格鲁曼F4F-3A野猫战斗机，1942年4月10日于瓦胡岛上空</center></strong></p>
+<p>是役表明，对航空母舰或任何其他舰只来说，唯一真正的防空武器是飞机，而没有战斗机护航的攻击机群亦如同鱼腩，另外美国战斗机飞行员也发现了日本飞机（说的就是你零式）皮薄馅大的弱点。</p>
+<p>因为攻击腊包尔的行动失去了突然性，第11特混舰队迅速撤离。</p>
+<h3 id="空袭莱城和萨拉马瓦"><a href="#空袭莱城和萨拉马瓦" class="headerlink" title="空袭莱城和萨拉马瓦"></a>空袭莱城和萨拉马瓦</h3><p>Lexington在珊瑚海巡航至3月6日后，与USS Yorktown CV-5汇合并执行另一项攻击计划。两舰在3月10日进入巴布亚湾，放出所有舰载机分别向莱城和萨拉马瓦两个港口攻击，这次突袭出乎日军的意料，但是大部分日舰得以逃脱，美军仅击沉了1艘大型扫雷艇、1艘货船和1艘轻巡，自身几乎没有损失。战斗结束后Lexington与Yorktown分开独自返航，于3月26日抵达珍珠港时她已经破纪录地在海里连续待了54天。在珍珠港的海军工厂里，Lexington稍作修理，并移除了舰上的8英寸火炮，换装为大量4联装1.1英寸防空炮，并与4月15日再度出击，执行最后一次作战任务。</p>
+<h3 id="珊瑚海海战"><a href="#珊瑚海海战" class="headerlink" title="珊瑚海海战"></a>珊瑚海海战</h3><p>早在1942年1月，日军就计划了名为MO的作战计划，主要目的是占领新几内亚的莫尔兹比港（Port Moresby），若日军占领该港口，就能够控制美国与澳大利亚之间的运输线，并且以此建立空军基地有效防御盟国的空袭。日军制定了详细的作战计划，组织了5支独立的特遣队，包括2艘大型航空母舰（五航战的翔鹤和瑞鹤），1艘轻型航空母舰（祥凤）、1艘水上飞机母舰以及6艘重巡、3艘轻巡、15艘驱逐舰，加上大量的运输舰、辅助舰只共70艘。</p>
+<p>美军从4月初开始就破译了MO行动的常规代码，知道了日军的行动细节，尼米兹正确判断出日军的主攻目标，决定派出Lexington和Yorktown迎战。Saratoga因雷击受损正在大修，Enterprise CV-6和Hornet CV-8刚刚结束杜立特空袭在返回珍珠港的路上（为了装载B-25轰炸机，Hornet没有搭载其他战机，需要Enterprise提供护航），剩下的战舰都在旧金山且最高时速才21节，无法与航母一起作战，因此这是他唯二能派出的主力战舰。</p>
+<p><img src="https://ob7zbqpa6.qnssl.com/255qqncy1gl9kjw04r76a6qdp4w67625.jpg" width="800px"></p>
+<p><strong><center>珊瑚海海战地图，可以看出莫尔兹比港的战略重要性</center></strong></p>
+<p>5月1日，从珍珠港赶来的Lexington与弗兰克·弗莱彻少将指挥的第17特混舰队在西珊瑚海汇合，整个舰队包括Yorktwon、6艘重巡和12艘驱逐舰，人类历史上首次航母间的对战在珊瑚海打响，大舰巨炮时代宣告落幕，蓝星的海军战争从此拉开了新的篇章。</p>
+<p>5月4日，得知日军已经登录图拉吉的弗莱彻带领补给完毕的Yorktown及其护卫舰先行攻打图拉吉，港内大部分舰只已出发进攻莫尔兹比港，因此仅击沉了睦月级驱逐舰菊月号（其残骸现在仍然在那里，这可能也是目前依然存留在水面上并且没被解体的唯一的二战期间的IJN军舰），炸伤夕月号和补给舰，未影响日军的进攻计划。</p>
+<p><img src="http://www.ibiblio.org/hyperwar/OnlineLibrary/photos/images/h76000/h76560.jpg" width="800px"></p>
+<p><strong><center>1942年5月，珊瑚海海战期间的Lexington，8英寸火炮已被拆除</center></strong></p>
+<p>5日早上，Lexington加满油后与Yorktown再次会合，当日晚上五航战的两艘航母进入珊瑚海，一直到6日两军相距仅70英里，但是都不知道对方的确切位置，也都没有派出侦察机，只依靠地面基地的空中侦察。6日晚上，燃油补给船尼奥肖号（USS Neosho AO-23）和驱逐舰西姆斯号（USS Sims DD-409）受命脱离舰队。</p>
+<p>7日一大早，日军开始派出大量侦察机和水上飞机搜查盟国战舰，这次发现了脱离主舰队的尼奥肖号和西姆斯号。日军侦查员误判为航空母舰和巡洋舰，翔鹤和瑞鹤立即派出78架飞机袭击并击沉击西姆斯号，击伤尼奥肖号。Lexington前一天刚刚接受了尼奥肖号的补给，空空的油舱使尼奥肖号能够勉强浮在水面，直到4天后被前来救援的驱逐舰处分击沉。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Shoho_g17026.jpg" width="800px"></p>
+<p><strong><center>美军攻击祥风号轻型航空母舰</center></strong></p>
+<p>几乎在同时Yorktown的远程侦察机报告在180海里外发现了一支IJN的航母编队，Lexington与Yorktown放出93架的攻击机队，虽然没有发现日军翔鹤、瑞鹤两艘航空母舰，却发现了掩护入侵部队的日军轻型航母祥凤，面对如此强大的攻击机群，祥凤号在几分钟内就被击沉。</p>
+<p>日军于当日下午4点30分，再次派出12架俯冲轰炸机和15架雷击机搜寻，飞机在油料消耗过半时不得不扔弃炸弹鱼雷，归航中遇上了17特混舰队的战斗机，随即展开空战。混战中几架日机误将Yorktown当作母舰降落，直到领机被高炮攻击才仓皇转向，这批飞机最终损失了20架。整个夜间暴雨磅礴，护卫舰的炮手通宵执勤，飞行大队长们连夜制定作战计划，双方很清楚第二天早晨将面临严峻的时刻。</p>
+<p>8日，在破晓的朝阳中，双方侦察机几乎同时发现了对方的航母编队，然后均倾其所有派出了全部舰载攻击机，两支机群浩浩荡荡擦肩而过，并未发现对方，美日两军的舰载机都在未被拦截的情况下扑向了对方。</p>
+<p>Lexington的侦察机在8:30首先发现目标，10点57分美军开始进攻，由于瑞鹤号躲入热带暴风雨，翔鹤号成为众矢之的，被直接命中三枚炸弹，飞行甲板被严重破坏，无法起降飞机，实际上已经丧失作战机能。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/BattleCoralSea_Shokaku_g17031.jpg/800px-BattleCoralSea_Shokaku_g17031.jpg"></p>
+<p><strong><center>被命中甲板和舰体的翔鹤，不得不缺席随后的中途岛海战</center></strong></p>
+<p>几乎在美军攻击翔鹤的同时，Lexington的雷达发现了来袭的日军飞机。在近乎完美的能见度中，47架攻击机集中突入防守圈攻击两艘美国航母，Lexington吨位大目标明显，首先被2枚鱼雷、2枚炸弹直接命中，舰体左倾7度，3个锅炉房进水，甲板下起火，升降机运行受阻。不过在损管部门的努力下很快控制住火势，纠正了倾斜，并修复了动力系统，Lexington依然可以以25节航速航行，收纳了部分返航的战机，飞行员甚至都没注意到母舰已经受伤。日机的攻击迫使Yorktown驶离Lexington（这是该战中美军的一大失误），但是她运气稍好，躲过了所有的鱼雷攻击，仅被命中一颗250公斤炸弹和多枚近失弹，造成甲板和多处船体受损，但也没有影响飞机的起落。截至目前，弗莱彻比原忠一的处境要好得多。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/USS_Lexington_%28CV-2%29_under_air_attack_during_the_Battle_of_the_Coral_Sea%2C_8_May_1942_%28NH_95579%29.jpg/800px-USS_Lexington_%28CV-2%29_under_air_attack_during_the_Battle_of_the_Coral_Sea%2C_8_May_1942_%28NH_95579%29.jpg"></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Confirmed_hits_on_USS_Lexington_%28CV-2%29_during_the_Battle_of_the_Coral_Sea%2C_8_May_1942.png/800px-Confirmed_hits_on_USS_Lexington_%28CV-2%29_during_the_Battle_of_the_Coral_Sea%2C_8_May_1942.png"></p>
+<p><strong><center>珊瑚海海战中，Lexington身中两枚鱼雷和两枚炸弹</center></strong></p>
+<p>12点47分，Lexington连续发生的大爆炸扭转了这个优势，燃料管道在鱼雷袭击中受损泄漏，由于美军损管缺乏经验，没有及时抽走舰内的航空汽油，导致内部充满了易燃易爆气体，这些气体被发电机点燃，连续的爆炸损毁了电话线路，炸坏了总水管，火焰窜到了船的上层，浓烟从所有缝隙中涌出舰体，笼罩了整个Lexington。下午14点45分，另一串大爆炸瘫痪了发动机舱的通风系统，16时左右锅炉停止了供油，Lexington 4个巨大的青铜螺旋桨永远停止了转动。由于火势蔓延到了弹药库，炸弹和鱼雷随时可能发生殉爆，无奈之下，谢尔曼舰长于17时下令弃舰，2,735名官兵有序撤离，三艘驱逐舰受命靠近救援舰员。18:30，Lexington又发生了一连串可怕的爆炸，碎片、飞机、钢板、木板、大大小小的破片夹杂在白色的浓烟烈火中，冲上天空，飞行甲板完全被撕开，烈火足有一、二百米高，在茫茫夜色中这艘大舰地每一处轮廓和残骸都看得起一清二楚。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Crew_abandons_USS_Lexington_%28CV-2%29_on_8_May_1942_%28NNAM.2001.205.069%29.jpg/800px-Crew_abandons_USS_Lexington_%28CV-2%29_on_8_May_1942_%28NNAM.2001.205.069%29.jpg"></p>
+<p><strong><center>船员从Lexington上撤离</center></strong></p>
+<p>18时53分，弗莱彻下令放弃Lexington并撤出战区，菲尔普斯号（USS Phelps DD-360）对她发射了5发鱼雷，在最后一发命中后，当晚19时56分，Lexington带着阵亡的216位船员和36架战机逐渐消失在海面下，沉没在了珊瑚海的波涛之中。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/USS_Lexington_%28CV-2%29_burning_and_sinking_on_8_May_1942_%28NH_51382%29.jpg/750px-USS_Lexington_%28CV-2%29_burning_and_sinking_on_8_May_1942_%28NH_51382%29.jpg" width="800px"><br><strong><center>Lexington的最后时刻</center></strong></p>
+<iframe src="http://player.bilibili.com/player.html?aid=6717600&cid=10937774&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+<blockquote>
+<p>她沉没的时候没有倒下</p>
+<p>她是昂着头沉没的</p>
+<p>她挺到了最后</p>
+</blockquote>
+<p>5月8日尼米兹下令弗莱彻撤退时，Yorktown上还有大概50架飞机可以作战。同日翔鹤号已经撤往特鲁克并准备返回日本检修，瑞鹤号受命在8日、9日午夜攻击剩余敌舰，但是没有再遇到Yorktown舰队，10日，高木接令也撤出战区。珊瑚海海战宣告落幕。</p>
+<p>本次大战战术上IJN小胜，损失了11,200吨的祥凤，32,100吨的翔鹤受创，而USN损失了41,000吨的正规航母Lexington，25,000吨的Yorktown受创。但这是开战以来日军首次在太平洋战场上受挫，美军阻止了IJN从水路进攻莫尔兹比港的行动，保留下来了这一重要港口，守住了澳大利亚也缓解了瓜岛局势。并且此战中正规空母翔鹤受损需修理6个月、瑞鹤舰载机损失惨重飞行队伍需要重编，都无法参与一个月之后的中途岛海战，给日军造成了致命的打击。可以说没有珊瑚海海战对两艘IJN正规空母的牵制，仅靠3艘航母(CV-5/6/8)的USN面对6艘航母(两鹤/双龙/赤城加贺)的IJN，即使考虑到IJN所犯下的种种错误，这悬殊兵力下两军能在中途岛打出什么结果还是非常难说的。</p>
+<p>提到二战时候的USN，首先会想到美国本身强大的工业实力，其次是近乎变态的损管能力，但USN也绝非先知，他们重视管损的原因就来自于在此次海战中沉没的Lexington(CV-2)。航母本质是移动机场，一旦飞行甲板/升降机被破坏，无法起降飞机，在本次作战中的战斗能力基本消失，另外，由于航母装载大量航空汽油，在泄漏后汽油容易挥发，极易殉爆，管道损坏这样的小伤很容易变成大伤，如果无法尽快修复损伤，飞机和飞行员除非被其他航母收容，不然处境会异常艰难。USN损失了一艘珍贵的Lexington换来需要重视损害控制、保护航空汽油以及重视侦查这三个道理，在后续的舰船设计上注重对燃油的防护、加强损管设施、内部结构采用耐火材料，通过增加侦察机和大力发展对控雷达提升侦查能力，降低了美国航母的战损率，牢牢控制着战场的主动权。日本海军的大凤和信浓这两艘优秀的航母的沉没和低下的管损能力密切相关。</p>
+<p>另外，据战后分析，在珊瑚海海战中IJN损失飞机77架，1,047人伤亡，美军损失飞机66架（包括随Lexington沉没的36架），543人伤亡。在得到了如何使用鱼雷轰炸机和俯冲轰炸机经验的同时，美军也认识到舰载机损耗较高，“载机量至上论”突显出其正确性和重要性，此后，USN坚持采用机库悬吊加甲板系留的方式装上更多的飞机，使航母能够在更长的作战周期内维持相当的战力。对于被击落的机组成员美军都会派遣潜艇或驱逐舰全力施救，同时加紧本土飞行员的训练，在中途岛海战中萨奇剪战术成功应用并大面积推广，使得机动性能相对落后（但是防御和火力并不落后）的F4F在编队实战中能有效对抗零式战机，在性能更好的F6F等服役前已经掌握了太平洋上的制空权。反观IJN，发动技术始终落后，战机的设计不考虑对飞行员和关键部位的装甲防护，加上不成功便成仁的武士道精神，使得海航精锐丧失殆尽得不到补充，此消彼长之下，到大风信浓下水之时，竟再也找不到足够的战机和飞行员形成有效战力了，“马里亚纳火鸡”名副其实。</p>
+<p>珊瑚海海战在战史上仅是中途岛海战的一次前哨战，但其意义远比这要大得多，这是军事史上首次航母之间的对战，也是首次视距外完全由舰载机完成战斗的海战，颠覆了很多海战常识，奠定了以航母为核心、以空制海的现代海战模式。</p>
+<h2 id="6-影响：精神永存"><a href="#6-影响：精神永存" class="headerlink" title="6 影响：精神永存"></a>6 影响：精神永存</h2><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Aft_view_of_USS_Lexington_%28CV-2%29_c1939.jpg/800px-Aft_view_of_USS_Lexington_%28CV-2%29_c1939.jpg"></p>
+<p><strong><center>后方视角的Lexington，摄于1939年</center></strong></p>
+<p>从服役到沉没，Lexington一共航行了34,500海里，相当于绕地球航行14圈，她的飞行甲板上共进行了57,700次起落。Lexington一共有9任舰长，每位都至少晋升到少将衔，其中包括官至第五舰队司令的最后一任舰长弗雷德里克·C·谢尔曼中将和升至美国海军司令的第三任舰长欧内斯特·金海军上将。</p>
+<p>Lexington在战斗中共获得两次“战斗之星”。</p>
+<p>USS Lexington CV-2是历史上第4艘命名为列克星敦的美舰，这个名字对美国人来说具有特殊的情感。Lexington CV-2沉没后的同年6月16日，21年前建造她的伯利恒造船公司霍河造船厂主动联系军方，要求将厂内一艘被命名为卡伯特号的埃塞克斯级航空母舰改名为列克星敦号，用以纪念珊瑚海海战沉没的CV-2，获得同意。Lexington转生为CV-16后，因屡次被IJN宣称击沉获得了“Blue Ghost”外号，在莱特湾海战中亲手击沉瑞鹤成功完成复仇。CV-16战后进行现代化改造添加了斜角甲板，一直战到1991年成为最后一艘退役的该级航母。退役后的CV-16改建为博物馆静静地躺在美国科珀斯克里斯蒂的港口里，为前来瞻仰的她的人诉说当年的传奇。据说某人在延安窑洞的办公室墙上也挂着列克星敦的海报，又传建国后中美蜜月期甚至有可能引进饺子级列克星敦CV-16，不然中国第一艘航母舷号是16并且命名是L开头也太巧合了。</p>
+<p><img src="https://nebula.wsimg.com/439004a898cf0d3cb8114da1a80e6b4d?AccessKeyId=EBDE26851E0DB40AC219&disposition=0&alloworigin=1" width="800px"></p>
+<div style="display:none"><br><img src="https://www.museumships.us/images/aircraft-carriers/Lexington/lexington.jpg" alt=""></div>
+
+<p><strong><center>位于德州科珀斯克里斯蒂市的人气景点列克星敦博物馆</center></strong></p>
+<iframe src="//player.bilibili.com/player.html?aid=12336077&cid=20320232&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+<p>2018年3月5日，微软联合创始人保罗.艾伦宣布，他的“海燕”（Petrel）团队前一日在距澳大利亚昆士兰州东海岸约800公里、海平面以下3,000米的珊瑚海海底，发现Lexington航母及其舰载机的残骸。艾伦团队发布的照片显示，保存完好的舰载机停在海床上，机翼和机身上美军的五角星标志依旧清晰。海燕号是当前唯一私人拥有的能够完成海下6,000米探险的科考船，2017年以来她陆续发现了武藏号、运送过核弹的印第安纳波利斯号重巡（CL-52）、朱诺号轻巡（就是那艘载有《拯救大兵雷恩》原型之一沙利文五兄弟的CL-52）、海伦娜（CL-50），以及在“最后的T字”苏里高海战中被击沉的大量日舰。在此之前的2015年保罗.艾伦的科研团队就与皇家海军合作成功打捞胡德号战巡（被蛐蛐猫一发入魂的皇家荣耀）的舰钟。</p>
+<p><img src="https://www.paulallen.com/wp-content/uploads/Lexington-Plate.png" width="800px"></p>
+<p><strong><center>沉没的Lexington的铭牌</center></strong></p>
+<iframe src="//player.bilibili.com/player.html?aid=20430009&cid=33396887&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+<p>PS：影响太平洋战争最重要的三样武器分别是原子弹、雷达和VT引信弹，这三样正好对应攻击、侦查和防御三个方面，其中后两者都与海军航空兵有关，雷达帮助美军准确预测来袭的日机以逸待劳，后期更是帮助美舰打破IJN夜战之王的神话，而VT引信弹则葬送了大量优秀的IJN机师。</p>
+<p>PPS：1931年间，科幻小说《星河战队》的作者罗伯特·海因莱因曾在USS Lexington CV-2上服役，这段海上生活很大程度上影响了他的写作。</p>
+<h2 id="附：注解和参考资料"><a href="#附：注解和参考资料" class="headerlink" title="附：注解和参考资料"></a>附：注解和参考资料</h2><p><span id="fn1"><a href="#a1">[1]</a></span>: 兰利号（USS Langley CV-1）是由煤船改装的实验舰，只能算轻型航母，后面更是被改造为水上飞机母舰（AV-3）。</p>
+<p><span id="fn2"><a href="#a2">[2]</a></span>: <a href="https://zhuanlan.zhihu.com/p/32505296" target="_blank" rel="external">《美利坚的战巡梦——“列克星敦”级战列巡洋舰设计史》</a></p>
+<p><span id="fn3"><a href="#a3">[3]</a></span>: CC = Cruiser, Capital，表明其地位是主力舰。 </p>
+<p><span id="fn4"><a href="#a4">[4]</a></span>: 美国是唯一一个没有战巡服役的海军强国。1940年代建造的阿拉斯加级归类是巡洋领舰（CB-1~CB-6），作战目的是猎杀超标严重的IJN重巡，和列克星敦级战巡的定位不一样，更接近德意志级袖珍战列舰。</p>
+<p><span id="fn5"><a href="#a5">[5]</a></span>: 《航空母舰：1908～1945》（美）诺曼·波尔马</p>
+<p><span id="fn6"><a href="#a6">[6]</a></span>: <a href="https://en.wikipedia.org/wiki/Joseph_M._Reeves" target="_blank" rel="external">Joseph.M.Reeves</a></p>
+<p><span id="fn7"><a href="#a7">[7]</a></span>: <a href="http://www.wings-aviation.ch/22-USNavy-Carrier/Fleet-Carrier/CV-02-USS-Lexington.htm" target="_blank" rel="external">http://www.wings-aviation.ch/22-USNavy-Carrier/Fleet-Carrier/CV-02-USS-Lexington.htm</a></p>
+<p><span id="fn8"><a href="#a8">[8]</a></span>: 《列克星敦号与珊瑚海海战》（美）斯坦利·约翰斯顿，该书作者是列克星敦号的随军记者，参与了珊瑚海海战</p>
+<p><img src="https://img3.doubanio.com/view/subject/l/public/s4612281.jpg" alt="《列克星敦号与珊瑚海海战》"></p>
+<p><span id="fn9"><a href="#a9">[9]</a></span>: <a href="https://zhuanlan.zhihu.com/p/27497637" target="_blank" rel="external">格鲁曼的小老虎们——野猫舰载战斗机简史</a></p>
+<p><span id="fn10"><a href="#a10">[10]</a></span>: <a href="https://www.paulallen.com/uss-lexington-wreck-located-rv-petrel/" target="_blank" rel="external">Wreck of Aircraft Carrier USS Lexington Located in Coral Sea After 76 Years</a></p>
+<p>维基百科：<a href="https://en.wikipedia.org/wiki/USS_Lexington_(CV-2" target="_blank" rel="external">USS Lexington CV-2 on wikipedia.org</a>)</p>
+<p>更多照片：<a href="http://www.navsource.org/archives/02/02.htm" target="_blank" rel="external">USS Lexington CV-2 on navsource.org</a></p>
+<p>参考书籍：</p>
+<ul>
+<li>《列克星敦号与珊瑚海海战》（美）斯坦利·约翰斯顿</li>
+<li>《浩瀚大洋是赌场：细说日本海军史》俞天任</li>
+<li>《1914-1945年的海上战争》（英）伯纳德·爱尔兰</li>
+<li>《大海战》（美）切斯特·W·尼米兹</li>
+<li>《Conway’s All the World’s Fighting Ships, 1922-1946》</li>
+<li>《航空母舰：1908～1945》（美）诺曼·波尔马</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/12/05/Build-Your-Own-CodeCombat-Server/" data-toggle="tooltip" data-placement="top" title="Build Your Own CodeCombat Server">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Aircraft Carrier" title="Aircraft Carrier">Aircraft Carrier</a>
+                        
+                          <a class="tag" href="/tags/#Lexington" title="Lexington">Lexington</a>
+                        
+                          <a class="tag" href="/tags/#CV-2" title="CV-2">CV-2</a>
+                        
+                          <a class="tag" href="/tags/#World War II" title="World War II">World War II</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2018
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
