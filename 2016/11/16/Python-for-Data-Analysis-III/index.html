@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Python for Data Analysis III - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2016/11/16/Python-for-Data-Analysis-III/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/star-wars.jpg');
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Data Analysis" title="Data Analysis">Data Analysis</a>
+                        
+                          <a class="tag" href="/tags/#pandas" title="pandas">pandas</a>
+                        
+                    </div>
+                    <h1>Python for Data Analysis III</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2016-11-16
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="6-数据加载、存储与文件格式"><a href="#6-数据加载、存储与文件格式" class="headerlink" title="6 数据加载、存储与文件格式"></a>6 数据加载、存储与文件格式</h2><h3 id="6-1-读写文本格式的数据"><a href="#6-1-读写文本格式的数据" class="headerlink" title="6.1 读写文本格式的数据"></a>6.1 读写文本格式的数据</h3><p>pandas提供了一些从文本都去为DataFrame对象的函数，常用的包括<code>read_csv</code>或<code>read_table</code>。<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv('..<span class="symbol">\\</span>..<span class="symbol">\\</span>public<span class="symbol">\\</span>pydata-book-master<span class="symbol">\\</span>ch06<span class="symbol">\\</span>ex1.csv')</span><br><span class="line">df</span><br><span class="line">pd.read_table('..<span class="symbol">\\</span>..<span class="symbol">\\</span>public<span class="symbol">\\</span>pydata-book-master<span class="symbol">\\</span>ch06<span class="symbol">\\</span>ex1.csv')</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	a 	b 	c 	d 	message</span><br><span class="line"><span class="number">0</span> 	<span class="number">1</span> 	<span class="number">2</span> 	<span class="number">3</span> 	<span class="number">4</span> 	hello</span><br><span class="line"><span class="number">1</span> 	<span class="number">5</span> 	<span class="number">6</span> 	<span class="number">7</span> 	<span class="number">8</span> 	world</span><br><span class="line"><span class="number">2</span> 	<span class="number">9</span> 	<span class="number">10</span> 	<span class="number">11</span> 	<span class="number">12</span> 	foo</span><br></pre></td></tr></table></figure></p>
+<p>对于没有标题行的数据文件可以设置<code>header=None</code>参数分配默认列名，或通过<code>names</code>参数自定义列名。另外<code>index_col</code>参数可以将制定的数据列做成DataFrame的索引。<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">names</span> = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'message'</span>]</span><br><span class="line">pd.read_csv(<span class="string">'..\\..\\public\\pydata-book-master\\ch06\\ex2.csv'</span>, names=names, index_col=<span class="string">'message'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> 		a 	b 	c 	d</span><br><span class="line">message 				</span><br><span class="line">hello 	<span class="number">1</span> 	<span class="number">2</span> 	<span class="number">3</span> 	<span class="number">4</span></span><br><span class="line">world 	<span class="number">5</span> 	<span class="number">6</span> 	<span class="number">7</span> 	<span class="number">8</span></span><br><span class="line">foo 	<span class="number">9</span> 	<span class="number">10</span> 	<span class="number">11</span> 	<span class="number">12</span></span><br></pre></td></tr></table></figure></p>
+<p>另外pandas在导入时还能够通过正则表达式处理异性结构文件和特定分隔符导入，针对缺失值的标记NA，这些在实际使用时不太会碰到，因此可以碰到时在研究解决方案。</p>
+<p><strong>逐块读取文本文件</strong><br>如果只读取几行或逐行读取，可以设置<code>nrows</code>参数或<code>chunksize</code>（行数）参数。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pd.read_csv(<span class="string">"..<span class="subst">\\</span>..<span class="subst">\\</span>public<span class="subst">\\</span>pydata-book-master<span class="subst">\\</span>ch06<span class="subst">\\</span>ex6.csv"</span>, nrows=<span class="number">5</span>)</span><br><span class="line">chunker = pd.read_csv(<span class="string">"..<span class="subst">\\</span>..<span class="subst">\\</span>public<span class="subst">\\</span>pydata-book-master<span class="subst">\\</span>ch06<span class="subst">\\</span>ex6.csv"</span>, chunksize=<span class="number">1000</span>)</span><br><span class="line">chunker</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> 	one 	two 	three 	four 	<span class="type">key</span></span><br><span class="line"><span class="number">0</span> 	<span class="number">0.467976</span> 	<span class="number">-0.038649</span> 	<span class="number">-0.295344</span> 	<span class="number">-1.824726</span> 	L</span><br><span class="line"><span class="number">1</span> 	<span class="number">-0.358893</span> 	<span class="number">1.404453</span> 	<span class="number">0.704965</span> 	<span class="number">-0.200638</span> 	B</span><br><span class="line"><span class="number">2</span> 	<span class="number">-0.501840</span> 	<span class="number">0.659254</span> 	<span class="number">-0.421691</span> 	<span class="number">-0.057688</span> 	G</span><br><span class="line"><span class="number">3</span> 	<span class="number">0.204886</span> 	<span class="number">1.074134</span> 	<span class="number">1.388361</span> 	<span class="number">-0.982404</span> 	R</span><br><span class="line"><span class="number">4</span> 	<span class="number">0.354628</span> 	<span class="number">-0.133116</span> 	<span class="number">0.283763</span> 	<span class="number">-0.837063</span> 	Q</span><br><span class="line"></span><br><span class="line">&lt;pandas.io.parsers.TextFileReader at <span class="number">0x6afca70</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p><code>read_csv</code>返回的这个<code>TextFileReader</code>对象可以根据chunksize的大小对文件进行逐块迭代，例如说需要对<code>ex6.csv</code>数据聚合到<code>key</code>列，可以如下编码：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tot</span> = Series([])</span><br><span class="line">for piece <span class="keyword">in</span> chunker:</span><br><span class="line">    <span class="attr">tot</span> = tot.add(piece['key'].value_counts(), <span class="attr">fill_value=0)</span></span><br><span class="line"><span class="attr">tot</span> = tot.order(<span class="attr">ascending=False)</span></span><br><span class="line">tot[:<span class="number">10</span>]</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">E</span>    <span class="number">368</span></span><br><span class="line">X    <span class="number">364</span></span><br><span class="line">L    <span class="number">346</span></span><br><span class="line"><span class="keyword">O</span>    <span class="number">343</span></span><br><span class="line">Q    <span class="number">340</span></span><br><span class="line">M    <span class="number">338</span></span><br><span class="line">J    <span class="number">337</span></span><br><span class="line">F    <span class="number">335</span></span><br><span class="line"><span class="keyword">K</span>    <span class="number">334</span></span><br><span class="line">H    <span class="number">330</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure></p>
+<p><strong>将数据写到文本格式</strong><br>DataFrame和Series都有<code>to_csv</code>方法，用于将数据写到一个以逗号分隔的文本文件，输出时可以指定分隔符、缺失值表示、是否输出行列标签，并可以指定列顺序。</p>
+<p><strong>手工处理分隔符格式</strong><br>对于异性文件或含有畸形行的文件，可以使用Python内置的csv模块打开，并传递给<code>csv.reader</code>进行迭代处理。</p>
+<p><strong>JSON数据</strong><br>有许多Python库可以读写JSON数据，例如<code>json</code>，通过<code>.loads</code>方法转换成Python对象，<code>.dumps</code>方法反之。<br>有一个简单的方法将一组JSON对象转换为DataFrame数据结构：想DataFrame构造器传入一组JSON对象，并选取数据字段的自己。<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">obj = <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">&#123;"</span><span class="built_in">name</span><span class="string">": "</span>Wes<span class="string">",</span></span><br><span class="line"><span class="string"> "</span>places_lived<span class="string">": ["</span>United States<span class="string">", "</span>Spain<span class="string">", "</span>Germany<span class="string">"],</span></span><br><span class="line"><span class="string"> "</span>pet<span class="string">": null,</span></span><br><span class="line"><span class="string"> "</span>siblings<span class="string">": [&#123;"</span><span class="built_in">name</span><span class="string">": "</span>Scott<span class="string">", "</span>age<span class="string">": 25, "</span>pet<span class="string">": "</span>Zuko<span class="string">"&#125;,</span></span><br><span class="line"><span class="string">              &#123;"</span><span class="built_in">name</span><span class="string">": "</span>Katie<span class="string">", "</span>age<span class="string">": 33, "</span>pet<span class="string">": "</span>Cisco<span class="string">"&#125;]</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br><span class="line">import json</span><br><span class="line"><span class="literal">result</span> = json.loads(obj)</span><br><span class="line">siblings = DataFrame(<span class="literal">result</span>['siblings'], columns=['<span class="built_in">name</span>','age'])</span><br><span class="line">siblings</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">	name 	age</span><br><span class="line"><span class="number">0</span> 	Scott 	<span class="number">25</span></span><br><span class="line"><span class="number">1</span> 	Katie 	<span class="number">33</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>XML和HTML：Web信息收集</strong><br>对于互联网上的HTML和XML数据，可以先使用<code>urllib2</code>抓取，然后用<code>lxml</code>库进行解析处理，这里更多的涉及到XML解析和XPATH技术，不做过多深入。</p>
+<h3 id="6-2-二进制数据格式"><a href="#6-2-二进制数据格式" class="headerlink" title="6.2 二进制数据格式"></a>6.2 二进制数据格式</h3><p><strong>读取Microsoft Excel文件</strong><br>pandas的<code>ExcelFile</code>类支持读取Excel 2003或更高版本中的表格行数据，下述代码直接将工作表中的数据读取到到DataFrame对象中。<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">xls_file</span> = pd.ExcelFile(<span class="string">'data.xls'</span>)</span><br><span class="line"><span class="attr">table</span> = xls_file.parse(<span class="string">'Sheet1'</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="6-3-使用HTML和Web-API"><a href="#6-3-使用HTML和Web-API" class="headerlink" title="6.3 使用HTML和Web API"></a>6.3 使用HTML和Web API</h3><p>使用<code>requests</code>包模拟HTTP请求，可以获取网站上很多提供数据的公共API，返回的数据是JSON或其他格式，通过之前的几类方法加载到pandas对象中。</p>
+<h3 id="6-4-使用数据库"><a href="#6-4-使用数据库" class="headerlink" title="6.4 使用数据库"></a>6.4 使用数据库</h3><p>大部分Python SQL驱动器都会返沪一个元祖列表，以SQLite为例。<br><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sqlite<span class="number">3</span></span><br><span class="line"></span><br><span class="line">query = <span class="string">"""</span></span><br><span class="line"><span class="string">CREATE TABLE test</span></span><br><span class="line"><span class="string">(a VARCHAR(20), b VARCHAR(20),</span></span><br><span class="line"><span class="string"> c REAL,        d INTEGER</span></span><br><span class="line"><span class="string">);"""</span></span><br><span class="line"></span><br><span class="line">con = sqlite<span class="number">3</span>.connect(<span class="string">':memory:'</span>)</span><br><span class="line">con.execute(query)</span><br><span class="line">con.commit()</span><br><span class="line">data = [(<span class="string">'Atlanta'</span>, <span class="string">'Georgia'</span>, <span class="number">1.2</span><span class="number">5</span>, <span class="number">6</span>),</span><br><span class="line">        (<span class="string">'Tallahassee'</span>, <span class="string">'Florida'</span>, <span class="number">2.6</span>, <span class="number">3</span>),</span><br><span class="line">        (<span class="string">'Sacramento'</span>, <span class="string">'California'</span>, <span class="number">1.7</span>, <span class="number">5</span>)]</span><br><span class="line">stmt = <span class="string">"INSERT INTO test VALUES(?, ?, ?, ?)"</span></span><br><span class="line"></span><br><span class="line">con.executemany(stmt, data)</span><br><span class="line">con.commit()</span><br><span class="line">cursor = con.execute(<span class="string">'select * from test'</span>)</span><br><span class="line">rows = cursor.fetchall()</span><br><span class="line">rows</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[(<span class="string">u'Atlanta'</span>, <span class="string">u'Georgia'</span>, <span class="number">1.25</span>, <span class="number">6</span>),</span><br><span class="line"> (<span class="string">u'Tallahassee'</span>, <span class="string">u'Florida'</span>, <span class="number">2.6</span>, <span class="number">3</span>),</span><br><span class="line"> (<span class="string">u'Sacramento'</span>, <span class="string">u'California'</span>, <span class="number">1.7</span>, <span class="number">5</span>)]</span><br></pre></td></tr></table></figure></p>
+<p>pandas有一个简化导入的方法<code>read_frame</code>函数，传入select语句就能转化成相应的DataFrame对象。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import pandas<span class="selector-class">.io</span><span class="selector-class">.sql</span> as sql</span><br><span class="line">sql.read_frame(<span class="string">'select * from test'</span>, con)</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	a 	b 	c 	d</span><br><span class="line"><span class="number">0</span> 	Atlanta 	Georgia 	<span class="number">1.25</span> 	<span class="number">6</span></span><br><span class="line"><span class="number">1</span> 	Tallahassee 	Florida 	<span class="number">2.60</span> 	<span class="number">3</span></span><br><span class="line"><span class="number">2</span> 	Sacramento 	California 	<span class="number">1.70</span> 	<span class="number">5</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>存取MongoDB中的数据</strong></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/11/23/Python-for-Data-Analysis-IV/" data-toggle="tooltip" data-placement="top" title="Python for Data Analysis IV">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/11/14/Python-for-Data-Analysis-II/" data-toggle="tooltip" data-placement="top" title="Python for Data Analysis Note II">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Data Analysis" title="Data Analysis">Data Analysis</a>
+                        
+                          <a class="tag" href="/tags/#pandas" title="pandas">pandas</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2023
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

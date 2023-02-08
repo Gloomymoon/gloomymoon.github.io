@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Python for Data Analysis V - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2016/12/27/Python-for-Data-Analysis-V/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/star-wars.jpg');
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Data Analysis" title="Data Analysis">Data Analysis</a>
+                        
+                          <a class="tag" href="/tags/#pandas" title="pandas">pandas</a>
+                        
+                    </div>
+                    <h1>Python for Data Analysis V</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2016-12-27
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="7-2-重塑和轴向旋转"><a href="#7-2-重塑和轴向旋转" class="headerlink" title="7.2 重塑和轴向旋转"></a>7.2 重塑和轴向旋转</h3><p><strong>重塑层次化索引</strong></p>
+<ul>
+<li><code>stack</code>：将数据的列旋转为行</li>
+<li><code>unstack</code>：将数据的行旋转为列</li>
+</ul>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data = DataFrame(<span class="name">np</span>.arange(<span class="number">6</span>).reshape((<span class="number">2</span>, <span class="number">3</span>)),</span><br><span class="line">                 index=pd.Index(['Ohio', 'Colorado'], name='state'),</span><br><span class="line">                 columns=pd.Index(['one', 'two', 'three'], name='number'))</span><br><span class="line">data</span><br></pre></td></tr></table></figure>
+<p>Data 1:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">number	one	two	three</span><br><span class="line"><span class="section">state</span>			</span><br><span class="line">Ohio	<span class="number">0</span>	<span class="number">1</span>	<span class="number">2</span></span><br><span class="line">Colorado	<span class="number">3</span>	<span class="number">4</span>	<span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>使用<code>stack</code>方法可以将列转换为行，得到一个Series：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">result</span> = <span class="class"><span class="keyword">data</span>.stack()</span></span><br><span class="line"><span class="title">result</span></span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">state     <span class="built_in">number</span></span><br><span class="line">Ohio      <span class="literal">one</span>       <span class="number">0</span></span><br><span class="line">          <span class="literal">two</span>       <span class="number">1</span></span><br><span class="line">          <span class="literal">three</span>     <span class="number">2</span></span><br><span class="line">Colorado  <span class="literal">one</span>       <span class="number">3</span></span><br><span class="line">          <span class="literal">two</span>       <span class="number">4</span></span><br><span class="line">          <span class="literal">three</span>     <span class="number">5</span></span><br><span class="line">dtype: int64</span><br></pre></td></tr></table></figure>
+<p>对于一个层次化索引的Series，看可以用<code>unstack</code>将其重排为一个DataFrame：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">result</span>.unstack()</span><br></pre></td></tr></table></figure>
+<p>Output like Data 1</p>
+<p>默认情况下，<code>unstack</code>和<code>stack</code>操作的是最内层索引，但可以传入分层级别的编号或名称对其他级别进行重塑。</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">result.unstack(<span class="number">0</span>)</span><br><span class="line">result.unstack('<span class="keyword">state</span>')</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">state</span>	Ohio	Colorado</span><br><span class="line">number		</span><br><span class="line">one		<span class="number">0</span>	<span class="number">3</span></span><br><span class="line">two		<span class="number">1</span>	<span class="number">4</span></span><br><span class="line">three	<span class="number">2</span>	<span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>如果在重塑时，不是所有的分组都有值，则<code>unstack</code>操作会引入缺失值，而<code>stack</code>操作会滤除缺失值，因此这两个操作互相可逆。在DataFrame进行<code>unstack</code>操作时，作为旋转轴的级别会成为结果中最低级别。</p>
+<p><strong>将“长格式”旋转为“宽格式”</strong></p>
+<p>一般时间序列数据是以“长格式”或“堆叠格式”存储的，时间作为主键或主键之一，记录数据的关系型数据大多这样保存原始的时间序列数据。</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldata<span class="string">[:10]</span></span><br></pre></td></tr></table></figure>
+<p>Data:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	date	item	value</span><br><span class="line"><span class="number">0</span>	<span class="number">1959</span><span class="number">-03</span><span class="number">-31</span>	realgdp	<span class="number">2710.349</span></span><br><span class="line"><span class="number">1</span>	<span class="number">1959</span><span class="number">-03</span><span class="number">-31</span>	infl	<span class="number">0.000</span></span><br><span class="line"><span class="number">2</span>	<span class="number">1959</span><span class="number">-03</span><span class="number">-31</span>	unemp	<span class="number">5.800</span></span><br><span class="line"><span class="number">3</span>	<span class="number">1959</span><span class="number">-06</span><span class="number">-30</span>	realgdp	<span class="number">2778.801</span></span><br><span class="line"><span class="number">4</span>	<span class="number">1959</span><span class="number">-06</span><span class="number">-30</span>	infl	<span class="number">2.340</span></span><br><span class="line"><span class="number">5</span>	<span class="number">1959</span><span class="number">-06</span><span class="number">-30</span>	unemp	<span class="number">5.100</span></span><br><span class="line"><span class="number">6</span>	<span class="number">1959</span><span class="number">-09</span><span class="number">-30</span>	realgdp	<span class="number">2775.488</span></span><br><span class="line"><span class="number">7</span>	<span class="number">1959</span><span class="number">-09</span><span class="number">-30</span>	infl	<span class="number">2.740</span></span><br><span class="line"><span class="number">8</span>	<span class="number">1959</span><span class="number">-09</span><span class="number">-30</span>	unemp	<span class="number">5.300</span></span><br><span class="line"><span class="number">9</span>	<span class="number">1959</span><span class="number">-12</span><span class="number">-31</span>	realgdp	<span class="number">2785.204</span></span><br></pre></td></tr></table></figure>
+<p>在DataFrame中，你可能更喜欢这样操作数据：不同的item值分别形成一列，data列中的时间值则用做索引。DataFrame的<code>pivot</code>方法可以实现这个转换。</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pivoted</span> = ldata.pivot(<span class="string">'date'</span>, <span class="string">'item'</span>, <span class="string">'value'</span>)</span><br><span class="line">pivoted.head()</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">item	infl	realgdp	unemp</span><br><span class="line">date			</span><br><span class="line"><span class="number">1959</span><span class="number">-03</span><span class="number">-31</span>	<span class="number">0.00</span>	<span class="number">2710.349</span>	<span class="number">5.8</span></span><br><span class="line"><span class="number">1959</span><span class="number">-06</span><span class="number">-30</span>	<span class="number">2.34</span>	<span class="number">2778.801</span>	<span class="number">5.1</span></span><br><span class="line"><span class="number">1959</span><span class="number">-09</span><span class="number">-30</span>	<span class="number">2.74</span>	<span class="number">2775.488</span>	<span class="number">5.3</span></span><br><span class="line"><span class="number">1959</span><span class="number">-12</span><span class="number">-31</span>	<span class="number">0.27</span>	<span class="number">2785.204</span>	<span class="number">5.6</span></span><br><span class="line"><span class="number">1960</span><span class="number">-03</span><span class="number">-31</span>	<span class="number">2.31</span>	<span class="number">2847.699</span>	<span class="number">5.2</span></span><br></pre></td></tr></table></figure>
+<p><code>pivot</code>的前两个参数值分别用作行和列索引的列名，最后一个参数值则是用于填充DataFrame的数据列的列名。如果有两个需要参与重塑的数据列，忽略最后一个参数得到的DataFrame就会带有层次化的列。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ldata[<span class="string">'value2'</span>] = np<span class="selector-class">.random</span><span class="selector-class">.randn</span>(len(ldata))</span><br><span class="line">ldata[:<span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+<p>Data:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	date	item	value	value2</span><br><span class="line"><span class="number">0</span>	<span class="number">1959</span><span class="number">-03</span><span class="number">-31</span>	realgdp	<span class="number">2710.349</span>	<span class="number">1.669025</span></span><br><span class="line"><span class="number">1</span>	<span class="number">1959</span><span class="number">-03</span><span class="number">-31</span>	infl	<span class="number">0.000</span>	<span class="number">-0.438570</span></span><br><span class="line"><span class="number">2</span>	<span class="number">1959</span><span class="number">-03</span><span class="number">-31</span>	unemp	<span class="number">5.800</span>	<span class="number">-0.539741</span></span><br><span class="line"><span class="number">3</span>	<span class="number">1959</span><span class="number">-06</span><span class="number">-30</span>	realgdp	<span class="number">2778.801</span>	<span class="number">0.476985</span></span><br><span class="line"><span class="number">4</span>	<span class="number">1959</span><span class="number">-06</span><span class="number">-30</span>	infl	<span class="number">2.340</span>	<span class="number">3.248944</span></span><br><span class="line"><span class="number">5</span>	<span class="number">1959</span><span class="number">-06</span><span class="number">-30</span>	unemp	<span class="number">5.100</span>	<span class="number">-1.021228</span></span><br><span class="line"><span class="number">6</span>	<span class="number">1959</span><span class="number">-09</span><span class="number">-30</span>	realgdp	<span class="number">2775.488</span>	<span class="number">-0.577087</span></span><br><span class="line"><span class="number">7</span>	<span class="number">1959</span><span class="number">-09</span><span class="number">-30</span>	infl	<span class="number">2.740</span>	<span class="number">0.124121</span></span><br><span class="line"><span class="number">8</span>	<span class="number">1959</span><span class="number">-09</span><span class="number">-30</span>	unemp	<span class="number">5.300</span>	<span class="number">0.302614</span></span><br><span class="line"><span class="number">9</span>	<span class="number">1959</span><span class="number">-12</span><span class="number">-31</span>	realgdp	<span class="number">2785.204</span>	<span class="number">0.523772</span></span><br></pre></td></tr></table></figure>
+<p>本质上<code>pivot</code>等同于：用<code>set_index</code>创建层次化索引后再使用<code>unstack</code>重塑。下面两段代码的效果相同。</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pivoted = ldata.pivot(<span class="string">'date'</span>, <span class="string">'item'</span>)</span><br><span class="line">pivoted[:<span class="number">5</span>]</span><br><span class="line">unstacked = ldata.set_index([<span class="string">'date'</span>, <span class="string">'item'</span>]).unstack(<span class="string">'item'</span>)</span><br><span class="line">unstacked[:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	value	value2</span><br><span class="line">item	infl	realgdp	unemp	infl	realgdp	unemp</span><br><span class="line">date						</span><br><span class="line"><span class="number">1959</span><span class="number">-03</span><span class="number">-31</span>	<span class="number">0.00</span>	<span class="number">2710.349</span>	<span class="number">5.8</span>	<span class="number">-0.438570</span>	<span class="number">1.669025</span>	<span class="number">-0.539741</span></span><br><span class="line"><span class="number">1959</span><span class="number">-06</span><span class="number">-30</span>	<span class="number">2.34</span>	<span class="number">2778.801</span>	<span class="number">5.1</span>	<span class="number">3.248944</span>	<span class="number">0.476985</span>	<span class="number">-1.021228</span></span><br><span class="line"><span class="number">1959</span><span class="number">-09</span><span class="number">-30</span>	<span class="number">2.74</span>	<span class="number">2775.488</span>	<span class="number">5.3</span>	<span class="number">0.124121</span>	<span class="number">-0.577087</span>	<span class="number">0.302614</span></span><br><span class="line"><span class="number">1959</span><span class="number">-12</span><span class="number">-31</span>	<span class="number">0.27</span>	<span class="number">2785.204</span>	<span class="number">5.6</span>	<span class="number">0.000940</span>	<span class="number">0.523772</span>	<span class="number">1.343810</span></span><br><span class="line"><span class="number">1960</span><span class="number">-03</span><span class="number">-31</span>	<span class="number">2.31</span>	<span class="number">2847.699</span>	<span class="number">5.2</span>	<span class="number">-0.831154</span>	<span class="number">-0.713544</span>	<span class="number">-2.370232</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-3-数据转换"><a href="#7-3-数据转换" class="headerlink" title="7.3 数据转换"></a>7.3 数据转换</h3><p><strong>移除重复数据</strong></p>
+<p>DataFrame中常常会出现重复行，DataFrame的<code>duplicated</code>返回一个布尔型Series，表示各行是否重复，DataFrame的<code>dorp_duplicates</code>返回一个移除重复行的DataFrame。默认情况下判断所有列，但是也可以传入希望过滤的列列表。默认情况下保留的是第一个出现的值组合，传入<code>take_last=True</code>参数则保留最后一个。</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data = <span class="symbol">DataFrame</span>(&#123;<span class="string">'k1'</span>: [<span class="string">'one'</span>] * <span class="number">3</span> + [<span class="string">'two'</span>] * <span class="number">4</span>,</span><br><span class="line">                  <span class="string">'k2'</span>: [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>]&#125;)</span><br><span class="line">data[<span class="string">'v1'</span>] = range(<span class="number">7</span>)</span><br><span class="line">data.drop_duplicates([<span class="string">'k1'</span>])</span><br><span class="line"></span><br><span class="line">data.drop_duplicates([<span class="string">'k1'</span>, <span class="string">'k2'</span>], take_last=<span class="symbol">True</span>)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	k1	k2	v1</span><br><span class="line"><span class="number">0</span>	<span class="literal">one</span>	<span class="number">1</span>	<span class="number">0</span></span><br><span class="line"><span class="number">3</span>	<span class="literal">two</span>	<span class="number">3</span>	<span class="number">3</span></span><br><span class="line"></span><br><span class="line">/Library/Python/<span class="number">2.7</span>/site-packages/ipykernel/__main__.py:<span class="number">1</span>: FutureWarning: <span class="keyword">the</span> take_last=True keyword is deprecated, use keep=<span class="string">'last'</span> instead</span><br><span class="line">	k1	k2	v1</span><br><span class="line"><span class="number">1</span>	<span class="literal">one</span>	<span class="number">1</span>	<span class="number">1</span></span><br><span class="line"><span class="number">2</span>	<span class="literal">one</span>	<span class="number">2</span>	<span class="number">2</span></span><br><span class="line"><span class="number">4</span>	<span class="literal">two</span>	<span class="number">3</span>	<span class="number">4</span></span><br><span class="line"><span class="number">6</span>	<span class="literal">two</span>	<span class="number">4</span>	<span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p><strong>利用函数或映射进行数据转换</strong></p>
+<p>更多的时候在处理数据时，我们希望根据某种逻辑关系对值进行转换。在说明前先看下如下关于肉类的演示数据：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data = <span class="type">DataFrame</span>(&#123;<span class="symbol">'food'</span>: [<span class="symbol">'bacon'</span>, <span class="symbol">'pulled</span> pork', <span class="symbol">'bacon'</span>, <span class="symbol">'Pastrami'</span>, <span class="symbol">'corned</span> beef', <span class="symbol">'Bacon'</span>, <span class="symbol">'pastrami'</span>, <span class="symbol">'honey</span> ham', <span class="symbol">'nova</span> lox'], <span class="symbol">'ounces'</span>: [<span class="number">4</span>, <span class="number">3</span>, <span class="number">12</span>, <span class="number">6</span>, <span class="number">7.5</span>, <span class="number">8</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>]&#125;)</span><br><span class="line">data</span><br></pre></td></tr></table></figure>
+<p>Data:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	food	ounces</span><br><span class="line"><span class="number">0</span>	bacon	<span class="number">4.0</span></span><br><span class="line"><span class="number">1</span>	pulled pork	<span class="number">3.0</span></span><br><span class="line"><span class="number">2</span>	bacon	<span class="number">12.0</span></span><br><span class="line"><span class="number">3</span>	Pastrami	<span class="number">6.0</span></span><br><span class="line"><span class="number">4</span>	corned beef	<span class="number">7.5</span></span><br><span class="line"><span class="number">5</span>	Bacon	<span class="number">8.0</span></span><br><span class="line"><span class="number">6</span>	pastrami	<span class="number">3.0</span></span><br><span class="line"><span class="number">7</span>	honey ham	<span class="number">5.0</span></span><br><span class="line"><span class="number">8</span>	nova lox	<span class="number">6.0</span></span><br></pre></td></tr></table></figure>
+<p>最常见的处理是创建新分类/分组，例如需要添加一列表示food来源的动物类型，肉类到动物的映射关系如下：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">meat_to_animal = &#123;</span><br><span class="line">  <span class="symbol">'bacon'</span>: <span class="symbol">'pig'</span>,</span><br><span class="line">  <span class="symbol">'pulled</span> pork': <span class="symbol">'pig'</span>,</span><br><span class="line">  <span class="symbol">'pastrami'</span>: <span class="symbol">'cow'</span>,</span><br><span class="line">  <span class="symbol">'corned</span> beef': <span class="symbol">'cow'</span>,</span><br><span class="line">  <span class="symbol">'honey</span> ham': <span class="symbol">'pig'</span>,</span><br><span class="line">  <span class="symbol">'nova</span> lox': <span class="symbol">'salmon'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Series的<code>map</code>方法可以根据一个函数或含有映射关系的字典对象，产生新的Series。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span>['animal'] = <span class="keyword">data</span>['food'].map(<span class="title">str</span>.<span class="title">lower</span>).map(<span class="title">meat_to_animal</span>)</span></span><br><span class="line"><span class="class"><span class="keyword">data</span></span></span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	food	ounces	animal</span><br><span class="line"><span class="number">0</span>	bacon	<span class="number">4.0</span>	pig</span><br><span class="line"><span class="number">1</span>	pulled pork	<span class="number">3.0</span>	pig</span><br><span class="line"><span class="number">2</span>	bacon	<span class="number">12.0</span>	pig</span><br><span class="line"><span class="number">3</span>	Pastrami	<span class="number">6.0</span>	cow</span><br><span class="line"><span class="number">4</span>	corned beef	<span class="number">7.5</span>	cow</span><br><span class="line"><span class="number">5</span>	Bacon	<span class="number">8.0</span>	pig</span><br><span class="line"><span class="number">6</span>	pastrami	<span class="number">3.0</span>	cow</span><br><span class="line"><span class="number">7</span>	honey ham	<span class="number">5.0</span>	pig</span><br><span class="line"><span class="number">8</span>	nova lox	<span class="number">6.0</span>	salmon</span><br></pre></td></tr></table></figure>
+<p>注意因为原始数据里包含有大小写，因此首先做了一次小写转换。当然也可以直接传入一个完成全部工作的lambda函数，效果是一样的：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">data</span><span class="selector-attr">['food']</span><span class="selector-class">.map</span>(<span class="selector-tag">lambda</span> <span class="selector-tag">x</span>: <span class="selector-tag">meat_to_animal</span><span class="selector-attr">[x.lower()]</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>值替换</strong></p>
+<p><code>fillna</code>方法是一种值替换的特殊情况，<code>replace</code>方法是更加通用、更加简单的方法。</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">data = Series([1., <span class="string">-999</span>., 2., <span class="string">-999</span>., <span class="string">-1000</span>., 3.])</span><br><span class="line">data</span><br><span class="line"></span><br><span class="line">0       1.0</span><br><span class="line">1    <span class="string">-999</span>.0</span><br><span class="line">2       2.0</span><br><span class="line">3    <span class="string">-999</span>.0</span><br><span class="line">4   <span class="string">-1000</span>.0</span><br><span class="line">5       3.0</span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+<p>-999可能是一个表示缺失的标记值，可以用<code>replace</code>方法替换为pandas的<code>nan</code>：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span>.replace(-999, <span class="title">np</span>.<span class="title">nan</span>)</span></span><br></pre></td></tr></table></figure>
+<p>如果希望一次性替换多个值，可以传入一个由待替换值和替换值组成的列表或字典，下面两种方式等效：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span>.replace([-999, -1000], [<span class="title">np</span>.<span class="title">nan</span>, 0]))</span></span><br><span class="line"><span class="class"><span class="keyword">data</span>.replace(<span class="comment">&#123;-999: np.nan, -1000: 0&#125;)</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>重命名轴索引</strong></p>
+<p><code>map</code>方法同样可以对数据的轴标签使用。DataFrame的<code>rename</code>方法可以直接返回修改index和columns的对象，如果希望就地修改不产生新对象，可以传入参数<code>inplace=True</code>。</p>
+<p><strong>离散化和面元划分</strong></p>
+<p>为了便于分析，连续数据常常被离散化或分bin，例如将年龄划分为不同的年龄组。</p>
+<p>Data：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ages = [<span class="number">20</span>, <span class="number">22</span>, <span class="number">25</span>, <span class="number">27</span>, <span class="number">21</span>, <span class="number">23</span>, <span class="number">37</span>, <span class="number">31</span>, <span class="number">61</span>, <span class="number">45</span>, <span class="number">41</span>, <span class="number">32</span>]</span><br></pre></td></tr></table></figure>
+<p>如果要将这些数据分为“18到25”、“26到35”、“35到60”和“60以上”几个组，可以使用pandas的<code>cut</code>函数：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bins = [<span class="number">18</span>, <span class="number">25</span>, <span class="number">35</span>, <span class="number">60</span>, <span class="number">100</span>]</span><br><span class="line">cats = pd.cut(ages, bins)</span><br><span class="line">cats</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[(<span class="name">18</span>, <span class="number">25</span>], (<span class="name">18</span>, <span class="number">25</span>], (<span class="name">18</span>, <span class="number">25</span>], (<span class="name">25</span>, <span class="number">35</span>], (<span class="name">18</span>, <span class="number">25</span>], ..., (<span class="name">25</span>, <span class="number">35</span>], (<span class="name">60</span>, <span class="number">100</span>], (<span class="name">35</span>, <span class="number">60</span>], (<span class="name">35</span>, <span class="number">60</span>], (<span class="name">25</span>, <span class="number">35</span>]]</span><br><span class="line">Length: <span class="number">12</span></span><br><span class="line">Categories (<span class="name">4</span>, object): [(<span class="name">18</span>, <span class="number">25</span>] &lt; (<span class="name">25</span>, <span class="number">35</span>] &lt; (<span class="name">35</span>, <span class="number">60</span>] &lt; (<span class="name">60</span>, <span class="number">100</span>]]</span><br></pre></td></tr></table></figure>
+<p><code>cut</code>函数返回的是一个特殊的Categorical对象。它含有一个表示不同分类名称的<code>categories</code>索引对象和一个为分组进行标号的<code>levels</code>数组。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cats.labels</span><br><span class="line"></span><br><span class="line">/Library/Python/<span class="number">2.7</span>/site-packages/ipykernel/__main__<span class="selector-class">.py</span>:<span class="number">1</span>: FutureWarning: <span class="string">'labels'</span> is deprecated. Use <span class="string">'codes'</span> instead</span><br><span class="line">  <span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"><span class="function"><span class="title">array</span><span class="params">([<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], dtype=int8)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cats.categories</span><br><span class="line"></span><br><span class="line">Index([<span class="string">u'(18, 25]'</span>, <span class="string">u'(25, 35]'</span>, <span class="string">u'(35, 60]'</span>, <span class="string">u'(60, 100]'</span>], dtype=<span class="string">'object'</span>)</span><br></pre></td></tr></table></figure>
+<p>categories是一个Index对象，实质是一个由python对象组成的 NumPy数组，其中存放的是每个分组的描述字符串。</p>
+<p>如果想<code>cut</code>传入的是分组的数量而不是确切的分组边界，则会根据数据的最小值和最大值计算等长分组。<code>qcut</code>是个类似于<code>cut</code>的函数，它根据样本的分位数对数据进行分组划分。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = np.random.randn(1000) <span class="comment"># 正态分布</span></span><br><span class="line">cats = pd.qcut(data, 4)		<span class="comment"># 按四分位数进行切割</span></span><br><span class="line">cats</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[(-0.022, 0.634]</span>, <span class="selector-attr">[-3.745, -0.648]</span>, (0<span class="selector-class">.634</span>, 3<span class="selector-class">.26</span>], (<span class="selector-tag">-0</span><span class="selector-class">.022</span>, 0<span class="selector-class">.634</span>], (<span class="selector-tag">-0</span><span class="selector-class">.648</span>, <span class="selector-tag">-0</span><span class="selector-class">.022</span>], ..., (0<span class="selector-class">.634</span>, 3<span class="selector-class">.26</span>], (<span class="selector-tag">-0</span><span class="selector-class">.022</span>, 0<span class="selector-class">.634</span>], <span class="selector-attr">[-3.745, -0.648]</span>, (<span class="selector-tag">-0</span><span class="selector-class">.022</span>, 0<span class="selector-class">.634</span>], (<span class="selector-tag">-0</span><span class="selector-class">.022</span>, 0<span class="selector-class">.634</span>]]</span><br><span class="line"><span class="selector-tag">Length</span>: 1000</span><br><span class="line"><span class="selector-tag">Categories</span> (4, <span class="selector-tag">object</span>): <span class="selector-attr">[[-3.745, -0.648]</span> &lt; (<span class="selector-tag">-0</span><span class="selector-class">.648</span>, <span class="selector-tag">-0</span><span class="selector-class">.022</span>] &lt; (<span class="selector-tag">-0</span><span class="selector-class">.022</span>, 0<span class="selector-class">.634</span>] &lt; (0<span class="selector-class">.634</span>, 3<span class="selector-class">.26</span>]]</span><br></pre></td></tr></table></figure>
+<p>跟<code>cut</code>一样，可以设置自定义的分位数（0到1之间的数值，包含端点）。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.qcut(data, [<span class="number">0</span>, <span class="number">0.1</span>, <span class="number">0.5</span>, <span class="number">0.9</span>, <span class="number">1.</span>])</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[(-0.022, 1.298]</span>, <span class="selector-attr">[-3.745, -1.274]</span>, (<span class="selector-tag">-0</span><span class="selector-class">.022</span>, 1<span class="selector-class">.298</span>], (<span class="selector-tag">-0</span><span class="selector-class">.022</span>, 1<span class="selector-class">.298</span>], (<span class="selector-tag">-1</span><span class="selector-class">.274</span>, <span class="selector-tag">-0</span><span class="selector-class">.022</span>], ..., (<span class="selector-tag">-0</span><span class="selector-class">.022</span>, 1<span class="selector-class">.298</span>], (<span class="selector-tag">-0</span><span class="selector-class">.022</span>, 1<span class="selector-class">.298</span>], <span class="selector-attr">[-3.745, -1.274]</span>, (<span class="selector-tag">-0</span><span class="selector-class">.022</span>, 1<span class="selector-class">.298</span>], (<span class="selector-tag">-0</span><span class="selector-class">.022</span>, 1<span class="selector-class">.298</span>]]</span><br><span class="line"><span class="selector-tag">Length</span>: 1000</span><br><span class="line"><span class="selector-tag">Categories</span> (4, <span class="selector-tag">object</span>): <span class="selector-attr">[[-3.745, -1.274]</span> &lt; (<span class="selector-tag">-1</span><span class="selector-class">.274</span>, <span class="selector-tag">-0</span><span class="selector-class">.022</span>] &lt; (<span class="selector-tag">-0</span><span class="selector-class">.022</span>, 1<span class="selector-class">.298</span>] &lt; (1<span class="selector-class">.298</span>, 3<span class="selector-class">.26</span>]]</span><br></pre></td></tr></table></figure>
+<p><strong> 检测和过滤异常值</strong></p>
+<p>异常值（这里指异常点或离群值）的过滤或变换本质上就是数组的运算，利用布尔型DataFrame方法可以选出异常值，然后就可以轻松设置。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">np</span>.random.seed(<span class="number">12345</span>)</span><br><span class="line"><span class="class"><span class="keyword">data</span> = <span class="type">DataFrame</span>(<span class="title">np</span>.<span class="title">random</span>.<span class="title">randn</span>(1000, 4))</span></span><br><span class="line"><span class="class"><span class="keyword">data</span>[np.abs(<span class="title">data</span>) &gt; 3 ] = np.sign(<span class="title">data</span>) * 3 # 将绝对值超过3的值限制在-3到3之间</span></span><br><span class="line"><span class="class"><span class="keyword">data</span>[(<span class="title">np</span>.<span class="title">abs</span>(<span class="title">data</span>) &gt; 3).any(1)]</span></span><br></pre></td></tr></table></figure>
+<p>No output.</p>
+<p><strong>排列和随机采样</strong></p>
+<p>利用numpy.random.permutation函数可以实现对Series或DataFrame的列重排，传入需要排列的轴长度值，可产生一个表示新顺序的整数数组。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = DataFrame(np.arange(<span class="number">5</span> * <span class="number">4</span>).reshape(<span class="number">5</span>, <span class="number">4</span>))</span><br><span class="line">sampler = np.random.permutation(<span class="number">5</span>)</span><br><span class="line">sampler</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array([<span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br></pre></td></tr></table></figure>
+<p>然后就可以在基于ix的索引操作或<code>take</code>函数中使用该数组实现对DataFrame的重排序。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">df</span><span class="selector-class">.take</span>(<span class="selector-tag">sampler</span>)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">	<span class="number">0</span>	<span class="number">1</span>	<span class="number">2</span>	<span class="number">3</span></span><br><span class="line"><span class="number">1</span>	<span class="number">4</span>	<span class="number">5</span>	<span class="number">6</span>	<span class="number">7</span></span><br><span class="line"><span class="number">0</span>	<span class="number">0</span>	<span class="number">1</span>	<span class="number">2</span>	<span class="number">3</span></span><br><span class="line"><span class="number">2</span>	<span class="number">8</span>	<span class="number">9</span>	<span class="number">10</span>	<span class="number">11</span></span><br><span class="line"><span class="number">3</span>	<span class="number">12</span>	<span class="number">13</span>	<span class="number">14</span>	<span class="number">15</span></span><br><span class="line"><span class="number">4</span>	<span class="number">16</span>	<span class="number">17</span>	<span class="number">18</span>	<span class="number">19</span></span><br></pre></td></tr></table></figure>
+<p>如果希望进行重复采样，可以通过<code>np.random.randint</code>得到一组随机整数。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sampler = np.<span class="built_in">random</span>.randint(<span class="number">0</span>, <span class="built_in">len</span>(df), size=<span class="number">10</span>) <span class="comment"># 随机抽取10条</span></span><br><span class="line">df.take(sampler)</span><br></pre></td></tr></table></figure>
+<p>Oupput:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	<span class="number">0</span>	<span class="number">1</span>	<span class="number">2</span>	<span class="number">3</span></span><br><span class="line"><span class="number">2</span>	<span class="number">8</span>	<span class="number">9</span>	<span class="number">10</span>	<span class="number">11</span></span><br><span class="line"><span class="number">2</span>	<span class="number">8</span>	<span class="number">9</span>	<span class="number">10</span>	<span class="number">11</span></span><br><span class="line"><span class="number">4</span>	<span class="number">16</span>	<span class="number">17</span>	<span class="number">18</span>	<span class="number">19</span></span><br><span class="line"><span class="number">3</span>	<span class="number">12</span>	<span class="number">13</span>	<span class="number">14</span>	<span class="number">15</span></span><br><span class="line"><span class="number">3</span>	<span class="number">12</span>	<span class="number">13</span>	<span class="number">14</span>	<span class="number">15</span></span><br><span class="line"><span class="number">0</span>	<span class="number">0</span>	<span class="number">1</span>	<span class="number">2</span>	<span class="number">3</span></span><br><span class="line"><span class="number">1</span>	<span class="number">4</span>	<span class="number">5</span>	<span class="number">6</span>	<span class="number">7</span></span><br><span class="line"><span class="number">4</span>	<span class="number">16</span>	<span class="number">17</span>	<span class="number">18</span>	<span class="number">19</span></span><br><span class="line"><span class="number">1</span>	<span class="number">4</span>	<span class="number">5</span>	<span class="number">6</span>	<span class="number">7</span></span><br><span class="line"><span class="number">4</span>	<span class="number">16</span>	<span class="number">17</span>	<span class="number">18</span>	<span class="number">19</span></span><br></pre></td></tr></table></figure>
+<p><strong>计算指标/哑变量</strong></p>
+<p>另一种常用于统计建模或机器学习的转换方式是将分类变量转换为“哑变量矩阵”或“指标矩阵”。例如某一个列中含有k个不同的取值，则可以派生出一个k列矩阵，每列的值都是1或0。pandas有一个<code>get_dummies</code>函数可以直接实现该功能。</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df = <span class="symbol">DataFrame</span>(&#123;<span class="string">'key'</span>: [<span class="string">'b'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>], <span class="string">'data1'</span>: range(<span class="number">6</span>)&#125;)</span><br><span class="line">pd.get_dummies(df[<span class="string">'key'</span>])</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">	a	b	c</span><br><span class="line"><span class="number">0</span>	<span class="number">0</span>	<span class="number">1</span>	<span class="number">0</span></span><br><span class="line"><span class="number">1</span>	<span class="number">0</span>	<span class="number">1</span>	<span class="number">0</span></span><br><span class="line"><span class="number">2</span>	<span class="number">1</span>	<span class="number">0</span>	<span class="number">0</span></span><br><span class="line"><span class="number">3</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">1</span></span><br><span class="line"><span class="number">4</span>	<span class="number">1</span>	<span class="number">0</span>	<span class="number">0</span></span><br><span class="line"><span class="number">5</span>	<span class="number">0</span>	<span class="number">1</span>	<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>如果DataFrame中某分类变量列的值属于多个分类，就需要做一些数据规整操作。</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mnames = [<span class="string">'movie_id'</span>, <span class="string">'title'</span>, <span class="string">'genres'</span>]</span><br><span class="line">movies = pd.read_table(<span class="string">'../../../pydata-book-master/ch02/movielens/movies.dat'</span>, sep=<span class="string">'::'</span>, header=<span class="symbol">None</span>,</span><br><span class="line">                        names=mnames)</span><br><span class="line">movies[:<span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+<p>Data:</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	movie_id	title	genres</span><br><span class="line"><span class="number">0</span>	<span class="number">1</span>	Toy Story (<span class="number">1995</span>)	Animation|Children's|Comedy</span><br><span class="line"><span class="number">1</span>	<span class="number">2</span>	Jumanji (<span class="number">1995</span>)	Adventure|Children's|Fantasy</span><br><span class="line"><span class="number">2</span>	<span class="number">3</span>	Grumpier Old Men (<span class="number">1995</span>)	Comedy|Romance</span><br><span class="line"><span class="number">3</span>	<span class="number">4</span>	Waiting to Exhale (<span class="number">1995</span>)	Comedy|Drama</span><br><span class="line"><span class="number">4</span>	<span class="number">5</span>	Father of the Bride Part II (<span class="number">1995</span>)	Comedy</span><br><span class="line"><span class="number">5</span>	<span class="number">6</span>	Heat (<span class="number">1995</span>)	Action|Crime|Thriller</span><br><span class="line"><span class="number">6</span>	<span class="number">7</span>	Sabrina (<span class="number">1995</span>)	Comedy|Romance</span><br><span class="line"><span class="number">7</span>	<span class="number">8</span>	Tom and Huck (<span class="number">1995</span>)	Adventure|Children's</span><br><span class="line"><span class="number">8</span>	<span class="number">9</span>	Sudden Death (<span class="number">1995</span>)	Action</span><br><span class="line"><span class="number">9</span>	<span class="number">10</span>	GoldenEye (<span class="number">1995</span>)	Action|Adventure|Thriller</span><br></pre></td></tr></table></figure>
+<p>以之前MovieLens 1M数据为例，首先需要从<code>genres</code>列中抽取出不同的genre值g。</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">genre_iter = (<span class="name">set</span>(<span class="name">x</span>.split('|')) for x in movies.genres)</span><br><span class="line">genres = sorted(<span class="name">set</span>.union(<span class="name">*genre_iter</span>))</span><br><span class="line">genres</span><br></pre></td></tr></table></figure>
+<p>genre_iter是一个表达式生成器，<code>set.union</code>参数中，<code>*genre_iter</code>表示将生成器的每次迭代都作为一个set对象，最后传给<code>union</code>方法获得并集。Output:</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[<span class="symbol">'Action</span>',</span><br><span class="line"> <span class="symbol">'Adventure</span>',</span><br><span class="line"> <span class="symbol">'Animation</span>',</span><br><span class="line"> <span class="string">"Children's"</span>,</span><br><span class="line"> <span class="symbol">'Comedy</span>',</span><br><span class="line"> <span class="symbol">'Crime</span>',</span><br><span class="line"> <span class="symbol">'Documentary</span>',</span><br><span class="line"> <span class="symbol">'Drama</span>',</span><br><span class="line"> <span class="symbol">'Fantasy</span>',</span><br><span class="line"> <span class="symbol">'Film-Noir</span>',</span><br><span class="line"> <span class="symbol">'Horror</span>',</span><br><span class="line"> <span class="symbol">'Musical</span>',</span><br><span class="line"> <span class="symbol">'Mystery</span>',</span><br><span class="line"> <span class="symbol">'Romance</span>',</span><br><span class="line"> <span class="symbol">'Sci-Fi</span>',</span><br><span class="line"> <span class="symbol">'Thriller</span>',</span><br><span class="line"> <span class="symbol">'War</span>',</span><br><span class="line"> <span class="symbol">'Western</span>']</span><br></pre></td></tr></table></figure>
+<p>为了构建指标，我们先从一个全零的DataFrame对象<code>dummies</code>开始，迭代每一部电影并将<code>dummies</code>各行的项设置为1或0，最后再将其与movies合并。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dummies = DataFrame(np.zeros((len(movies), len(genres))), <span class="attribute">columns</span>=genres)</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span>, gen <span class="keyword">in</span> enumerate(movies.genres):</span><br><span class="line">    dummies<span class="selector-class">.ix</span>[<span class="selector-tag">i</span>, gen.split(<span class="string">'|'</span>)] = <span class="number">1</span></span><br><span class="line">movies_windic = movies.join(dummies.add_prefix(<span class="string">'Gere_'</span>))</span><br><span class="line">movies_windic<span class="selector-class">.ix</span>[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">movie_id                                      <span class="number">1</span></span><br><span class="line">title                          <span class="type">Toy</span> <span class="type">Story</span> (<span class="number">1995</span>)</span><br><span class="line">genres              <span class="type">Animation</span>|<span class="type">Children</span><span class="symbol">'s</span>|<span class="type">Comedy</span></span><br><span class="line"><span class="type">Gere_Action</span>                                   <span class="number">0</span></span><br><span class="line"><span class="type">Gere_Adventure</span>                                <span class="number">0</span></span><br><span class="line"><span class="type">Gere_Animation</span>                                <span class="number">1</span></span><br><span class="line"><span class="type">Gere_Children</span><span class="symbol">'s</span>                               <span class="number">1</span></span><br><span class="line"><span class="type">Gere_Comedy</span>                                   <span class="number">1</span></span><br><span class="line"><span class="type">Gere_Crime</span>                                    <span class="number">0</span></span><br><span class="line"><span class="type">Gere_Documentary</span>                              <span class="number">0</span></span><br><span class="line"><span class="type">Gere_Drama</span>                                    <span class="number">0</span></span><br><span class="line"><span class="type">Gere_Fantasy</span>                                  <span class="number">0</span></span><br><span class="line"><span class="type">Gere_Film</span>-<span class="type">Noir</span>                                <span class="number">0</span></span><br><span class="line"><span class="type">Gere_Horror</span>                                   <span class="number">0</span></span><br><span class="line"><span class="type">Gere_Musical</span>                                  <span class="number">0</span></span><br><span class="line"><span class="type">Gere_Mystery</span>                                  <span class="number">0</span></span><br><span class="line"><span class="type">Gere_Romance</span>                                  <span class="number">0</span></span><br><span class="line"><span class="type">Gere_Sci</span>-<span class="type">Fi</span>                                   <span class="number">0</span></span><br><span class="line"><span class="type">Gere_Thriller</span>                                 <span class="number">0</span></span><br><span class="line"><span class="type">Gere_War</span>                                      <span class="number">0</span></span><br><span class="line"><span class="type">Gere_Western</span>                                  <span class="number">0</span></span><br><span class="line"><span class="type">Name</span>: <span class="number">0</span>, dtype: <span class="class"><span class="keyword">object</span></span></span><br></pre></td></tr></table></figure>
+<p>一个实用的秘诀是将<code>get_dummies</code>和诸如<code>cut</code>的离散化函数生成你需要的哑变量指标。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/01/02/Python-for-Data-Analysis-VI/" data-toggle="tooltip" data-placement="top" title="Python for Data Analysis VI">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/11/29/Start-using-Materialize-in-your-website/" data-toggle="tooltip" data-placement="top" title="Start using Materialize in your website">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Data Analysis" title="Data Analysis">Data Analysis</a>
+                        
+                          <a class="tag" href="/tags/#pandas" title="pandas">pandas</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2023
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

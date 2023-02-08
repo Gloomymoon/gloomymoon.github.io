@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Building LegoSpyder Part II - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2016/10/22/Building-LegoSpyder-Part-II/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/star-wars.jpg');
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Lego" title="Lego">Lego</a>
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Scrapy" title="Scrapy">Scrapy</a>
+                        
+                    </div>
+                    <h1>Building LegoSpyder Part II</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2016-10-22
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="2-Installing-Scrapy"><a href="#2-Installing-Scrapy" class="headerlink" title="2. Installing Scrapy"></a>2. Installing Scrapy</h2><p>直接用pip安装即可：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip <span class="keyword">install</span> Scrapy</span><br></pre></td></tr></table></figure></p>
+<p>如果出现如下错误：<br><code>exceptions.ImportError: No module named win32api</code></p>
+<p>需要手动安装pypiwin32:<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip <span class="keyword">install</span> pypiwin32</span><br></pre></td></tr></table></figure></p>
+<p>如果需要生成下载预览图片的缩略图，请手动安装image：<br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install <span class="built_in">image</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="3-Building-Spider"><a href="#3-Building-Spider" class="headerlink" title="3 Building Spider"></a>3 Building Spider</h2><h3 id="3-0-Create-Scrapy-Project"><a href="#3-0-Create-Scrapy-Project" class="headerlink" title="3.0 Create Scrapy Project"></a>3.0 Create Scrapy Project</h3><p>进入项目目录，在命令行输入如下命令就可以创建一个空白的Scrapy项目<strong>LegoSpyder</strong>：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>scrapy startproject LegoSpyder</span><br></pre></td></tr></table></figure></p>
+<p>生成的项目框架如下所示：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">LegoSpyder/</span><br><span class="line">    scrapy.cfg</span><br><span class="line">    LegoSpyder/</span><br><span class="line">        __init__.py</span><br><span class="line">        items.py</span><br><span class="line">        pipelines.py</span><br><span class="line">        settings.py</span><br><span class="line">        spiders/</span><br><span class="line">            __init__.py</span><br><span class="line">            ...</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-1-Create-Spider"><a href="#3-1-Create-Spider" class="headerlink" title="3.1 Create Spider"></a>3.1 Create Spider</h3><p>然后在spiders目录下新建BuildingInstructionsSpider.py文件，这就是我们爬虫程序。<br>根据之前对Lego网站的分析，就能够获取所有Set的相关json数据：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import scrapy</span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuildingInstructionsSpider</span>(<span class="title">scrapy</span>.<span class="title">Spider</span>):</span></span><br><span class="line">    name = <span class="string">'lego'</span></span><br><span class="line">    search_base_url = <span class="string">"https://wwwsecure.us.lego.com//service/biservice/searchbythemeandyear?fromIndex=0&amp;onlyAlternatives=false&amp;theme=%s&amp;year=%s"</span></span><br><span class="line">    allowed_domains = [<span class="string">'lego.com'</span>]</span><br><span class="line">    start_urls = [</span><br><span class="line">        <span class="string">'https://wwwsecure.us.lego.com/en-us/service/buildinginstructions'</span>,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(<span class="keyword">self</span>, response)</span></span><span class="symbol">:</span></span><br><span class="line">        year_str = response.css(<span class="string">'div.product-search::attr(data-search-years)'</span>).extract_first()</span><br><span class="line">        theme_str = response.css(<span class="string">'div.product-search::attr(data-search-themes)'</span>).extract_first()</span><br><span class="line">        <span class="keyword">for</span> theme <span class="keyword">in</span> json.loads(theme_str)<span class="symbol">:</span></span><br><span class="line">            <span class="comment">#print theme</span></span><br><span class="line">            <span class="keyword">for</span> year <span class="keyword">in</span> json.loads(year_str)<span class="symbol">:</span></span><br><span class="line">                <span class="comment">#print year</span></span><br><span class="line">                search_url = <span class="keyword">self</span>.search_base_url % (theme[<span class="string">'Key'</span>], year)</span><br><span class="line">                <span class="keyword">yield</span> scrapy.Request(search_url, callback=<span class="keyword">self</span>.parse_search)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_search</span><span class="params">(<span class="keyword">self</span>, response)</span></span><span class="symbol">:</span></span><br><span class="line">        print response.body</span><br></pre></td></tr></table></figure></p>
+<p>为了方便在PyCharm中进行调试，在项目的根目录创建main.py：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from scrapy <span class="keyword">import</span> cmdline</span><br><span class="line">cmdline.execute(<span class="string">"scrapy crawl lego"</span>.<span class="built_in">split</span>())</span><br></pre></td></tr></table></figure></p>
+<p>这样从main.py运行就能够调试spider的脚本了，而不用从命令行用scrapy crawl的方式运行爬虫。<br>Run之后就能看到所有的Set信息：<br><code>2016-10-22 11:19:15 [scrapy] INFO: Spider opened
+2016-10-22 11:19:15 [scrapy] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2016-10-22 11:19:15 [scrapy] DEBUG: Telnet console listening on 127.0.0.1:6024
+2016-10-22 11:19:17 [scrapy] DEBUG: Crawled (200) &lt;GET https://wwwsecure.us.lego.com/en-us/service/buildinginstructions&gt; (referer: None)
+2016-10-22 11:19:17 [scrapy] DEBUG: Crawled (200) &lt;GET https://wwwsecure.us.lego.com//service/biservice/searchbythemeandyear?fromIndex=0&amp;onlyAlternatives=false&amp;theme=10000-20070&amp;year=1995&gt; (referer: https://wwwsecure.us.lego.com/en-us/service/buildinginstructions)
+{&quot;count&quot;:0,&quot;moreData&quot;:false,&quot;products&quot;:[],&quot;totalCount&quot;:0,&quot;years&quot;:[&quot;2004&quot;,&quot;2003&quot;],&quot;themes&quot;:[&quot;10000-20032&quot;,&quot;500-346&quot;]}
+2016-10-22 11:19:17 [scrapy] DEBUG: Crawled (200) &lt;GET https://wwwsecure.us.lego.com//service/biservice/searchbythemeandyear?fromIndex=0&amp;onlyAlternatives=false&amp;theme=10000-20070&amp;year=2003&gt; (referer: https://wwwsecure.us.lego.com/en-us/service/buildinginstructions)
+{&quot;count&quot;:2,&quot;moreData&quot;:false,&quot;products&quot;:[{&quot;productId&quot;:&quot;4655&quot;,&quot;productName&quot;:&quot;Quick Fix Station&quot;,&quot;productImage&quot;:&quot;http://cache.lego.com/images/shop/prod/4655-0000-XX-12-1.jpg&quot;,&quot;buildingInstructions&quot;:[{&quot;description&quot;:&quot;BI, 4655 IN&quot;,&quot;pdfLocation&quot;:&quot;http://cache.lego.com/bigdownloads/buildinginstructions/4234989.pdf&quot;,&quot;downloadSize&quot;:&quot;1.23 Mb&quot;,&quot;frontpageInfo&quot;:&quot;http://cache.lego.com/bigdownloads/buildinginstructions/fpimg/4234989.png&quot;,&quot;isAlternative&quot;:false},{&quot;description&quot;:&quot;BI, 4655 NA&quot;,&quot;pdfLocation&quot;:&quot;http://cache.lego.com/bigdownloads/buildinginstructions/4235788.pdf&quot;,&quot;downloadSize&quot;:&quot;1.26 Mb&quot;,&quot;frontpageInfo&quot;:&quot;http://cache.lego.com/bigdownloads/buildinginstructions/fpimg/4235788.png&quot;,&quot;isAlternative&quot;:false}],&quot;themeName&quot;:&quot;4juniors&quot;,&quot;launchYear&quot;:2003},{&quot;productId&quot;: ... } ],&quot;totalCount&quot;:2,&quot;years&quot;:[&quot;2004&quot;,&quot;2003&quot;],&quot;themes&quot;:[&quot;10000-20070&quot;,&quot;10000-20031&quot;,&quot;10000-20051&quot;,&quot;10000-20057&quot;,&quot;10000-20009&quot;,&quot;10000-20017&quot;,&quot;10000-20016&quot;,&quot;10000-20008&quot;,&quot;10000-20216&quot;,&quot;10000-20106&quot;,&quot;10000-20105&quot;,&quot;10000-20084&quot;,&quot;10000-20129&quot;,&quot;10000-20238&quot;,&quot;10000-20003&quot;,&quot;10000-20189&quot;,&quot;10000-20039&quot;,&quot;10000-20081&quot;,&quot;10000-20040&quot;,&quot;10000-20080&quot;,&quot;10000-20037&quot;,&quot;10000-20035&quot;,&quot;10000-20056&quot;,&quot;10000-20002&quot;,&quot;10000-20124&quot;,&quot;10000-20071&quot;]}
+...</code></p>
+<h3 id="3-2-Download-Images"><a href="#3-2-Download-Images" class="headerlink" title="3.2 Download Images"></a>3.2 Download Images</h3><p>Scrapy自带File和image下载的模块，我们先创建一个TestSpider来实现封面图片的下载功能。<br>修改items.py，新增LegoImageItem类：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="type">LegoImageItem</span>(<span class="title">scrapy</span>.<span class="type">Item</span>):</span></span><br><span class="line"><span class="class">    image_urls = scrapy.<span class="type">Field</span>()</span></span><br><span class="line"><span class="class">    images = scrapy.<span class="type">Field</span>()</span></span><br><span class="line"><span class="class">    image_paths = scrapy.<span class="type">Field</span>()</span></span><br></pre></td></tr></table></figure></p>
+<p>修改pipelines.py，新增LegoImagePipeline类：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LegoImagePipeline</span>(<span class="title">ImagesPipeline</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_media_requests</span><span class="params">(<span class="keyword">self</span>, item, info)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">for</span> image_url <span class="keyword">in</span> item[<span class="string">'image_urls'</span>]<span class="symbol">:</span></span><br><span class="line">            <span class="keyword">yield</span> Request(image_url)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">item_completed</span><span class="params">(<span class="keyword">self</span>, results, item, info)</span></span><span class="symbol">:</span></span><br><span class="line">        image_paths = [x[<span class="string">'path'</span>] <span class="keyword">for</span> ok, x <span class="keyword">in</span> results <span class="keyword">if</span> ok]</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="symbol">image_paths:</span></span><br><span class="line">            raise DropItem(<span class="string">'Image download failed: %s'</span> % image_paths)</span><br><span class="line">        item[<span class="string">'image_paths'</span>] = image_paths</span><br><span class="line">        <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure></p>
+<p>修改spiders.BuildingInstructionsSpider.py，增加一个新的TestSpider：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'test'</span></span><br><span class="line">    start_urls = [</span><br><span class="line">        <span class="string">'https://wwwsecure.us.lego.com//service/biservice/searchbythemeandyear?fromIndex=0&amp;onlyAlternatives=false&amp;theme=10000-20127&amp;year=2015'</span>,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        result = json.loads(response.body)</span><br><span class="line">        <span class="keyword">print</span> result[<span class="string">'count'</span>], result[<span class="string">'moreData'</span>]</span><br><span class="line">        item = LegoImageItem()</span><br><span class="line">        url_list = []</span><br><span class="line">        <span class="keyword">for</span> product <span class="keyword">in</span> result[<span class="string">'products'</span>]:</span><br><span class="line">            <span class="comment">#print product</span></span><br><span class="line">            url_list.append(product[<span class="string">'productImage'</span>])</span><br><span class="line">        <span class="keyword">print</span> url_list</span><br><span class="line">        item[<span class="string">'image_urls'</span>] = url_list</span><br><span class="line">        <span class="keyword">yield</span> item</span><br></pre></td></tr></table></figure></p>
+<p>最后修改settings.py，增加相关的配置信息：<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">    'LegoSpyder.pipelines.LegoImagePipeline': 1,</span><br><span class="line">&#125;</span><br><span class="line">IMAGES_STORE = '\\Download\\Test' <span class="comment">#图片下载目录</span></span><br><span class="line">IMAGES_EXPIRES = 90</span><br></pre></td></tr></table></figure></p>
+<p>运行后就可以在相应的目录下看到抓取的图片文件了<br><img src="TestSpider.png" alt=""></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/10/23/Building-LegoSpyder-Part-III/" data-toggle="tooltip" data-placement="top" title="Building LegoSpyder Part III">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/10/20/Building-LegoSpyder-Part-I/" data-toggle="tooltip" data-placement="top" title="Building LegoSpyder Part I">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Lego" title="Lego">Lego</a>
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Scrapy" title="Scrapy">Scrapy</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2023
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

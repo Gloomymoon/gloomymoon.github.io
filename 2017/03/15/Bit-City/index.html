@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Bit City - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2017/03/15/Bit-City/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/star-wars.jpg');
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Games" title="Games">Games</a>
+                        
+                    </div>
+                    <h1>Bit City</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2017-03-15
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="Bit-City：一个值得轻度肝的小游戏"><a href="#Bit-City：一个值得轻度肝的小游戏" class="headerlink" title="Bit City：一个值得轻度肝的小游戏"></a>Bit City：一个值得轻度肝的小游戏</h1><p>3月13日<a href="http://nimblebit.com/" target="_blank" rel="noopener">NimbleBit</a> LLC发布了最新的游戏Bit City，立即上了App Store的首页推荐，目前（3月16日）已经收获近600评分，平均评分4星。</p>
+<p><img src="/img/BitCity/20170316_060640000_iOS.jpg" alt=""></p>
+<p><img src="/img/BitCity/20170315_014552000_iOS.jpg" alt=""></p>
+<p>NimbleBit是由两个双胞胎兄弟Ian Marsh和Dave Marsh在2009年联合创办的一个独立游戏开发公司，成员目前只有4人，哥哥Ian负责码代码，弟弟David负责描像素，除两位创始人以外，还有一位开发工程师Tim Rudolph和一位客服Dani Rudolph。NimbleBit最成功的游戏是获得苹果2011年年度游戏荣誉的Tiny Tower，又衍生出Star Wars: Tiny Death Star、Tiny Tower Vegas，其独特的像素风和”non-annoying” F2P游戏理念为人所称道，被用来作为抗议频繁骚扰用户进行IAP的氪金游戏的正面案例。除Tiny Tower之外，NimbleBit的其他游戏一样特色鲜明、轻度可肝，例如Pocket Frogs、Pocket Trains、Pocket Planes、Disco Zoo、Nimble Quest、GOLFINITY等。</p>
+<p>Bit City用户评分只有4星，比其他主打游戏4.5分要低，主要原因是很多用户拿它与经典的SimCity系列进行比较，也难怪，因为游戏的主界面太容易让人联想到SimCity系列了（这里对比的SimCity都是指SimCity4及之前的版本）。</p>
+<p><img src="/img/BitCity/20170315_013046000_iOS.jpg" alt=""></p>
+<p>斜45度上帝视角、绿色的草地、灰色的街道、淡褐色空地、各式各样耸立的建筑、四处漫游的小车，充满了浓浓的SimCity风。</p>
+<p><img src="/img/BitCity/20170315_013049000_iOS.jpg" alt=""></p>
+<p>和开放式的SimCity不同，Bit City中建筑只能建在灰褐色的空地中，每关的空地总数也是有限的。空地分为1x1和2x2两种大小，每个空地都可以建造三类建筑中的一种：住宅、商业和公共设施，连颜色和需求也和SimCity中的RBI对应。每个建筑都有各自的每秒金币收入，建造过多的类型（也是需求低的）收入会受到惩罚（例如-10%），建造过少的类型收入则增加（+10%），三类建筑的数量需要平衡。每个建筑都可以单独升级，升级会略微提升收入并随机一个新的外观，可以在建筑物界面里勾选Historical选项保持当前外观，点击主界面正下方的黄色Build按钮会随机（应该是按照顺序）升级一栋建筑，升级需要一定时间并且会随着建筑等级越来越久，可同时升级的数量会随着关卡数逐步增加。</p>
+<p><img src="/img/BitCity/20170315_013059000_iOS.jpg" alt=""></p>
+<p>游戏开始时（Level 1）城市的面积很小，当所有的空地都造满建筑时，达到了人口上限（每个1x1空地提升的人口是固定的1000人，人口总数显示在主界面左上角）后，即可进入下一关，城市面积增加并解锁更多游戏内容。</p>
+<p>Bit City与SimCity相似的游戏体验仅此而已，剩下的更加类似无脑戳戳类游戏，这也是App Store上很多地评分玩家抱怨的主原因。</p>
+<p>每个城市都有三个固定的初始建筑：市政厅、银行和停车场。</p>
+<p><img src="/img/BitCity/20170315_013111000_iOS.jpg" alt=""></p>
+<p>市政厅中是可以购买的各类升级内容，分为City和Game两类，City类升级花费游戏内金币，升级仅针对本关有效，进入下一关后全部清除，并且可升级的内容会随着关数逐步解锁；Game类升级花费游戏内绿钞，永久有效。绿钞的获取是NimbleBit游戏的特色之一，可以通过IAP购买，也可以比较轻易的在游戏内逐步积累。</p>
+<p><img src="/img/BitCity/20170315_013127000_iOS.jpg" alt=""></p>
+<p>银行的功能是程序离线时可以保存一部分（10%）的金币收入，可以升级的唯一一项内容是可以保存的离线时长。随着关数的增加，分行会越来越多，离线收入的基数也会越来越大。</p>
+<p><img src="/img/BitCity/20170315_013122000_iOS.jpg" alt=""></p>
+<p>停车场中可以解锁汽车类型，每解锁一类新车，汽车带来的收入就会增加，同时地图上漫游的车辆也会变多。cubic风格的小汽车头上会不时冒出金币或绿钞，戳戳之后可以获得相应的回报。所有的小车获得金币或绿钞都是一样的，除了偶尔出现的大金币或大绿钞。</p>
+<p><img src="/img/BitCity/20170315_051752000_iOS.jpg" alt=""></p>
+<p>后续的关卡还会出现机场和码头，可以解锁飞机和船舶，但是基本的玩法和汽车一样。</p>
+<p><img src="/img/BitCity/20170315_013206000_iOS.jpg" alt=""></p>
+<p>完成特定的任务可以获得可观的绿钞回报。</p>
+<p><img src="/img/BitCity/20170315_013209000_iOS.jpg" alt=""></p>
+<p>NimbleBit的游戏中绿钞是重要的资源，比金币的作用大的多，比如可以快进游戏速度（一定时间）。</p>
+<p><img src="/img/BitCity/20170315_013216000_iOS.jpg" alt=""></p>
+<p>可以购买Game升级，永久提升某些游戏参数。</p>
+<p><img src="/img/BitCity/20170315_013309000_iOS.jpg" alt=""></p>
+<p>当然最肝的是可以解锁各种特殊建筑外观，比如埃菲尔铁塔。</p>
+<p><img src="/img/BitCity/20170315_013329000_iOS.jpg" alt=""></p>
+<p>Bit City可以氪的内容不多，2.99刀的一个补贴绿钞的小猪实惠可口。</p>
+<p><img src="/img/BitCity/20170315_021813000_iOS.jpg" alt=""></p>
+<p>如果足够细心可以发现作者设计的很多彩蛋，比如上图中叫做Tiny Tower的住宅。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/03/19/Python-Machine-Learning-V/" data-toggle="tooltip" data-placement="top" title="Python Machine Learning V">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/01/25/Python-Machine-Learning-IV/" data-toggle="tooltip" data-placement="top" title="Python Machine Learning IV">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Games" title="Games">Games</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2023
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

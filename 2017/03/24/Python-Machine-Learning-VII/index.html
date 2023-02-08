@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Python Machine Learning VII - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2017/03/24/Python-Machine-Learning-VII/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/star-wars.jpg');
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                          <a class="tag" href="/tags/#scikit-learn" title="scikit-learn">scikit-learn</a>
+                        
+                    </div>
+                    <h1>Python Machine Learning VII</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2017-03-24
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="Combining-Different-Models-for-Ensemble-Learning"><a href="#Combining-Different-Models-for-Ensemble-Learning" class="headerlink" title="Combining Different Models for Ensemble Learning"></a>Combining Different Models for Ensemble Learning</h2><p>本章将基于前几章学到的内容和技术，用多个的分类器构建成一个分类器，来获得比任何单一模型更好的效果。</p>
+<ul>
+<li>基于多数投票算法的预测</li>
+<li>通过随机抽取组合训练数据集降低过拟合</li>
+<li>通过学习弱模型（weak learners）的差错构建更强的模型</li>
+</ul>
+<h3 id="Learning-with-ensembles"><a href="#Learning-with-ensembles" class="headerlink" title="Learning with ensembles"></a>Learning with ensembles</h3><p>集成算法（ensemble methods）的目的是将多个不同类型的分类器组成一个分类器，获得优于任何一个单个分类器的泛化表现。集成算法有多种技术，本节我们将介绍最基本的方法并了解为何能够获得较好的泛化性能。</p>
+<p>最流行的集成算法是多数投票算法，原理是每个样本的最终分类取决于50%以上的分类器预测。严格意义上，多数投票仅针对与二元分类。但也能够轻易地改造用于多元分类问题，称作相对多数投票（plurality voting）。</p>
+<p>从训练数据，我们从训练m个不同的分类器（C1,…,Cm），例如决策树、支持向量机、逻辑回归等，当然可以使用同个分类器在不同的训练子集上学习。下图是一个使用多数投票的示意图：<br><img src="/img/PythonMachineLearningVII_01.png" alt=""></p>
+<h3 id="Implementing-a-simple-majority-vote-classifier"><a href="#Implementing-a-simple-majority-vote-classifier" class="headerlink" title="Implementing a simple majority vote classifier"></a>Implementing a simple majority vote classifier</h3><p>让我们先实现一个简单的集成分类器算法作为热身。该算法支持基于各自的置信度权重来组合不同的分类器算法。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.base <span class="keyword">import</span> BaseEstimator</span><br><span class="line"><span class="keyword">from</span> sklearn.base <span class="keyword">import</span> ClassifierMixin</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder</span><br><span class="line"><span class="keyword">from</span> sklearn.externals <span class="keyword">import</span> six</span><br><span class="line"><span class="keyword">from</span> sklearn.base <span class="keyword">import</span> clone</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> _name_estimators</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MajorityVoteClassifier</span><span class="params">(BaseEstimator, ClassifierMixin)</span>:</span></span><br><span class="line">    <span class="string">""" A majority vote ensemble classifier</span></span><br><span class="line"><span class="string">    Parameters</span></span><br><span class="line"><span class="string">    ----------</span></span><br><span class="line"><span class="string">    classifiers : array-like, shape = [n_classifiers]</span></span><br><span class="line"><span class="string">      Different classifiers for the ensemble</span></span><br><span class="line"><span class="string">      </span></span><br><span class="line"><span class="string">    vote : str, &#123;'classlabel', 'probability'&#125;</span></span><br><span class="line"><span class="string">      Default: 'classlabel'</span></span><br><span class="line"><span class="string">      If 'classlabel' the prediction is based on the argmax of class labels.</span></span><br><span class="line"><span class="string">      Else if 'probability', the argmax of the sum of propabilities is used</span></span><br><span class="line"><span class="string">      to predict the class label (recommended for calibrated classifiers).</span></span><br><span class="line"><span class="string">      </span></span><br><span class="line"><span class="string">    weights : array-like, shape = [n_classifiers]</span></span><br><span class="line"><span class="string">      Optional, default: None</span></span><br><span class="line"><span class="string">      If a list of `int` or `float` values are provided, the classifiers are weighted by</span></span><br><span class="line"><span class="string">      importance; Uses uniform weights if `weights=None`.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, classifiers, vote=<span class="string">'classlabel'</span>, weights=None)</span>:</span></span><br><span class="line">        self.classifiers = classifiers</span><br><span class="line">        self.named_classifiers = &#123;key: value <span class="keyword">for</span> key, value <span class="keyword">in</span> </span><br><span class="line">                                  _name_estimators(classifiers)&#125;</span><br><span class="line">        self.vote = vote</span><br><span class="line">        self.weights = weights</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y)</span>:</span></span><br><span class="line">        <span class="string">""" Fit classifiers.</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        Parameters</span></span><br><span class="line"><span class="string">        ----------</span></span><br><span class="line"><span class="string">        X : &#123;array-like, spars matrix&#125;,</span></span><br><span class="line"><span class="string">            shape = [n_samples, n_features]</span></span><br><span class="line"><span class="string">            Matrix of training samples.</span></span><br><span class="line"><span class="string">            </span></span><br><span class="line"><span class="string">        y : array-like, shape = [n_samples]</span></span><br><span class="line"><span class="string">            Vector of target class labels.</span></span><br><span class="line"><span class="string">            </span></span><br><span class="line"><span class="string">        Returns</span></span><br><span class="line"><span class="string">        -------</span></span><br><span class="line"><span class="string">        self : object</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># Use LabelEncoder to ensure class labels start</span></span><br><span class="line">        <span class="comment"># with 0, which is important for np.argmax</span></span><br><span class="line">        <span class="comment"># call in self.predict</span></span><br><span class="line">        self.lablenc_ = LabelEncoder()</span><br><span class="line">        self.lablenc_.fit(y)</span><br><span class="line">        self.classes_ = self.lablenc_.classes_</span><br><span class="line">        self.classifiers_ = []</span><br><span class="line">        <span class="keyword">for</span> clf <span class="keyword">in</span> self.classifiers:</span><br><span class="line">            fitted_clf = clone(clf).fit(X, self.lablenc_.transform(y))</span><br><span class="line">            self.classifiers_.append(fitted_clf)</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, X)</span>:</span></span><br><span class="line">        <span class="string">""" Predict class labels fro X.</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        Parameters</span></span><br><span class="line"><span class="string">        ----------</span></span><br><span class="line"><span class="string">        X : &#123;array-like, sparse matrix&#125;,</span></span><br><span class="line"><span class="string">            Shape = [n_samples, n_features]</span></span><br><span class="line"><span class="string">            Matrix of traning samples.</span></span><br><span class="line"><span class="string">            </span></span><br><span class="line"><span class="string">        Returns</span></span><br><span class="line"><span class="string">        -------</span></span><br><span class="line"><span class="string">        maj_vote : array-like, shape = [n_samples]</span></span><br><span class="line"><span class="string">            Predicted class labels.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> self.vote == <span class="string">'probability'</span>:</span><br><span class="line">            may_vote = np.argmax(self.predict_proba(X), axis=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>: <span class="comment"># 'classlabel' vote</span></span><br><span class="line">            <span class="comment"># Collect results from clf.predict calls</span></span><br><span class="line">            predictions = np.asarray([clf.predict(X) <span class="keyword">for</span> clf <span class="keyword">in</span></span><br><span class="line">                                      self.classifiers_]).T</span><br><span class="line">            maj_vote = np.apply_along_axis(<span class="keyword">lambda</span> x: np.argmax(np.bincount(x,</span><br><span class="line">                                                                           weights=self.weights)),</span><br><span class="line">                                           axis=<span class="number">1</span>,</span><br><span class="line">                                           arr=predictions)</span><br><span class="line">        maj_vote = self.lablenc_.inverse_transform(maj_vote)</span><br><span class="line">        <span class="keyword">return</span> maj_vote</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict_proba</span><span class="params">(self, X)</span>:</span></span><br><span class="line">        <span class="string">""" Predict class probabilities for X.</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">        Parameters</span></span><br><span class="line"><span class="string">        ----------</span></span><br><span class="line"><span class="string">        X : &#123;array-like, sparse matrix&#125;,</span></span><br><span class="line"><span class="string">            shape = [n_samples, n_features]</span></span><br><span class="line"><span class="string">            Training vectors, where n_samples is the number of samples and</span></span><br><span class="line"><span class="string">            n_features is the number of features.</span></span><br><span class="line"><span class="string">            </span></span><br><span class="line"><span class="string">        Returns</span></span><br><span class="line"><span class="string">        -------</span></span><br><span class="line"><span class="string">        avg_proba : array-like,</span></span><br><span class="line"><span class="string">            shape = [n_samples, n_classes]</span></span><br><span class="line"><span class="string">            Weighted average probability for each class per sample.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        probas = np.asarray([clf.predict_proba(X) <span class="keyword">for</span> clf <span class="keyword">in</span> self.classifiers_])</span><br><span class="line">        avg_proba = np.average(probas,</span><br><span class="line">                               axis=<span class="number">0</span>,</span><br><span class="line">                               weights=self.weights)</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">return</span> avg_proba</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_params</span><span class="params">(self, deep=True)</span>:</span></span><br><span class="line">        <span class="string">""" Get classifier parameter names for GridSearch """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> deep:</span><br><span class="line">            <span class="keyword">return</span> super(MajorityVoteClassifier, self).get_params(deep=<span class="keyword">False</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            out = self.named_classifiers.copy()</span><br><span class="line">            <span class="keyword">for</span> name, step <span class="keyword">in</span>\</span><br><span class="line">                six.iteritems(self.named_classifiers):</span><br><span class="line">                <span class="keyword">for</span> key, value <span class="keyword">in</span> six.iteritems(step.get_params(deep=<span class="keyword">True</span>)):</span><br><span class="line">                    out[<span class="string">'%s__%s'</span> % (name, key)] = value</span><br><span class="line">            <span class="keyword">return</span> out</span><br></pre></td></tr></table></figure></p>
+<p><strong>Combining different algorithms for classification with majority vote</strong><br>为了让分类工作更具挑战性，我们选取Iris数据中的两个特征<code>sepal width</code>和<code>petal lengeh</code>，并且仅仅区分两个分类<code>Iris-Versicolor</code>和<code>Iris-Virginica</code>，并计算ROC AUC。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from sklearn <span class="built_in">import</span> datasets</span><br><span class="line">from sklearn.cross_validation <span class="built_in">import</span> train_test_split</span><br><span class="line">from sklearn.preprocessing <span class="built_in">import</span> StandardScaler, LabelEncoder</span><br><span class="line"><span class="attr">iris</span> = datasets.load_iris()</span><br><span class="line">X, <span class="attr">y</span> = iris.data[<span class="number">50</span>:, [<span class="number">1</span>, <span class="number">2</span>]], iris.target[<span class="number">50</span>:]</span><br><span class="line"><span class="attr">le</span> = LabelEncoder()</span><br><span class="line"><span class="attr">y</span> = le.fit_transform(y)</span><br><span class="line">X_train, X_test, y_train, <span class="attr">y_test</span> = train_test_split(X, y,</span><br><span class="line">                                                   <span class="attr">test_size=0.5,</span></span><br><span class="line">                                                  <span class="attr">random_state=1)</span></span><br></pre></td></tr></table></figure></p>
+<p>现在我们来训练三个不同的分类器：逻辑回归、决策树和KNN，通过10-fold交叉检验来看下各自的表现。<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.cross_validation <span class="keyword">import</span> cross_val_score</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">clf1 = LogisticRegression(penalty=<span class="string">'l2'</span>, C=<span class="number">0.001</span>, random_state=<span class="number">0</span>)</span><br><span class="line">clf2 = DecisionTreeClassifier(max_depth=<span class="number">1</span>, criterion=<span class="string">'entropy'</span>, random_state=<span class="number">0</span>)</span><br><span class="line">clf3 = KNeighborsClassifier(n_neighbors=<span class="number">1</span>, p=<span class="number">2</span>, metric=<span class="string">'minkowski'</span>)</span><br><span class="line">pipe1 = Pipeline([[<span class="string">'sc'</span>, StandardScaler()], [<span class="string">'clf'</span>, clf1]])</span><br><span class="line">pipe3 = Pipeline([[<span class="string">'sc'</span>, StandardScaler()], [<span class="string">'clf'</span>, clf3]])</span><br><span class="line">clf_labels = [<span class="string">'Logistic Regression'</span>, <span class="string">'Decision Tree'</span>, <span class="string">'KNN'</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">'10-fold cross validation:\n'</span>)</span><br><span class="line"><span class="keyword">for</span> clf, label <span class="keyword">in</span> zip([pipe1, clf2, pipe3], clf_labels):</span><br><span class="line">    scores = cross_val_score(estimator=clf,</span><br><span class="line">                             X=X_train,</span><br><span class="line">                             y=y_train,</span><br><span class="line">                             cv=<span class="number">10</span>,</span><br><span class="line">                             scoring=<span class="string">'roc_auc'</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"ROC SUC: %0.2f (+/- %0.2f) [%s]"</span> % (scores.mean(), scores.std(), label))</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">10-fold</span> <span class="selector-tag">cross</span> <span class="selector-tag">validation</span>:</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">ROC</span> <span class="selector-tag">SUC</span>: <span class="selector-tag">0</span><span class="selector-class">.92</span> (+/- <span class="number">0.20</span>) <span class="selector-attr">[Logistic Regression]</span></span><br><span class="line"><span class="selector-tag">ROC</span> <span class="selector-tag">SUC</span>: <span class="selector-tag">0</span><span class="selector-class">.92</span> (+/- <span class="number">0.15</span>) <span class="selector-attr">[Decision Tree]</span></span><br><span class="line"><span class="selector-tag">ROC</span> <span class="selector-tag">SUC</span>: <span class="selector-tag">0</span><span class="selector-class">.93</span> (+/- <span class="number">0.10</span>) <span class="selector-attr">[KNN]</span></span><br></pre></td></tr></table></figure></p>
+<p>接下来用我们的<code>MajorityVoteClassifier</code>用多数投票算法来整合不同的分类器：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mv_clf</span> = MajorityVoteClassifier(<span class="attr">classifiers=[pipe1,</span> clf2, pipe3])</span><br><span class="line">clf_labels += ['Majority Voting']</span><br><span class="line"><span class="attr">all_clf</span> = [pipe1, clf2, pipe3, mv_clf]</span><br><span class="line">for clf, label <span class="keyword">in</span> zip(all_clf, clf_labels):</span><br><span class="line">    <span class="attr">scores</span> = cross_val_score(<span class="attr">estimator=clf,</span></span><br><span class="line">                             <span class="attr">X=X_train,</span></span><br><span class="line">                             <span class="attr">y=y_train,</span></span><br><span class="line">                             <span class="attr">cv=10,</span></span><br><span class="line">                             <span class="attr">scoring='roc_auc')</span></span><br><span class="line">    print(<span class="string">"Accuracy: %0.2f (+/- %0.2f) [%s]"</span> % (scores.mean(), scores.std(), label))</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Accuracy</span>: <span class="number">0.92</span> (+/- <span class="number">0.20</span>) [Logistic Regression]</span><br><span class="line"><span class="keyword">Accuracy</span>: <span class="number">0.92</span> (+/- <span class="number">0.15</span>) [Decision Tree]</span><br><span class="line"><span class="keyword">Accuracy</span>: <span class="number">0.93</span> (+/- <span class="number">0.10</span>) [KNN]</span><br><span class="line"><span class="keyword">Accuracy</span>: <span class="number">0.97</span> (+/- <span class="number">0.10</span>) [<span class="keyword">Majority</span> Voting]</span><br></pre></td></tr></table></figure></p>
+<h3 id="Evaluating-and-tuning-the-ensemble-classifier"><a href="#Evaluating-and-tuning-the-ensemble-classifier" class="headerlink" title="Evaluating and tuning the ensemble classifier"></a>Evaluating and tuning the ensemble classifier</h3><p>通过ROC曲线看下多数投票算法在未知数据上的表现如何：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">from sklearn.metrics import roc_curve, auc</span><br><span class="line">colors = [<span class="string">'black'</span>, <span class="string">'orange'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>]</span><br><span class="line">linestyles = [<span class="string">':'</span>, <span class="string">'--'</span>, <span class="string">'-.'</span>, <span class="string">'-'</span>]</span><br><span class="line"><span class="keyword">for</span> clf, <span class="keyword">label</span>, clr, ls <span class="keyword">in</span> zip(all_clf, clf_labels, colors, linestyles):</span><br><span class="line">    # assuming the <span class="keyword">label</span> <span class="keyword">of</span> the positive <span class="keyword">class</span> <span class="keyword">is</span> <span class="number">1</span></span><br><span class="line">    y_pred = clf.fit(X_train, y_train).predict_proba(X_test)[:, <span class="number">1</span>]</span><br><span class="line">    fpr, tpr, thresholds = roc_curve(y_true=y_test, y_score=y_pred)</span><br><span class="line">    roc_auc = auc(x=fpr, y=tpr)</span><br><span class="line">    plt.plot(fpr, tpr, color=clr, linestyle=ls,</span><br><span class="line">             <span class="keyword">label</span>=<span class="string">'%s (auc = %0.2f)'</span> % (<span class="keyword">label</span>, roc_auc))</span><br><span class="line">plt.legend(loc=<span class="string">'lower right'</span>)</span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">         linestyle=<span class="string">'--'</span>,</span><br><span class="line">         color=<span class="string">'gray'</span>,</span><br><span class="line">         linewidth=<span class="number">2</span>)</span><br><span class="line">plt.xlim([-<span class="number">0.1</span>, <span class="number">1.1</span>])</span><br><span class="line">plt.ylim([-<span class="number">0.1</span>, <span class="number">1.1</span>])</span><br><span class="line">plt.grid()</span><br><span class="line">plt.xlabel(<span class="string">'False Positive Rate'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'True Positive Rate'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/PythonMachineLearningVII_02.png" alt=""><br>集成算法在测试机上表现不错（ROC AUC=0.95）。<br>因为我们选取了仅仅两个特征，可以看下集成算法的分类界面如何，因为模型中已经带有标准化管道，这里的标准化是为了显示。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">sc = StandardScaler()</span><br><span class="line">X_train_std = sc.fit_transform(X_train)</span><br><span class="line"><span class="keyword">from</span> itertools import product</span><br><span class="line">x_min = X_train_std[:, 0].min() - 1</span><br><span class="line">x_max = X_train_std[:, 0].max() + 1</span><br><span class="line">y_min = X_train_std[:, 1].min() - 1</span><br><span class="line">y_max = X_train_std[:, 1].max() + 1</span><br><span class="line"></span><br><span class="line">xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.1),</span><br><span class="line">                     np.arange(y_min, y_max, 0.1))</span><br><span class="line">f, axarr = plt.subplots(<span class="attribute">nrows</span>=2, <span class="attribute">ncols</span>=2, <span class="attribute">sharex</span>=<span class="string">'col'</span>, <span class="attribute">sharey</span>=<span class="string">'row'</span>,</span><br><span class="line">                        figsize=(7, 5))</span><br><span class="line"><span class="keyword">for</span> idx, clf, tt <span class="keyword">in</span> zip(product([0, 1], [0, 1]), all_clf, clf_labels):</span><br><span class="line">    clf.fit(X_train_std, y_train)</span><br><span class="line">    Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])</span><br><span class="line">    Z = Z.reshape(xx.shape)</span><br><span class="line">    axarr[idx[0], idx[1]].contourf(xx, yy, Z, <span class="attribute">alpha</span>=0.3)</span><br><span class="line">    axarr[idx[0], idx[1]].scatter(X_train_std[<span class="attribute">y_train</span>==0, 0],</span><br><span class="line">                                  X_train_std[<span class="attribute">y_train</span>==0, 1],</span><br><span class="line">                                  <span class="attribute">c</span>=<span class="string">'blue'</span>,</span><br><span class="line">                                  <span class="attribute">marker</span>=<span class="string">'^'</span>,</span><br><span class="line">                                  <span class="attribute">s</span>=50)</span><br><span class="line">    axarr[idx[0], idx[1]].scatter(X_train_std[<span class="attribute">y_train</span>==1, 0],</span><br><span class="line">                                  X_train_std[<span class="attribute">y_train</span>==1, 1],</span><br><span class="line">                                  <span class="attribute">c</span>=<span class="string">'red'</span>,</span><br><span class="line">                                  <span class="attribute">marker</span>=<span class="string">'o'</span>,</span><br><span class="line">                                  <span class="attribute">s</span>=50)</span><br><span class="line">    axarr[idx[0], idx[1]].set_title(tt)</span><br><span class="line">plt.text(-3.5, -4.5, <span class="attribute">s</span>=<span class="string">'Sepal width [standardized]'</span>,</span><br><span class="line">         <span class="attribute">ha</span>=<span class="string">'center'</span>, <span class="attribute">va</span>=<span class="string">'center'</span>, <span class="attribute">fontsize</span>=12)</span><br><span class="line">plt.text(-10.5, 4.5, <span class="attribute">s</span>=<span class="string">'Petal length [standardized]'</span>,</span><br><span class="line">         <span class="attribute">ha</span>=<span class="string">'center'</span>, <span class="attribute">va</span>=<span class="string">'center'</span>, <span class="attribute">fontsize</span>=12, <span class="attribute">rotation</span>=90)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/PythonMachineLearningVII_03.png" alt=""></p>
+<p>在我们尝试调试集成算法中每个分类器参数时。可以调用<code>get_params</code>方法查看<code>GridSearch</code>对象内部参数的使用方法：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">mv_clf</span><span class="selector-class">.get_params</span>()</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">'decisiontreeclassifier'</span>: DecisionTreeClassifier(class_weight=<span class="keyword">None</span>, criterion=<span class="string">'entropy'</span>, max_depth=<span class="number">1</span>,</span><br><span class="line">             max_features=<span class="keyword">None</span>, max_leaf_nodes=<span class="keyword">None</span>,</span><br><span class="line">             min_impurity_split=<span class="number">1e-07</span>, min_samples_leaf=<span class="number">1</span>,</span><br><span class="line">             min_samples_split=<span class="number">2</span>, min_weight_fraction_leaf=<span class="number">0.0</span>,</span><br><span class="line">             presort=<span class="keyword">False</span>, random_state=<span class="number">0</span>, splitter=<span class="string">'best'</span>),</span><br><span class="line"> <span class="string">'decisiontreeclassifier__class_weight'</span>: <span class="keyword">None</span>,</span><br><span class="line"> <span class="string">'decisiontreeclassifier__criterion'</span>: <span class="string">'entropy'</span>,</span><br><span class="line"> <span class="string">'decisiontreeclassifier__max_depth'</span>: <span class="number">1</span>,</span><br><span class="line"> <span class="string">'decisiontreeclassifier__max_features'</span>: <span class="keyword">None</span>,</span><br><span class="line"> <span class="string">'decisiontreeclassifier__max_leaf_nodes'</span>: <span class="keyword">None</span>,</span><br><span class="line"> <span class="string">'decisiontreeclassifier__min_impurity_split'</span>: <span class="number">1e-07</span>,</span><br><span class="line"> <span class="string">'decisiontreeclassifier__min_samples_leaf'</span>: <span class="number">1</span>,</span><br><span class="line"> <span class="string">'decisiontreeclassifier__min_samples_split'</span>: <span class="number">2</span>,</span><br><span class="line"> <span class="string">'decisiontreeclassifier__min_weight_fraction_leaf'</span>: <span class="number">0.0</span>,</span><br><span class="line"> <span class="string">'decisiontreeclassifier__presort'</span>: <span class="keyword">False</span>,</span><br><span class="line"> <span class="string">'decisiontreeclassifier__random_state'</span>: <span class="number">0</span>,</span><br><span class="line"> <span class="string">'decisiontreeclassifier__splitter'</span>: <span class="string">'best'</span>,</span><br><span class="line"> <span class="string">'pipeline-1'</span>: Pipeline(steps=[[<span class="string">'sc'</span>, StandardScaler(copy=<span class="keyword">True</span>, with_mean=<span class="keyword">True</span>, with_std=<span class="keyword">True</span>)], [<span class="string">'clf'</span>, LogisticRegression(C=<span class="number">0.001</span>, class_weight=<span class="keyword">None</span>, dual=<span class="keyword">False</span>, fit_intercept=<span class="keyword">True</span>,</span><br><span class="line">           intercept_scaling=<span class="number">1</span>, max_iter=<span class="number">100</span>, multi_class=<span class="string">'ovr'</span>, n_jobs=<span class="number">1</span>,</span><br><span class="line">           penalty=<span class="string">'l2'</span>, random_state=<span class="number">0</span>, solver=<span class="string">'liblinear'</span>, tol=<span class="number">0.0001</span>,</span><br><span class="line">           verbose=<span class="number">0</span>, warm_start=<span class="keyword">False</span>)]]),</span><br><span class="line"> <span class="string">'pipeline-1__clf'</span>: LogisticRegression(C=<span class="number">0.001</span>, class_weight=<span class="keyword">None</span>, dual=<span class="keyword">False</span>, fit_intercept=<span class="keyword">True</span>,</span><br><span class="line">           intercept_scaling=<span class="number">1</span>, max_iter=<span class="number">100</span>, multi_class=<span class="string">'ovr'</span>, n_jobs=<span class="number">1</span>,</span><br><span class="line">           penalty=<span class="string">'l2'</span>, random_state=<span class="number">0</span>, solver=<span class="string">'liblinear'</span>, tol=<span class="number">0.0001</span>,</span><br><span class="line">           verbose=<span class="number">0</span>, warm_start=<span class="keyword">False</span>),</span><br><span class="line"> <span class="string">'pipeline-1__clf__C'</span>: <span class="number">0.001</span>,</span><br><span class="line"> <span class="string">'pipeline-1__clf__class_weight'</span>: <span class="keyword">None</span>,</span><br><span class="line"> <span class="string">'pipeline-1__clf__dual'</span>: <span class="keyword">False</span>,</span><br><span class="line"> <span class="string">'pipeline-1__clf__fit_intercept'</span>: <span class="keyword">True</span>,</span><br><span class="line"> <span class="string">'pipeline-1__clf__intercept_scaling'</span>: <span class="number">1</span>,</span><br><span class="line"> <span class="string">'pipeline-1__clf__max_iter'</span>: <span class="number">100</span>,</span><br><span class="line"> <span class="string">'pipeline-1__clf__multi_class'</span>: <span class="string">'ovr'</span>,</span><br><span class="line"> <span class="string">'pipeline-1__clf__n_jobs'</span>: <span class="number">1</span>,</span><br><span class="line"> <span class="string">'pipeline-1__clf__penalty'</span>: <span class="string">'l2'</span>,</span><br><span class="line"> <span class="string">'pipeline-1__clf__random_state'</span>: <span class="number">0</span>,</span><br><span class="line"> <span class="string">'pipeline-1__clf__solver'</span>: <span class="string">'liblinear'</span>,</span><br><span class="line"> <span class="string">'pipeline-1__clf__tol'</span>: <span class="number">0.0001</span>,</span><br><span class="line"> <span class="string">'pipeline-1__clf__verbose'</span>: <span class="number">0</span>,</span><br><span class="line"> <span class="string">'pipeline-1__clf__warm_start'</span>: <span class="keyword">False</span>,</span><br><span class="line"> <span class="string">'pipeline-1__sc'</span>: StandardScaler(copy=<span class="keyword">True</span>, with_mean=<span class="keyword">True</span>, with_std=<span class="keyword">True</span>),</span><br><span class="line"> <span class="string">'pipeline-1__sc__copy'</span>: <span class="keyword">True</span>,</span><br><span class="line"> <span class="string">'pipeline-1__sc__with_mean'</span>: <span class="keyword">True</span>,</span><br><span class="line"> <span class="string">'pipeline-1__sc__with_std'</span>: <span class="keyword">True</span>,</span><br><span class="line"> <span class="string">'pipeline-1__steps'</span>: [[<span class="string">'sc'</span>,</span><br><span class="line">   StandardScaler(copy=<span class="keyword">True</span>, with_mean=<span class="keyword">True</span>, with_std=<span class="keyword">True</span>)],</span><br><span class="line">  [<span class="string">'clf'</span>,</span><br><span class="line">   LogisticRegression(C=<span class="number">0.001</span>, class_weight=<span class="keyword">None</span>, dual=<span class="keyword">False</span>, fit_intercept=<span class="keyword">True</span>,</span><br><span class="line">             intercept_scaling=<span class="number">1</span>, max_iter=<span class="number">100</span>, multi_class=<span class="string">'ovr'</span>, n_jobs=<span class="number">1</span>,</span><br><span class="line">             penalty=<span class="string">'l2'</span>, random_state=<span class="number">0</span>, solver=<span class="string">'liblinear'</span>, tol=<span class="number">0.0001</span>,</span><br><span class="line">             verbose=<span class="number">0</span>, warm_start=<span class="keyword">False</span>)]],</span><br><span class="line"> <span class="string">'pipeline-2'</span>: Pipeline(steps=[[<span class="string">'sc'</span>, StandardScaler(copy=<span class="keyword">True</span>, with_mean=<span class="keyword">True</span>, with_std=<span class="keyword">True</span>)], [<span class="string">'clf'</span>, KNeighborsClassifier(algorithm=<span class="string">'auto'</span>, leaf_size=<span class="number">30</span>, metric=<span class="string">'minkowski'</span>,</span><br><span class="line">            metric_params=<span class="keyword">None</span>, n_jobs=<span class="number">1</span>, n_neighbors=<span class="number">1</span>, p=<span class="number">2</span>,</span><br><span class="line">            weights=<span class="string">'uniform'</span>)]]),</span><br><span class="line"> <span class="string">'pipeline-2__clf'</span>: KNeighborsClassifier(algorithm=<span class="string">'auto'</span>, leaf_size=<span class="number">30</span>, metric=<span class="string">'minkowski'</span>,</span><br><span class="line">            metric_params=<span class="keyword">None</span>, n_jobs=<span class="number">1</span>, n_neighbors=<span class="number">1</span>, p=<span class="number">2</span>,</span><br><span class="line">            weights=<span class="string">'uniform'</span>),</span><br><span class="line"> <span class="string">'pipeline-2__clf__algorithm'</span>: <span class="string">'auto'</span>,</span><br><span class="line"> <span class="string">'pipeline-2__clf__leaf_size'</span>: <span class="number">30</span>,</span><br><span class="line"> <span class="string">'pipeline-2__clf__metric'</span>: <span class="string">'minkowski'</span>,</span><br><span class="line"> <span class="string">'pipeline-2__clf__metric_params'</span>: <span class="keyword">None</span>,</span><br><span class="line"> <span class="string">'pipeline-2__clf__n_jobs'</span>: <span class="number">1</span>,</span><br><span class="line"> <span class="string">'pipeline-2__clf__n_neighbors'</span>: <span class="number">1</span>,</span><br><span class="line"> <span class="string">'pipeline-2__clf__p'</span>: <span class="number">2</span>,</span><br><span class="line"> <span class="string">'pipeline-2__clf__weights'</span>: <span class="string">'uniform'</span>,</span><br><span class="line"> <span class="string">'pipeline-2__sc'</span>: StandardScaler(copy=<span class="keyword">True</span>, with_mean=<span class="keyword">True</span>, with_std=<span class="keyword">True</span>),</span><br><span class="line"> <span class="string">'pipeline-2__sc__copy'</span>: <span class="keyword">True</span>,</span><br><span class="line"> <span class="string">'pipeline-2__sc__with_mean'</span>: <span class="keyword">True</span>,</span><br><span class="line"> <span class="string">'pipeline-2__sc__with_std'</span>: <span class="keyword">True</span>,</span><br><span class="line"> <span class="string">'pipeline-2__steps'</span>: [[<span class="string">'sc'</span>,</span><br><span class="line">   StandardScaler(copy=<span class="keyword">True</span>, with_mean=<span class="keyword">True</span>, with_std=<span class="keyword">True</span>)],</span><br><span class="line">  [<span class="string">'clf'</span>,</span><br><span class="line">   KNeighborsClassifier(algorithm=<span class="string">'auto'</span>, leaf_size=<span class="number">30</span>, metric=<span class="string">'minkowski'</span>,</span><br><span class="line">              metric_params=<span class="keyword">None</span>, n_jobs=<span class="number">1</span>, n_neighbors=<span class="number">1</span>, p=<span class="number">2</span>,</span><br><span class="line">              weights=<span class="string">'uniform'</span>)]]&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们通过之前学习的网格搜索来调试下逻辑回归的参数C和决策树的深度。<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.grid_search import GridSearchCV</span><br><span class="line"><span class="keyword">params</span> = &#123;<span class="string">'decisiontreeclassifier__max_depth'</span>: [<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">          <span class="string">'pipeline-1__clf__C'</span>: [<span class="number">0.001</span>, <span class="number">0.1</span>, <span class="number">100.0</span>]&#125;</span><br><span class="line">grid = GridSearchCV(estimator=mv_clf,</span><br><span class="line">                    param_grid=<span class="keyword">params</span>,</span><br><span class="line">                    cv=<span class="number">10</span>,</span><br><span class="line">                    scoring=<span class="string">'roc_auc'</span>)</span><br><span class="line">grid.fit(X_train, y_train)</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">params</span>, mean_score, scores <span class="keyword">in</span> grid.grid_scores_:</span><br><span class="line">    print(<span class="string">"%0.3f +/- %0.2f %r"</span> % (mean_score, scores.std() / <span class="number">2</span>, <span class="keyword">params</span>))</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.967</span> +/- <span class="number">0.05</span> &#123;<span class="symbol">'decisiontreeclassifier__max_depth'</span>: <span class="number">1</span>, <span class="symbol">'pipeline</span>-<span class="number">1__</span>clf__C': <span class="number">0.001</span>&#125;</span><br><span class="line"><span class="number">0.967</span> +/- <span class="number">0.05</span> &#123;<span class="symbol">'decisiontreeclassifier__max_depth'</span>: <span class="number">1</span>, <span class="symbol">'pipeline</span>-<span class="number">1__</span>clf__C': <span class="number">0.1</span>&#125;</span><br><span class="line"><span class="number">1.000</span> +/- <span class="number">0.00</span> &#123;<span class="symbol">'decisiontreeclassifier__max_depth'</span>: <span class="number">1</span>, <span class="symbol">'pipeline</span>-<span class="number">1__</span>clf__C': <span class="number">100.0</span>&#125;</span><br><span class="line"><span class="number">0.967</span> +/- <span class="number">0.05</span> &#123;<span class="symbol">'decisiontreeclassifier__max_depth'</span>: <span class="number">2</span>, <span class="symbol">'pipeline</span>-<span class="number">1__</span>clf__C': <span class="number">0.001</span>&#125;</span><br><span class="line"><span class="number">0.967</span> +/- <span class="number">0.05</span> &#123;<span class="symbol">'decisiontreeclassifier__max_depth'</span>: <span class="number">2</span>, <span class="symbol">'pipeline</span>-<span class="number">1__</span>clf__C': <span class="number">0.1</span>&#125;</span><br><span class="line"><span class="number">1.000</span> +/- <span class="number">0.00</span> &#123;<span class="symbol">'decisiontreeclassifier__max_depth'</span>: <span class="number">2</span>, <span class="symbol">'pipeline</span>-<span class="number">1__</span>clf__C': <span class="number">100.0</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当逻辑回归算法正则化参数降低时，决策树的深度已经不影响性能。由于多次使用测试数据来评估模型不是最佳实践，我们将使用另外一种集成学习方法：分袋（bagging）。</p>
+<h3 id="Bagging-building-an-ensemble-of-classifiers-from-bootstrap-samples"><a href="#Bagging-building-an-ensemble-of-classifiers-from-bootstrap-samples" class="headerlink" title="Bagging - building an ensemble of classifiers from bootstrap samples"></a>Bagging - building an ensemble of classifiers from bootstrap samples</h3><p>分袋算法是与多数投票相关的一种集成学习算法，其示意图如下：<br><img src="/img/PythonMachineLearningVII_04.png" alt=""></p>
+<p>分袋算法中，不使用同一个训练集来训练集成模型中的单个分类器，而是使用有放回的随机抽样样本，又称为引导聚集（bootstrap aggregating）。我们将使用Wine数据来创建一个较复杂的分类算法，这里我们仅仅考虑分类2和3，并且只适用两个特征Alcohol和Hue。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">df_wine = pd.read_csv(<span class="string">'https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data'</span>,</span><br><span class="line">                      header=None)</span><br><span class="line">df_wine<span class="selector-class">.columns</span> = [<span class="string">'Class label'</span>, <span class="string">'Alcohol'</span>,</span><br><span class="line">                   <span class="string">'Malic acid'</span>, <span class="string">'Ash'</span>,</span><br><span class="line">                   <span class="string">'Alcalinity of ash'</span>, </span><br><span class="line">                   <span class="string">'Magnesium'</span>, <span class="string">'Total phenols'</span>,</span><br><span class="line">                   <span class="string">'Flavanoids'</span>, <span class="string">'Nonflavanoid phenols'</span>,</span><br><span class="line">                   <span class="string">'Proanthocyanins'</span>,</span><br><span class="line">                   <span class="string">'Color intensity'</span>, <span class="string">'Hue'</span>,</span><br><span class="line">                   <span class="string">'OD280/OD315 of diluted wines'</span>,</span><br><span class="line">                   <span class="string">'Proline'</span>]</span><br><span class="line">df_wine = df_wine[df_wine[<span class="string">'Class label'</span>] != <span class="number">1</span>]</span><br><span class="line">y = df_wine[<span class="string">'Class label'</span>].values</span><br><span class="line">X = df_wine[[<span class="string">'Alcohol'</span>, <span class="string">'Hue'</span>]].values</span><br><span class="line"></span><br><span class="line">from sklearn<span class="selector-class">.preprocessing</span> import LabelEncoder</span><br><span class="line">from sklearn<span class="selector-class">.cross_validation</span> import train_test_split</span><br><span class="line">le = LabelEncoder()</span><br><span class="line">y = le.fit_transform(y)</span><br><span class="line">X_train, X_test, y_train, y_test =\</span><br><span class="line">            train_test_split(X, y, test_size=<span class="number">0.40</span>, random_state=<span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
+<p>我们将数据按照60：40比例分成训练和测试集后，使用scikit-learn实现的<code>BaggingClassifier</code>算法来集成500棵未剪枝的决策树，先看下单独的未剪枝决策树在训练集和测试集上的准确度。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.ensemble <span class="built_in">import</span> BaggingClassifier</span><br><span class="line"><span class="attr">tree</span> = DecisionTreeClassifier(<span class="attr">criterion='entropy',</span> <span class="attr">max_depth=None)</span></span><br><span class="line"><span class="attr">bag</span> = BaggingClassifier(<span class="attr">base_estimator=tree,</span></span><br><span class="line">                        <span class="attr">n_estimators=500,</span></span><br><span class="line">                        <span class="attr">max_samples=1.0,</span></span><br><span class="line">                        <span class="attr">max_features=1.0,</span></span><br><span class="line">                        <span class="attr">bootstrap=True,</span></span><br><span class="line">                        <span class="attr">bootstrap_features=False,</span></span><br><span class="line">                        <span class="attr">n_jobs=1,</span></span><br><span class="line">                        <span class="attr">random_state=1)</span></span><br><span class="line"></span><br><span class="line">from sklearn.metrics <span class="built_in">import</span> accuracy_score</span><br><span class="line"><span class="attr">tree</span> = tree.fit(X_train, y_train)</span><br><span class="line"><span class="attr">y_train_pred</span> = tree.predict(X_train)</span><br><span class="line"><span class="attr">y_test_pred</span> = tree.predict(X_test)</span><br><span class="line"><span class="attr">tree_train</span> = accuracy_score(y_train, y_train_pred)</span><br><span class="line"><span class="attr">tree_test</span> = accuracy_score(y_test, y_test_pred)</span><br><span class="line">print('Decision tree train/test accuracies %.<span class="number">3</span>f/%.<span class="number">3</span>f' % </span><br><span class="line">      (tree_train, tree_test))</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Decision tree train/test accuracies <span class="number">1.000</span>/<span class="number">0.854</span></span><br></pre></td></tr></table></figure></p>
+<p>决策树在训练集上分类全部正确，但是在测试机上精准度较低，显示出过拟合。<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bag = bag.fit(X_train, y_train)</span><br><span class="line">y_train_pred = bag.predict(X_train)</span><br><span class="line">y_test_pred = bag.predict(X_test)</span><br><span class="line">bag_train = accuracy_score(y_train, y_train_pred)</span><br><span class="line">bag_test = accuracy_score(y_test, y_test_pred)</span><br><span class="line">print('Bagging train/test accuracies %.3f/%.3f' % </span><br><span class="line">      (bag_train, bag_test))</span><br></pre></td></tr></table></figure></p>
+<p>分袋集成算法在测试机上有更好的表现，下面我们来比较下两个算法的分类界面：<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">x_min = <span class="symbol">X_train</span>[:, <span class="number">0</span>].min() - <span class="number">1</span></span><br><span class="line">x_max = <span class="symbol">X_train</span>[:, <span class="number">0</span>].max() + <span class="number">1</span></span><br><span class="line">y_min = <span class="symbol">X_train</span>[:, <span class="number">1</span>].min() - <span class="number">1</span></span><br><span class="line">y_max = <span class="symbol">X_train</span>[:, <span class="number">1</span>].max() + <span class="number">1</span></span><br><span class="line">xx, yy = np.meshgrid(np.arange(x_min, x_max, <span class="number">0.1</span>),</span><br><span class="line">                     np.arange(y_min, y_max, <span class="number">0.1</span>))</span><br><span class="line">f, axarr = plt.subplots(nrows=<span class="number">1</span>, ncols=<span class="number">2</span>,</span><br><span class="line">                        sharex=<span class="string">'col'</span>,</span><br><span class="line">                        sharey=<span class="string">'row'</span>,</span><br><span class="line">                        figsize=(<span class="number">8</span>, <span class="number">3</span>))</span><br><span class="line">for idx, clf, tt in zip([<span class="number">0</span>, <span class="number">1</span>], [tree, bag], [<span class="string">'Decision Tree'</span>, <span class="string">'Bagging'</span>]):</span><br><span class="line">    clf.fit(<span class="symbol">X_train</span>, y_train)</span><br><span class="line">    <span class="symbol">Z</span> = clf.predict(np.c_[xx.ravel(), yy.ravel()])</span><br><span class="line">    <span class="symbol">Z</span> = <span class="symbol">Z</span>.reshape(xx.shape)</span><br><span class="line">    axarr[idx].contourf(xx, yy, <span class="symbol">Z</span>, alpha=<span class="number">0.3</span>)</span><br><span class="line">    axarr[idx].scatter(<span class="symbol">X_train</span>[y_train==<span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">                       <span class="symbol">X_train</span>[y_train==<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">                       c=<span class="string">'blue'</span>, marker=<span class="string">'^'</span>)</span><br><span class="line">    axarr[idx].scatter(<span class="symbol">X_train</span>[y_train==<span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">                       <span class="symbol">X_train</span>[y_train==<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                       c=<span class="string">'red'</span>, marker=<span class="string">'o'</span>)</span><br><span class="line">    axarr[idx].set_title(tt)</span><br><span class="line">axarr[<span class="number">0</span>].set_ylabel(<span class="string">'Alcohol'</span>, fontsize=<span class="number">12</span>)</span><br><span class="line">plt.text(<span class="number">10.2</span>, <span class="number">-1.2</span>, s=<span class="string">'Hue'</span>, ha=<span class="string">'center'</span>, va=<span class="string">'center'</span>, fontsize=<span class="number">12</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/PythonMachineLearningVII_05.png" alt=""><br>分袋算法有效降低模型的方差，但是对于降低模型的偏差没有助益。</p>
+<h3 id="Leveraging-weak-learners-via-adaptive-boosting"><a href="#Leveraging-weak-learners-via-adaptive-boosting" class="headerlink" title="Leveraging weak learners via adaptive boosting"></a>Leveraging weak learners via adaptive boosting</h3><p>本节将讨论boosting增强算法中最普遍使用的自适应boosting（AdaBoost，Adaptive Boosting）。其增强算法的基本流程如下：</p>
+<ol>
+<li>从训练数据D中不放回随机抽样训练子集d1，并在其上训练一个弱模型C1</li>
+<li>从D中不放回随机抽取第二份训练子集并加入第一次错分类的50%样本作为d2，在其上训练一个弱模型C2</li>
+<li>在D中选取C1和C2分类不一致的样本d3，并训练第三个弱模型C3</li>
+<li>通过多数投票算法组合三个弱模型</li>
+</ol>
+<p>相比分袋算法，增强算法不仅能降低偏差也能够降低方差。而AdaBoost使用整个训练集来训练弱模型，实时每次迭代将调整样本的权重，提升分类错误的样本的比例来逐步训练一个强模型。下图是一个AdaBoost分类算法的训练过程示意图：<br><img src="/img/PythonMachineLearningVII_06.png" alt=""></p>
+<p>我们仍然使用Wine数据来训练一个AdaBoost集成分类器，通过<code>base_estimator</code>属性，我们将训练500棵决策树：<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.ensemble import AdaBoostClassifier</span><br><span class="line">tree = DecisionTreeClassifier(criterion='entropy', max_depth=1)</span><br><span class="line">ada = AdaBoostClassifier(base_estimator=tree,</span><br><span class="line">                         n_estimators=500,</span><br><span class="line">                         learning_rate=0.1,</span><br><span class="line">                         random_state=0)</span><br><span class="line">tree = tree.fit(X_train, y_train)</span><br><span class="line">y_train_pred = tree.predict(X_train)</span><br><span class="line">y_test_pred = tree.predict(X_test)</span><br><span class="line">tree_train = accuracy_score(y_train, y_train_pred)</span><br><span class="line">tree_test = accuracy_score(y_test, y_test_pred)</span><br><span class="line">print('AdaBoost train/test accuracies %.3f/%.3f' %</span><br><span class="line">      (tree_train, tree_test))</span><br></pre></td></tr></table></figure></p>
+<p>决策树在训练集上过拟合。<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ada = ada.fit(X_train, y_train)</span><br><span class="line">y_train_pred = ada.predict(X_train)</span><br><span class="line">y_test_pred = ada.predict(X_test)</span><br><span class="line">ada_train = accuracy_score(y_train, y_train_pred)</span><br><span class="line">ada_test = accuracy_score(y_test, y_test_pred)</span><br><span class="line">print('AdaBoost train/test accuracies %.3f/%.3f' %</span><br><span class="line">      (ada_train, ada_test))</span><br></pre></td></tr></table></figure></p>
+<p>AdaBoost模型预测全部正确，但是在降低模型偏差的情况下，方差有所增加。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/03/30/Teach-Your-Kids-to-Code-Pre-Course-I/" data-toggle="tooltip" data-placement="top" title="Teach Your Kids to Code: Pre-Course I">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/03/22/Python-Machine-Learning-VI/" data-toggle="tooltip" data-placement="top" title="Python Machine Learning VI">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                          <a class="tag" href="/tags/#scikit-learn" title="scikit-learn">scikit-learn</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2023
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

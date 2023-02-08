@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Python Machine Learning III - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2017/01/21/Python-Machine-Learning-III/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/star-wars.jpg');
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                          <a class="tag" href="/tags/#scikit-learn" title="scikit-learn">scikit-learn</a>
+                        
+                    </div>
+                    <h1>Python Machine Learning III</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2017-01-21
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="3-A-Tour-of-Machine-Learning-Classifiers-Using-Scikit-learn"><a href="#3-A-Tour-of-Machine-Learning-Classifiers-Using-Scikit-learn" class="headerlink" title="3 A Tour of Machine Learning Classifiers Using Scikit-learn"></a>3 A Tour of Machine Learning Classifiers Using Scikit-learn</h2><p>本章将浏览一系列流行而且强大的机器学习算法，学习区别的时候也会了解各个分类算法的强项和弱点。</p>
+<ul>
+<li>流行分类算法的概要介绍</li>
+<li>使用scikit-learn</li>
+<li>选择一个机器学习算法前需要回答的问题</li>
+</ul>
+<h3 id="Choosing-a-classification-algorithm"><a href="#Choosing-a-classification-algorithm" class="headerlink" title="Choosing a classification algorithm"></a>Choosing a classification algorithm</h3><p>为特定任务选择合适的分类算法需要实践，每个算法都有各自的特性和前提假设，没有一个算法适用于所有场景。实践中，应当比较多个不同算法的效果来找到最合适的分类算法。请记住分类器的性能和预测能力主要依赖于（分析人员）对训练数据的理解。</p>
+<p>训练算法的主要过程如下：</p>
+<ol>
+<li>选择特征变量</li>
+<li>选择性能评价指标</li>
+<li>选择一个分类算法并优化（optimization）</li>
+<li>评估模型的效果</li>
+<li>算法调优（tuning）</li>
+</ol>
+<h3 id="First-steps-with-scikit-learn"><a href="#First-steps-with-scikit-learn" class="headerlink" title="First steps with scikit-learn"></a>First steps with scikit-learn</h3><p><strong>Training a perceptron via scikit-learn</strong><br>我们先使用scikit-learn来训练一个感知器模型，训练数据仍使用Iris。<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="title">iris</span> = datasets.load_iris()</span><br><span class="line"><span class="type">X</span> = iris.<span class="class"><span class="keyword">data</span>[:, [2,3]]</span></span><br><span class="line"><span class="title">y</span> = iris.target</span><br></pre></td></tr></table></figure></p>
+<p>因为使用频繁，iris已经被直接纳入scikit-learn包中，实际应用中也会用该数据来进行模型调试。和原始数据不同，这里的iris数据中的target已经转换成整型（0, 1, 2）,这也是算法调优推荐的做法。为了评估模型在未知数据上的性能，后续章节（第5章）会介绍如何将数据分为多个独立的部分，这里先了解主要用法。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.cross_validation import train_test_split</span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, <span class="attribute">test_size</span>=0.3, <span class="attribute">random_state</span>=0)</span><br></pre></td></tr></table></figure></p>
+<p>使用<code>train_test_split</code>方法将X和y分成测试集（30%）和训练集（70%）。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.preprocessing import StandardScaler</span><br><span class="line">sc = StandardScaler()</span><br><span class="line">sc.fit(X_train)</span><br><span class="line">X_train_std = sc.transform(X_train)</span><br><span class="line">X_test_std = sc.transform(X_test)</span><br></pre></td></tr></table></figure>
+<p>StandardScaler对象的<code>fit</code>参数计算训练样本中每个特征维度的均值和标准差，<code>transform</code>方法则会根据均值和标准差对数据集进行标准化，注意这里对测试集和训练集使用的是同一个尺度（scaling）。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model import Perceptron</span><br><span class="line">ppn = Perceptron(<span class="attribute">n_iter</span>=40, <span class="attribute">eta0</span>=0.1, <span class="attribute">random_state</span>=0)</span><br><span class="line">ppn.fit(X_train_std, y_train)</span><br></pre></td></tr></table></figure></p>
+<p>Scikit-learn中的感知器用法和我们第二章中实现的类似，eta0等同于我们的eta，注意这里我们直接用三个分类的数据训练模型，之后就可以通过<code>predict</code>方法在测试集上进行预测。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y_pred = ppn.predict(X_test_std)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'Misclassfified samples: %d'</span> % (y_test != y_pred)</span></span>.sum())</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Misclassfified <span class="string">samples:</span> <span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<p>预测错误4个，错误率约等于8.9%（4/45）<br>Scikit-learn的<code>metrics</code>包中提供了各种不同的性能指标，例如准确率：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from sklearn<span class="selector-class">.metrics</span> import accuracy_score</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">'Accuracy: %.2f'</span> % accuracy_score(y_test, y_pred)</span></span>)</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Accuracy:</span> <span class="number">0.91</span></span><br></pre></td></tr></table></figure></p>
+<p>最后我们可以使用第2章中编写的<code>plot_decision_regions</code>方法来展示模型分类效果，做的修改是为了高亮显示样本集数据。<br>Plot_decision_regions.py<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">from matplotlib.colors import ListedColormap</span><br><span class="line">import matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">import numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">def plot_decision_regions(<span class="keyword">X</span>, <span class="keyword">y</span>, classifier, test_idx=None, resolution=<span class="number">0.02</span>):</span><br><span class="line">    # setup marker generator <span class="built_in">and</span> color <span class="keyword">map</span></span><br><span class="line">    markers = (<span class="string">'s'</span>, <span class="string">'x'</span>, <span class="string">'o'</span>, <span class="string">'^'</span>, <span class="string">'v'</span>)</span><br><span class="line">    colors = (<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'lightgreen'</span>, <span class="string">'gray'</span>, <span class="string">'cyan'</span>)</span><br><span class="line">    <span class="keyword">cmap</span> = ListedColormap(colors[:<span class="built_in">len</span>(np.unique(<span class="keyword">y</span>))])</span><br><span class="line"></span><br><span class="line">    # plot the decision surface</span><br><span class="line">    x1_min, x1_max = <span class="keyword">X</span>[:, <span class="number">0</span>].<span class="built_in">min</span>() - <span class="number">1</span>, <span class="keyword">X</span>[:, <span class="number">0</span>].<span class="built_in">max</span>() + <span class="number">1</span></span><br><span class="line">    x2_min, x2_max = <span class="keyword">X</span>[:, <span class="number">1</span>].<span class="built_in">min</span>() - <span class="number">1</span>, <span class="keyword">X</span>[:, <span class="number">1</span>].<span class="built_in">max</span>() + <span class="number">1</span></span><br><span class="line">    xx1, xx2 = np.meshgrid(np.arange(x1_min, x1_max, resolution), </span><br><span class="line">    					   np.arange(x2_min, x2_max, resolution))</span><br><span class="line">    Z = classifier.predict(np.array([xx1.ravel(), xx2.ravel()]).T)</span><br><span class="line">    Z = Z.reshape(xx1.shape)</span><br><span class="line">    plt.contourf(xx1, xx2, Z, alpha=<span class="number">0.4</span>, <span class="keyword">cmap</span>=<span class="keyword">cmap</span>)</span><br><span class="line">    plt.xlim(xx1.<span class="built_in">min</span>(), xx1.<span class="built_in">max</span>())</span><br><span class="line">    plt.ylim(xx2.<span class="built_in">min</span>(), xx2.<span class="built_in">max</span>())</span><br><span class="line"></span><br><span class="line">    # plot <span class="keyword">all</span> samples</span><br><span class="line">    X_test, y_test = <span class="keyword">X</span>[test_idx, :], <span class="keyword">y</span>[test_idx]</span><br><span class="line">    <span class="keyword">for</span> idx, <span class="keyword">cl</span> in enumerate(np.unique(<span class="keyword">y</span>)):</span><br><span class="line">    	plt.scatter(<span class="keyword">x</span>=<span class="keyword">X</span>[<span class="keyword">y</span> == <span class="keyword">cl</span>, <span class="number">0</span>], <span class="keyword">y</span>=<span class="keyword">X</span>[<span class="keyword">y</span> == <span class="keyword">cl</span>, <span class="number">1</span>],</span><br><span class="line">    				alpha=<span class="number">0.8</span>, <span class="keyword">c</span>=<span class="keyword">cmap</span>(idx),</span><br><span class="line">    				marker=markers[idx], label=<span class="keyword">cl</span>)</span><br><span class="line"></span><br><span class="line">    # <span class="keyword">highlight</span> test samples</span><br><span class="line">    <span class="keyword">if</span> test_idx:</span><br><span class="line">    	X_test, y_test = <span class="keyword">X</span>[test_idx, :], <span class="keyword">y</span>[test_idx]</span><br><span class="line">    	plt.scatter(X_test[:, <span class="number">0</span>], X_test[:, <span class="number">1</span>], <span class="keyword">c</span>=<span class="string">''</span>,</span><br><span class="line">    				alpha=<span class="number">1.0</span>, linewidth=<span class="number">1</span>, marker=<span class="string">'o'</span>,</span><br><span class="line">    				s=<span class="number">55</span>, label=<span class="string">'test set'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>展示感知器分类结果：<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from plot_decision_regions import *</span><br><span class="line">X_combined_std = <span class="built_in">np</span>.vstack((X_train_std, X_test_std))</span><br><span class="line">y_combined = <span class="built_in">np</span>.hstack((y_train, y_test))</span><br><span class="line">plot_decision_regions(X=X_combined_std, y=y_combined, classifier=ppn, test_idx=<span class="built_in">range</span>(<span class="number">105</span>, <span class="number">150</span>))</span><br><span class="line">plt.<span class="built_in">xlabel</span>('petal <span class="built_in">length</span> [standardized]')</span><br><span class="line">plt.<span class="built_in">ylabel</span>('petal <span class="built_in">width</span> [standardized]')</span><br><span class="line">plt.<span class="built_in">legend</span>(loc='upper left')</span><br><span class="line">plt.<span class="built_in">show</span>()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/PythonMachineLearningIII_01.png" alt=""></p>
+<p>结果如图所示，对于无法线性区分的数据，感知器永远不会收敛。</p>
+<h3 id="Modeling-class-probabilities-via-logistic-regression"><a href="#Modeling-class-probabilities-via-logistic-regression" class="headerlink" title="Modeling class probabilities via logistic regression"></a>Modeling class probabilities via logistic regression</h3><p>感知器方法简单易懂，是很好的入门算法，但是因为存在上述缺陷无法有效应付类似的业务场景。我们来尝试另一个同样简单但是强大的分类器算法：逻辑回归，请注意其本质是一个线性/二元分类模型，而不是回归。<br><strong>Logistic regression intuition and conditional probabilities</strong><br>逻辑回归实现简单但是性能优秀，有广泛的应用。介绍逻辑回归这一概率模型前，先要引入比值比（odds radio，OR），其定义如下： p/(1-p)，其中p代表某个需要预测的事件出现的概率。在此基础上定义logit函数：<br><img src="/img/PythonMachineLearningIII_02.png" alt=""></p>
+<p>该函数输入洁玉0～1之间，输出是整个实数范围。因为我们更关心的是概率p的预测，所以需要需要对logit函数取反，就是logstic函数：<br><img src="/img/PythonMachineLearningIII_03.png" alt=""></p>
+<p>其中z是输入网络，是所有特征和权重的线性组合。因为该函数形如S，所以也成为sigmoid函数。下图是sigmoid在[-7, 7]范围上的曲线图：<br><img src="/img/PythonMachineLearningIII_04.png" alt=""></p>
+<p>将之前我们实现的Adaline算法中的激活函数替换成sigmoid函数就成为了逻辑回归。<br><img src="/img/PythonMachineLearningIII_05.png" alt=""></p>
+<p>此时sigmoid函数的输出解释为样本数据属于分类1的概率。通过单步阶梯函数能够方便的转化为二元分类器，但是有的时候概率能够应用于更多的场景，例如降水概率、患病概率。</p>
+<p><strong>Learning the weights of the logistic cost function</strong><br>（理论公式，略过）<br><strong>Training a logistic regression model with scikit-learn</strong><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from sklearn<span class="selector-class">.linear_model</span> import LogisticRegression</span><br><span class="line">lr = LogisticRegression(C=<span class="number">1000.0</span>, random_state=<span class="number">0</span>)</span><br><span class="line">lr.fit(X_train_std, y_train)</span><br><span class="line"><span class="function"><span class="title">plot_decision_regions</span><span class="params">(X_combined_std, y_combined, classifier=lr, test_idx=range(<span class="number">105</span>, <span class="number">150</span>)</span></span>)</span><br><span class="line">plt.xlabel(<span class="string">'petal length [standardized]'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'petal width [standardized]'</span>)</span><br><span class="line">plt.legend(loc=<span class="string">'upper left'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p>Scikit-learn实现了高效的逻辑回归算法，使用方法类似，训练后展示的分类效果如下图：<br><img src="/img/PythonMachineLearningIII_06.png" alt=""></p>
+<p>更进一步，我们能够预测单个样本划分到每类结果的概率：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">lr</span><span class="selector-class">.predict_proba</span>(<span class="selector-tag">X_test_std</span><span class="selector-attr">[0, :]</span>)</span><br></pre></td></tr></table></figure></p>
+<p>Output:<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array(<span class="string">[[  2.05743774e-11,   6.31620264e-02,   9.36837974e-01]]</span>)</span><br></pre></td></tr></table></figure></p>
+<p><strong>Tackling overfitting via reqularization</strong><br>在解释参数C以前，我们先了解下过拟合（overfitting）和正则化（regularization）。过拟合是指模型在训练集上表现良好但是在测试集上效果不佳（称作高方差，variance），可能是变量太多函数泰国复杂或者训练数据不够；也可能出现欠拟合（underfitting，也称作高偏差，bias）），模型没有很好的找到数据中的模式和规律，训练不足。下图虽然使用非线性分类边界描绘，但是能够直观地解释过拟合和欠拟合的情况和原因：<br><img src="/img/PythonMachineLearningIII_07.png" alt=""></p>
+<p>寻找合适的模型偏差-方差的一个方法是通过正则化调整模型的复杂程度。正则化能够有效应对变量同线性问题，过滤噪点数据，避免过拟合，其原理是对过度的权重参数进入额外的惩罚。最常用的正则化形式是L2正则化：<br><img src="/img/PythonMachineLearningIII_08.png" alt=""></p>
+<p>将这个结果加入到成本函数中，其中λ是正则化参数，λ越大正则化效应越大。</p>
+<blockquote>
+<p>正则化也是将特征变量标准化的原因之一。</p>
+</blockquote>
+<p>在scikit-learn实现中，参数C定义为λ的倒数，借用SVM的约定。降低C就是增加λ。<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">weights, params = [], []</span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">np</span>.arange(-<span class="number">5</span>, <span class="number">5</span>):</span><br><span class="line">    lr = LogisticRegression(C=<span class="number">10</span>**c, random_state=<span class="number">0</span>)</span><br><span class="line">    lr.fit(X_train_std, y_train)</span><br><span class="line">    weights.<span class="built_in">append</span>(lr.coef_[<span class="number">1</span>])</span><br><span class="line">    params.<span class="built_in">append</span>(<span class="number">10</span>**c)</span><br><span class="line">weights = <span class="built_in">np</span>.<span class="built_in">array</span>(weights)</span><br><span class="line">plt.plot(params, weights[:, <span class="number">0</span>], <span class="built_in">label</span>='petal <span class="built_in">length</span>')</span><br><span class="line">plt.plot(params, weights[:, <span class="number">1</span>], linestyle='--', <span class="built_in">label</span>='petal <span class="built_in">width</span>')</span><br><span class="line">plt.<span class="built_in">ylabel</span>('weight coefficient')</span><br><span class="line">plt.<span class="built_in">xlabel</span>('C')</span><br><span class="line">plt.<span class="built_in">legend</span>(loc='upper left')</span><br><span class="line">plt.xscale('<span class="built_in">log</span>')</span><br><span class="line">plt.<span class="built_in">show</span>()</span><br></pre></td></tr></table></figure></p>
+<p>从图上可以看出，当C变小时，特征变量的系统系数逐渐收缩到0，达到了正则化效应增强的结果。<br><img src="/img/PythonMachineLearningIII_09.png" alt=""></p>
+<h3 id="Maximum-margin-classification-with-support-vector-machines"><a href="#Maximum-margin-classification-with-support-vector-machines" class="headerlink" title="Maximum margin classification with support vector machines"></a>Maximum margin classification with support vector machines</h3><p>另一个广泛使用的强大分类算法是支持向量机（support vector machine，SVM），其可以视为是感知器的延伸。在感知器算法中我们需要最小化错分类偏差，在支持向量机中优化目标是最大化类间间隔。类间间隔的定义是两个超平面之间的距离，训练集中最接近超平面的样本成为支持向量。<br><img src="/img/PythonMachineLearningIII_10.png" alt=""></p>
+<p><strong>Maximum margin intuition</strong><br>（计算公式推导，略过）</p>
+<p><strong>Dealing with the nonlinearly separable case using slack variables</strong><br> 这里不过分深入公式的推导，简单介绍下参数C的作用，如下图所示，通过参数C可以控制对错误分类结果的惩罚力度。C越大对错误分类的惩罚越大（即分类更加准确），C越小对错误分类的限制要求更宽松。因此C参数与正则化相关，通过增加C的大小，就会增加模型的偏度，降低模型的方差，这个影响关系和逻辑回归中的参数C的效用一致。<br><img src="/img/PythonMachineLearningIII_11.png" alt=""></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from sklearn<span class="selector-class">.svm</span> import SVC</span><br><span class="line">svm = SVC(kernel=<span class="string">'linear'</span>, C=<span class="number">1.0</span>, random_state=<span class="number">0</span>)</span><br><span class="line">svm.fit(X_train_std, y_train)</span><br><span class="line"><span class="function"><span class="title">plot_decision_regions</span><span class="params">(X_combined_std, y_combined, classifier=svm, test_idx=range(<span class="number">105</span>, <span class="number">150</span>)</span></span>)</span><br><span class="line">plt.xlabel(<span class="string">'petal length [standardized]'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'petal width [standardized]'</span>)</span><br><span class="line">plt.legend(loc=<span class="string">'upper left'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/img/PythonMachineLearningIII_12.png" alt=""></p>
+<blockquote>
+<p>逻辑回归和支持向量机的比较<br>在实际分类问题中，线性逻辑回归和线性支持向量机的效果非常接近。两者的区别是，逻辑回归会尽可能利用所有数据，相较支持向量机会夸大异常点数据；而支持向量机更关注距离分类面最近的数据点（支持向量）。但是另一方面，逻辑回归的优势是实现相对简单，并且可以基于流数据在线更新。</p>
+</blockquote>
+<p><strong>Alternative implementations in scikit-learn</strong><br>我们之前使用的模型底层调用的是优化后的C/C++库，另外，scikit-learn提供了另一种算法实现用于当训练数据太大无法装入内存的场景，原理类似于我们之前学习的Adaline的SGD实现方式，通过<code>partial_fit</code>方法来增量训练模型，调用方式如下：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.linear_model <span class="built_in">import</span> SGDClassifier</span><br><span class="line"><span class="attr">ppn</span> = SGDClassifier(<span class="attr">loss=’perceptron’)</span></span><br><span class="line"><span class="attr">lr</span> = SGDClassifier(<span class="attr">loss=’log’)</span></span><br><span class="line"><span class="attr">svm</span> = SGDClassifier(<span class="attr">loss=’hinge’)</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Solving-nonlinear-problems-using-a-kernel-SVM"><a href="#Solving-nonlinear-problems-using-a-kernel-SVM" class="headerlink" title="Solving nonlinear problems using a kernel SVM"></a>Solving nonlinear problems using a kernel SVM</h3><p>支持向量机广泛流行的另一个原因是能够容易地核化（kernelized）解决非线性分类问题。再讨论核函数支持向量机（kernel SVM）前，先来定义一个非线性分类的数据。<br>下面的代码使用<code>logical_xor</code>函数创建一个异或门形式的数据，其中100标记为1，100标记为-1。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">np.random.seed(0)</span><br><span class="line">X_xor = np.random.randn(200, 2)</span><br><span class="line">y_xor = np.logical_xor(X_xor[:, 0] &gt; 0, X_xor[:, 1] &gt;0)</span><br><span class="line">y_xor = np.where(y_xor, 1, -1)</span><br><span class="line"></span><br><span class="line">plt.scatter(X_xor[<span class="attribute">y_xor</span>==1, 0], X_xor[<span class="attribute">y_xor</span>==1, 1], <span class="attribute">c</span>=<span class="string">'b'</span>, <span class="attribute">marker</span>=<span class="string">'x'</span>, <span class="attribute">label</span>=<span class="string">'1'</span>)</span><br><span class="line">plt.scatter(X_xor[<span class="attribute">y_xor</span>==-1, 0], X_xor[<span class="attribute">y_xor</span>==-1, 1], <span class="attribute">c</span>=<span class="string">'r'</span>, <span class="attribute">marker</span>=<span class="string">'s'</span>, <span class="attribute">label</span>=<span class="string">'-1'</span>)</span><br><span class="line">plt.ylim(-3.0)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/PythonMachineLearningIII_13.png" alt=""></p>
+<p>显然无法通过逻辑回归或线性SVM线性分割样本数据中的1和-1。这就需要用到核函数的基本思想：创建一个原始特征的非线性组合，将样本映射到高维空间，使他们成为线性可分割的。这里我们引入一个新的维度（即特征组合）：z3=x1^2+x2^2：<br><img src="/img/PythonMachineLearningIII_14.png" alt=""></p>
+<p><strong>Using the kernel trick to find separating hyperplanes in higher dimensional space</strong><br>使用最广泛的一个核函数是径向基函数（Radial Basis Function，RBF）或称作高斯核函数（Gaussian kernel），简化形式如下：<br><img src="/img/PythonMachineLearningIII_15.png" alt=""></p>
+<p>粗略地说，术语“核”可以简单理解为一对样本数据间的相似性函数（similarity function）。方程中的负号导致结果是越相似的样本返回越接近1，越不相似越接近0。现在我们就可以用之前的SVC类来训练非线性分类模型，简单的将参数<code>kernel</code>的值替换为<code>’rbf’</code>：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.svm import SVC</span><br><span class="line">svm = SVC(<span class="attribute">kernel</span>=<span class="string">'rbf'</span>, <span class="attribute">C</span>=10.0, <span class="attribute">gamma</span>=0.10, <span class="attribute">random_state</span>=0)</span><br><span class="line">svm.fit(X_xor, y_xor)</span><br><span class="line">plot_decision_regions(X_xor, y_xor, <span class="attribute">classifier</span>=svm)</span><br><span class="line">plt.legend(<span class="attribute">loc</span>=<span class="string">'upper left'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/PythonMachineLearningIII_16.png" alt=""></p>
+<p>参数γ（程序中的gamma=0.1），可以理解为是高斯球面的切分点（cut-off）。如果增大参数γ，就会强化训练集数据的作用，结果就是导致更加拟合的分界面。为了直观理解，我们用iris数据训练RBF核函数支持向量机。<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">svm = SVC(kernel='rbf', random_state=<span class="number">0</span>, <span class="built_in">gamma</span>=<span class="number">0.2</span>, C=<span class="number">1.0</span>)</span><br><span class="line">svm.fit(X_train_std, y_train)</span><br><span class="line">plot_decision_regions(X_combined_std, y_combined, classifier=svm, test_idx=<span class="built_in">range</span>(<span class="number">105</span>, <span class="number">150</span>))</span><br><span class="line">plt.<span class="built_in">xlabel</span>('petal <span class="built_in">length</span> [standardized]')</span><br><span class="line">plt.<span class="built_in">ylabel</span>('petal <span class="built_in">width</span> [standardized]')</span><br><span class="line">plt.<span class="built_in">legend</span>(loc='upper left')</span><br><span class="line">plt.<span class="built_in">show</span>()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/PythonMachineLearningIII_17.png" alt=""></p>
+<p>增加γ的取值后对比如下，注意观测分类边界：<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">svm = SVC(kernel='rbf', random_state=<span class="number">0</span>, <span class="built_in">gamma</span>=<span class="number">100.0</span>, C=<span class="number">1.0</span>)</span><br><span class="line">svm.fit(X_train_std, y_train)</span><br><span class="line">plot_decision_regions(X_combined_std, y_combined, classifier=svm, test_idx=<span class="built_in">range</span>(<span class="number">105</span>, <span class="number">150</span>))</span><br><span class="line">plt.<span class="built_in">xlabel</span>('petal <span class="built_in">length</span> [standardized]')</span><br><span class="line">plt.<span class="built_in">ylabel</span>('petal <span class="built_in">width</span> [standardized]')</span><br><span class="line">plt.<span class="built_in">legend</span>(loc='upper left')</span><br><span class="line">plt.<span class="built_in">show</span>()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/PythonMachineLearningIII_18.png" alt=""></p>
+<p>这次可以看出分类0和1的边紧贴样本数据，但是显然在未来新数据上会出现较高的正则化错误，可见参数γ在过拟合中具有显著影响。</p>
+<h3 id="Decision-tree-learning"><a href="#Decision-tree-learning" class="headerlink" title="Decision tree learning"></a>Decision tree learning</h3><p>决策树（decision tree）分类模型具有很好的可解释性，正如同其命名，决策树通过一系列问题并作出决策达到划分测试数据的目的。<br>决策树算法从根节点开始将数据按照特征基于信息增量（information gain）原则进行划分，然后对每个划分后的子集递归使用该方法，知道最终每个叶子数集只含有一个分类。实际中，严格按照这个原则会产生一个含有大量节点的深层次的过拟合决策树，所以，我们需要通过设置最大深度来对树进行剪枝。</p>
+<p><strong>Maximizing information gain – getting the most bang for the buck</strong><br>首先定义决策树算法中需要优化的目标函数，这里目标函数的目标是最大化每次划分的信息增量值：<br><img src="/img/PythonMachineLearningIII_19.png" alt=""></p>
+<p>其中f是特征变量，Dp和Dj是划分前的父节点数据集和划分后的第j个子集，Np和Nj是父集和第j个子集的样本数，I是杂质度度量函数。简单来说信息增量就是划分后自己的杂质度总和-划分前的杂质度，划分后子集越纯信息增量越大。基于简单和复杂度因素考虑，很多库提供的都是二元决策树算法。<br>比较常用的三个杂质度量函数是基尼系数（Gini index）、信息熵（entropy）和分类错误（classification error）。<br>信息熵的定义如下：<br><img src="/img/PythonMachineLearningIII_20.png" alt=""></p>
+<p>其中p标识样本中属于分类c的数量占比，当所有节点中的数据都属于同一类中时，信息熵为0。<br>基尼系数可以视为最小化误分类概率的判别准则：<br><img src="/img/PythonMachineLearningIII_21.png" alt=""></p>
+<p>实践中基尼系数和信息熵的效果非常接近，无需刻意选择算法，不如测试不同的剪枝阈值。</p>
+<p>另一个杂质度度量函数是分类错误：<br><img src="/img/PythonMachineLearningIII_22.png" alt=""></p>
+<p>这是一个对剪枝较有用的衡量方法（而不是生成决策树）。下图展示的是不同杂质度和p分布情况下不同算法的差异：<br><img src="/img/PythonMachineLearningIII_23.png" alt=""></p>
+<p><strong>Building a decision tree</strong><br>决策树会将特征空间切分为复杂的矩形，但是必须小心决策树的深度，因为更深的决策分支会形成更加复杂的切分矩形，也更容易产生过拟合。对决策树算法本身来说，特征变量归一不是必需的。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.tree <span class="built_in">import</span> DecisionTreeClassifier</span><br><span class="line"><span class="attr">tree</span> = DecisionTreeClassifier(<span class="attr">criterion='entropy',</span> <span class="attr">max_depth=3,</span> <span class="attr">random_state=0)</span></span><br><span class="line">tree.fit(X_train, y_train)</span><br><span class="line"><span class="attr">X_combined</span> = np.vstack((X_train, X_test))</span><br><span class="line"><span class="attr">y_combined</span> = np.hstack((y_train, y_test))</span><br><span class="line">plot_decision_regions(X_combined, y_combined, <span class="attr">classifier=tree,</span> <span class="attr">test_idx=range(105,</span> <span class="number">150</span>))</span><br><span class="line">plt.xlabel('petal length [cm]')</span><br><span class="line">plt.ylabel('petal width [cm]')</span><br><span class="line">plt.legend(<span class="attr">loc='upper</span> left')</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/PythonMachineLearningIII_24.png" alt=""></p>
+<p>scikit-learn可以将生成的决策树导出为<code>.dot</code>文件，然后通过GraphViz程序做可视化展现。GraphViz程序可以在(<a href="http://www.graphviz.org)[http://www.graphviz.org]免费下载，提供Linux、Window和Mac" target="_blank" rel="noopener">www.graphviz.org)[http://www.graphviz.org]免费下载，提供Linux、Window和Mac</a> OSX版本。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from sklearn<span class="selector-class">.tree</span> import export_graphviz</span><br><span class="line"><span class="function"><span class="title">export_graphviz</span><span class="params">(tree, out_file=’tree.dot’, feature_names=[‘petal length’, ‘petal width’])</span></span></span><br></pre></td></tr></table></figure></p>
+<p>安装完GraphViz后可以通过命令行将<code>.dot</code>文件输出为PNG图片：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">dot</span> –<span class="selector-tag">Tpng</span> <span class="selector-tag">tree</span><span class="selector-class">.dot</span> –<span class="selector-tag">o</span> <span class="selector-tag">tree</span><span class="selector-class">.png</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/PythonMachineLearningIII_25.png" alt=""></p>
+<p><strong>Combining weak to strong learners via random forests</strong><br>随机森林（random forests）在近十年机器学习应用中广受欢迎，源于其优秀的性能、可扩展性和易使用性。随机森林可以直观地理解为是许多决策树的集合（ensemble），通过将许多弱分类器构建一个更加健壮的强分类器，可以有效降低正则化错误和过拟合。随机森林算法可以概括为以下四个步骤：</p>
+<ol>
+<li>随机抽取数量为n的引导样本数据（从训练集中有放回的随机选择n个样本）；</li>
+<li>基于引导样本生成一颗决策树。生成时遵循如下规则：无放回地随机选取d个特征变量，根据选定的d个特征变量选择最佳的切分方案，最佳的衡量可以采用例如信息增量最大的目标函数；</li>
+<li>重复步骤1、2共k次；</li>
+<li>根据预测结果按照多数投票算法（majority vote）整和所有的决策树。多数投票算法后续会详细介绍。</li>
+</ol>
+<p>尽管随机森林无法提供像决策树这样清晰的可解释性，但是其巨大的优势在于：无需调优超变量、无需考虑剪枝问题、无需担心噪点数据的影响。我们只需要关注一个参数：树的棵数k。通常来说树越多，模型效果越好同时需要计算的时间也越多。<br>尽管如此，随机森林仍有超参数可以调优：引导样本的数量n和随机特征变量的数量d。样本数量n用于调节随机森林的偏度和方差，增大n数会降低样本的随机性，可能会增加过拟合情况。大多数算法（包括scikit-learn的RandomForestClassifier）实现中，默认引导样本数等于训练集中的样本数，一般这是一个较好的偏度-方差平衡点。随机特征数d一般都小于训练集中的总特征数，一个合理的默认值是总特征数m的平方根。<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.ensemble <span class="built_in">import</span> RandomForestClassifier</span><br><span class="line"><span class="attr">forest</span> = RandomForestClassifier(<span class="attr">criterion='entropy',</span> <span class="attr">n_estimators=10,</span> <span class="attr">random_state=1,</span> <span class="attr">n_jobs=2)</span></span><br><span class="line">forest.fit(X_train, y_train)</span><br><span class="line">plot_decision_regions(X_combined, y_combined, <span class="attr">classifier=forest,</span> <span class="attr">test_idx=range(105,</span> <span class="number">150</span>))</span><br><span class="line">plt.xlabel('petal length')</span><br><span class="line">plt.ylabel('petal width')</span><br><span class="line">plt.legend(<span class="attr">loc='upper</span> left')</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p>上述代码训练了一个有10棵数的森林，<code>n_estimators</code>定义了数的棵数，使用信息熵来衡量杂质度。<code>n_jobs</code>参数表示利用多核技术并行训练我们的模型，这里我们使用2个内核。<br><img src="/img/PythonMachineLearningIII_26.png" alt=""></p>
+<h3 id="K-nearest-neighbors-–-a-lazy-learning-algorithm"><a href="#K-nearest-neighbors-–-a-lazy-learning-algorithm" class="headerlink" title="K-nearest neighbors – a lazy learning algorithm"></a>K-nearest neighbors – a lazy learning algorithm</h3><p>最后本章讨论的是K近邻分类器（k-nearest neighbor，KNN），与之前介绍的算法不同，KNN是一种惰性学习（lazy learner），它不是在训练及上学习一个辨识函数，而是记忆训练集。</p>
+<blockquote>
+<p>参数和非参数模型（Parametric versus nonparametric models）<br>机器学习算法可以简单分为参数和非参数模型。通过参数模型可以在训练及上学习一个含有参数的函数，可以用来对新数据分类。典型的如感知器、逻辑回归、线性SVM。而非参数模型无法特征化一系列参数，并且参数的个数会随着训练集变化。决策树和核函数SVM就是这类典型。<br>KNN属于非参数模型的一个子类，称为基于实例的学习（instance-based learning）。惰性学习是其中一种特殊情况，其学习过程没有任何成本（no cost）</p>
+</blockquote>
+<p>KNN算法本身非常直观，可以概括为下述几步：</p>
+<ol>
+<li>选取参数k和距离指标</li>
+<li>选择距离待分类样本最近的k个邻居</li>
+<li>根据多数投票算法对样本进行分类</li>
+</ol>
+<p>下图展示了新数据（？点）是如何根据最近的5个邻居按照多数投票算法被分为三角形一类的过程。<br><img src="/img/PythonMachineLearningIII_27.png" alt=""></p>
+<p>该类基于记忆的分类器一大优势是能够快速适应新的训练数据集，但是不利是最坏场景下算法复杂程度会随着样本数据增加线性增长，而且模型需要保存大量的样本数据，工作在大数据集上对存储空间也是一个挑战。<br>下面是使用欧几里德距离公式实现的KNN模型的代码：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from sklearn<span class="selector-class">.neighbors</span> import KNeighborsClassifier</span><br><span class="line">knn = KNeighborsClassifier(n_neighbors=<span class="number">5</span>, p=<span class="number">2</span>, metric=<span class="string">'minkowski'</span>)</span><br><span class="line">knn.fit(X_train_std, y_train)</span><br><span class="line"><span class="function"><span class="title">plot_decision_regions</span><span class="params">(X_combined_std, y_combined, classifier=knn, test_idx=range(<span class="number">105</span>, <span class="number">150</span>)</span></span>)</span><br><span class="line">plt.xlabel(<span class="string">'petal length [standardized]'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'petal width [standardized]'</span>)</span><br><span class="line">plt.legend(loc=<span class="string">'upper left'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/PythonMachineLearningIII_28.png" alt=""></p>
+<p>参数k的选择对于过拟合和欠拟合有着决定性的影响，同时还要注意距离计算公式能够适应数据的特性。欧式距离简单，并且通常适合于实数类型的特征值，如果使用欧式距离归一化也是必不可少的，这样可以保证所有的特征对距离的贡献平等。代码中的<code>’minkowski’</code>表示使用泛化（generalization）后的欧式距离或曼哈顿距离，参数<code>p=2</code>表示欧式距离，<code>p=1</code>表示曼哈顿距离。其他距离参数可以参考scikit-learn官网说明文档(sklearn.neighbors.DistanceMetric.html)[ <a href="http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.DistanceMetric.html]。" target="_blank" rel="noopener">http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.DistanceMetric.html]。</a></p>
+<blockquote>
+<p>维数灾难（The curse of dimensionality）<br>KNN很容易受到维数灾难影响产生过拟合。该影响可以简述为当特征维数很高但是样本数量不足造成所有的近邻距离都非常遥远。之前介绍的正则化无法应用于决策树和KNN，所以我们需要使用特征选择和降维技术来避免维数灾难。</p>
+</blockquote>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/01/25/Python-Machine-Learning-IV/" data-toggle="tooltip" data-placement="top" title="Python Machine Learning IV">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/01/18/Python-Machine-Learning-II/" data-toggle="tooltip" data-placement="top" title="Python Machine Learning II">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                          <a class="tag" href="/tags/#scikit-learn" title="scikit-learn">scikit-learn</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2023
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

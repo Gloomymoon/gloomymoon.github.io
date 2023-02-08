@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/star-wars.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Gloomymoon</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">Try not. Do or do not. There is no try.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+
+                <!-- Main Content -->
+
+
+<div class="post-preview">
+
+    <a href="/2022/12/17/The-Data-Science-Task-Force-Mission-V/">
+        <h2 class="post-title">
+            The Data Science Task Force: Mission DG
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            数据获取、管理和治理：DG数据获取信息提取数据集成数据裁剪和压缩数据转换数据清洗数据隐私和安全
+数据获取、管理和治理 Data Acquisition, Management, and Governance(DG)作为数据科学的基础，数据需要获取、整合和预处理。这是一个确保数据的数量和质量的重要步骤，可以提高后续的数据处理工作的有效性。因此，数据科学家必须了解数据获取和治理的概念和方法，包括......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Gloomymoon on
+        2022-12-17
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/12/17/The-Data-Science-Task-Force-Mission-IV/">
+        <h2 class="post-title">
+            The Data Science Task Force: Mission CCF
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            计算和计算机基础 Computing and Computer Fundamentals(CCF)现代数据科学高度依赖计算技术和计算机设备：收集和存储数据、分析数据、展现分析结论、以及分析结果落实到应用系统中。因此，数据科学家应当在一个较高层次理解操作系统结构、文件系统、编译原理、网络，记忆与之相关的安全问题。
+注1：本知识域中的很多内容取自于CS2013。注2：本知识域的大多数能力旨在表明......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Gloomymoon on
+        2022-12-17
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/12/17/Nokia-The-Very-Beginning-of-Game-Phone/">
+        <h2 class="post-title">
+            Nokia The Very Beginning of Game Phone
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Nokia: The Very Beginning of Game Phone
+“My eyes are open.”——Far Seer
+
+0 开天辟地当我的第一个手机阿尔卡特ot700那被人诟病的通话/挂断按键脱落2次以后，不得不开始寻觅新的替代者。
+直到有一天看到某位同事（他现在是大老板了），用一种很奇葩的姿势打电话，惊鸿一现，眼界大开。
+
+那还是在手机刚刚普及的2004年，3年前发售......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Gloomymoon on
+        2021-12-17
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/09/21/A-Guide-To-Information-Graphics-I/">
+        <h2 class="post-title">
+            A Guide To Information Graphics I
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            A Guide to Information Graphics: Part I0 Introduction我们已进入数据驱动时代，数据图表已经和文字一样随处可见，但是浮夸的修饰和冲突的配色使得很多图表反而无法有效传递其蕴含的讯息。随着计算机技术普及，人人都能够制作数字化图表，但是现有知道如何制作出色的图表。我们看到使用过多视觉修饰例如强烈对比的配色、3D效果来让图表美观，却忽视了应该表达的信......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Gloomymoon on
+        2021-09-21
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/09/21/The-Data-Science-Task-Force-Mission-III/">
+        <h2 class="post-title">
+            The Data Science Task Force: Mission BDS
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            大数据系统 Big Data Systems(BDS)“大数据”一词特指数据量非常大的计算机系统，例如包含无法在单一服务器上存储的视频、图像、手写体等文件。此类系统进入了规模问题：如何存储海量的数据，如何确保数据是高质量的，如何以高效的方式处理数据，以及如何有效地洞察数据。本章节将详细讨论规模问题、数据存储、高性能计算和复杂理论等主题。讨论内容包括一系列通常用于解决大规模计算的技术，由于技术......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Gloomymoon on
+        2021-09-21
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2021/02/28/The-Data-Science-Task-Force-Mission-II/">
+        <h2 class="post-title">
+            The Data Science Task Force: Mission AI
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            人工智能 Aritficial Intelligence(AI)人工智能（AI）包括建模和模拟等多种被视为智能的人类能力的方法。关键主题包括感知、表征、学习、规划以及利用知识和证据进行推理。
+为构建AI系统而建立的概念和方法在数据科学中颇有助益。例如，数据科学家创建并使用知识图谱中如语义本体等概念；计算机视觉算法可用于分析图像数据；语音和自然语言处理算法可应用于分析语音或文本数据。机器学习算......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Gloomymoon on
+        2021-02-28
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/12/27/The-Data-Science-Task-Force-Mission-I/">
+        <h2 class="post-title">
+            The Data Science Task Force: Mission AP
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            分析和展示 Analysis and Presentation(AP)人机交互接口是为用户提供了与计算机系统交互的媒介，其质量会影响计算机系统的可用性，其形式包含了各种技术：动画、可视化、模拟、语音、视频、识别（人脸、手写等）和图形。对于数据科学家来说，了解各种技术的可行性以及能够酌情采用是非常重要。可视化技术通过使用各种形式的图形和图表，使数据易于理解，也大大有助于协助诸如聚类和分类等任务......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Gloomymoon on
+        2020-12-27
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/12/17/The-Data-Science-Task-Force/">
+        <h2 class="post-title">
+            The Data Science Task Force
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            The Data Science Task Force
+“We’ll send a task force with you.”
+―Jedi Master Mace Windu advises Master Obi-Wan Kenobi
+
+0 背景介绍2017年8月，ACM教育理事会上，成立了一个数据科学特别工作组（Task Force），探讨关于增加对数据科学的广泛、跨学科的对话，以及计算学......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Gloomymoon on
+        2020-12-17
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/12/17/A-Thought-On-The-Battle-Of-Midway/">
+        <h2 class="post-title">
+            A Thought On The Battle Of Midway
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            中途岛海战引发的思考A Thought On The Battle Of Midway
+
+警告：本文佷干，谨慎阅读
+
+1 中途岛海战最近仍在档期的《决战中途岛》，虽然劣质的建模（珊瑚海沉的竟然是企业号假扮的列太太！——毕竟投资才1亿美元）、夸大的防空火力特效、碎片化的魔改剧情、缺失的关键角色（粪提弗莱彻和F4F的萨奇剪都！没！有！），但是毕竟是近期少有的“史实型”战争片，观众们褒贬不一（主要......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Gloomymoon on
+        2019-12-17
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/12/12/The-Data-Strikes-Back/">
+        <h2 class="post-title">
+            The Data Strikes Back
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            The Data Strikes Back今天是双十二，我们来聊聊双十一。
+1 “骗局”？今年淘宝双十一之后阿里公布的销售额高达2684亿元，比去年增长25.7%。就在官方陶醉在历史新高、普罗大众沉浸在买买买的兴奋中时，有人挖出了早在当年4月份微博用户@尹立庆所发的《关于淘宝2009年-2018年历年双11销售额数据造假的消息》，文中利用简单的二次回归模型，成功预测了7个月后的销售数据，并质......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Gloomymoon on
+        2019-12-12
+    </p>
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+    
+        <li class="next">
+            <a href="/page/2/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+
+                <!-- 如果开启评论功能 -->
+                
+
+            </div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                            
+                            <a href="/tags/#Lego" title="Lego" rel="3">Lego</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#World War II" title="World War II" rel="2">World War II</a>
+                            
+                        
+                            
+                            <a href="/tags/#JavaScript" title="JavaScript" rel="6">JavaScript</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Python" title="Python" rel="22">Python</a>
+                            
+                        
+                            
+                            <a href="/tags/#ECMAScript" title="ECMAScript" rel="4">ECMAScript</a>
+                            
+                        
+                            
+                            <a href="/tags/#Games" title="Games" rel="2">Games</a>
+                            
+                        
+                            
+                            <a href="/tags/#Data Science" title="Data Science" rel="6">Data Science</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Scrapy" title="Scrapy" rel="2">Scrapy</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Kaggle" title="Kaggle" rel="2">Kaggle</a>
+                            
+                        
+                            
+                            <a href="/tags/#Machine Learning" title="Machine Learning" rel="9">Machine Learning</a>
+                            
+                        
+                            
+                            <a href="/tags/#scikit-learn" title="scikit-learn" rel="6">scikit-learn</a>
+                            
+                        
+                            
+                            <a href="/tags/#Data Analysis" title="Data Analysis" rel="8">Data Analysis</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#pandas" title="pandas" rel="6">pandas</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Lexington" title="Lexington" rel="2">Lexington</a>
+                            
+                        
+                            
+                            <a href="/tags/#Aircraft Carrier" title="Aircraft Carrier" rel="2">Aircraft Carrier</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+
+                        
+                            <img src="/img/leia.jpg">
+                        
+
+                        
+
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+
+                            
+
+                            
+
+                            
+                                <li>
+                                    <a target="_blank" href="https://github.com/Gloomymoon">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+
+                            
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Friends Blog -->
+                
+            </div>
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2023
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

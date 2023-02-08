@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Python for Data Analysis VI - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2017/01/02/Python-for-Data-Analysis-VI/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/star-wars.jpg');
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Data Analysis" title="Data Analysis">Data Analysis</a>
+                        
+                          <a class="tag" href="/tags/#pandas" title="pandas">pandas</a>
+                        
+                    </div>
+                    <h1>Python for Data Analysis VI</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2017-01-02
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="7-4-字符串操作"><a href="#7-4-字符串操作" class="headerlink" title="7.4 字符串操作"></a>7.4 字符串操作</h3><p><strong>字符串对象方法</strong></p>
+<p>对于大部分字符串操作应用而言，python内置的字符串对象方法已经能够满足要求，例如<code>split</code>拆分、<code>strip</code>修剪空白符、<code>+</code>号连接字符串、<code>join</code>连接列表或元组、<code>in, index, find</code>方法定位子串、<code>count</code>方法返回子串出现次数、<code>replace</code>方法实现模式替换等等。</p>
+<p><strong>正则表达式</strong></p>
+<p>Python内置的<code>re</code>模块负责对字符串应用正则表达式，<code>re</code>模块的函数可以分为三类：模式匹配、替换以及拆分。一个<code>regex</code>描绘了需要在文本中定位的一个模式，例如标会一个或多个空白符的<code>regex</code>是<code>\s+</code>，为了便于重用，可以用<code>re.compile</code>编译一个<code>regex</code>对象。下面是<code>regex</code>的一些用法说明：</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">regex = re.compile(<span class="comment">'\s+\') # 编译一个可重用的regex对象</span></span><br><span class="line">regex.split(<span class="keyword">text</span>) <span class="meta"># 对text字符串按照regex进行拆分，获得一个拆分后的数组</span></span><br><span class="line">regex.findall(<span class="keyword">text</span>) <span class="meta"># 获取text中匹配regex的所有模式，也是一个数组</span></span><br><span class="line">regex.search(<span class="keyword">text</span>) <span class="meta"># 返回第一个匹配的模式，返回匹配的开始和结束位置</span></span><br><span class="line">regex.match(<span class="keyword">text</span>) <span class="meta"># 只匹配text字符串首部的模式</span></span><br><span class="line">regex.<span class="keyword">sub</span>(replacement, <span class="keyword">text</span>) <span class="meta"># 将text中匹配到的模式替换为replacement</span></span><br></pre></td></tr></table></figure>
+<p>另外如果不仅要找到匹配的模式，还想将模式分段输出，可以将模式待分段的各部分用圆括号包起来。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pattern = <span class="string">r'([A-Z0-9._%+-]+)@([A-Z0-9.-]+)\.([A-Z]&#123;2,4&#125;)'</span></span><br><span class="line"><span class="comment"># re.IGNORECASE makes the regex case-insensitive</span></span><br><span class="line">regex = re.compile(pattern, flags=re.IGNORECASE)</span><br><span class="line">m = regex.match(<span class="string">'wesm@bright.net'</span>)</span><br><span class="line">m.groups()</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="symbol">'wesm</span>', <span class="symbol">'bright</span>', <span class="symbol">'net</span>')</span><br></pre></td></tr></table></figure>
+<p>对于带有分组功能的模式，<code>findall</code>会返回一个元组列表。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">regex = re.compile(<span class="string">r"""</span></span><br><span class="line"><span class="string">    (?P&lt;username&gt;[A-Z0-9._%+-]+)</span></span><br><span class="line"><span class="string">    @</span></span><br><span class="line"><span class="string">    (?P&lt;domain&gt;[A-Z0-9.-]+)</span></span><br><span class="line"><span class="string">    \.</span></span><br><span class="line"><span class="string">    (?P&lt;suffix&gt;[A-Z]&#123;2,4&#125;)"""</span>, flags=re.IGNORECASE|re.VERBOSE)</span><br><span class="line">m = regex.match(<span class="string">'wesm@bright.net'</span>)</span><br><span class="line">m.groupdict()</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">'domain'</span>: <span class="string">'bright'</span>, <span class="string">'suffix'</span>: <span class="string">'net'</span>, <span class="string">'username'</span>: <span class="string">'wesm'</span>&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>pandas中矢量化的字符串函数</strong></p>
+<p>回到数据清理工作中，在分析前常常要做一些字符串规整化工作，包括处理缺失数据。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">data</span> = &#123;'<span class="type">Dave</span>': '<span class="title">dave</span>@<span class="title">google</span>.<span class="title">com'</span>, '<span class="type">Steve</span>': '<span class="title">steve</span>@<span class="title">gmail</span>.<span class="title">com'</span>,</span></span><br><span class="line"><span class="class">        '<span class="type">Rob</span>': '<span class="title">rob</span>@<span class="title">gmail</span>.<span class="title">com'</span>, '<span class="type">Wes</span>': <span class="title">np</span>.<span class="title">nan</span>&#125;</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> = <span class="type">Series</span>(<span class="title">data</span>)</span></span><br></pre></td></tr></table></figure>
+<p>虽然所有的字符串和正则表达式方法都能通过<code>data.map</code>方法应用于各个值，但是如果存在上述数据中的NA就会报错。为了解决这个问题，Series提供了一些能够跳过NA值的字符串操作方法。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data<span class="selector-class">.str</span><span class="selector-class">.contains</span>(<span class="string">'gmail'</span>)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">Dave</span>     <span class="literal">False</span></span><br><span class="line"><span class="string">Rob</span>       <span class="literal">True</span></span><br><span class="line"><span class="string">Steve</span>     <span class="literal">True</span></span><br><span class="line"><span class="string">Wes</span>        <span class="string">NaN</span></span><br><span class="line"><span class="attr">dtype:</span> <span class="string">object</span></span><br></pre></td></tr></table></figure>
+<p>同样支持增则表达式和相应的<code>re</code>选项。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">matches</span> = <span class="class"><span class="keyword">data</span>.str.match(<span class="title">pattern</span>, <span class="title">flags</span>=<span class="title">re</span>.<span class="type">IGNORECASE</span>)</span></span><br><span class="line"><span class="title">matches</span></span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Dave     (dave, google, <span class="keyword">com</span>)</span><br><span class="line">Rob        (rob, gmail, <span class="keyword">com</span>)</span><br><span class="line">Steve    (steve, gmail, <span class="keyword">com</span>)</span><br><span class="line">Wes                      NaN</span><br><span class="line"><span class="symbol">dtype:</span> object</span><br></pre></td></tr></table></figure>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/01/07/Python-for-Data-Analysis-VII/" data-toggle="tooltip" data-placement="top" title="Python for Data Analysis VII">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/12/27/Python-for-Data-Analysis-V/" data-toggle="tooltip" data-placement="top" title="Python for Data Analysis V">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Data Analysis" title="Data Analysis">Data Analysis</a>
+                        
+                          <a class="tag" href="/tags/#pandas" title="pandas">pandas</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2023
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
