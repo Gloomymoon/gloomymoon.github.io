@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          The Data Science Task Force Mission VI - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2023/12/17/The-Data-Science-Task-Force-Mission-VI/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/star-wars.jpg');
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Data Science" title="Data Science">Data Science</a>
+                        
+                    </div>
+                    <h1>The Data Science Task Force Mission VI</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2023-12-17
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="数据挖掘（DM-Data-Mining）"><a href="#数据挖掘（DM-Data-Mining）" class="headerlink" title="数据挖掘（DM, Data Mining）"></a>数据挖掘（DM, Data Mining）</h3><p>数据挖掘的核心是对数据进行处理、分析和展示，以获得有价值的信息。一个重要的先决条件是准备好适当与手头的任务相关的高质量的数据。基本的分析类型包括聚类、分类、回归、模式挖掘、预测、关联和离群点检测，并注意数据的不同形态，包括时间序列数据和网络数据。这些概念中的许多都取决于数据的邻近度概念。</p>
+
+<table>
+  <tr><th>范围</th><th>能力</th></tr>
+  <tr>
+    <td width="50%"><ul>
+    <li>数据挖掘及与数据准备和数据管理的关系</li>
+    <li>各种数据类型和应用的数据挖掘模型 </li>
+    <li>为各种任务选择和应用数据挖掘算法</li>
+    </ul></td>
+    <td width="50%">
+    <ul>
+    <li>使学生掌握关于可用于挖掘数据的技术范围以及相关算法及其适用性的知识</li>
+    <li>使学生具备识别和使用可能以各种形式存在的数据挖掘工具和技术的能力</li>
+    <li>使学生对数据挖掘有高度的信心。</li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+     <th colspan="2">子领域</th>
+  </tr>
+  <tr>
+    <td width="50%">
+    DM-近邻测量-T1,T2<br>
+    DM-数据准备-T1<br>
+    DM-信息提取-E<br>
+    DM-聚类分析-T1,T2<br>
+    DM-分类和回归-T1,T2<br>
+    </td>
+    <td width="50%">
+    DM-模式挖掘-T2<br>
+    DM-离群点检测-T2<br>
+    DM-时间序列数据-E<br>
+    DM-互联网数据挖掘-T2<br>
+    DM-信息检索-T2<br>
+    </td>
+  </tr>
+</table>
+
+<h4 id="DM-近邻测量"><a href="#DM-近邻测量" class="headerlink" title="DM-近邻测量"></a>DM-近邻测量</h4><p>度量数据之间的差异和相似性有很多种方法，对于数值类数据，通常使用两个向量之间的距离来表示（差异），对其他类型数据会使用到不同类型的相似度定义（例如文本余弦相似度）或相关概念。某些特殊情况下可能会需要制定特殊的相似度定义。</p>
+<p><em>知识</em><br>T1：</p>
+<ul>
+<li>度量的基本特性。</li>
+<li>距离度量；典型的案例：欧式距离、曼哈顿距离。</li>
+<li>使用分数和排名；使用合适的分数或排名体系。</li>
+<li>对数据进行归一化以支持比较。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>关于文本的度量。</li>
+<li>数据序列的相关系数等指标。</li>
+<li>基于关系的相似性度量，例如图中的SimRank。</li>
+<li>基于图的度量指标。</li>
+<li>衡量时间序列数据相似性的指标，如动态时间规整。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>描述并比较度量概念及其与不同类型数据（标称、顺序、区间和比率）的相关性。。</li>
+<li>选择比较各类数据的合适指标。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>描述非数字数据的内部表示法，如字符、字符串和图像。</li>
+<li>描述多核和多处理器系统之间的区别。</li>
+<li>解释经典冯诺依曼机的架构及主要功能单元。</li>
+<li>讨论超越经典冯诺依曼模型的并行处理概念。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>准确而又有创新地使用现存的典型常用的衡量分数和指标。</li>
+</ul>
+<h4 id="DM-数据准备-T1"><a href="#DM-数据准备-T1" class="headerlink" title="DM-数据准备-T1"></a>DM-数据准备-T1</h4><p>高质量数据的可用性和准备工作对数据科学至关重要，收集来自各种可能来源相关数据后，需要确保数据集符合使用目的。</p>
+<p><em>知识</em></p>
+<ul>
+<li>收集数据、数据与解决问题的关系、专家知识的重要性以及听取专家的意见。</li>
+<li>数据来源，包括数据库、物联网、照片和视频、在线信息来源，数据是否满足用于特定目标。</li>
+<li>关于用于特定目的获取和使用数据的伦理考量，关于共用数据的隐私问题，关于数据中可能存在的偏见问题。</li>
+<li>整理数据——处理数据中的错误、空白，清理数据，验证数据、剖析数据、转化数据，并酌情关联数据集，以及考虑质量因素。</li>
+<li>处理数据集问题的方法，如数据不平衡、属性不足或不相关；采用自动或人工方法以及两者之前的权衡选择。</li>
+<li>特征的概念，特征的提取和表示，特征的选择和特征生成。</li>
+</ul>
+<p><em>技能</em></p>
+<ul>
+<li>说明提出问题的过程与获取数据回答问题的过程之间的联系。</li>
+<li>通过与专家适当互动，展示特定领域的专业知识。</li>
+<li>在探索性数据分析中使用汇总统计和可视化方法进行推断。</li>
+<li>说明数据集可能产生的问题影响和解决方法。</li>
+<li>解释各种生成特征方法的好处和影响。</li>
+<li>描述特征选择和特征生成之间的异同。</li>
+<li>演示如何生成更少或更多的特征。</li>
+</ul>
+<p><em>品行</em></p>
+<ul>
+<li>准确选择和准备数据，了解处理高质量数据的重要性。</li>
+</ul>
+<h4 id="DM-信息提取-E"><a href="#DM-信息提取-E" class="headerlink" title="DM-信息提取-E"></a>DM-信息提取-E</h4><p>信息提取是指从不同形式存在的非结构化数据中提取结构化信息的技术和过程，它是从文档、网页甚至多媒体中获取数据的重要技术。</p>
+<p><em>知识</em></p>
+<ul>
+<li>信息提取的应用。</li>
+<li>实体和关系的提取。</li>
+<li>基于规则的信息提取方法及其应用。</li>
+<li>基于统计的信息提取方法及其应用。</li>
+<li>提取数据中可能存在的问题。</li>
+</ul>
+<p><em>技能</em></p>
+<ul>
+<li>根据应用要求和数据设计模式。</li>
+<li>使用基于规则和基于统计的方法为应用程序编写信息提取规则。</li>
+<li>在规则或模型学习和关系预测等信息提取任务中应用学习算法。</li>
+</ul>
+<p><em>品行</em></p>
+<ul>
+<li>敏锐地认识到从数据中提取信息有多种方法。</li>
+</ul>
+<h4 id="DM-聚类分析"><a href="#DM-聚类分析" class="headerlink" title="DM-聚类分析"></a>DM-聚类分析</h4><p>聚类涉及将表现出某种相似性的数据点组合在一起，这意味着对邻近性的某种解释，而对邻近性的解释有多种多样，二维或三维的聚类通常可以通过可视化来识别，但这在更高维度上并不总是很容易实现。一般来说，聚类可能是紧凑的，而且分离得很好，但也并非总是如此。（另请参见ML-无监督学习）</p>
+<p><em>知识</em><br>T1：</p>
+<ul>
+<li>为聚类活动确定适当的相似度量。</li>
+<li>聚类质量评估。</li>
+<li>k近邻聚类算法，包括迭代考虑因素。</li>
+<li>基于密度的聚类算法。</li>
+<li>聚类的应用。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>均值移动聚类。</li>
+<li>层次聚类。</li>
+<li>基于网格的算法。</li>
+<li>聚类算法加速和并行化策略。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>解释特征选择对聚类的重要性。</li>
+<li>为k-means算法初始化标准的选择提供指导。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>比较聚类方法，突出相对优势和不足。</li>
+<li>指出在那些情况下应使用何种聚类算法，以及在哪些情况下其他替代方法更为可取。</li>
+<li>将算法应用于测试数据集，并比较结果。</li>
+<li>举例说明，突出聚类的效用和价值。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>准确了解聚类在数据科学中的作用。</li>
+<li>敏锐地认识到可扩展的高校聚类算法在实际应用中的重要性。</li>
+</ul>
+<h4 id="DM-分类和回归"><a href="#DM-分类和回归" class="headerlink" title="DM-分类和回归"></a>DM-分类和回归</h4><p>有很多应用领域都需要为数据示例（可能很复杂）分配一个类型，同样，也有许多应用领域需要为数据实例分配数据值。前者被称为分类。回归则涉及估计变量与一个或多个自变量之间的关系。虽然这些是不同的任务，但它们是相关，许多数据挖掘方法可以同时适用于这两种情况。这两种工作有一个显著的特点是，它们都需要标注好的训练数据，即已分配类/因变量值的代表性样本。（请参阅“ML-监督学习”和“ML-深度学习”）</p>
+<p><em>知识</em><br>T1：</p>
+<ul>
+<li>有关分类特征选的考虑因素。</li>
+<li>基于样本的方法，比如K近邻。</li>
+<li>决策树方法。</li>
+<li>概率模型、朴素贝叶斯。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>基于规则的方法。</li>
+<li>支持向量机。</li>
+<li>神经网络。</li>
+<li>分类和回归的实际应用。</li>
+<li>深度学习及相关软件支持（如Faffe、TensorFlow、PyTorch）。</li>
+</ul>
+<p>E：</p>
+<ul>
+<li>加速和并行化策略。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>解释特征选择对分类和回归的重要性。</li>
+<li>描述选择一种方法而不是另一种的标准和原因，如预测准确性、所学模型的可解释性等。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>确定回归与分类之间的关系。</li>
+<li>识别可能受益于分类器或回归模型的关键情况。</li>
+<li>确定支持每种方法的软件，并应用。</li>
+<li>展示选择分类方法并臻明其合理性的能力，以及将其应用于复杂程度适中的案例的能力。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>敏锐地认识到可扩展、高效的分类和回归算法在实际应用中的重要性。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>透彻的描述分类和回归之间的联系，以及更广泛的统计学和机器学习。</li>
+</ul>
+<h4 id="DM-模式挖掘-T2"><a href="#DM-模式挖掘-T2" class="headerlink" title="DM-模式挖掘-T2"></a>DM-模式挖掘-T2</h4><p>本主题设计在数据中寻找模式，对于规模相当大的数据集合，暴力方法往往在计算上不可行，但选择合适的算法提供了一种解决方法。（通过基因组测序，模式匹配在生物技术中有着重要的应用，但在此不再赘述）</p>
+<p><em>知识</em></p>
+<ul>
+<li>关联模式挖掘的概念。</li>
+<li>计算复杂性考虑。</li>
+<li>关联规则挖掘；Apriori和频繁模式增长算法。</li>
+<li>序列模式挖掘；GSP算法。</li>
+<li>模式挖掘的高效并行算法。</li>
+<li>应用领域。</li>
+</ul>
+<p><em>技能</em></p>
+<ul>
+<li>阐述Apriori算法可在日常环境中发挥优异作用的系列领域。</li>
+<li>在重要应用中实现Apriori算法。</li>
+<li>比较和对比模式挖掘算法的实用性。</li>
+</ul>
+<p><em>品行</em></p>
+<ul>
+<li>坚信模式挖掘是一个应用广泛的课题。</li>
+</ul>
+<h4 id="DM-离群点检测-T2"><a href="#DM-离群点检测-T2" class="headerlink" title="DM-离群点检测-T2"></a>DM-离群点检测-T2</h4><p>离群点是指与其他绝大多数数据表现出截然不同特征的数据点，识别这些数据点是可取的，因为过度关注这类数据会导致数据失真（甚至可能暗示存在欺诈），同样重要的是，通过充分了解该领域来确定是否存在（合法的）例外情况。在下文中，我们将假定数据已经过清洗，并且存在真正的离群点。</p>
+<p><em>知识</em></p>
+<ul>
+<li>离群值概念的定义。</li>
+<li>一般方法——建立数据模型，然后指出某个数据点不符合模型。</li>
+<li>参数方法，例如在一维数据中识别数字异常的z分数。</li>
+<li>使用概率分布函数。</li>
+<li>使用深度优先方法——在确定了一组点的预期凸壳之后，它是在内部还是外部；使用相关的图形方法。</li>
+<li>应用领域。</li>
+</ul>
+<p><em>技能</em></p>
+<ul>
+<li>应用一系列离群点检测方法的算法。</li>
+<li>比较和对比异常值检测的参数法和非参数法。</li>
+<li>解释离群点检测方法如何有助于查重、识别金融欺诈、检测网络入侵或其他应用领域。</li>
+<li>通过适当的例子说明离群点检测的重要性。</li>
+</ul>
+<p><em>品行</em></p>
+<ul>
+<li>具备对异常值分析和检测的头车型和敏锐视角。</li>
+</ul>
+<h4 id="DM-时间序列数据-E"><a href="#DM-时间序列数据-E" class="headerlink" title="DM-时间序列数据-E"></a>DM-时间序列数据-E</h4><p>对于某些类型的数据来说，时间或日期戳非常重要，例如，这可用于测量一段时间内增长情况、或测量特定时期的交通拥堵情况。另请参阅“ML-混合方法”。</p>
+<p><em>知识</em></p>
+<ul>
+<li>时间序列数据的性质，包括与连续时间数据的比较。</li>
+<li>数据转换——去除噪音、对时间序列数据进行归一化处理。</li>
+<li>静态和非静态时间序列。</li>
+<li>将时间序列数据转换为离散序列数据。</li>
+<li>时间序列预测——根据过去的数值预测未来的数值。</li>
+<li>时间序列图案——时间序列数据中经常出现的图案。</li>
+<li>时间序列聚类和分类。</li>
+<li>时间序列中的离群值检测——点离群值和形状离群值。</li>
+</ul>
+<p><em>技能</em></p>
+<ul>
+<li>列出一系列有相关时间序列数据的情况，并指出挖掘这些数据的重要性。</li>
+<li>说明和是需要将时间序列数据转换为序列数据。</li>
+<li>解释用于时间序列数据聚类和分类的技术。</li>
+</ul>
+<p><em>品行</em></p>
+<ul>
+<li>注重细节，因为时间序列数据的数据挖掘与某些关键应用高度相关。</li>
+</ul>
+<h4 id="DM-互联网数据挖掘-T2"><a href="#DM-互联网数据挖掘-T2" class="headerlink" title="DM-互联网数据挖掘-T2"></a>DM-互联网数据挖掘-T2</h4><p>互联网上存在着越来越多的数据，以及挖掘这些数据的机制，再进行数据收集和挖掘时，应一如既往地遵守道德规范。</p>
+<p><em>知识</em></p>
+<ul>
+<li>网络访问及相关的网络抓取和网络爬虫过程。</li>
+<li>访问网络数据相关的道德准则。</li>
+<li>访问网络数据的软件库的结构和功能。</li>
+<li>网络数据的知识发现方法，如社区发现和连接预测。</li>
+</ul>
+<p><em>技能</em></p>
+<ul>
+<li>对比社区发现和连接预测。</li>
+<li>使用软件从公开网站获取特定数据。</li>
+<li>开发从网络中发现知识的高效算法。</li>
+</ul>
+<p><em>品行</em></p>
+<ul>
+<li>具备在考虑到伦理框架的情况下，获取高质量数据的毅力和协同能力。</li>
+</ul>
+<h4 id="DM-信息检索-T2"><a href="#DM-信息检索-T2" class="headerlink" title="DM-信息检索-T2"></a>DM-信息检索-T2</h4><p>信息检索包括从一个较大的（通常是非结构化的）数据集中识别和检索信息的规范方法，通常被视为设计搜索文档本身、查询文件或搜索网络等。文档的形式多种多样：文本、图像、视频、录音等。数据的初始存储方式会极大地影响信息检索过程的效率和效果。信息检索在某些领域尤为重要，例如数字图书馆，霍总医疗健康记录中提取信息，它与数据挖掘知识领域有着密切的联系。</p>
+<p><em>知识</em></p>
+<ul>
+<li>用于衡量检索过程效率的技术。</li>
+<li>存储和组织数据的一系列方法，以便有效提取信息；使用编码功能。</li>
+<li>搜索策略的概念；缩小和扩大搜索范围的相关作用。</li>
+<li>为检索过程选择关键词；使用布尔运算符。</li>
+<li>搜索有序数据。</li>
+<li>搜索文本资料的技术。</li>
+<li>搜索一组文件；列出所选项目名称的策略。</li>
+<li>非文本数据的特征识别和提取；使用照片、声音和视频的搜索策略。</li>
+<li>散列、索引和过滤的作用。</li>
+<li>搜索文本资料的方法。</li>
+<li>创建和搜索关系型数据库系统的技术。</li>
+<li>各种关系性、非关系型和其他类型数据库的格式。</li>
+<li>基于网络的信息检索；将网络视为由相互连接的节点组成的图；图论中的相关衡量标准；PageRank和促进基于网络搜索的相关衡量标准。</li>
+</ul>
+<p><em>技能</em></p>
+<ul>
+<li>针对给定的信息检索任务制定搜索策略。</li>
+<li>解释信息检索过程中可能涉及的伦理问题。</li>
+<li>确定使用并行技术加快搜索速度的机会。</li>
+<li>概述网络搜索有效策略的主要内容。</li>
+<li>确定可用于图像、声音和视频剪辑相关的信息检索任务的软件。</li>
+<li>使用SQL创建和使用关系型数据库。</li>
+<li>解释信息检索在数字图书馆运行中可能发挥的作用。</li>
+</ul>
+<p><em>品行</em></p>
+<ul>
+<li>关注信息检索中一系列重要考虑因素的细节，这些因素应成为高校和有效的信息检索方法的基础。</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2023/01/29/The-Wandering-Chinese-SciFi-Movies/" data-toggle="tooltip" data-placement="top" title="The Wandering Chinese Sci-Fi Movies">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Data Science" title="Data Science">Data Science</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2023
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
