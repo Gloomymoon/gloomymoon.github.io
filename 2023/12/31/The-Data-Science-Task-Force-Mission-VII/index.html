@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          The Data Science Task Force: Mission DPSIA - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2023/12/31/The-Data-Science-Task-Force-Mission-VII/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/star-wars.jpg');
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Data Science" title="Data Science">Data Science</a>
+                        
+                    </div>
+                    <h1>The Data Science Task Force: Mission DPSIA</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2023-12-31
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="数据隐私、安全、完整性和安全分析（DPSIA）"><a href="#数据隐私、安全、完整性和安全分析（DPSIA）" class="headerlink" title="数据隐私、安全、完整性和安全分析（DPSIA）"></a>数据隐私、安全、完整性和安全分析（DPSIA）</h3><p>关于隐私、安全和诚信的问题是相互交织的，也就是说，他们与所有知识领域的能力都相关。因此，该知识领域较其他知识领域更大，这里将其组织成子知识领域，子知识领域内再细分子领域。</p>
+<h3 id="数据隐私（DPSIA-DP）"><a href="#数据隐私（DPSIA-DP）" class="headerlink" title="数据隐私（DPSIA/DP）"></a>数据隐私（DPSIA/DP）</h3><p>数据科学家在获取、处理和生成数据是，因能够考虑数据隐私问题及其相关挑战，应当认识到在共享和保护敏感信息之间的权衡、国内和活期隐私权如何影响公司收集存储和处理数据的责任，在广泛的网络安全领域中，除了专业精神和数据获取与管理以外，还有许多概念和子领域与网络安全知识领域相互参照。</p>
+
+<table>
+  <tr><th colspan="2">DPSIA/数据隐私</th></tr>
+  <tr><th>范围</th><th>能力</th></tr>
+  <tr>
+    <td width="50%"><ul>
+    <li>隐私与安全的跨学科权衡。</li>
+    <li>个人权利和对社会需求的影响。</li>
+    <li>保护数据隐私的技术。</li>
+    <li>个人、组织和政府隐私要求之间的关系。</li>
+    </ul></td>
+    <td width="50%">
+    <ul>
+    <li>说明隐私概念的合理性，包括什么是个人隐私信息的社会定义，以及个人隐私与安全之间的权衡。</li>
+    <li>总结和人隐私权与社会需要求之间的权衡。</li>
+    <li>评估可降低数据泄漏风险和保护数据隐私的常见做法、技术和工具。</li>
+    <li>辩论与国际接轨的组织必须如何考虑其运营所在司法管辖区在隐私法律、法规和标准方面的差异。本专题包括在组织保护信息系统免受网络攻击时，法律和技术如何在国际、国家和地方司法结构的背景下相互交叉。</li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+     <th colspan="2">子领域</th>
+  </tr>
+  <tr>
+    <td width="50%">
+    DPSIA/DP-社会责任-T1,T2,E<br>
+    DPSIA/DP-密码学-T1,T2<br>
+    </td>
+    <td width="50%">
+    DPSIA/DP-信息系统-T1,T2,E<br>
+    DPSIA/DP-通信协议-T1,T2<br>
+    </td>
+  </tr>
+</table>
+
+<h4 id="DPSIA-DP-社会责任"><a href="#DPSIA-DP-社会责任" class="headerlink" title="DPSIA/DP-社会责任"></a>DPSIA/DP-社会责任</h4><p>概述个人隐私权与社会需求之间的权衡。</p>
+<p><em>知识</em><br>T1：</p>
+<ul>
+<li>利用社会工程和社交媒体可能暴露的敏感数据。</li>
+<li>隐私权与提高信息传播透明度要求之间的权衡。</li>
+<li>关于披露、传输和共享从分析工具获取信息的道德责任。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>使用数据执行某些操作时设计隐私问题的法律规范。</li>
+<li>影响社会和计算技术发展的国际隐私法律。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>在将数据作为处理输入时，显示出对数据的敏感性。</li>
+<li>确定在处理信息前必须考虑数据清洗的情况。</li>
+<li>对原始数据处理中应用数据隐私技术，如提供范围或加盐技术。</li>
+</ul>
+<p>E：</p>
+<ul>
+<li>了解可能影响决策的全球政策和法官，如HIPAA、FCRA、ECPA。</li>
+<li>展示对知名搜索引擎及其信息存储政策的认识，这些政策会辨识出用户隐私并产生危害。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>从道德角度认识到向任何实体提供数据都可能造成数据隐私泄漏。</li>
+<li>通过计算机系统或渠道准确、合规地处理数据，认识到不适当的处理数据会对公共和私人造成影响。</li>
+</ul>
+<h4 id="DPSIA-DP-加密"><a href="#DPSIA-DP-加密" class="headerlink" title="DPSIA/DP-加密"></a>DPSIA/DP-加密</h4><p>概述加密技术在保护数据隐私方面的应用。</p>
+<p><em>知识</em><br>T1：</p>
+<ul>
+<li>再使用任何渠道传输数据之前对其进行加密的重要性。</li>
+<li>权衡使用加密数据与未加密数据进行统计分析的对计算时间影响。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>对称加密算法和非对称加密算法的区别。</li>
+<li>用于私密检查和保护认证数据的哈希函数。</li>
+<li>加密算法。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>确定采用加密数据的工具/机制，来降低数据泄漏的风险并兼顾计算性能。</li>
+<li>为个人、组织和政府机构等不同实体提供有关影响隐私要求的数据加密流程的培训。</li>
+<li>说明如何使用密码学来提供隐私保护，例如信息验证码、数字签名、验证加密和哈希树。</li>
+<li>处理纯文本数据和加密数据之间的权衡。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>分析哪些加密协议、工具和技术适合提供数据隐私、保护、完整性、身份验证、不可抵赖性和混淆性。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>敏锐地意识到不同加密机制的必要性。</li>
+</ul>
+<h4 id="DPSIA-DP-信息系统"><a href="#DPSIA-DP-信息系统" class="headerlink" title="DPSIA/DP-信息系统"></a>DPSIA/DP-信息系统</h4><p>概述使用众所周知的模型将数据隐私纳入到信息系统的理念。</p>
+<p><em>知识</em><br>T1：</p>
+<ul>
+<li>实现身份验证、授权、访问控制和数据隐私的概念和技术。</li>
+<li>分层防御，实现最大的保密性、完整性和可用性。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>实施数据隐私的不用访问机制，例如Bell-LaPadula多级访问控制模型、中国防火长墙和临床信息信息安全，以解决不同的隐私和透明度利益冲突。</li>
+<li>著名信息系统的设计和实施，及其对数据隐私的影响。</li>
+<li>加密算法。</li>
+</ul>
+<p>E：</p>
+<ul>
+<li>通过流量分析，展示在特定安全系统中私人信息是如何收到危害的。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>解释系统的数据隐私需求如何影像系统的安全性。</li>
+<li>讨论数据透明度和数据隐私之间的权衡。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>概述应向计算机系统提供哪些信息，并考虑平衡可用性和隐私，以及如何报告信息。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>在保护特定计算机系统中的信息时要慎重。</li>
+</ul>
+<h4 id="DPSIA-DP-通讯协议"><a href="#DPSIA-DP-通讯协议" class="headerlink" title="DPSIA/DP-通讯协议"></a>DPSIA/DP-通讯协议</h4><p>总结如何使用通信协议来保证信道（安全和不安全的）上的安全通信；考虑通信协议中使用加密协议；认识广泛使用的应用程序协议对数据隐私的影响。</p>
+<p><em>知识</em><br>T1：</p>
+<ul>
+<li>通过不安全渠道实现安全通信的安全协议的重要性。</li>
+<li>隐私协议对通过安全渠道进行私密通讯的重要性。</li>
+<li>可保证应用程序与服务器之间私密通讯的户粮网通讯协议。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>通过使用和不使用加密技术来平衡安全协议与隐私协议的关系。</li>
+</ul>
+<p><em>技能</em></p>
+<p>T2：</p>
+<ul>
+<li>使用安全协议和不同加密原语建立安全通道。</li>
+<li>应用隐私协议，使用安全传输技术建立私人信道。</li>
+</ul>
+<p><em>品行</em><br>T2：</p>
+<ul>
+<li>准确选择安全协议，确保设备之间的私密连接。</li>
+<li>精通在不损害隐私特性的情况下交换数据集的安全协议。</li>
+</ul>
+<h3 id="数据安全（DPSIA-DS）"><a href="#数据安全（DPSIA-DS）" class="headerlink" title="数据安全（DPSIA/DS）"></a>数据安全（DPSIA/DS）</h3><p>本知识单元的重点是保护静态数据、处理过程中的数据和传输中的数据。这要求数据驱动的应用程序充分运用应用数学和分析算法来实现必要的安全目标。通过本单元可以深入了解数据安全目标以及实现这些目标的各种工具。</p>
+
+<table>
+  <tr><th colspan="2">DPSIA/数据安全</th></tr>
+  <tr><th>范围</th><th>能力</th></tr>
+  <tr>
+    <td width="50%"><ul>
+    <li>密码学概念：加密/解密、信息认证、数据完整性、不可否认性；攻击分类（仅密文、已知明文、选择明文、选择密文）；秘钥（对称）加密和公钥（非对称）加密。</li>
+    <li>数据驱动应用程序的威胁模型。</li>
+    <li>数学技术在生产有用的加密知识方面发挥的作用。</li>
+    <li>用于数据安全的公钥密码学。</li>
+    <li>CSEC2017中数据安全部分提供的更多范围。</li>
+    </ul></td>
+    <td width="50%">
+    <ul>
+    <li>描述密码学的目的并列举骑在数据通信中的应用方式；以及哪些密码协议、工具和技术适合特定情况。</li>
+    <li>了解密码、密码分析、密码算法和密码学。</li>
+    <li>解释公钥基础设施如何支持数字签名和加密，并讨论其局限性/脆弱性。</li>
+    <li>展示对加密算法背后数据知识的理解。</li>
+    <li>解释对称密码和非对称密码的区别和应用。</li>
+    <li>分析对消费/产生关键数据的事实应用程序的威胁。</li>
+    <li>利用攻击向量和攻击树概念为威胁建模。</li>
+    <li>解释如何保护网络数据传输。</li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+     <th colspan="2">子领域</th>
+  </tr>
+  <tr>
+    <td width="50%">
+    DPSIA/DS-安全数据质量和处理-T1,T2<br>
+    DPSIA/DS-密码工具分类-T2<br>
+    DPSIA/DS-平衡安全和性能-T2<br>
+    </td>
+    <td width="50%">
+    DPSIA/DS-网络和网络协议-T1<br>
+    DPSIA/DS-隐私和数据管理-参见DPSIA/DP<br>
+    </td>
+  </tr>
+</table>
+
+<h4 id="DPSIA-DS-数据质量和安全处理"><a href="#DPSIA-DS-数据质量和安全处理" class="headerlink" title="DPSIA/DS-数据质量和安全处理"></a>DPSIA/DS-数据质量和安全处理</h4><p><em>知识</em><br>T1：</p>
+<ul>
+<li>定性指标。</li>
+<li>数据资产安全的重要性。</li>
+<li>所需的安全目标类型。</li>
+<li>数据来源和资产。</li>
+<li>控制和管理数据资产的可访问性。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>攻击向量和攻击树。</li>
+<li>不同用例的威胁模型。</li>
+<li>威胁对数据源的影响。</li>
+</ul>
+<p><em>技能</em></p>
+<p>T1：</p>
+<ul>
+<li>了解应用程序中的数据流。</li>
+<li>得出要实现的重要安全目标。</li>
+<li>解释选择保护哪些数据资产的原因。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>根据应用程序中的数据流推断可能存在的安全和隐私威胁。</li>
+<li>实施访问控制机制，限制数据泄漏。</li>
+<li>实施安全访问数据资产所需的认证流程。</li>
+<li>根据外部和内部因素评估数据资产的重要性。</li>
+<li>对实际系统进行威胁分析。</li>
+<li>根据影响对威胁进行分类</li>
+</ul>
+<p><em>品行</em><br>T2：</p>
+<ul>
+<li>准确提取数据驱动系统威胁的能力。</li>
+</ul>
+<h4 id="DPSIA-DS-密码工具分类"><a href="#DPSIA-DS-密码工具分类" class="headerlink" title="DPSIA/DS-密码工具分类"></a>DPSIA/DS-密码工具分类</h4><p><em>知识</em><br>T2：</p>
+<ul>
+<li>加密技术。</li>
+<li>各种技术和工具的可用性。</li>
+<li>利用离散数学概念进行密码协议设计。</li>
+<li>公钥密码系统与私钥密码系统的比较。</li>
+</ul>
+<p><em>技能</em><br>T2：</p>
+<ul>
+<li>应用各种密码技术，实现必要的安全目标。</li>
+<li>比较各种技术的优缺点。</li>
+<li>解释各种技术的性能特点。</li>
+<li>列出每种加密技术的攻击模型。</li>
+<li>利用现有的加密方案实施数据安全机制。</li>
+</ul>
+<p><em>品行</em><br>T2：</p>
+<ul>
+<li>认识各种机密协议的重要性和独特性。</li>
+<li>根据应用要求选择正确的协议。</li>
+</ul>
+<h4 id="DPSIA-DS-安全与性能权衡"><a href="#DPSIA-DS-安全与性能权衡" class="headerlink" title="DPSIA/DS-安全与性能权衡"></a>DPSIA/DS-安全与性能权衡</h4><p><em>知识</em><br>T2：</p>
+<ul>
+<li>数据驱动应用程序的性能要求。</li>
+<li>安全方案对应用程序性能的影响。</li>
+</ul>
+<p><em>技能</em><br>T2：</p>
+<ul>
+<li>应用设计原则，平衡性能和安全需求。</li>
+<li>调查运行环境，确定影响系统性能和安全性的关键参数。</li>
+<li>开发技能提高数据可用性，又能实现必要安全性的机制。</li>
+</ul>
+<p><em>品行</em><br>T2：</p>
+<ul>
+<li>了解不同协议之间的性能和安全权衡。</li>
+<li>根据应用需求，确定选择哪种加密技术。</li>
+</ul>
+<h4 id="DPSIA-DS-网络和网络协议"><a href="#DPSIA-DS-网络和网络协议" class="headerlink" title="DPSIA/DS-网络和网络协议"></a>DPSIA/DS-网络和网络协议</h4><p><em>知识</em><br>T1：</p>
+<ul>
+<li>洞察数据驱动型应用的网络数据交换。</li>
+<li>网络和网络协议。</li>
+<li>通信协议中可用和/或启用的安全模块。</li>
+<li>数据网络和网络操作（存储、检索、远程计算）。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>剖析和调整通信协议，确保安全。</li>
+<li>解释网络和网络协议的独特特征和工作原理。</li>
+<li>了解数据如何通过网络或网页传送到各个实体。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>高度重视网络/网络协议安全。</li>
+</ul>
+<h3 id="数据完整性（DPSIA-DI）"><a href="#数据完整性（DPSIA-DI）" class="headerlink" title="数据完整性（DPSIA/DI）"></a>数据完整性（DPSIA/DI）</h3><p>本知识单元的重点是数据从生产到传输、存储、检索和处理的整个生命周期中的完整性、准确性和一致性。数据完整性的保护在数据科学领域是强制性的，因为对数据的恶意操作会导致错误的推断，并使决策过程陷入混乱。数据科学家必须了解完整性保护工具和技术，同事了解它们的作用和效率，以便在数据科学应用中正确执行完整性要求。</p>
+
+<table>
+  <tr><th colspan="2">DPSIA/数据完整性</th></tr>
+  <tr><th>范围</th><th>能力</th></tr>
+  <tr>
+    <td width="50%"><ul>
+    <li>数据的准确性、一致性和有效性。</li>
+    <li>从安全角度看待完整性要求的必要性。</li>
+    <li>确保数据完整性的技术和机制。</li>
+    <li>数据完整性中常见的安全威胁。</li>
+    </ul></td>
+    <td width="50%">
+    <ul>
+    <li>解释数据完整性、数据安全性和数据隐私的区别。</li>
+    <li>描述处理数据完整性所需的主要知识领域。</li>
+    <li>展示运用常用方法确保数据完整性的技能。</li>
+    <li>在应对影响数据完整性的安全威胁时，自信地执行任务。</li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+     <th colspan="2">子领域</th>
+  </tr>
+  <tr>
+    <td width="50%">
+    DPSIA/DI-逻辑完整性-T1<br>
+    DPSIA/DI-物理完整性-T1<br>
+    DPSIA/DI-影响数据完整性的安全威胁-T1<br>
+    </td>
+    <td width="50%">
+    DPSIA/DI-确保数据完整性的方法-T1<br>
+    DPSIA/DI-数据损坏和数据验证-T2<br>
+    </td>
+  </tr>
+</table>
+
+<h4 id="DPSIA-DI-逻辑完整性"><a href="#DPSIA-DI-逻辑完整性" class="headerlink" title="DPSIA/DI-逻辑完整性"></a>DPSIA/DI-逻辑完整性</h4><p><em>知识</em><br>T1：</p>
+<ul>
+<li>逻辑完整性概念。</li>
+<li>数据系统中的完整性约束类型。</li>
+<li>实体完整性、参照完整性、域完整性、用户定义完整性。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>解释逻辑完整性的概念。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>准确解释逻辑完整性。</li>
+</ul>
+<h4 id="DPSIA-DI-物理完整性"><a href="#DPSIA-DI-物理完整性" class="headerlink" title="DPSIA/DI-物理完整性"></a>DPSIA/DI-物理完整性</h4><p><em>知识</em><br>T1：</p>
+<ul>
+<li>物理完整性的概念</li>
+<li>确保数据完整性的物理和硬件方法，例如：RAID、冗余硬件、不间断电源、内存纠错和服务器集群。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>解释物理完整性的概念。</li>
+<li>描述确保物理完整性的物理和硬件方法。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>通过硬件方法解决物理完整新问题的信心。</li>
+</ul>
+<h4 id="DPSIA-DI-影响数据完整性的安全威胁"><a href="#DPSIA-DI-影响数据完整性的安全威胁" class="headerlink" title="DPSIA/DI-影响数据完整性的安全威胁"></a>DPSIA/DI-影响数据完整性的安全威胁</h4><p><em>知识</em><br>T1：</p>
+<ul>
+<li>常见的数据完整性威胁包括：人为错误、软件错误、传输错误、恶意软件、内部威胁、网络攻击和受损硬件。</li>
+<li>数据和信息中毒。</li>
+<li>数据出处保证。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>列出影响数据完整性的常见安全威胁类型。</li>
+<li>描述SHA-1和MD5等不同哈希函数背后的潜在漏洞。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>有信心描述常见的安全威胁。</li>
+</ul>
+<h4 id="DPSIA-DI-确保数据完整性的方法"><a href="#DPSIA-DI-确保数据完整性的方法" class="headerlink" title="DPSIA/DI-确保数据完整性的方法"></a>DPSIA/DI-确保数据完整性的方法</h4><p><em>知识</em><br>T1：</p>
+<ul>
+<li>哈希算法在完整性保护中的作用。</li>
+<li>信息验证码及其变体的作用。</li>
+<li>实现完整性的CRC和校验和。</li>
+<li>数字签名方案（RSA和ECDSA）背后的机制。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>解释如何使用哈希算法和MAC机制来确保数据完整性。</li>
+<li>描述数字签名方案及其在完整性保护方面的需求。</li>
+<li>从性能和安全的角度对不同的完整性保护技术进行比较和对比。</li>
+<li>了解如何在多个数据所有权域中使用完整性模型，以确保出处和维护数据有效性。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>通过使用各种方法和技术彻底解决数据完整性问题。</li>
+</ul>
+<h4 id="DPSIA-DI-数据损坏和数据验证"><a href="#DPSIA-DI-数据损坏和数据验证" class="headerlink" title="DPSIA/DI-数据损坏和数据验证"></a>DPSIA/DI-数据损坏和数据验证</h4><p><em>知识</em><br>T2：</p>
+<ul>
+<li>数据损坏的概念。</li>
+<li>数据验证的概念。</li>
+<li>防止数据损坏的方法，包括校验和与纠错码。</li>
+<li>验证方法包括输入验证、数据类型验证、范围和约束验证以及交叉引用验证。</li>
+</ul>
+<p><em>技能</em><br>T2：</p>
+<ul>
+<li>解释数据损坏和数据验证的概念。</li>
+<li>说明防止数据损坏和确保数据验证的方法。</li>
+</ul>
+<h3 id="安全分析（DPSIA-AS）"><a href="#安全分析（DPSIA-AS）" class="headerlink" title="安全分析（DPSIA/AS）"></a>安全分析（DPSIA/AS）</h3><p>本知识单元侧重于数据科学分析技术，包括统计、概率、机器学习和数据挖掘，特别关注安全和隐私问题。通过本单元的学习，可以加深度数据科学工具、算法和技术在安全与隐私方面的理解。</p>
+
+<table>
+  <tr><th colspan="2">DPSIA/安全数据分析</th></tr>
+  <tr><th>范围</th><th>能力</th></tr>
+  <tr>
+    <td width="50%"><ul>
+    <li>了解安全数据遥测和不同的安全应用。</li>
+    <li>安全遥测数据统计分析。</li>
+    <li>针对安全遥测数据的机器学习。</li>
+    <li>针对安全关键型应用的可解释机器学习方法。</li>
+    <li>机器学习的脆弱性和稳健型</li>
+    </ul></td>
+    <td width="50%">
+    <ul>
+    <li>对不同的安全关键型应用进行分类，并了解各种安全遥测数据。</li>
+    <li>展示在机器学习（ML）和统计方法面的深入知识和强大的动手实践技能，以改进安全应用。</li>
+    <li>认识到在安全应用中何时需要使用多语言可解释性和弹性</li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+     <th colspan="2">子领域</th>
+  </tr>
+  <tr>
+    <td width="50%">
+    DPSIA/AS-机器学习（ML）算法和安全统计方法-T1<br>
+    </td>
+    <td width="50%">
+    DPSIA/AS-机器学习（ML）的鲁棒性和可解释性-T1<br>
+    DPSIA/AS-安全应用类别-T2<br>
+    </td>
+  </tr>
+</table>
+
+<h4 id="DPSIA-AS-机器学习（ML）算法和安全统计方法"><a href="#DPSIA-AS-机器学习（ML）算法和安全统计方法" class="headerlink" title="DPSIA/AS-机器学习（ML）算法和安全统计方法"></a>DPSIA/AS-机器学习（ML）算法和安全统计方法</h4><p><em>知识</em><br>T1：</p>
+<ul>
+<li>对安全数据进行探索性数据分析的统计方法，包括描述性统计、汇总图、离散点检测、点估计、假设检验、检验统计、线性回归和广义线性回归。</li>
+<li>基于计算机视觉的方法，如恶意软件即图像技术、迁移学习、基于硬件的分层集合神经网络（HeNet），可用于静态和动态威胁分类和恶意软件检测。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>将安全应用转化为可以使用ML解决的问题。</li>
+<li>通过采用恶意软件即图像、迁移学习和分层集合神经网络（HeNet）等静态和动态监测机制，设计恶意软件检测解决方案。</li>
+<li>向不同背景的受众解释ML模型在安全应用中做出的决策。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>了解计算机视觉、自然语言处理和经典数据分析的不同视角，已解决威胁检测、恶意软件情报和漏洞识别问题。</li>
+</ul>
+<h4 id="DPSIA-AS-机器学习（ML）的鲁棒性和可解释性"><a href="#DPSIA-AS-机器学习（ML）的鲁棒性和可解释性" class="headerlink" title="DPSIA/AS-机器学习（ML）的鲁棒性和可解释性"></a>DPSIA/AS-机器学习（ML）的鲁棒性和可解释性</h4><p><em>知识</em><br>T1：</p>
+<ul>
+<li>对抗式机器学习的基本概念、针对ML模型的攻击类型，以及对抗性机器学习技术，如快速梯度符号、迭代快速梯度、通用对抗性扰动。</li>
+<li>防御技术，如对抗训练，以更好地保护ML模型。</li>
+<li>用于安全应用的可解释机器学习方法。解释包括基于每个样本的局部解释和考虑整个数据集的全局解释。了解如何在基于视觉的恶意软件检测机制中对自然图像采用与模型无关的解释。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>从识别盲点和绕过检测的角度评估ML的可靠性。</li>
+<li>通过开展对抗训练，提高ML的可靠性。</li>
+<li>对ML算法进行研究，并向安全专家解释这些模型的影响。</li>
+<li>与各利益相关方沟通，以定义ML指标，解决可解释性和脆弱性问题。</li>
+<li>解释为什么人工智能的可靠性和脆弱性是安全和隐私应用中使用的人工智能的关键指标。</li>
+<li>将LIME、LEMNA、TCAV等可解释人工智能方法应用于为安全应用构建的ML模型。</li>
+<li>根据可信分数执行并进行ML模型选择。特别是在使用恶意软件即图像方法时，要有效地应用LIME来实现恶意软件分类模型的可解释性。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>除了评估分类准确性、误报率、精确度和其他特征的典型指标外，还是用鲁棒性和潜在漏洞来评估ML，注重细节。</li>
+</ul>
+<h4 id="DPSIA-AS-安全应用类别"><a href="#DPSIA-AS-安全应用类别" class="headerlink" title="DPSIA/AS-安全应用类别"></a>DPSIA/AS-安全应用类别</h4><p><em>知识</em><br>T2：</p>
+<ul>
+<li>安全关键型应用：网络分析、恶意软件理解、恶意软件甄别、动态恶意软件分析、硬件遥测分析。</li>
+<li>安全遥测数据类型：动态日志、二进制、静态代码、动态代码。</li>
+</ul>
+<p><em>技能</em><br>T2：</p>
+<ul>
+<li>根据安全遥测数据的性质选择要使用的ML方法。</li>
+</ul>
+<p><em>品行</em><br>T2：</p>
+<ul>
+<li>通过各种安全应用和数据集的优化使用，主动增加对数据使用的了解。</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2024/05/04/May-the-False-be-with-you/" data-toggle="tooltip" data-placement="top" title="May the FALSE be with you">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2023/12/17/The-Data-Science-Task-Force-Mission-VI/" data-toggle="tooltip" data-placement="top" title="The Data Science Task Force: Mission DM">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Data Science" title="Data Science">Data Science</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2024
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
