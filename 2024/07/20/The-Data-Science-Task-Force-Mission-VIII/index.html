@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          The Data Science Task Force: Mission ML - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2024/07/20/The-Data-Science-Task-Force-Mission-VIII/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/star-wars.jpg');
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Data Science" title="Data Science">Data Science</a>
+                        
+                    </div>
+                    <h1>The Data Science Task Force: Mission ML</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2024-07-20
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="机器学习（ML）"><a href="#机器学习（ML）" class="headerlink" title="机器学习（ML）"></a>机器学习（ML）</h3><p>机器学习，有时也称为统计学习，指的是一套广泛的算法，用于识别数据中的模式，以建立模型，然后将其生产化并可能产品化。这些方法对数据科学至关重要。数据科学家应该了解他们所使用的算法，并就算法的使用做出正确的决定。</p>
+
+<table>
+  <tr><th>范围</th><th>能力</th></tr>
+  <tr>
+    <td width="50%"><ul>
+    <li>机器学习方法的大类（如有监督式和无监督式）。</li>
+    <li>机器学习的算法和工具（即算法的实现）。</li>
+    <li>将机器学习作为一套原则性算法（如优化算法），而不是“一揽子技巧”。</li>
+    <li>挑战（如过拟合）和应对这些挑战的技术。</li>
+    <li>性能指标。</li>
+    <li>训练和测试方法。</li>
+    <li>算法和数据偏差、数据完整性以及实地学习模型的专业责任。</li>
+    </ul></td>
+    <td width="50%">
+    <ul>
+    <li>认识机器学习方法的广泛性和实用性。</li>
+    <li>比较和比对机器学习方法。</li>
+    <li>针对具体问题选择适当（类别）的机器学习方法。</li>
+    <li>在部署机器学习算法时，使用适当的训练和测试方法。</li>
+    <li>解释在机器学习算法中减轻过拟合和维度诅咒影响的方法。</li>
+    <li>针对特定问题，确定评估机器学习算法/工具的适当性指标。</li>
+    <li>认识与算法和数据偏差以及数据隐私和完整性相关的问题。</li>
+    <li>就机器学习结论可能产生的积极和消极影响展开辩论。</li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+     <th colspan="2">子领域</th>
+  </tr>
+  <tr>
+    <td width="50%">
+    ML-通识-T1,T2,E<br>
+    ML-有监督学习-T1,T2,E<br>
+    ML-无监督学习-T1,T2,E<br>
+    ML-混合方法-E<br>
+    ML-深度学习-T1,T2,E<br>
+    </td>
+    <td width="50%">
+    强化学习在《人工智能-知识表示与推理（基于概率的模型）》中。<br>
+    </td>
+  </tr>
+</table>
+
+<h4 id="ML-通识"><a href="#ML-通识" class="headerlink" title="ML-通识"></a>ML-通识</h4><p>鉴于机器学习算法在许多数据科学任务中的核心地位，数据科学家应了解各种机器学习方法以及该领域的悠久历史。数据科学家应该知道从哪里寻找可能的技术来解决新问题。</p>
+<p>数据科学家还应了解跨领域的概念，如评估性能的必要性和机器学习中面临一般挑战的类型。</p>
+<p><em>知识</em><br>T1：</p>
+<ul>
+<li>机器学习的主要任务，包括有监督学习、无监督学习、强化学习和深度学习。</li>
+<li>符号学习与数字学习、统计方法与结构/句法分析方法的区别。</li>
+<li>作为原则性优化方法的学习算法。</li>
+<li>将机器学习作为数据挖掘的一种方法，将机器学习作为一个过程。</li>
+<li>鲁棒性评估的重要性。</li>
+<li>机器学习面临的挑战，包括数据质量和正则化需求。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>比较有监督学习、无监督学习、强化学习和深度学习的目标、输入和输出。</li>
+<li>认识到不同类型的数据驱动问题可以用不同的方法来解答。</li>
+<li>针对特定的数据驱动问题，解释为什么某种方法是合适的。</li>
+<li>从高层次解释机器学习模型和算法是基于数学和统计学基础的原则性技术。</li>
+<li>描述作为数据挖掘方法的机器学习过程：了解客户希望解决的问题，收集与解决问题相关的数据，将原始数据转换为特征，选择适当的机器学习方法，调整这些方法，评估性能（通常是对照基准），以及展示结果和见解。</li>
+<li>讨论拟合训练数据与泛化新数据之间的权衡，以及模型的复杂性、样本和特征的数量如何影响这种权衡。将这种权衡与超参数的作用和设置联系起来。</li>
+<li>列出性能、可解释性和可扩展性之间的权衡。</li>
+<li>认识到不同的优化功能和技术可能会在这一领域产生的不同权衡。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>从基本原理出发，解释所提供的简单优化函数和学习算法的推导，如使用信息论的决策树、使用最大似然和随机梯度下降的逻辑回归、使用方差最小化和特征值的 PCA。也就是说，学生应该能够跟上推导过程并加以解释，而不是从头开始推导。</li>
+<li>跟随指引并统计显著性检验分析不同模型的性能。</li>
+<li>解释如何有效地将模型发布到生产阶段，并使用适当的工具从一开始就支持这一工作。</li>
+<li>根据数据规模选择使用的工具，对于大数据而言，必须选择能够并行运算的机器学习工具，否则学习过程所需的时间可能会大大超出可接受的范围。</li>
+<li>列出最先进的机器学习工具。</li>
+</ul>
+<p>E：</p>
+<ul>
+<li>描述自动化建模（或元学习）过程，特别是如何实现机器学习管道的自动化，包括数据预处理、模型选择、模型结构搜索和超参数调整。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>机器学习的专业应用。要认识到机器学习虽然是最近才流行起来，但并不是最新才有的创新。在假定需要新发明之前，先寻找现有的解决方案。</li>
+<li>准确、合乎道德地使用机器学习（即机器学习不是一套临时的技巧，应负责任的使用）。</li>
+<li>坚定的致力于将机器学习作为实现客户目标的过程的一部分，机器学习在一般情况系并不是将机器学习程序应用于方便格式化的数据集的简单过程。比较所学模型是的彻底性，可以从多个维度对所学的模型进行比较，包括经验损失最小化、模型大小和复杂性以及人类可解释性等。</li>
+<li>考虑到模型比较的各个方面（质量、效率、可解释性等），以合乎道德的方式提出公平、真实的比较结果。</li>
+</ul>
+<h4 id="ML-有监督学习"><a href="#ML-有监督学习" class="headerlink" title="ML-有监督学习"></a>ML-有监督学习</h4><p>作为一个主要机器学习的算法，有监督学习包括分类和回归技术。数学科学家应该了解这些类型的算法，包括这类学习特有的挑战和方法。请注意本子领域与数据挖掘中分类和回归的关系。</p>
+<p><em>知识</em><br>T1：</p>
+<ul>
+<li>有监督学习的主要任务：回归和分类。</li>
+<li>回归和分类的使用案例。</li>
+<li>有监督学习中的重要考虑和权衡，包括模型复杂性和通用性之间的关系：偏差和方差之间的权衡，奥卡姆剃刀作为简单模型的动机。</li>
+<li>分离训练、测试和验证数据的必要性，定义训练误差和测试误差。</li>
+<li>分类任务（如准确率、敏感度、特异性、精准度、召回率、F1、AUROC、遗憾）和归回任务（如均方根误差、平均绝对误差、R^2）的常用评价指标。</li>
+<li>验证数据的必要性，交叉检验程序和目的：调整超参数和衡量模型性能。</li>
+<li>评估训练、测试和验证数据质量的标准，如样本数量和分类分层。</li>
+<li>分类和回归算法，包括至少一种线性算法和一种非线性算法（例如线性回归/分类、逻辑回归、近邻、朴素贝叶斯、决策树学习算法）。</li>
+<li>基本算法的常见扩展，包括多项式特征和几何（如分袋模型、提升模型、随机森林）。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>确定模型是高偏差还是高方差的方法，如训练与测试性能、学习曲线。</li>
+<li>增加或减少特征集的原因，每种特征集至少有两种方法和权衡。</li>
+<li>如何将有监督分类器学习模型应用于多分类问题，包括如何将二元分类模型扩展到多分类任务。</li>
+<li>如何使用宏观和微观指标来衡量绩效。</li>
+<li>至少一种高级有监督学习模型（如带内核的支持向量机、神经网络）。</li>
+</ul>
+<p>E：</p>
+<ul>
+<li>从基本原理开始推导有监督学习算法。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>使用混淆矩阵解释分类器模型的性能。</li>
+<li>比较分类任务和回归任务评价指标的优缺点。</li>
+<li>比较至少两种应用分类算法的利弊，比较至少两种回归算法的利弊。</li>
+<li>在中小规模数据集上应用至少两种分类算法和两种回归算法。</li>
+<li>比较训练误差和测试误差对所学模型的影响。</li>
+<li>使用各种指标比较算法的性能。</li>
+<li>对小、中和大规模数据集应用至少两种扩展方法（如集合方法）。</li>
+<li>根据多项式特征和集合等各自能够解决的问题，说明何时适合进行扩展。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>在大规模数据集上执行至少两种分类算法和两种回归算法。</li>
+<li>说明对大规模数据集的至少一种扩展。</li>
+<li>采用各种方法减少高偏差和高方差。</li>
+<li>对中或大规模问题进行特征增强和选择。</li>
+<li>应用高级监督学习算法（如带内核的支持向量机、神经网络）。</li>
+</ul>
+<p>E：</p>
+<ul>
+<li>从基本原理出发，涉及简单的优化函数和学习算法，例如使用最大似然法和随机梯度下降法进行逻辑回归。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>透彻而明智地选择和评估算法。知道这些选择对重要的利益相关者（即模型的开发对象）有影响，并且必须与他们一起决策。</li>
+<li>对模型采用准确合理的评估方法使我们对模型保持高度的信心。</li>
+</ul>
+<h4 id="ML-无监督学习"><a href="#ML-无监督学习" class="headerlink" title="ML-无监督学习"></a>ML-无监督学习</h4><p>另一大类机器学习方法称为“无监督”学习，包括聚类和降维技术。数据科学家应该了解这些类型的算法，包括这类算法特有的挑战和方法。请注意该子领域与DM聚类分析的关系。</p>
+<p><em>知识</em><br>T1：</p>
+<ul>
+<li>无监督学习的主要任务，包括聚类和降维。</li>
+<li>这两项任务的应用场景，如数据探索/总结/可视化、特征选择、数据压缩、数据去噪、原型学习、推荐系统、主题建模。</li>
+<li>掌握至少一种简单的聚类算法，如k-means或分层聚类。</li>
+<li>基于连接性的聚类与基于中心点的聚类算法的权衡。</li>
+<li>掌握至少一种简单的降维算法，如主成分分析（PCA）。</li>
+<li>特征转换、特征选择和特征投影之间的异同。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>掌握至少一种高级的聚类算法，如基于密度的防范、高斯混合物模型（GMM）。</li>
+<li>掌握至少一种高级的降维算法，如独立分量分析（ICA）或非负矩阵因式分解（NMF）。</li>
+</ul>
+<p>E：</p>
+<ul>
+<li>掌握至少一种高效实时算法的数学方法，如矩阵因式分解和奇异值分解（SVD）和PCA的等差数列分解。</li>
+<li>掌握至少一种高级算法，如光谱聚类、核K-means、核PCA、隐含狄利克雷分布（LDA）。</li>
+<li>PCA与自动编码器的联系，对非线性降维的推广。</li>
+<li>从基本原理推导无监督学习算法。</li>
+</ul>
+<p><em>技能</em><br>T1：</p>
+<ul>
+<li>对小、中和大规模数据集应用一种聚类算法和一种降维算法。</li>
+<li>使用各种指标解释无监督学习算法的性能，例如可视化、与实际情况比较（如有）、聚类密度等计算指标、通过对其他应用效用进行间接衡量等。</li>
+<li>实施选择超参数的方法，例如K-means的聚类数或PCA的分量数。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>比较至少两种聚类算法的利弊。</li>
+<li>比较至少两种降维算法的利弊。</li>
+</ul>
+<p>E：</p>
+<ul>
+<li>应用高级的无监督学习算法。</li>
+<li>从基本原理设计简单的优化函数和学习算法，例如使用方差最小化和特征值的PCA，将这些技术扩展到类似模型。</li>
+</ul>
+<p><em>品行</em><br>T1：</p>
+<ul>
+<li>全面且精准的算法选择和评估，理解算法选择和评估指标对学习模型质量的重要性。了解这些选择对重要利益相关者（即模型的开发对象）的影响，并且必须与一起做出决策。</li>
+<li>对模型采用准确合理的评估方法使我们对模型保持高度的信心。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>关注无监督学习，为数据探索、理解、总结和可视化提供有用的技术。</li>
+<li>注意无监督学习中的细节，这可以作为一个有用的与处理步骤，提高有监督学习算法的质量和效率。</li>
+</ul>
+<h4 id="ML-混合方法-选修"><a href="#ML-混合方法-选修" class="headerlink" title="ML-混合方法-选修"></a>ML-混合方法-选修</h4><p>有些机器学习问题和领域具有特殊结构，可以通过专门技术加以利用，数据科学家应该了解这些广泛的应用类别，并知道从哪里可以找到可能的方法来解决这些问题。注意该子域与DM-时间序列数据的关系。</p>
+<p><em>知识</em></p>
+<ul>
+<li>可在所学模型中利用数据结构或数据点相互关联性的学习问题和领域样本，例如时间序列预测、序列预测、推荐系统。</li>
+<li>如何在学习中利用时间依赖性或跨数据点共享信息的假设。</li>
+<li>使用有监督或无监督方法而非混合方法的缺点，例如模型的可解释性或性能问题。</li>
+</ul>
+<p>T2：</p>
+<ul>
+<li>对于其中一个问题，至少有一种标准的学习方法，例如对于序列预测的隐马尔可夫模型（HMMs）或用于推荐系统的协同过滤（CF）。</li>
+<li>在此情况下，需要将训练数据和测试数据分开。</li>
+<li>所选任务的通用评估指标，如召回率、精确度、推荐系统的F1 Score。</li>
+<li>评估所选问题的训练、测试和验证数据质量的标准。</li>
+</ul>
+<p><em>技能</em></p>
+<ul>
+<li>讲一个此类问题整合到一个学习框架中，即将数据映射到输入和输出，考虑超参数的设置，运用适当的学习算法。</li>
+</ul>
+<p><em>品行</em></p>
+<ul>
+<li>对于一般机器学习模型中存在的挑战（如时间不均匀性、数据稀疏性），对细节的关注可能在特定情况下更为突出。</li>
+</ul>
+<h4 id="ML-深度学习"><a href="#ML-深度学习" class="headerlink" title="ML-深度学习"></a>ML-深度学习</h4><p>数据的可用性和计算处理能力的可用性催生了新的、强大的大规模学习技术，数据科学家应了解这些类型的算法，包括这类学习算法特有的挑战和方法。</p>
+<p><em>知识</em></p>
+<p>T2：</p>
+<ul>
+<li>多层神经网络（包括非深度网络）如何从输入特征中学习和编码更高层次的特征。</li>
+<li>常见的深度学习架构，如深度前馈网络、卷积神经网络（CNN）、循环神经网络（RNN）和LSTM，每种架构的目的和特性。</li>
+<li>常见深度学习方法的实际调整，如选择深度学习框架、拥有足够的数据/过度拟合的可能性、学习时间长短、可解释性等。</li>
+<li>深度学习框架的正则化方法示例，如早期停止、参数共享和剔除。</li>
+<li>减轻深度学习其他调整的方法示例，例如配合使用GPU或分布式系统的工具。</li>
+<li>选择可随数据规模扩展的适当工具，例如处理大数据需要能以并行方式运行的深度学习工具。</li>
+<li>了解最新的深度学习工具。</li>
+<li>至少一种常用的深度网络学习算法，如在深度前馈网络中如何使用反向传播、或在卷积网络中如何使用反向传播学习高阶特征、在循环网络中如何使用时间反向传播。</li>
+<li>卷积的操作及其有用的原因，例如检测图像中的垂直边缘。</li>
+<li>池化功能（如最大池化）示例和使用案例。</li>
+<li>循环神经网络中长期与短期依赖关系的挑战，至少有一种解决方案，如LSTM。</li>
+</ul>
+<p>E：</p>
+<ul>
+<li>深度生成模型，如生成式对抗神经网络（GANN）及其应用。</li>
+<li>此类方法面临的实际挑战，如收敛、模式崩溃等。</li>
+<li>处理或减轻上述影响的方法。</li>
+</ul>
+<p><em>技能</em></p>
+<p>T2：</p>
+<ul>
+<li>选择最适合特定数据集和任务的深度学习方法类型。</li>
+<li>使用深度学习工具包（如PyTorch、Tensorflow）从数据集研究学习模型的输出。</li>
+<li>使用深度学习工具包（如PyTorch、Tensorflow）学习数据集模型，包括配置网络。</li>
+</ul>
+<p>E：</p>
+<ul>
+<li>利用深度学习工具包，针对特定目标从头开始实施生成方式。</li>
+<li>修改工具包，使其适用于特定的系统架构。</li>
+</ul>
+<p><em>品行</em></p>
+<p>T1：</p>
+<ul>
+<li>机器学习建模的专业性，了解使用难以或无法解释的机器学习模型可能带来的负面影响。</li>
+<li>负责任地使用深度学习，因为在很多问题上深度学习的能力超出了所需。</li>
+<li>以合作和道德的方式致力于解决深度伪造有关的社会和政治问题。</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2024/05/04/May-the-False-be-with-you/" data-toggle="tooltip" data-placement="top" title="May the FALSE be with you">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Data Science" title="Data Science">Data Science</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2024
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
