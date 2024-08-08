@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          MLOps: Continuous Delivery and Automation Pipelines in Machine Learning - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2024/08/08/MLOps-Continuous-Delivery-and-Automation-Pipelines-in-Machine-Learning/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/star-wars.jpg');
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Data Science" title="Data Science">Data Science</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                    </div>
+                    <h1>MLOps: Continuous Delivery and Automation Pipelines in Machine Learning</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2024-08-08
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="MLOps-Continuous-Delivery-and-Automation-Pipelines-in-Machine-Learning-by-Google-1"><a href="#MLOps-Continuous-Delivery-and-Automation-Pipelines-in-Machine-Learning-by-Google-1" class="headerlink" title="MLOps: Continuous Delivery and Automation Pipelines in Machine Learning [by Google[1]]"></a>MLOps: Continuous Delivery and Automation Pipelines in Machine Learning [by Google<sup><span id="a1"><a href="#fn1">[1]</a></span></sup>]</h1><h2 id="����"><a href="#����" class="headerlink" title="����"></a>����</h2><p>���ĵ�������ʵ�ֺ��Զ�ִ�л���ѧϰϵͳ�ĳ������� (CI)���������� (CD) �ͳ���ѵ�� (CT) �ļ�����</p>
+<p>���ݿ�ѧ�ͻ���ѧϰ���𽥳�Ϊ���������ʵ���⡢ת����ҵ�Լ��������������ֵ�ĺ��Ĺ��ܡ����ڣ���Ч���û���ѧϰ�����ĸ���Ҫ�ض����뱸��</p>
+<ul>
+<li>�������ݼ�</li>
+<li>����ʵ�ݵİ��������Դ</li>
+<li>�����ڸ�����ƽ̨�Ļ���ѧϰר�ü�����</li>
+<li>��ͬ����ѧϰ�о��������������Ӿ�����Ȼ����������Ƽ� AI ϵͳ���Ŀ��ٷ�չ��</li>
+</ul>
+<p>��ˣ�������ҵ����Ͷ�ʴ������ݿ�ѧ�ŶӺͻ���ѧϰ���ܣ��Կ����ܹ�Ϊ�û�������ҵ��ֵ��Ԥ��ģ�͡�</p>
+<p>���ĵ�������ϣ����DevOpsԭ�������ڻ���ѧϰϵͳ (MLOps) �����ݿ�ѧ�Һͻ���ѧϰ����ʦ��MLOps��һ�ֻ���ѧϰ�����Ļ���������ּ��ͳһ����ѧϰϵͳ���� (Dev) �ͻ���ѧϰϵͳ��Ӫ (Ops)��ʵʩMLOps��ζ�������ڻ���ѧϰϵͳ�������̵����в��裨�������ɡ����ԡ�����������ͻ����ܹ���������ʵ���Զ����ͼ�ء�</p>
+<p>���ݿ�ѧ�ҿ���ʵ�ֲ�ѵ��һ������ѧϰģ�ͣ���ģ���ڸ������������ѵ�����ݵ�����£������������������ݼ���ʵ�ֳ�ɫ��Ԥ�����ܡ����ǣ���������ս���ǹ�������ѧϰģ�ͣ����ǹ������ɵĻ���ѧϰϵͳ�Լ������������г������и�ϵͳ������ Google �������ͻ���ѧϰ���������ж��꣬��������˽⵽���������������л��ڻ���ѧϰ��ϵͳʱ���ܻ������������⡣<a href="https://ai.google/research/pubs/pub43146" target="_blank" rel="noopener">������ѧϰ������ծ��ĸ�Ϣ���ÿ���</a>�ܽ������е�һЩ���⡣</p>
+<p>����ͼ��ʾ����ʵ�ʵĻ���ѧϰϵͳ�У�ֻ��һС�������ɻ���ѧϰ������ɵġ���������Ԫ�ؼ��Ӵ��ָ��ӡ�</p>
+<p><img src="/img/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-1.exif" alt="����ѧϰϵͳ��Ԫ��"></p>
+<p>ͼ1. ����ѧϰϵͳ��Ԫ�ء��ı���<a href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf" target="_blank" rel="noopener">����ѧϰϵͳ�е����ؼ���ծ��</a>��</p>
+<p>�ڴ�ͼ�У�ϵͳ�����ಿ�ְ������á��Զ����������ռ���������֤�����Ժ͵��ԡ���Դ������ģ�ͷ��������̺�Ԫ���ݹ�������������ܹ��ͼ�ء�</p>
+<p>���迪�����������Ƶĸ���ϵͳ�������Խ� DevOps ԭ��Ӧ���ڻ���ѧϰϵͳ (MLOps)�����ĵ���������Ϊ���ݿ�ѧ�������������ѧϰ�е�CI��CD��CT������MLOps����ʱҪ���ǵĸ��</p>
+<p>���ĵ��������������⣺</p>
+<ul>
+<li>DevOps��MLOps</li>
+<li>��������ѧϰģ�͵Ĳ���</li>
+<li>MLOps����ȼ���</li>
+</ul>
+<h2 id="DevOps��MLOps"><a href="#DevOps��MLOps" class="headerlink" title="DevOps��MLOps"></a>DevOps��MLOps</h2><p>DevOps�ǿ��������д��ģ����ϵͳ��һ�ֳ���������������������������ƣ��������̿������ڡ���߲����ٶȡ�ʵ�ֿɿ��ķ�������������Щ���ƣ�����Ҫ������ϵͳ�����������������</p>
+<ul>
+<li>�������� (CI)</li>
+<li>�������� (CD)</li>
+</ul>
+<p>����ѧϰϵͳ��һ������ϵͳ��������Ƶ�����������ȷ�����ܹ��ɿ��ش��ģ���������л���ѧϰϵͳ�����ǣ�����ѧϰϵͳ�����·�������������ϵͳ��ͬ��</p>
+<ul>
+<li>�ŶӼ��ܣ��ڻ���ѧϰ��Ŀ�У��Ŷ�ͨ���������ݿ�ѧ�һ����ѧϰ�о���Ա��������Ҫ�������̽�������ݷ�����ģ�Ϳ�����ʵ�顣��Щ��Ա���ܲ��Ǿ���ḻ�ġ��ܹ�* ����������ѧϰ�ڱ����Ͼ���ʵ���ԡ���Ӧ�ó��Բ�ͬ���������㷨����ģ�����Ͳ������ã��Ա㾡���ҵ��������ѽ���������������ٵ���ս���ڸ�����Щ������Ч����Щ������Ч���������̶���ߴ����ظ�ʹ���ʵ�ͬʱά�ֿ������ԡ�</li>
+<li>���ԣ����Ի���ѧϰϵͳ�Ȳ�����������ϵͳ�����ӡ����˵��͵ĵ�Ԫ���Ժͼ��ɲ���֮�⣬������Ҫ��֤���ݡ���������ѵ����ģ�������Լ���֤ģ�͡�</li>
+<li>�����ڻ���ѧϰϵͳ�У������ǽ�����ѵ���Ļ���ѧϰģ�Ͳ���ΪԤ����������򵥡�����ѧϰϵͳ���ܻ�Ҫ��������ಽ����ˮ�����Զ�����ѵ���Ͳ���ģ�͡�����ˮ�߻����Ӹ����ԣ���Ҫ�����Զ�ִ�в���֮ǰ�����ݿ�ѧ���ֶ�ִ�еĲ��裬��ѵ������֤��ģ�͡�</li>
+<li>����������ѧϰģ�͵����ܿ��ܻ��½�����������Ϊ���벻���룬����Ҳ��Ϊ���������ڲ����ݱ䡣���仰˵���봫ͳ������ϵͳ��ȣ�ģ�Ϳ��ܻ�ͨ�����෽ʽ˥�ˣ�������Ҫ�������ֽ���������ˣ�����Ҫ�������ݵ�ժҪͳ����Ϣ�����ģ�͵��������ܣ��Ա�ϵͳ��ֵ��Ԥ�ڲ���ʱ����֪ͨ��ع���</li>
+</ul>
+<p>����ѧϰ����������ϵͳ��Դ������Ƶĳ������ɡ���Ԫ���ԡ����ɲ����Լ�����ģ����������ĳ��������������ơ����ǣ��ڻ���ѧϰ�У���һЩ�����Ĳ��죺</p>
+<ul>
+<li>CI���ٽ������Ժ���֤���뼰��������һ�����Ժ���֤���ݡ����ݼܹ���ģ�͡�</li>
+<li>CD������Ե�������������񣬶������Ӧ�Զ�������������ģ��Ԥ����񣩵�ϵͳ������ѧϰѵ����ˮ�ߣ���</li>
+<li>CT�ǻ���ѧϰϵͳ���е�һ�������ԣ�����Ҫ�漰�Զ�����ѵ�����ṩģ�͡�</li>
+</ul>
+<p>��һ����������ѵ��������Ҫ����Ԥ�����Ļ���ѧϰģ�͵ĵ��Ͳ��衣</p>
+<h2 id="����ѧϰ�����ݿ�ѧ����"><a href="#����ѧϰ�����ݿ�ѧ����" class="headerlink" title="����ѧϰ�����ݿ�ѧ����"></a>����ѧϰ�����ݿ�ѧ����</h2><p>���κλ���ѧϰ��Ŀ�У�����ҵ��������ȷ���ɹ���׼�󣬽�����ѧϰģ�ͽ��������������Ĺ����漰���²��衣��Щ��������ֶ���ɣ�Ҳ�������Զ���ˮ����ɡ�</p>
+<ol>
+<li>������ȡ��������Ϊ����ѧϰ����ѡ��ͼ������Ը�������Դ��������ݡ�</li>
+<li>���ݷ�����������ִ��̽�������ݷ��� (EDA) ���˽�����ڹ�������ѧϰģ�͵����ݡ��˹��̽��������½����<ul>
+<li>�˽�ģ��Ԥ�ڵ����ݼܹ������ԡ�</li>
+<li>ʶ��ģ�����������׼�����������̡�</li>
+</ul>
+</li>
+<li>����׼����Ϊ����ѧϰ����׼�����ݡ���׼�������漰�����������������ݲ��Ϊѵ��������֤���Ͳ��Լ����������Խ�����ת������������Ӧ���ڽ��Ŀ�������ģ�͡��˲���������׼����ʽ�����ݷ�Ƭ**��</li>
+<li>ģ��ѵ�������ݿ�ѧ��ʹ��׼���õ�����ʵ�ֲ�ͬ���㷨����ѵ�����ֻ���ѧϰģ�͡����⣬������Ҫ��ʵ�ֵ��㷨���г��������ڣ��Ի����ѻ���ѧϰģ�͡��˲��������Ǿ���ѵ����ģ�͡�</li>
+<li>ģ���������ڱ������Լ�������ģ�ͣ�������ģ���������˲���������һ����������ģ��������ָ�ꡣ</li>
+<li>ģ����֤��ģ����ȷ���ʺϲ��� - ����Ԥ�����������ض���׼��</li>
+<li>�ṩģ�ͣ�������֤��ģ�ͻᲿ��Ŀ�껷�����ṩԤ�⡣�˲����������������һ�<ul>
+<li>���� REST API ��΢���񣬿������ṩ����Ԥ�⡣</li>
+<li>��Ե�豸���ƶ��豸��Ƕ��ʽģ�͡�</li>
+<li>����Ԥ��ϵͳ��һ���֡�</li>
+</ul>
+</li>
+<li>ģ�ͼ�أ����ģ��Ԥ�����ܣ��Ա��ڻ���ѧϰ������Ǳ�ڵ����µĵ�����</li>
+</ol>
+<p>��Щ������Զ�����������˻���ѧϰ���̵ĳ���ȣ�����ȷ�ӳ��ʹ��������ѵ����ģ�ͻ���ʹ����ʵ��ѵ����ģ�͵��ٶȡ����²��ֽ�������������� MLOps��������ļ��𣨸ü����漰�Զ�������ʼ��һֱ���Զ�ִ�л���ѧϰ�� CI/CD ��ˮ�ߡ�</p>
+<h2 id="MLOps����0���ֶ�����"><a href="#MLOps����0���ֶ�����" class="headerlink" title="MLOps����0���ֶ�����"></a>MLOps����0���ֶ�����</h2><p>�����ŶӶ������ݿ�ѧ�Һͻ���ѧϰ�о���Ա�����ǿ��Թ������ȵ�ģ�ͣ������ǹ����Ͳ������ѧϰģ�͵Ĺ�����ȫ���ֶ��ġ������ļ�����Ϊ����**����ȼ��𣨼��� 0������ͼչʾ�˴˹��̵Ĺ�������</p>
+<p><img src="/img/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-2.exif" alt="��ģ������Ԥ�������ֶ�����ѧϰ����"><br>ͼ2����ģ������Ԥ�������ֶ�����ѧϰ���衣</p>
+<h3 id="����-1"><a href="#����-1" class="headerlink" title="����"></a>����</h3><p>�����б�ͻ����ʾ�� MLOps ���� 0 ���̵����ԣ���ͼ 2 ��ʾ��</p>
+<ul>
+<li>�ű������Ľ���ʽ�ֶ����̣�ÿ�����裨�������ݷ���������׼����ģ��ѵ������֤�������ֶ��ġ��ù�����Ҫ�ֶ�ִ��ÿ�����裬�����ֶ���һ������ת����һ�����衣�˹���ͨ�������ݿ�ѧ���Խ�����ʽ�ڱʼǱ��б�д��ִ�е�ʵ���Դ���������ֱ��������Ч��ģ��Ϊֹ��</li>
+<li>����ѧϰ��������룺�ù��̻Ὣ����ģ�͵����ݿ�ѧ���뽫ģ������Ԥ�����Ĺ���ʦ�ֿ������ݿ�ѧ�ҽ�����ѵ����ģ����Ϊ�����ƽ��������Ŷӣ��Ա�����API�����ܹ��Ͻ��в��𡣴��ƽ��������ܰ���������ѵ����ģ�ͷ��ڴ洢λ�á���ģ�Ͷ���ǩ�����⣬���߽����ϴ���ģ��ע�����Ȼ�󣬲���ģ�͵Ĺ���ʦ��Ҫ�������������ṩ����Ĺ�����ʵ�ֵ���ʱ��������ܻᵼ��ѵ��-Ӧ��ƫ�</li>
+<li>��Ƶ�������������ù��̼ٶ��������ݿ�ѧ�Ŷӹ���һЩ����Ƶ�����ģ�����ģ��ʵ�ֻ�ʹ������������ѵ��ģ�ͣ���ģ�͡���ģ�Ͱ汾ÿ������𼸴Ρ�</li>
+<li>��CI�����ڼٶ�����������ʵ�֣����CI�ѱ����ԡ�ͨ�������Դ����ǱʼǱ���ű�ִ�е�һ���֡�ʵ��ʵ�鲽��Ľű��ͱʼǱ���Դ������ƣ������ɾ���ѵ����ģ�͡�����ָ��Ϳ��ӻ��ȹ�����</li>
+<li>��CD�����ڲ���Ƶ������ģ�Ͱ汾����˲�����CD��</li>
+<li>����ָ����Ԥ����񣺸ù��̽��漰������ѵ����ģ�Ͳ���ΪԤ��������磬���� REST API ��΢���񣩣������ǲ�����������ѧϰϵͳ��</li>
+<li>ȱ���������ܼ�أ��ù��̲�����ٻ��¼ģ��Ԥ��Ͳ�����ģ��Ԥ��Ͳ����Ǽ��ģ�������½�������ģ����Ϊƫ�����������Ϣ��</li>
+</ul>
+<p>�����Ŷӿ��ܻ��API���á����ԺͲ��𣨰�����ȫ���ع��Լ����ز��Ժ�Canary����ԣ������Լ��ĸ������á����⣬������ģ���Դ�������Ԥ����������֮ǰ���°����ѧϰģ�͵���������ͨ�������A/B���Ի�����ʵ�顣</p>
+<h3 id="��ս"><a href="#��ս" class="headerlink" title="��ս"></a>��ս</h3><p>MLOps����0�����࿪ʼ������ѧϰӦ��������������ҵ�кܳ���������ѵø��Ļ�ѵ��ģ�ͣ��������ݿ�ѧ�������Ĵ��ֶ����̿��ܾ��㹻�ˡ�ʵ���ϣ�����ʵ�����в���ģ��ʱ��ģ��ͨ����ʧЧ��ģ���޷���Ӧ�����Ķ�̬�仯���������������ݵı仯�������˽����飬�����<a href="https://www.forbes.com/sites/forbestechcouncil/2019/04/03/why-machine-learning-models-crash-and-burn-in-production/" target="_blank" rel="noopener">Ϊʲô����ѧϰģ�ͻ������������б�����ʧЧ</a>��</p>
+<p>����սʤ��Щ��ս������ģ�������������е�׼ȷ�ԣ�����Ҫִ�����²�����</p>
+<ul>
+<li>�������������������ģ�͵�������Monitoring��������������½���ģ�͹�ʱ�����������ʾ��ִ���µ�ʵ������Լ����ֶ����������������ѵ��ģ�͡�</li>
+<li>Ƶ��������ѵ������ģ�ͣ����貶�񲻶��ݱ�����˵�ģʽ������Ҫʹ��������������ѵ��ģ�͡����磬�������Ӧ��ʹ�û���ѧϰ�Ƽ�ʱ�в�Ʒ�����佨��Ӧ��Ӧ���µ����ƺͲ�Ʒ��</li>
+<li>���ϳ����µ�ʵ��������ģ�ͣ������������µļ�������ͼ�������������Ҫ�����µ�ʵ�֣������������̡�ģ�ͼܹ��ͳ����������磬����������������ʹ�ü�����Ӿ���������ģʽ�ǹ̶��ģ������õ��¼���������߼��׼ȷ�ȡ�</li>
+</ul>
+<p>Ϊ��սʤ���ֶ����̵���ս��CI/CD��CT��MLOps���������á�ͨ���������ѧϰѵ����ˮ�ߣ�����������CT�����ҿ�������CI/CDϵͳ�Կ��ٲ��ԡ������Ͳ������ѧϰ��ˮ�ߵ���ʵ�֡��������ֽ���ϸ������Щ���ܡ�</p>
+<h2 id="MLOps����1������ѧϰ��ˮ���Զ���"><a href="#MLOps����1������ѧϰ��ˮ���Զ���" class="headerlink" title="MLOps����1������ѧϰ��ˮ���Զ���"></a>MLOps����1������ѧϰ��ˮ���Զ���</h2><p>����1��Ŀ����ͨ���Զ�ִ�л���ѧϰ��ˮ��������ѵ��ģ�ͣ��������Գ�������ģ��Ԥ����������Զ�ִ��������������ʹ������������ѵ��ģ�͵Ĺ��̣�����Ҫ����ˮ���������Զ������ݺ�ģ����֤���裬�Լ���ˮ�ߴ�������Ԫ���ݹ�����</p>
+<p>��ͼ�����CT���Զ�������ѧϰ��ˮ�ߵ�ʾ��ͼ��<br><img src="/img/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-3.exif" alt="���CT�Ļ���ѧϰ��ˮ���Զ���"><br>ͼ3�����CT�Ļ���ѧϰ��ˮ���Զ�����</p>
+<h3 id="����-2"><a href="#����-2" class="headerlink" title="����"></a>����</h3><p>�����б�ͻ����ʾ��MLOps����1���õ����ԣ���ͼ3��ʾ��</p>
+<ul>
+<li>����ʵ�飺����ѧϰʵ��Ĳ����Ѿ������š���������֮���ת�����Զ�ִ�еģ��������Կ��ٵ���ʵ�飬�����õ�׼����������ˮ����������������</li>
+<li>���������е�ģ��CT��ϵͳ�������������и���ʵʱ��ˮ�ߴ�����ʹ���������Զ�ѵ��ģ�ͣ���һ���ֽ��Դ˽������ۡ�</li>
+<li>ʵ�������֮��ĶԳ��ԣ��ڿ�����ʵ�黷����ʹ�õ���ˮ��ʵ�ֻ���Ԥ����������������ʹ�ã�����MLOps��������Ҫ���棬����ͳһDevOps��</li>
+<li>�������ˮ�ߵ�ģ�黯���룺���蹹������ѧϰ��ˮ�ߣ����������ظ�ʹ�á�����ϣ��������������ѧϰ��ˮ�߹�������ˣ���ȻEDA�����Կ��ڱʼǱ���ʹ�ã��������Դ�������ģ�黯�����⣬������Ӧ����������ִ�����²�����<ul>
+<li>��ִ�л������Զ����������ʱ�������롣</li>
+<li>ʹ�����ڿ�������������֮������֡�</li>
+<li>������ˮ���е�ÿ�����������������Լ�������ʱ�����汾�����ҿ����в�ͬ�����ԺͿ⡣</li>
+</ul>
+</li>
+<li>��������ģ�ͣ����������еĻ���ѧϰ��ˮ�߻���ʹ�������ݽ���ѵ������ģ�ͳ�������Ԥ�����ģ�Ͳ��������Զ�ִ�еģ��ò��轫����ѵ������֤��ģ����������Ԥ���Ԥ�����</li>
+<li>��ˮ�߲����ڼ���0�У������Խ�����ѵ����ģ����ΪԤ��������������������ڼ���1�������Բ�������ѵ����ˮ�ߣ�����ˮ�߻��Զ��ظ������Խ�����ѵ����ģ������Ԥ�����</li>
+</ul>
+<h3 id="���ݺ�g����֤"><a href="#���ݺ�g����֤" class="headerlink" title="���ݺ�ģ����֤"></a>���ݺ�ģ����֤</h3><p>������ѧϰ��ˮ�߲�����������ʱ������ѧϰ��ˮ�ߴ��������������۵�һ���������������Զ�ִ����ˮ�ߡ���ˮ����Ҫ�µ�ʵʱ����������ʹ�������ݽ���ѵ������ģ�Ͱ汾����ͼ3��ʾ������ˣ�������ˮ����Ҫ�Զ���������֤��ģ����֤���裬��ȷ��ʵ������Ԥ����Ϊ��</p>
+<ul>
+<li>������֤����ģ��ѵ��֮ǰ��Ҫִ�д˲��裬��ȷ����Ӧ������ѵ��ģ�ͻ���ִֹͣ����ˮ�ߡ������ˮ��ʶ�������������ϵͳ���Զ������˾��ߡ�<ul>
+<li>���ݼܹ�ƫ���Щƫ���Ϊ���������е��쳣���������ζ��������ˮ�߲��裨�������ݴ�����ģ��ѵ�������յ����ݲ�����Ԥ�ڼܹ�������������£���Ӧ��ֹͣ��ˮ�ߣ��Ա����ݿ�ѧ�Ŷӽ��е��顣�Ŷӿ��ܻᷢ������ˮ�ߵ��޸�����£��Դ����ܹ��е���Щ���ġ��ܹ�ƫ�������������������δ��������Ԥ����������վ�������ֵ��������</li>
+<li>����ֵƫ���Щƫ��������ͳ�����Ե��ش�仯������ζ������ģʽ���ڱ仯������Ҫ����ģ�͵�����ѵ�����ܲ�����Щ�仯��</li>
+</ul>
+</li>
+<li>ģ����֤���˲��跢������ʹ�������ݳɹ�ѵ��ģ��֮����������ģ��Ͷ����������֮ǰ���������������֤��������ģ����֤**����������²�����<ul>
+<li>�ڲ������ݼ���ʹ�þ���ѵ����ģ����������ָ��ֵ��������ģ�͵�Ԥ��������</li>
+<li>����ѵ����ģ�����ɵ�����ָ��ֵ�뵱ǰģ�ͣ���������ģ�͡���׼ģ�ͻ�����ҵ������ģ�ͣ����бȽϡ��ڽ���ģ��Ͷ����������֮ǰ����ȷ����ģ�͵����ܱȵ�ǰģ�͸��á�</li>
+<li>ȷ��ģ�͵����ܶ������ݵĸ���ϸ����˵��һ�µġ����磬��ѵ���Ŀͻ���ʧģ�͵�����Ԥ��׼ȷ�ʿ��ܱ���ǰģ�͸ߣ���ÿ���ͻ������׼ȷ��ֵ���ܴ��ڽϴ��ƫ�</li>
+<li>ȷ����Բ������ģ�ͣ��������Ի����ܹ���Ԥ����� API �ļ����Ժ�һ���ԡ�</li>
+</ul>
+</li>
+</ul>
+<p>��������ģ����֤֮�⣬�²����ģ����Ϊ���������ṩԤ��֮ǰ���������ģ����֤����Canary�沿���A/B���������н��У���</p>
+<h3 id="�����洢��"><a href="#�����洢��" class="headerlink" title="�����洢��"></a>�����洢��</h3><p>����1����ѧϰ��ˮ���Զ�����һ����ѡ��������������洢���������洢����һ������ʽ�洢���������������ж������Ķ��塢�洢�ͷ��ʽ��б�׼���������Է���ѵ�����ṩ���������洢����ҪΪ����ֵ�ṩ����������������͵���ʱʵʱ�����API���Լ�֧��ѵ���ͷ��������ء�</p>
+<p>�����洢���ɰ������ݿ�ѧ��ִ�����²�����</p>
+<ul>
+<li>���ֲ��ظ�ʹ�ÿ�����ʵ��������������������´�����ͬ�����Ƶ���������</li>
+<li>ͨ�����������������Ԫ����������ʹ�þ��в�ͬ���������������</li>
+<li>�������洢���ṩ���µ�����ֵ��</li>
+<li>ͨ���������洢������ʵ�顢����ѵ�������߷��������Դ������ѵ��-Ӧ��ƫ��˷�����ȷ������ѵ��������������ڼ�ʹ�õ�������ͬ��<ul>
+<li>����ʵ�飬���ݿ�ѧ�ҿ��Դ������洢������ȡ��������������ʵ�顣</li>
+<li>���ڳ���ѵ�����Զ�������ѧϰѵ����ˮ�߿�����ȡ����ѵ����������ݼ���һ����������ֵ��</li>
+<li>��������Ԥ�⣬Ԥ����������ȡ��������ʵ����ص�һ������ֵ������ͻ�������������Ʒ�����͵�ǰ�ĻỰ�ۺ�������</li>
+</ul>
+</li>
+</ul>
+<h3 id="Ԫ���ݹ���"><a href="#Ԫ���ݹ���" class="headerlink" title="Ԫ���ݹ���"></a>Ԫ���ݹ���</h3><p>ϵͳ���¼�йػ���ѧϰ��ˮ��ÿ��ִ���������Ϣ���԰���ʵ�����ݺ͹�����Ϯ�����������Լ��Ƚϡ���Щ��Ϣ�������������Դ�����쳣�����ÿ��ִ����ˮ��ʱ������ѧϰԪ���ݴ洢�������¼����Ԫ���ݣ�</p>
+<ul>
+<li>ִ�е���ˮ�ߺ�����汾��</li>
+<li>��ʼ�ͽ������ڡ�ʱ���Լ���ˮ�����ÿ�����������ѵ�ʱ�䡣</li>
+<li>��ˮ�ߵ�ִ���ߡ�</li>
+<li>���ݸ���ˮ�ߵĲ�����</li>
+<li>ָ����ˮ��ÿ���������ɵĹ�����ָ�룬����׼���õ����ݵ�λ�á���֤�쳣����������ͳ����Ϣ�Լ��ӷ�����������ȡ�Ĵʻ㡣������Щ�м����������������ˮ����ĳ������ʧ�ܶ�ֹͣʱ��������Ĳ������ִ����ˮ�ߣ�����������ִ������ɵĲ��衣</li>
+<li>ָ��֮ǰѵ����ģ�͵�ָ�루�������Ҫ�ع���֮ǰ��ģ�Ͱ汾��������Ҫ����ˮ����ģ����֤�����л���µĲ�������ʱΪ֮ǰ��ģ�Ͱ汾��������ָ�꣩��</li>
+<li>��ģ������������Ϊѵ�����Ͳ��Լ����ɵ�ģ������ָ�ꡣ��Щָ��ɰ�������ģ����֤�����н���ѵ����ģ�͵�������֮ǰģ�͵ļ�¼���ܽ��бȽϡ�</li>
+</ul>
+<h3 id="����ѧϰ��ˮ�ߴ�����"><a href="#����ѧϰ��ˮ�ߴ�����" class="headerlink" title="����ѧϰ��ˮ�ߴ�����"></a>����ѧϰ��ˮ�ߴ�����</h3><p>�������Զ�ִ�л���ѧϰ������ˮ�ߣ��Ը�����������ʹ������������ѵ��ģ�ͣ�</p>
+<ul>
+<li>���裺��ʱ�ֶ�ִ����ˮ�ߡ�</li>
+<li>��ʱ�����ϵͳÿ�졢ÿ�ܻ�ÿ�������ѧϰϵͳ�ṩ���б�ǩ�������ݡ�����ѵ����Ƶ�ʻ�ȡ��������ģʽ�ĸ���Ƶ���Լ�����ѵ��ģ�͵ķ��á�</li>
+<li>������ѵ�����ݵĿ����ԣ������ݲ���ϵͳ���ṩ������ѧϰϵͳ��������ϵͳ�ռ������ݲ���Դ���ݿ����ṩ������ʱ��ʱ�ṩ������ѧϰϵͳ��</li>
+<li>��ģ�������½�ʱ��ģ�������������½�ʱ������ѵ����</li>
+<li>�����ݷֲ������ش�仯������ƫ�ƣ�ʱ����������������ģ�͵��������ܣ�����ע�⵽����ִ��Ԥ������������ݷֲ������ش�仯����Щ�仯��������ģ���ѹ�ʱ����Ҫʹ������������ѵ����</li>
+</ul>
+<h3 id="��ս-1"><a href="#��ս-1" class="headerlink" title="��ս"></a>��ս</h3><p>������ˮ�ߵ���ʵ�ֲ���Ƶ�����𣬲�����ֻ����������ˮ�ߣ�����ͨ����Ҫ�ֶ�������ˮ�߼�����������⣬����Ҫ�ֶ������µ���ˮ��ʵ�֡�������Ҫ���������Ե���ˮ��Դ�����ύ��IT�Ŷӣ��Բ���Ŀ�껷������������������ݣ��������µĻ���ѧϰ���������ģ�ͣ���������Ǻ��ʵġ�</p>
+<p>���ǣ�����Ҫ�����µĻ���ѧϰ��������ٲ������ѧϰ�������ʵ�֡�����������������й�����������ѧϰ��ˮ�ߣ�����Ҫ����CI/CD���Զ����������ԺͲ������ѧϰ��ˮ�ߡ�</p>
+<h2 id="MLOps����2��CI-CD��ˮ���Զ���"><a href="#MLOps����2��CI-CD��ˮ���Զ���" class="headerlink" title="MLOps����2��CI/CD��ˮ���Զ���"></a>MLOps����2��CI/CD��ˮ���Զ���</h2><p>���������������п��١��ɿ��ظ�����ˮ�ߣ�����Ҫһ���ɿ����Զ���CI/CDϵͳ�����Զ���CI/CDϵͳ�����������ݿ�ѧ�ҿ���̽���й��������̡�ģ�ͼܹ��ͳ���������������ǿ���ʵ����Щ������Զ������������µ���ˮ��������Լ����䲿��Ŀ�껷����</p>
+<p>��ͼ��ʾ��ʹ��CI/CD�Ļ���ѧϰ��ˮ�ߵ�ʵ�֣��������Զ�������ѧϰ��ˮ�����õ������Լ��Զ���CI/CD���̡�</p>
+<p><img src="/img/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-4.exif" alt="CI/CD���Զ�������ѧϰ��ˮ��"><br>ͼ4��CI/CD���Զ�������ѧϰ��ˮ�ߡ�</p>
+<p>��MLOps���ð������������</p>
+<ul>
+<li>Դ�������</li>
+<li>���Ժ͹�������</li>
+<li>�������</li>
+<li>ģ��ע���</li>
+<li>�����洢��</li>
+<li>����ѧϰԪ���ݴ洢��</li>
+<li>����ѧϰ��ˮ�߱�����</li>
+</ul>
+<h3 id="����-3"><a href="#����-3" class="headerlink" title="����"></a>����</h3><p>��ͼչʾ�˻���ѧϰ CI/CD �Զ�����ˮ�ߵĸ����׶Σ�<br><img src="/img/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-5.exif" alt="CI/CD�Զ�������ѧϰ��ˮ�ߵĸ����׶�"><br>ͼ5��CI/CD�Զ�������ѧϰ��ˮ�ߵĸ����׶Ρ�</p>
+<p>��ˮ�߰������½׶Σ�</p>
+<ol>
+<li>������ʵ�飺�ڱ�����ʵ�鲽��Ľ׶Σ������Է��������µĻ���ѧϰ�㷨���µĽ�ģ���˽׶ε�����ǻ���ѧϰ��ˮ�߲����Դ���룬��Դ�������ᱻ���͵�Դ����⡣</li>
+<li>��ˮ�߳������ɣ������Թ���Դ���벢���и��ֲ��ԡ��˽׶ε������Ҫ�ں����׶β������ˮ�����������������ִ���ļ��͹�������</li>
+<li>��ˮ�߳��������������Խ�CI�׶����ɵĹ�������Ŀ�껷�����˽׶ε�������Ѳ������ˮ�ߣ����а���ģ�͵���ʵ�֡�</li>
+<li>�Զ���������ˮ�߻����ʱ�������Ӧ���������Զ�������������ִ�С��˽׶ε�����������͵�ģ��ע������Ҿ���ѵ����ģ�͡�</li>
+<li>ģ�ͳ��������������Խ�����ѵ����ģ������Ԥ����񡣴˽׶ε�������Ѳ����ģ��Ԥ�����</li>
+<li>��أ������Ը���ʵʱ�����ռ�ģ�����ܵ�ͳ����Ϣ���˽׶ε����������ִ����ˮ�߻�ִ����ʵ�����ڵĴ�������</li>
+</ol>
+<p>����ˮ�߿�ʼʵ����µ���֮ǰ�����ݷ���������Ȼ�����ݿ�ѧ���ֶ�ִ�еĹ��̡�ģ�ͷ�������Ҳ���ֶ�ִ�еĹ��̡�</p>
+<h3 id="��������"><a href="#��������" class="headerlink" title="��������"></a>��������</h3><p>�ڴ������У����´����ύ�����͵�Դ�����ʱ�����ṹ�������Ժͷ�װ��ˮ�߼�����������˹���������������ӳ��Ϳ�ִ���ļ�֮�⣬CI���̻����԰������²��ԣ�</p>
+<ul>
+<li>�����������߼����е�Ԫ���ԡ�</li>
+<li>��ģ����ʵ�ֵĲ�ͬ�������е�Ԫ���ԡ����磬����һ�����ܷ��������еĺ����������ú�������Ϊ���ȹ��ܡ�</li>
+<li>��������ģ��ѵ���Ƿ����������ģ�͵���ʧ����������½������һ�����һЩʾ����¼����</li>
+<li>����ģ��ѵ���Ƿ񲻻���Ϊ��������ߴ���Сֵ���ֵ������NaNֵ��</li>
+<li>������ˮ���е�ÿ�������������Ԥ�ڵĹ�����</li>
+<li>������ˮ�����֮��ļ��ɡ�</li>
+</ul>
+<h3 id="��������-1"><a href="#��������-1" class="headerlink" title="��������"></a>��������</h3><p>�ڴ˼����У�����ϵͳ����Ŀ�껷�����������µ���ˮ��ʵ�֣��Ӷ�������ѵ����ģ�͵�Ԥ�����������١��ɿ��س���������ˮ�ߺ�ģ�ͣ���Ӧ�����������</p>
+<ul>
+<li>�ڲ���ģ��֮ǰ����֤ģ����Ŀ������ܹ��ļ����ԡ����磬����Ҫ��֤ģ��������������Ƿ��Ѱ�װ�����񻷾��У��Լ��ڴ桢����ͼ�������Դ�Ƿ���á�</li>
+<li>����Ԥ����񣬷����ǣ�ʹ��Ԥ��������÷���API����ȷ�����Ԥ����Ӧ���˲���ͨ���Ჶ�����ڸ���ģ�Ͱ汾ʱ���ܻ���ֵ����⣬����Ҫ���ṩ��ͬ�����롣</li>
+<li>����Ԥ��������ܣ������Է�����и��ز����Բ���ÿ���ѯ���� (QPS) ��ģ���ӳ�ʱ���ָ�ꡣ</li>
+<li>��֤�����Ա�����ѵ�����߽�������Ԥ�⡣</li>
+<li>�ڲ���ģ��֮ǰ����֤���Ƿ�ﵽԤ������Ŀ�ꡣ</li>
+<li>�Զ����𵽲��Ի���������ͨ�����������͵�������֧�������Ĳ���</li>
+<li>���Զ�����Ԥ��������������ͨ�����������׼���ĺ󽫴���ϲ�������֧�������Ĳ���</li>
+<li>��Ԥ���������ж�γɹ�������ˮ�ߺ��ֶ���������������</li>
+</ul>
+<p>�ܶ���֮��������������ʵ�ֻ���ѧϰ��������ζ�Ž�ģ�Ͳ���Ϊ����Ԥ���API���෴������ζ�Ų�����Զ�����ѵ���Ͳ�����ģ�͵Ļ���ѧϰ��ˮ�ߡ�ͨ������CI/CDϵͳ���������Զ����ԺͲ����µ���ˮ��ʵ�֡���ϵͳ������Ӧ�����ݺ�ҵ�񻷾��Ŀ��ٱ仯�����������������й��̴�һ������Ǩ�Ƶ���һ��������������ʵ����Щ�������԰����Ľ�����ѧϰϵͳ�Ŀ����������Զ�����</p>
+<h2 id="ע"><a href="#ע" class="headerlink" title="ע"></a>ע</h2><p><span id="fn1"><a href="#a1">[1]</a></span>: ԭ�ģ�<a href="https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning" target="_blank" rel="noopener">MLOps: Continuous Delivery and Automation Pipelines in Machine Learning</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2024/07/20/The-Data-Science-Task-Force-Mission-VIII/" data-toggle="tooltip" data-placement="top" title="The Data Science Task Force: Mission ML">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Data Science" title="Data Science">Data Science</a>
+                        
+                          <a class="tag" href="/tags/#Machine Learning" title="Machine Learning">Machine Learning</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2024
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
