@@ -194,7 +194,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="MLOps-Continuous-Delivery-and-Automation-Pipelines-in-Machine-Learning-by-Google-1"><a href="#MLOps-Continuous-Delivery-and-Automation-Pipelines-in-Machine-Learning-by-Google-1" class="headerlink" title="MLOps: Continuous Delivery and Automation Pipelines in Machine Learning [by Google[1]]"></a>MLOps: Continuous Delivery and Automation Pipelines in Machine Learning [by Google<sup><span id="a1"><a href="#fn1">[1]</a></span></sup>]</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本文档讨论了实现和自动执行机器学习系统的持续集成 (CI)、持续交付 (CD) 和持续训练 (CT) 的技术。</p>
+                <h1 id="MLOps-Continuous-Delivery-and-Automation-Pipelines-in-Machine-Learning-by-Google-1"><a href="#MLOps-Continuous-Delivery-and-Automation-Pipelines-in-Machine-Learning-by-Google-1" class="headerlink" title="MLOps: Continuous Delivery and Automation Pipelines in Machine Learning [by Google[1]]"></a>MLOps: Continuous Delivery and Automation Pipelines in Machine Learning [by Google<sup><span id="a1"><a href="#fn1">[1]</a></span></sup>]</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本文讨论了实现和自动执行机器学习系统的持续集成 (CI)、持续交付 (CD) 和持续训练 (CT) 的技术。</p>
 <p>数据科学和机器学习正逐渐成为解决复杂现实问题、转变行业以及在所有领域创造价值的核心功能。现在，有效运用机器学习技术的各种要素都已齐备：</p>
 <ul>
 <li>大型数据集</li>
@@ -203,23 +203,23 @@
 <li>不同机器学习研究领域（例如计算机视觉、自然语言理解和推荐 AI 系统）的快速发展。</li>
 </ul>
 <p>因此，许多企业正在投资打造数据科学团队和机器学习功能，以开发能够为用户带来商业价值的预测模型。</p>
-<p>本文档适用于希望将DevOps原则运用于机器学习系统 (MLOps) 的数据科学家和机器学习工程师。MLOps是一种机器学习工程文化和做法，旨在统一机器学习系统开发 (Dev) 和机器学习系统运营 (Ops)。实施MLOps意味着您将在机器学习系统构建流程的所有步骤（包括集成、测试、发布、部署和基础架构管理）中实现自动化和监控。</p>
-<p>数据科学家可以实现并训练一个机器学习模型，该模型在给定用例的相关训练数据的情况下，可在留出的离线数据集上实现出色的预测性能。但是，真正的挑战不是构建机器学习模型，而是构建集成的机器学习系统以及在生产环境中持续运行该系统。由于 Google 的生产型机器学习服务已运行多年，因此我们了解到在生产环境中运行基于机器学习的系统时可能会遇到许多问题。<a href="https://ai.google/research/pubs/pub43146" target="_blank" rel="noopener">《机器学习：技术债务的高息信用卡》</a>总结了其中的一些问题。</p>
-<p>如下图所示，在实际的机器学习系统中，只有一小部分是由机器学习代码组成的。所需的相关元素既庞大又复杂。</p>
+<p>本文适用于希望将DevOps原则运用于机器学习系统 (MLOps) 的数据科学家和机器学习工程师。MLOps是一种机器学习工程文化和做法，旨在统一机器学习系统开发 (Dev) 和机器学习系统运营 (Ops)。实施MLOps意味着您将在机器学习系统构建流程的所有步骤（包括集成、测试、发布、部署和基础架构管理）中实现自动化和监控。</p>
+<p>数据科学家可以实现并训练一个机器学习模型，该模型在给定用例的相关训练数据的情况下，可在留出的离线数据集上实现出色的预测性能。但是，真正的挑战不是构建机器学习模型，而是构建集成的机器学习系统以及在生产环境中持续运行该系统。Google的生产型机器学习服务已运行多年，我们了解到在生产环境中运行基于机器学习的系统时可能会遇到许多问题。<a href="https://ai.google/research/pubs/pub43146" target="_blank" rel="noopener">《Machine Learning: The high-interest credit card of technical debt》</a>总结了其中的一些问题。</p>
+<p>如下图所示，在实际的机器学习系统中，机器学习代码仅占了一小部分，而所需的其它相关要素既庞大又复杂。</p>
 <p><img src="/img/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning-1.exif" alt="机器学习系统的元素"></p>
-<p>图1. 机器学习系统的元素。改编自<a href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf" target="_blank" rel="noopener">机器学习系统中的隐藏技术债务</a>。</p>
+<p>图1. 机器学习系统的要素。改编自<a href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf" target="_blank" rel="noopener">机器学习系统中的隐藏技术债务</a>。</p>
 <p>在此图中，系统的其余部分包括配置、自动化、数据收集、数据验证、测试和调试、资源管理、模型分析、过程和元数据管理、服务基础架构和监控。</p>
-<p>如需开发和运行类似的复杂系统，您可以将 DevOps 原则应用于机器学习系统 (MLOps)。本文档介绍了在为数据科学做法（例如机器学习中的CI、CD和CT）设置MLOps环境时要考虑的概念。</p>
-<p>本文档讨论了以下主题：</p>
+<p>如需开发和运行类似的复杂系统，您可以将DevOps原则应用于机器学习系统 (MLOps)。本文介绍了在为数据科学（例如机器学习中的CI、CD和CT）应用设置MLOps环境时要考虑的概念。</p>
+<p>本文讨论了以下主题：</p>
 <ul>
-<li>DevOps与MLOps</li>
-<li>开发机器学习模型的步骤</li>
-<li>MLOps成熟度级别</li>
+<li>DevOps与MLOps。</li>
+<li>开发机器学习模型的步骤。</li>
+<li>MLOps成熟度等级。</li>
 </ul>
 <h2 id="DevOps与MLOps"><a href="#DevOps与MLOps" class="headerlink" title="DevOps与MLOps"></a>DevOps与MLOps</h2><p>DevOps是开发和运行大规模软件系统的一种常见做法。这种做法具有诸多优势，例如缩短开发周期、提高部署速度、实现可靠的发布。如需获得这些优势，您需要在软件系统开发中引入两个概念：</p>
 <ul>
-<li>持续集成 (CI)</li>
-<li>持续交付 (CD)</li>
+<li>持续集成 (CI)。</li>
+<li>持续交付 (CD)。</li>
 </ul>
 <p>机器学习系统是一种软件系统，因此类似的做法有助于确保您能够可靠地大规模构建和运行机器学习系统。但是，机器学习系统在以下方面与其他软件系统不同：</p>
 <ul>
