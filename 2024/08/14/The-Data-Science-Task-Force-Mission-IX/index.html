@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          The Data Science Task Force: Mission PR - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2024/08/14/The-Data-Science-Task-Force-Mission-IX/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/star-wars.jpg');
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Data Science" title="Data Science">Data Science</a>
+                        
+                    </div>
+                    <h1>The Data Science Task Force: Mission PR</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2024-08-14
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="רҵ����PR��"><a href="#רҵ����PR��" class="headerlink" title="רҵ����PR��"></a>רҵ����PR��</h3><p>�ڼ�����У����ݿ�ѧ��Ӧ�Ը����εķ�ʽ���£�Ϊ��רҵ���⡣����һ�������ǻ���������Ѱ�����棬���л������з������Ը���ͷ��ϵ��¹淶�ķ�ʽ��չ����������<sup><span id="a1"><a href="#fn1">[1]</a></span></sup>�����ԵĲ��������е��������ݡ��������ص�������ݿ�ѧ���ر��ע��������⡣</p>
+
+<table>
+  <tr><th>��Χ</th><th>����</th></tr>
+  <tr>
+    <td width="50%"><ul>
+    <li>�����ĺ����Լ�չʾ������</li>
+    <li>��������ݿ�ѧ���ر���ص�������</li>
+    <li>��ȡרҵ֪ʶ/���ջ���չ�������ڿ������顢�γ̡��������ֻ�����á�</li>
+    <li>������Ｐ���������Ӱ�졣</li>
+    <li>רҵЭ���ڳ���ҵ��չ��רҵ��е����á�</li>
+    </ul></td>
+    <td width="50%">
+    <ul>
+    <li>��ʶ֧�����ݿ�ѧרҵ������֪ʶ��Χ��</li>
+    <li>չʾ֧�ŵ�ǰ����������ݿ�ѧרҵ�����ļ��ܡ�</li>
+    <li>����һ�����š���Ч��רҵ�����ݿ�ѧ���������������������ַ�����</li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+     <th colspan="2">������</th>
+  </tr>
+  <tr>
+    <td width="50%">
+    PR-�ɳ���ְҵ��չ-T1<br>
+    PR-��ͨ-T1<br>
+    PR-�ŶӺ���-T1<br>
+    PR-���ÿ���-T2<br>
+    </td>
+    <td width="50%">
+    PR-��˽�뱣��-T1<br>
+    PR-��������-T1<br>
+    PR-���ɿ���-T2<br>
+    PR-֪ʶ��Ȩ-E<br>
+    PR-�����Զ���-E<br>
+    </td>
+  </tr>
+</table>
+
+<h4 id="PR-�ɳ���ְҵ��չ-T1"><a href="#PR-�ɳ���ְҵ��չ-T1" class="headerlink" title="PR-�ɳ���ְҵ��չ-T1"></a>PR-�ɳ���ְҵ��չ-T1</h4><p>רҵ�Եı����������ܹ�ʤ�����ݿ�ѧĳЩ����Ĺ�����רҵ��Ա�����������е������ܹ�ʤ�ε�������ˣ�����������ߣ������������չʾ��֤��רҵ������Ϣ��������ġ�</p>
+<p><em>֪ʶ</em></p>
+<ul>
+<li>�����ĺ����Լ�չʾ������</li>
+<li>��ȡרҵ֪ʶ/���ջ���չ�������ڿ������顢�γ̡��������ֻ�����á�</li>
+<li>������Ｐ���������Ӱ�졣</li>
+<li>רҵЭ���ڿɳ���ְҵ��չ��רҵ��е����á�</li>
+</ul>
+<p><em>����</em></p>
+<ul>
+<li>˵������������רҵ�����ݿ�ѧ�ҵ���Ҫ�ԡ�</li>
+<li>˵��רҵ��Աͨ�����ȡ��Щ��������չ����������֪ʶ������ʶ���ߵ����ơ�</li>
+<li>��֤רҵЭ����֧��ְҵ��չ�е���Ҫ���á�</li>
+</ul>
+<p><em>Ʒ��</em></p>
+<ul>
+<li>���������������������ʶ�����ݿ�ѧ��һ��˲Ϣ����������ʱ����Լ��˽������ʱ���������Ҫ��</li>
+</ul>
+<h4 id="PR-��ͨ-T1"><a href="#PR-��ͨ-T1" class="headerlink" title="PR-��ͨ-T1"></a>PR-��ͨ-T1</h4><p>�ڸ�������£����ݿ�ѧ�Ҷ���Ҫ�벻ͬ���ڽ��н��������ֽ��������ǿ�ͷ�ġ�����Ļ���ӵġ����ݿ�ѧ��Ҫ�����͸�רҵ���Է��ӵ����ý������ۣ��������ݿ�ѧ���̵Ķ�����棬������ܵ��µı仯�ͽ�����ṩ�µļ��⡣�ܹ��������ı�Ҫ�Բ��Ա��Ľ�����������Ǹ�רҵ��Ҫ�����ʡ���Щרҵ�������Ҫ�ܹ���ĳЩ����µľ����Խ������ۣ�������о���Ľ��顣</p>
+<p>���ݿ�ѧ�ҵĽ��������Լ���֤�ݵľ��߷���Ϊ�������ڻ���ѧϰ���Զ����ı����£���һ����Ϊ��Ҫ����Ϊ���ߵ�ԭ����Ҫ��ֲ�����</p>
+<p>����ѧϰ��չ��һ����Ҫ����ǣ������ܹ�������Ȼ���ԣ����Ҳ�������������룩���Ӷ������ڻ����ˡ����ִ������������������棨��Siri��Cortana��Google Assistant��Alexa��������</p>
+<p><em>֪ʶ</em></p>
+<ul>
+<li>��ͬ�Ľ�����ʽ�����桢��ͷ�����ӣ�������Чʹ�á�</li>
+<li>�����ݿ�ѧ��صļ������ס�</li>
+<li>�����ݿ�ѧ������ص����ڣ�����С�����塢�������塢ר�Һͷ�ר�ҡ�����Ⱥ�塢�߼�������Ա���������Լ�ÿ���������Ч������Ҫ�ء�</li>
+</ul>
+<p><em>����</em></p>
+<ul>
+<li>���������ݿ�ѧ��������صļ������ס�</li>
+<li>Ϊͬ�±�д�����ĵ���ָ������������</li>
+<li>Ϊ�����ݿ�ѧ����Ȥ�ĸ�������������ʾ�ĸ塣</li>
+<li>Ϊ�߼�������Ա����������棬�������ݿ�ѧ�������������ش�ٴ룬������Ҫʱ������ĸ���ص����⡣</li>
+</ul>
+<p><em>Ʒ��</em><br>T1��</p>
+<ul>
+<li>������ؼ����ı仯���е�����֪�������Ч�ؽ��е����������µķ�չ���ᱣ�־�����</li>
+<li>�������������Ҽ�����ȷ����ѧϰ������������塣</li>
+<li>׼ȷ�������Լ���֪ʶ����ĳ����Ͷ̴���</li>
+</ul>
+<h4 id="PR-�YӺ���-T1"><a href="#PR-�YӺ���-T1" class="headerlink" title="PR-�ŶӺ���-T1"></a>PR-�ŶӺ���-T1</h4><p>���ݿ�ѧ��ͨ����һ���Ŷӵĳ�Ա��������Ҫ�����Ŷ��쵼����֧���Ŷӹ������˽ⲻͬ�Ŷӽ�ɫ�������Լ��ŶӵĶ�̬�ǳ���Ҫ�����ŶӺ������棬���ݿ�ѧ��ͨ��������Ҫ�ܹ���ʹ�ò�ͬ���ߵ����ݿ�ѧ�Һ�����������Ҫ�ܹ��벻ͬ�������ߺ�����</p>
+<p><em>֪ʶ</em></p>
+<ul>
+<li>�Ŷ�ѡ���Ŷӳ�Ա�������ͼ�����Ҫ������</li>
+<li>�ŶӶ�̬���ŶӼ��ɡ�</li>
+<li>��Ч�Ŷ�������Ҫ�ء�</li>
+</ul>
+<p><em>����</em></p>
+<ul>
+<li>���������Ŷ��ڲ���ͻ����Ĳ��衣</li>
+<li>�ܽ���ѡ���Ŷӽ����ض����ݿ�ѧ�о�ʱ��Ҫ���ǵ����ء�</li>
+<li>��ʶ�����ݿ�ѧ�о��Ŷ��쵼Ӧ�߱������ʡ�</li>
+</ul>
+<p><em>Ʒ��</em></p>
+<ul>
+<li>�������ˣ����ں��������Ŷ��齨�������е����������ȡ�ʵ����ж���</li>
+<li>Ը�������˺�������ȡ�ʵ��ж����������˺�������������Ҫ�ķ��硣</li>
+</ul>
+<h4 id="PR-���y���-T2"><a href="#PR-���y���-T2" class="headerlink" title="PR-���ÿ���-T2"></a>PR-���ÿ���-T2</h4><p>���ݿ�ѧ��Ӧ֤���Լ��������Լ������»����������ȷ�ġ�</p>
+<p><em>֪ʶ</em></p>
+<ul>
+<li>���������ݼ�����ά���ĳɱ��ͼ�ֵ��</li>
+<li>���ݿ�ѧ��ĳɱ�˵����</li>
+<li>��Ŀ�ɱ����㡣</li>
+<li>���ݿ�ѧ������Ч����</li>
+<li>���ݿ�ѧ����Զ�����</li>
+</ul>
+<p><em>����</em></p>
+<ul>
+<li>�������ݼ�����֯�ļ�ֵ��ͬʱ����ά���ĳɱ�Ҫ��</li>
+<li>��֤��֯Ӧ�����ռ���Щ���ݣ��漰��ص������ռ����̣�ȷ��Ӧ���������Ժ��ռ���ʽ����ע��������</li>
+<li>����Ϊ�ض�Ŀ���ռ����������ݵĳɱ���һ��Ϊ��Դ�ɱ�����</li>
+<li>֤������֯�ڴ������ݿ�ѧ��ĺ����룬��������ɱ���</li>
+<li>�ƶ���֯��չ�ض������о���Ŀ�ļ�ֵ��</li>
+<li>��⿪չ�ڲ������������Դ����������������бȽϡ�</li>
+<li>�������ض���Զ�����صĳɱ���</li>
+</ul>
+<p><em>Ʒ��</em></p>
+<ul>
+<li>�������ݿ�ѧ�����سɱ�������ȡ�ʵ�����Ϊ����ʹ�á�</li>
+</ul>
+<h4 id="PR-��˽�뱣��-T1"><a href="#PR-��˽�뱣��-T1" class="headerlink" title="PR-��˽�뱣��-T1"></a>PR-��˽�뱣��-T1</h4><p>��ȡ���ݵķ�ʽ���ֶ��������Է�λ���ݿ⡢ʹ�õ�����ʾ�����ȡ�����ֶλ�ȡĳЩ��Դ���������Կ�����ʹ����������רҵ����������Ƶ��׽�ͼ��ϵͳ����Ȼ��ȡ������Ϣ�ǳ���Ҫ������רҵ��Ա����Ϸ��ػ�ȡ��Ϣ��ȷ����Ϣ��׼ȷ�ԣ��������ˡ���֯������Ⱥ���Ȩ����</p>
+<p>ע���������������˽֪ʶ����Ĺ�ϵ��</p>
+<p><em>֪ʶ</em></p>
+<ul>
+<li>��Ϣ���ɡ�</li>
+<li>���ݱ������棬������ͨ�����ݱ�����������GDPR����</li>
+<li>��˽������</li>
+<li>���ݱ��ܵķ�����</li>
+<li>����˽�ͱ��ܵ���в��</li>
+<li>���ʲ��档</li>
+</ul>
+<p><em>����</em></p>
+<ul>
+<li>˵��ά�����ݻ����Եļ������ơ�</li>
+<li>�Ƚϲ�ͬ���ҵ���˽������ǿ�����ֲ������������⡣</li>
+<li>��ʶ��ʹ����Ƶ������������ʶ����������������˽�ͱ������⡣</li>
+<li>���չ��ʱ�׼���ܽ��ض���˽���������û�����</li>
+</ul>
+<p><em>Ʒ��</em></p>
+<ul>
+<li>����ά����˽�ͱ����ԣ�ȷ�������ݿ�ѧ������ġ�</li>
+<li>�����ε�ʹ�����ѧϰ����Ϊ�ںܶ����������ѧϰ���������������衣</li>
+<li>�Ժ����͵��µķ�ʽ�����ڽ�����α���йص������������⡣</li>
+</ul>
+<p><em>��������</em></p>
+<ul>
+<li>����˽�Ͱ�ȫ��صķ��ɿ������Ҷ��졣</li>
+</ul>
+<h4 id="PR-��������-T1"><a href="#PR-��������-T1" class="headerlink" title="PR-��������-T1"></a>PR-��������-T1</h4><p>��������������в���������Ϣ�������˵��������Ҫ����һ���ڡ�ACM ������ְҵ��Ϊ׼�������й㷺��������Щ��������»����۵㣬��רҵ��ʿָӦ�е������ܹ�ʤ�ε����񣬼�����ˣ�������ִ�и�������ʱӦ���ֳ����ո���ʵ�����顣���ֻ��������������Ҫ����߶Է��ɺ͵����������ʶ�����Ϊ���ݿ�ѧ�ҹ����Ļ�����רҵ��ʿӦ�����������ص�����������Ϊһ���ǳ���Ҫ����㣬ʹ�����ܹ���ʶ���Լ��ǡ������ġ����������Ĵ����ˡ���</p>
+<p><em>֪ʶ</em></p>
+<ul>
+<li>�������ͱ��������йص��������⡣</li>
+<li>�����ݼ���ʹ����صı������⡣</li>
+<li>��ͨ�����ݱ�����������GDPR����</li>
+<li>���ݣ������������ݣ���Ҫ��������ĳ�������</li>
+<li>�����ݺ��㷨�е�ƫ������������ʵ���ʶ�����ͱ���ƫ���Ļ��ơ�</li>
+<li>�㷨͸���Ⱥ������ơ�</li>
+</ul>
+<p><em>����</em></p>
+<ul>
+<li>˵�����ݿ�ѧ�ҿ��ܳ�����������Χ��һϵ���������ȷ��������Щ����Ĳ��衣</li>
+<li>չʾȷ�����ݼ����㷨��ƫ���ļ�����</li>
+<li>���ۼ������ݿ�ѧ����רҵ��Ա����ĺô���</li>
+</ul>
+<p><em>Ʒ��</em></p>
+<ul>
+<li>�����ռ���ʹ��������ص������������������Ӧ��</li>
+<li>��ƫ������������Ӧ���������跨����ƫ����</li>
+<li>���ƶ����ݿ�ѧ��չ�Ĺ���������ָ�������Ҽ�����</li>
+</ul>
+<h4 id="PR-���ɿ���-T2"><a href="#PR-���ɿ���-T2" class="headerlink" title="PR-���ɿ���-T2"></a>PR-���ɿ���-T2</h4><p>���������������������������س̶ȶ��ڳ������ӡ�����������£�������Ӹ�������֯�������ƻ������ǻ��ҡ����ǵ���в���ݺ��ӣ�רҵ��ʿ�����ȡ��ʩӦ�Կ��ܳ��ֵ������ƻ�������������£������Ѿ�����������Ӧ����Щ���ƣ�������һ�����ϱ仯�͵���������</p>
+<p><em>֪ʶ</em></p>
+<ul>
+<li>�����ݿ�ѧ��صļ�������</li>
+<li>���簲ȫ��</li>
+<li>Ԥ�����</li>
+<li>��鷸���Ļ��ƣ�������ȡ��ͬ�����ı�Ҫ�ԡ�</li>
+<li>�ָ����ƺͱ���100%���С�</li>
+<li>������������ķ��ɡ�</li>
+</ul>
+<p><em>����</em></p>
+<ul>
+<li>����һϵ�����ȶ���ʽ�����Ļ��ơ�</li>
+<li>˵�����ö��ֲ�ͬ����Ӧ����в�Ŀ�ȡ�ԡ�</li>
+</ul>
+<p><em>Ʒ��</em></p>
+<ul>
+<li>����Կ��ܵķ������ʱ���߱������ĺ�ְҵ���£���̬�Ⱦ�������ϵ���ˡ�</li>
+</ul>
+<p><em>��������</em></p>
+<ul>
+<li>�����ķ��ɿ�ܿ���������ͬ��</li>
+</ul>
+<h4 id="PR-֪ʶ��E-E"><a href="#PR-֪ʶ��E-E" class="headerlink" title="PR-֪ʶ��Ȩ-E"></a>PR-֪ʶ��Ȩ-E</h4><p>֪ʶ��Ȩ��IPR�������Ȩ��ר���������ơ��̱����������Ȩ��Moral rights����ּ�ڱ�������˼�봴����Ĵ����߻������ߡ���������Ȩ������������Ϊ֪ʶ��Ȩ������Ȩ��IP�����Լ����ⴴ�����ܵ������Ȩ�����������ݿ�ѧ����˵����Ҫ�����Ķ��󣨿��ܷ�ʽ��ͬ��������������ƣ�����ͼ���û����棨GUI���������ݼ�����������Ȩ����������ҵ����Ҳ���������ء�</p>
+<p><em>֪ʶ</em></p>
+<ul>
+<li>ר������Ȩ���̱ꡢ��ҵ���ܡ���������Ȩ��</li>
+<li>��Щ�����ݿ�ѧ��ص�֪ʶ��Ȩ���Ա�������Щ���ܱ������Լ�����Щ�������Ϳɹ�ѡ��</li>
+<li>���ԺͲ����Ի�÷��ɱ��������ݿ�ѧ���֪ʶ��Ȩ�������Լ��ɻ�õı������͡�</li>
+<li>��֪ʶ��Ȩ��֪ʶ��Ȩ����Ȩ��֪ʶ��Ȩ�ĵ�����صķ��棬��������Э����Ӱ���֪ʶ��Ȩ��ʱ�����⡣</li>
+<li>�Զ���������Ҫע���֪ʶ��Ȩ���࣬�������ע��֪ʶ��Ȩ�ĳ��������</li>
+<li>�ַ�����Ȩ������Ч�����ܱ���֪ʶ��Ȩ�Ŀ����ԡ�</li>
+</ul>
+<p><em>����</em></p>
+<ul>
+<li>���������ݿ�ѧ����ص�֪ʶ��Ȩ���͡�</li>
+<li>��֤ר������Ȩ�������ƺ��̱�֮������𣬲�˵�����������ݿ�ѧ�е�Ӧ�á�</li>
+<li>˵����ҵ���������ݿ�ѧ�е����á�</li>
+<li>˵��֪ʶ��Ȩע�����漰�ĳ���</li>
+<li>������֪ʶ��Ȩ����Ȩ����������Ȩ�йص����⡣</li>
+<li>����ʹ���ܱ���֪ʶ��Ȩ���漰�ķ��գ��Լ���Ч�˷���Щ���յķ�����</li>
+</ul>
+<p><em>Ʒ��</em></p>
+<ul>
+<li>��֪ʶ��Ȩ�Ĵ��ں���Ҫ�ԣ��Լ�֪ʶ��Ȩ���������κͻ���������ķ�Ӧ��</li>
+</ul>
+<p><em>��������</em></p>
+<ul>
+<li>�����ڴ�����֪ʶ��Ȩ��صĵ��ºͷ��ɿ�ܷ������ȫ�Ժ���Ӧ�Ը�����ͬ��ר����ʦͨ�������ṩ���ཨ�顣</li>
+</ul>
+<h5 id="PR-�����Զ���-E"><a href="#PR-�����Զ���-E" class="headerlink" title="PR-�����Զ���-E"></a>PR-�����Զ���-E</h5><p>�Զ����������������Ƕ�ʧҵ�ĵ��ǣ�һ����˵��Ҳ���������ǶԻ�����������Ϊ�ĵ��ǡ�רҵ��ʿӦѰ��Ի�����Ϊ�Ľ��ͣ���������ǡ������㷨͸���Ⱥ������Ƶ�������<sup><span id="a2"><a href="#fn2">[2]</a></span></sup>�͡�ʵ���㷨͸�����������ơ�<sup><span id="a3"><a href="#fn3">[3]</a>�����⡣�Զ������ܻ����ڿ����������ʧ��Σ������£���ʱ����ͨ����������������������Ϊ��һ�µĵ��¹淶���С�</span></sup></p>
+<p><em>֪ʶ</em></p>
+<ul>
+<li>�Զ����������ƺ����ɡ�</li>
+<li>Σ��������Զ������ٵ��������⡣</li>
+<li>�㷨��͸���Ⱥ������ơ�</li>
+</ul>
+<p><em>����</em></p>
+<ul>
+<li>��Ǽ�����ʿ�������ض�������Զ����ߵĳ̶ȡ�</li>
+<li>�����Զ��������Ҫ���Ӱ�죬�����˽�������������ľ�����</li>
+<li>��֤�Զ����ڲ�ͬ����µ����ơ�</li>
+<li>ȷ��ȷ������ϵͳ���������Ĳ��衣</li>
+</ul>
+<p><em>Ʒ��</em></p>
+<ul>
+<li>���Զ�������Ծ�ҵ��Ӱ�����Ᵽ�����С�</li>
+<li>�����غ͵��µķ�ʽ�����Զ������⡣</li>
+</ul>
+<h4 id="�ο�����"><a href="#�ο�����" class="headerlink" title="�ο�����"></a>�ο�����</h4><p><span id="fn1"><a href="#a1">[1]</a></span>: ��ACM������ְҵ��Ϊ׼�򡷣���ACM��2018��7��17�շ�����<br><span id="fn2"><a href="#a2">[2]</a></span>: �������㷨͸���Ⱥ������Ƶ���������ACM������������ίԱ���ACMŷ������ίԱ�ᣬ2017�ꡣ<br><span id="fn3"><a href="#a3">[3]</a></span>����ʵ���㷨͸�����������ơ���Communications of the ACM vol 60 no 9 page 5��2017��9�¡�</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2024/08/08/MLOps-Continuous-Delivery-and-Automation-Pipelines-in-Machine-Learning/" data-toggle="tooltip" data-placement="top" title="MLOps: Continuous Delivery and Automation Pipelines in Machine Learning">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Data Science" title="Data Science">Data Science</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2024
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
