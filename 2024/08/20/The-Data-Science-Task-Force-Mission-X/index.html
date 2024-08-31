@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          The Data Science Task Force: Mission PDA - Master Gloomymoon&#39;s R2D2
+        
+    </title>
+
+    <link rel="canonical" href="http://gloomymoon.github.io/2024/08/20/The-Data-Science-Task-Force-Mission-X/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Gloomymoon</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/star-wars.jpg');
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Data Science" title="Data Science">Data Science</a>
+                        
+                    </div>
+                    <h1>The Data Science Task Force: Mission PDA</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Gloomymoon on
+                        2024-08-20
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="������o����ݽu���㷨��PDA��"><a href="#������o����ݽu���㷨��PDA��" class="headerlink" title="������ơ����ݽṹ���㷨��PDA��"></a>������ơ����ݽṹ���㷨��PDA��</h3><p>���ݿ�ѧ��Ӧ�ܹ�ʵʩ�����������ռ��ڷ����㷨��������������������/�򹤾߼̳У�����Ӧ�˽��㷨��ʱ��Ϳռ俼�����أ��Լ�����ֵ�����йص��������⡣<br>��ע�⣬��������������CS2013�Ķ��֪ʶ���򣬵������ظ����㷨�븴���ԣ�AL���������ѧ��CN����������ԣ�PL������������������SDF����</p>
+
+<table>
+  <tr><th>��Χ</th><th>����</th></tr>
+  <tr>
+    <td width="50%"><ul>
+    <li>ͨ���㷨˼ά������⡣</li>
+    <li>������ʵ�ֳ��򣬰������������������/�򹤾ߵļ̳С�</li>
+    <li>ʹ�ô�ͳ��������������ݼ���Ӧ�ó���֮��Ľӿڡ�</li>
+    <li>�����ݿ�ѧ������ʹ��Ϊͳ�Ƽ������Ƶı�����ԡ�</li>
+    <li>�����������ͣ�ADT����֪ʶ��ʹ�á�</li>
+    <li>���ݼ����㷨��֪ʶ��ʹ�á�</li>
+    <li>�㷨��ƺͷ�����</li>
+    <li>Ӱ���㷨�����Ժ����ܵ����ء�</li>
+    <li>�����Է����ͱȽϡ�</li>
+    </ul></td>
+    <td width="50%">
+    <ul>
+    <li>�ñ���������һ���㷨�����һ����С�����⡣</li>
+    <li>�ñ�����Ա�д��������ȷ�Ĵ��룬����ԭʼ�������͡����á�����������ʽ����ֵ��I/O�����ƽӿڡ�������ѭ����</li>
+    <li>�ڱ���в������õ��ĵ����Ʒ�����</li>
+    <li>ʹ�÷ֽ⼼��������ģ�黯��</li>
+    <li>ʹ���ض�������Եı�׼����⡣</li>
+    <li>��д�ʵ������ݿ��ѯ��</li>
+    <li>Ϊ�ض�����ѡ����ʵ����ݽṹ��</li>
+    <li>��Ը�������ѡ����ʵ��㷨</li>
+    <li>����ʱ��Ϳռ临���Զ��㷨ʵ���Ե���Ҫ�ԡ�</li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+     <th colspan="2">������</th>
+  </tr>
+  <tr>
+    <td width="50%">
+    PDA-�㷨˼ά��������-T1��T2<br>
+    PDA-���-T1��T2��E<br>
+    PDA-���ݽṹ-T1��T2��E<br>
+    </td>
+    <td width="50%">
+    PDA-�㷨-T1��T2��E<br>
+    PDA-���������Է���-T1��T2<br>
+    PDA-��ֵ����-T1��T2<br>
+    </td>
+  </tr>
+</table>
+
+<h4 id="PDA-�㷨˼ά��������"><a href="#PDA-�㷨˼ά��������" class="headerlink" title="PDA-�㷨˼ά��������"></a>PDA-�㷨˼ά��������</h4><p>Ϊ�˿�����ȷ����Ц�������Ϳ��õĴ��루�����������ݷ�����չʾ�����л�����������ϵͳ�У������ݿ�ѧ��Ӧ�߱��������㷨���������ܡ�</p>
+<p><em>֪ʶ</em></p>
+<p>T1��</p>
+<ul>
+<li>�㷨���塣</li>
+<li>�㷨�ڽ����������е���Ҫ�ԡ�</li>
+<li>����һ�ֽ���������ʽ������</li>
+<li>�������Ļ�����Ƹ����ԭ��<ul>
+<li>����</li>
+<li>��װ����Ϣ���ء�</li>
+<li>��Ϊ��ʵ�ַ�����</li>
+</ul>
+</li>
+</ul>
+<p><em>����</em></p>
+<p>T1��</p>
+<ul>
+<li>ʹ�ô����������ʽ��������ͼ��α���룩����������������</li>
+<li>��ĳ����ʽ����������ͼ�����������������������������롢ת���������ͼ��</li>
+<li>ȷ�����루�����ݡ����������û���Ӧ������������ִ�г���������������Ҫ��</li>
+<li>ʶ����ֳ����������͵������������Ϊ���μ�PDA-���ݽṹ����</li>
+</ul>
+<p>T2��</p>
+<ul>
+<li>����ʹ��һ����ʽ�ķ�����������⡣</li>
+</ul>
+<p><em>Ʒ��</em></p>
+<p>T1��</p>
+<ul>
+<li>׼ȷ�����㷨�ͳ����㷨��ͬ�ڳ���</li>
+<li>׼ȷ���⽫��������ֽ�Ϊ��ʵ�ֵĽ����������ĳ����ʽ������Щ���������ԭ���Է�����</li>
+</ul>
+<h4 id="PDA-���"><a href="#PDA-���" class="headerlink" title="PDA-���"></a>PDA-���</h4><p>Ϊ���ռ���������չʾ���ݣ����ݿ�ѧ����Ҫ��չ��̼��ܣ���Ӧ��ͨ�����ı�̽ṹ���������ݿ�ѧ�ҽ�������ϵͳ�Խӣ��������Ӧ���ܹ�����������������������/�򹤾߼��ɵĳ���</p>
+<p><em>֪ʶ</em></p>
+<p>T1��</p>
+<ul>
+<li>���ı�̸��<ul>
+<li>������ԭʼ�������͡�</li>
+<li>����ʽ�͸�ֵ��</li>
+<li>�����͵������ƽṹ��</li>
+<li>ѭ��������</li>
+<li>�����Ͳ������ݡ�</li>
+<li>������/����������ļ���������̬����Դ��</li>
+<li>�쳣�����</li>
+</ul>
+</li>
+<li>����ʵ����<ul>
+<li>�ĵ���</li>
+<li>���ԡ�</li>
+<li>�汾���ơ�</li>
+</ul>
+</li>
+<li>������ֽ�Ϊ��С��Ƭ�Ρ�</li>
+<li>�������ͣ��﷨���߼�������ʱ�������ܷ����ķ�ʽ���䴦����ʽ��</li>
+<li>��ѯ�ͽ�������Դ�ķ�����</li>
+</ul>
+<p>T2��</p>
+<ul>
+<li>�����ع��ͳ���ά����</li>
+<li>���ֲ��Ժ͵��Բ��ԡ�</li>
+<li>Ӧ�ó���ӿڵ�Ч�ã���ʱѰ��Ӧ�ó���ӿڡ�</li>
+</ul>
+<p>E��</p>
+<ul>
+<li>�߼����<ul>
+<li>����/������������Python�е�Lambda��������</li>
+<li>�����ͳ���ı�����������</li>
+<li>��Ͷ���</li>
+</ul>
+</li>
+</ul>
+<p><em>����</em></p>
+<ul>
+<li>��д�����������ĸ����ʵ�ֵļƻ���</li>
+<li>�Ƶ�����ε�ִ�У�������������Ҫ��</li>
+<li>���÷ֽ⼼��������ֽ�ɸ�С�Ĵ���Ƭ�Ρ�</li>
+<li>�����ʵ��ļ����������ݿ��ѯ��API���á��������ʽ����������ѡ����Դ�������ݿ⡢���ӱ����ı��ĵ���XML�������ݡ�</li>
+<li>ʹ��ѭ���͵�������������������</li>
+<li>ʹ��һ�µ��ĵ��ͱ�̷���׼������������Ŀɶ��ԺͿ�ά���ԡ�</li>
+<li>Ӧ�ò��Ժ͵��Գ���Ĳ��ԡ�</li>
+</ul>
+<p>T2��</p>
+<ul>
+<li>˵�������ع���ά������ı�Ҫ�ԡ�</li>
+<li>���պ���ʵ���Գ�������ع���ά���͸Ľ���</li>
+<li>ʹ����Ͷ��󹹽�������������</li>
+<li>ʹ���ִ����ɿ�����������ع��ߣ��絥Ԫ���Թ��ߺͿ��ӻ�����������������</li>
+<li>ʹ�ñ�������ṩ�ı�׼����⹹������</li>
+<li>�����͵�Ӧ�ó���ӿڣ�API�����ɵ������С�</li>
+</ul>
+<p>E��</p>
+<ul>
+<li>ʹ��ģ���ͨ�ù�����Ч��ƺ�ʵʩ������������</li>
+<li>��Ʋ�ʵʩ���ص�Ӧ�ó���ӿڣ�API����</li>
+<li>ʹ��ר�ż���������Ȼ���Դ�����ͼ�����ȣ��ռ��ͽ������ݣ��ο�֪ʶ�����ݲɼ�����������������</li>
+<li>�Ķ������⡢��д�͵��԰����߼�����ĳ���</li>
+</ul>
+<p><em>Ʒ��</em><br>T1��</p>
+<ul>
+<li>�ᶨ���������ڱ��ʵ���������������̸�������ԭ�򣨲ο�֪ʶ������������ά������</li>
+<li>������Խֱ�Ӵ��ڵ�֪ʶ����ʶ����̽ṹ�ͷ�����ͨ�õģ�����������¶����á�</li>
+<li>��Խ�򵥵Ľ�����������ڴ��¡����ݿ�ѧ�Ҳ�Ӧ�����ڵ������н��������</li>
+</ul>
+<h4 id="PDA-���ݽu"><a href="#PDA-���ݽu" class="headerlink" title="PDA-���ݽṹ"></a>PDA-���ݽṹ</h4><p>Ϊ�˱�д��Ч�͸�Ч�Ĵ��룬���ݿ�ѧ��Ӧ���˽�������ݽṹ���ܹ�ʹ�����ǲ�����ѡ��һ�����ݽṹ����һ�����ݽṹ��Ӱ�졣���ھ������������ݿ�ѧӦ���е����ã����ｫ�ر��ע����ı�ʾ�Ͳ�����</p>
+<p><em>֪ʶ</em><br>T1��</p>
+<ul>
+<li>�������ݽṹ�ͳ����������ͣ�ADT�����б������顢��ջ�����С��ַ��������ϡ���¼/�ṹ��ӳ�䡢��ϣ������<ul>
+<li>Ŀ�ġ�</li>
+<li>�÷���</li>
+</ul>
+</li>
+<li>���������ʾ�ṹ��ϡ��/�ܼ����С��У�<ul>
+<li>�����ʾ���͡�</li>
+<li>���ڱ�ʾ���͵Ļ���������������ס�</li>
+</ul>
+</li>
+</ul>
+<p>T2��</p>
+<ul>
+<li>�߼��ṹ������ͼ����<ul>
+<li>Ŀ�ġ�</li>
+<li>�÷���</li>
+</ul>
+</li>
+</ul>
+<p>E��</p>
+<ul>
+<li>��������Ż���</li>
+</ul>
+<p><em>����</em><br>T1��</p>
+<ul>
+<li>�ڱ�����ʵ�ѡ��������ݽṹ��</li>
+<li>�ʵ�ʹ���ض�������Եı�׼�������Ϳ⡣</li>
+</ul>
+<p>T2��</p>
+<ul>
+<li>�ڱ�����ʵ�ѡ��߼��������͡�</li>
+<li>�ʵ�ʹ���ض�������Եı�׼�⡣</li>
+</ul>
+<p>E��</p>
+<ul>
+<li>ʵʩ����ĳ����������ͣ����������Ϊ֮��ʵ����ɢ��ϡ�</li>
+<li>�Ƚ�/�Աȸ������ݽṹ�ı�׼����������ҡ����롢ɾ������ʱ��/�ռ䡣</li>
+</ul>
+<p><em>Ʒ��</em><br>T1��</p>
+<ul>
+<li>ʵʩ�����ݽṹѡ��ĳ����Լ����ʹ�á�Ч�ʣ�ʱ��/�ռ䣩�Ϳɶ��Ե�Ӱ�졣</li>
+</ul>
+<h4 id="PDA-�㷨"><a href="#PDA-�㷨" class="headerlink" title="PDA-�㷨"></a>PDA-�㷨</h4><p>���ݿ�ѧ��Ӧ��ʶ�����㷨��ѡ���Խ�����������ʱ��Ϳռ����Ӱ�죬���ݿ�ѧ��Ӧ��Ϥһϵ���㷨�������Ա����ض������ѡ����ʵ��㷨��</p>
+<p><em>֪ʶ</em><br>T1��</p>
+<ul>
+<li>�򵥵������㷨��������б���ƽ��ֵ���ҳ��б��е���Сֵ�����ֵ��ģʽ��</li>
+<li>�����������<ul>
+<li>˳�������Ͷ���������</li>
+<li>O($n^2$)������룩��O(n$\log$n)����ϲ�������</li>
+<li>���������������㷨����������򣩡�</li>
+<li>����ɢ�е������������Ǳ��Ч�����ơ�</li>
+</ul>
+</li>
+<li>ͼ�����ԣ���ͨ�ԡ���ࡢ�����Եȡ�</li>
+<li>ͼ���㷨��</li>
+<li>�����㷨���ԣ���̰�������Ρ�</li>
+<li>����ϵͳ����㷨��</li>
+</ul>
+<p>T2��</p>
+<ul>
+<li>����Ż������㷨��</li>
+<li>����ʽ�Ż�������</li>
+</ul>
+<p>E��</p>
+<ul>
+<li>ɢ�к�ɢ�к�����</li>
+</ul>
+<p><em>����</em><br>T1��</p>
+<ul>
+<li>Ӧ�ü򵥵������㷨�������ƽ����������Сֵ�ȣ���</li>
+<li>Ӧ�������������㷨��</li>
+<li>�Աȸ��ֻ�������������������㷨�����ס�</li>
+<li>ʹ�ù�Ȼ���������㷨��һ����ִ��ͼ�����ı�����</li>
+<li>ʹ�ø�Ч���㷨����̰���㷨���ҳ�ͼ�����е����·����</li>
+<li>���ʵ���������Ӧ������ϵͳ�������</li>
+</ul>
+<p>T2��</p>
+<ul>
+<li>ʹ�ø�Ч�㷨ʶ��ͨ��ͼ������������С����</li>
+<li>ʹ������Ż�����ĳ����㷨������κͱ߽��㷨����</li>
+<li>���ʵ���������Ӧ������ʽ�Ż�����������Ⱥ���Ŵ��㷨����������</li>
+<li>����ʵ�������ʵʩ��̬��̽��������</li>
+</ul>
+<p>E��</p>
+<ul>
+<li>�ڷֲ�ʽϵͳ��������ʵʩ��ʹ������/�����㷨��</li>
+<li>���������бȽ�ɢ�к�����</li>
+<li>ͼ����<ul>
+<li>ִ�б��������·���������㷨��</li>
+</ul>
+</li>
+<li>��������㷨��</li>
+</ul>
+<p><em>Ʒ��</em><br>T1��</p>
+<ul>
+<li>��ѡ���㷨����ʱҪ���׼ȷ��Ҫ֪��ͨ���ж����㷨�������Գɹ����ĳ�����⡣</li>
+<li>�������ʶ���㷨��ѡ���Ч�����ش�Ӱ�졣</li>
+<li>�������ʶ��Ч�ʣ�ʱ�䡢�ռ䣩�Կͻ��������ߺ�ά���ߵ����д���������ط���Ӱ�졣</li>
+</ul>
+<h4 id="PRA-���������Է���"><a href="#PRA-���������Է���" class="headerlink" title="PRA-���������Է���"></a>PRA-���������Է���</h4><p>���ݿ�ѧ��Ӧ�˽������������ʱ��Ϳռ䣬��Ӧ֪��ĳЩ��������޷��ں�����ʱ���ڽ�������ǻ�Ӧ���ǵ����д����ƽ̨����ΰ�������</p>
+<p><em>֪ʶ</em><br>T1��</p>
+<ul>
+<li>ʱ��Ϳռ临���ԵĶ��塣</li>
+<li>�㷨����������Ԥ�������������֮��Ĳ��졣</li>
+<li>�ڹ���ʱ��Ϳռ临���Է���Ȩ�����ס�</li>
+<li>���ڷ����㷨�ķ����׼�����磺<ul>
+<li>ȷ�������ȷ���ԡ�</li>
+<li>ʱ��/�ռ��Ρ�</li>
+</ul>
+</li>
+</ul>
+<p><em>����</em><br>T1��</p>
+<ul>
+<li>���㷨Ч�ʣ���������������з���ʽ�Ƚϡ�</li>
+<li>�ڲ�ͬ��С��������ִ���㷨���Ƚ����ܡ�</li>
+<li>����˵��ʵ�ֺ��㷨ѡ���ִ��ʱ���ռ��Ӱ�졣</li>
+<li>�����������/���ݽṹ���㷨֮��Ĺ�ϵ/��ϡ�</li>
+</ul>
+<p>T2��</p>
+<ul>
+<li>��ʽӦ�ø��ַ����׼�������㷨��</li>
+</ul>
+<p><em>Ʒ��</em><br>T1��</p>
+<ul>
+<li>ȫ�������ռ�/ʱ�临���ԡ��ڹ���ʱ��Ϳռ临����ʱ������ҪȨ�����ף����˽���Щȫ�����׶Կͻ�/�����û���Ӱ�졣</li>
+</ul>
+<h4 id="PRA-��ֵ����"><a href="#PRA-��ֵ����" class="headerlink" title="PRA-��ֵ����"></a>PRA-��ֵ����</h4><p>���ݿ�ѧ�ҽ�����������ͨ���漰��ֵ���㣬���ݿ�ѧ��Ӧ�˽���ֵ��ʾ�����������ƣ����ǻ�Ӧ�˽��׼��ֵ�����㷨������;��</p>
+<p><em>֪ʶ</em><br>T1��</p>
+<ul>
+<li>�������������RNG����</li>
+<li>���ʷֲ�ģ�⡣</li>
+<li>�ñ��ر�ʾ��ֵ�ľ����Լ���Խ���������ۻ�����������硢���롢�ضϣ���Ӱ�졣</li>
+<li>���ֱ�ʾ���Լ��㷨���Ե�Ӱ�졣</li>
+</ul>
+<p>T2��</p>
+<ul>
+<li>�������ݷ����ĸ߼���ֵ�㷨���漰���㷨����ѧ�������磺<ul>
+<li>���ɷַ�����PCA����</li>
+<li>����ֵ�ֽ⣨DVD����</li>
+<li>����ֵ�ֽ⡣</li>
+<li>ţ�ٷ���</li>
+<li>���ؿ���ģ�⡣</li>
+</ul>
+</li>
+<li>���õ�����������������������ѧģ��֮�����ϵ�����磺<ul>
+<li>ʹ��SVD��ʾ�ļ���</li>
+<li>���ڽӱ���ϡ������ʾͼ�Ρ�</li>
+<li>��KD����ʾ�����ռ䡣</li>
+</ul>
+</li>
+</ul>
+<p><em>����</em><br>T1��</p>
+<ul>
+<li>������ֵ�����㷨���������Ӱ��ģ��ִ�С����ݲ������������ɡ�</li>
+<li>�����ʵ�����ֵ�����㷨���Խ������ݷ���������ʶ��������Ժ���ֵ���������ơ�</li>
+<li>ʹ���������������ģ����ʷֲ�����<ul>
+<li>���÷�ȷ�����㷨ʵ�����ݷֲ��Ŀ��ظ��ԡ�</li>
+<li>���㷨�������ȷ���ԣ���ȷ���ʵ���ͳ�ƺ���ֵ������</li>
+</ul>
+</li>
+</ul>
+<p>T2��</p>
+<ul>
+<li>Ӧ���ʵ��������㷨����������⣬�㷨���ܰ��������꾡���������ȼ�����<ul>
+<li>���ɷַ�����PCA����</li>
+<li>����ֵ�ֽ⣨DVD����</li>
+<li>����ֵ�ֽ⡣</li>
+<li>ţ�ٷ���</li>
+<li>���ؿ���ģ�⡣</li>
+</ul>
+</li>
+</ul>
+<p><em>Ʒ��</em><br>T1��</p>
+<ul>
+<li>��ͨ��α����������ɵ����ƺ;����ԡ�</li>
+<li>�������ʶ����ֵ�����㷨�ľ����ԡ�</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2024/08/14/The-Data-Science-Task-Force-Mission-IX/" data-toggle="tooltip" data-placement="top" title="The Data Science Task Force: Mission PR">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Data Science" title="Data Science">Data Science</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Gloomymoon">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Gloomymoon 2024
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a>
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://gloomymoon.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://gloomymoon.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
